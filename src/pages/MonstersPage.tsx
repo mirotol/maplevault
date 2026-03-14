@@ -76,8 +76,8 @@ const MonstersPage = () => {
   return (
     <>
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-          <Database className="w-6 h-6 text-(--color-accent)" />
+        <h2 className="text-3xl font-semibold mb-4 flex items-center gap-2">
+          <Database className="w-8 h-8 text-(--color-accent)" />
           Monster List
         </h2>
       </div>
@@ -116,11 +116,15 @@ const MonstersPage = () => {
       )}
 
       {!hasMore && mobs.length > 0 && (
-        <p className="text-center p-8 opacity-50">No more monsters to load.</p>
+        <p className="text-center p-8 opacity-50 text-base">
+          No more monsters to load.
+        </p>
       )}
 
       {!loading && mobs.length === 0 && (
-        <p className="text-center p-8 opacity-50">No monsters found.</p>
+        <p className="text-center p-8 opacity-50 text-base">
+          No monsters found.
+        </p>
       )}
     </>
   );

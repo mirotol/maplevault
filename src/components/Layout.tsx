@@ -57,10 +57,10 @@ const Layout = () => {
       {/* Header Section */}
       <header className="max-w-7xl mx-auto px-4 py-8 flex justify-between items-center border-b border-(--color-border)">
         <Link to="/" className="group">
-          <h1 className="text-4xl font-bold tracking-tight mb-2 group-hover:text-(--color-accent) transition-colors">
+          <h1 className="text-5xl font-bold tracking-tight mb-2 group-hover:text-(--color-accent) transition-colors">
             MapleVault
           </h1>
-          <p className="text-lg opacity-80">
+          <p className="text-xl opacity-80">
             MapleStory database for mobs and items
           </p>
         </Link>

@@ -4,8 +4,8 @@ const ItemsPage = () => {
   return (
     <>
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-          <Database className="w-6 h-6 text-(--color-accent)" />
+        <h2 className="text-3xl font-semibold mb-4 flex items-center gap-2">
+          <Database className="w-8 h-8 text-(--color-accent)" />
           Item List
         </h2>
       </div>
@@ -21,10 +21,10 @@ const ItemsPage = () => {
             <div className="w-12 h-12 mb-4 rounded-lg bg-(--color-accent-bg) flex items-center justify-center text-(--color-accent)">
               <Shield className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-medium mb-1 group-hover:text-(--color-accent) transition-colors">
+            <h3 className="text-2xl font-medium mb-1 group-hover:text-(--color-accent) transition-colors">
               Item #{item}
             </h3>
-            <p className="text-sm opacity-60">
+            <p className="text-base opacity-60">
               Click to view more details about this item in the MapleVault.
             </p>
           </div>

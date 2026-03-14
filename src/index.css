@@ -13,6 +13,7 @@
   --color-accent: #aa3bff;
   --color-accent-bg: rgba(170, 59, 255, 0.1);
   --color-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
 /* Dark theme */
@@ -32,7 +33,7 @@
 
 body {
   font-family: var(--font-sans);
-  @apply bg-(--color-bg) text-(--color-text) font-sans;
+  @apply bg-(--color-bg) text-(--color-text) font-sans text-lg;
 }
 
 #root {
