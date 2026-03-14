@@ -28,10 +28,10 @@ export async function fetchMobs(
 
 export async function fetchMobDetail(
   mobId: number,
-  region: string = "GMS",
-  version: string = "83",
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
 ): Promise<MobDetail | null> {
-  const url = `https://maplestory.io/api/${region.toLowerCase()}/${version}/mob/${mobId}`;
+  const url = `${BASE_URL}/${region.toLowerCase()}/${version}/mob/${mobId}`;
   const res = await fetch(url);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Failed to fetch mob ${mobId}: ${res.status}`);
@@ -40,10 +40,19 @@ export async function fetchMobDetail(
 
 export function fetchMobIcon(
   mobId: number,
-  region: string = "GMS",
-  version: string = "83",
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
 ): string {
-  return `https://maplestory.io/api/${region.toLowerCase()}/${version}/mob/${mobId}/icon`;
+  return `${BASE_URL}/${region.toLowerCase()}/${version}/mob/${mobId}/icon`;
+}
+
+export function fetchMobRenderUrl(
+  mobId: number,
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
+  mode = "stand",
+): string {
+  return `${BASE_URL}/${region.toLowerCase()}/${version}/mob/${mobId}/render/${mode}`;
 }
 
 export async function fetchItems(

@@ -1,17 +1,29 @@
 import { Database, Loader2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchMobs } from "../api/mapleApi";
 import MobCard from "../components/MobCard";
 import MobModal from "../components/MobModal";
 import type { Mob } from "../types/maple";
 
 const MonstersPage = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [mobs, setMobs] = useState<Mob[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [startPosition, setStartPosition] = useState(0);
-  const [selectedMob, setSelectedMob] = useState<Mob | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
+
+  const selectedMob = id ? mobs.find((m) => m.id === Number(id)) : null;
+
+  const handleCloseModal = () => {
+    navigate("/monsters");
+  };
+
+  const handleSelectMob = (mob: Mob) => {
+    navigate(`/mob/${mob.id}`);
+  };
 
   const lastMobElementRef = useCallback(
     (node: HTMLDivElement) => {
@@ -75,7 +87,7 @@ const MonstersPage = () => {
           if (mobs.length === index + 1) {
             return (
               <div ref={lastMobElementRef} key={mob.id}>
-                <MobCard mob={mob} onClick={() => setSelectedMob(mob)} />
+                <MobCard mob={mob} onClick={() => handleSelectMob(mob)} />
               </div>
             );
           }
@@ -83,14 +95,18 @@ const MonstersPage = () => {
             <MobCard
               key={mob.id}
               mob={mob}
-              onClick={() => setSelectedMob(mob)}
+              onClick={() => handleSelectMob(mob)}
             />
           );
         })}
       </div>
 
-      {selectedMob && (
-        <MobModal mob={selectedMob} onClose={() => setSelectedMob(null)} />
+      {id && (
+        <MobModal
+          mobId={Number(id)}
+          initialMob={selectedMob || undefined}
+          onClose={handleCloseModal}
+        />
       )}
 
       {loading && (

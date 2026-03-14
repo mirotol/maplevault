@@ -1,40 +1,62 @@
+import type { LucideIcon } from "lucide-react";
 import {
+  Activity,
+  Boxes,
+  Crosshair,
   Flame,
   Ghost,
   Heart,
   ImageOff,
   Info,
-  Loader2,
-  type LucideIcon,
+  Layers,
   MapPin,
+  Move,
   Shield,
+  ShieldAlert,
+  Skull,
   Target,
   X,
   Zap,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { fetchMobDetail, fetchMobIcon } from "../api/mapleApi";
+import { fetchMobDetail, fetchMobRenderUrl } from "../api/mapleApi";
 import type { Mob, MobDetail } from "../types/maple";
 
 interface MobModalProps {
-  mob: Mob;
+  mobId: number;
+  initialMob?: Mob;
   onClose: () => void;
 }
 
-const MobModal = ({ mob, onClose }: MobModalProps) => {
+const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   const [detail, setDetail] = useState<MobDetail | null>(null);
   const [loading, setLoading] = useState(true);
-  const [imageError, setImageError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Small delay to trigger animation
+    const timer = setTimeout(() => setIsOpen(true), 10);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     let currentActive = true;
     setLoading(true);
-    fetchMobDetail(mob.id)
+    setError(null);
+
+    fetchMobDetail(mobId)
       .then((data) => {
-        if (currentActive) setDetail(data);
+        if (!currentActive) return;
+        if (data) {
+          setDetail(data);
+        } else {
+          setError("No detailed information available for this monster");
+        }
       })
       .catch((err) => {
         console.error("Failed to fetch mob details in modal:", err);
+        if (currentActive) setError("Failed to load monster details");
       })
       .finally(() => {
         if (currentActive) setLoading(false);
@@ -43,15 +65,13 @@ const MobModal = ({ mob, onClose }: MobModalProps) => {
     return () => {
       currentActive = false;
     };
-  }, [mob.id]);
+  }, [mobId]);
 
-  // Handle ESC key to close
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleEsc);
-    // Prevent scrolling when modal is open
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", handleEsc);
@@ -59,77 +79,157 @@ const MobModal = ({ mob, onClose }: MobModalProps) => {
     };
   }, [onClose]);
 
-  const iconUrl = fetchMobIcon(mob.id);
+  const renderUrl = fetchMobRenderUrl(mobId);
 
-  const StatItem = ({
+  const Skeleton = ({ className }: { className: string }) => (
+    <div
+      className={`animate-pulse bg-gray-200 dark:bg-gray-700/50 rounded ${className}`}
+    />
+  );
+
+  const StatBadge = ({
     icon: Icon,
     label,
     value,
-    color,
+    colorClass,
   }: {
     icon: LucideIcon;
     label: string;
     value: string | number | undefined;
-    color: string;
+    colorClass: string;
   }) => (
     <div className="flex items-center gap-3 p-3 rounded-xl border border-(--color-border) bg-(--color-accent-bg) bg-opacity-5">
       <div
-        className={`p-2 rounded-lg bg-white dark:bg-gray-800 shadow-sm ${color}`}
+        className={`p-2 rounded-lg bg-white dark:bg-gray-800 shadow-sm ${colorClass}`}
       >
         <Icon className="w-5 h-5" />
       </div>
-      <div>
-        <p className="text-xs opacity-50 font-medium uppercase tracking-wider">
+      <div className="flex-1">
+        <p className="text-[10px] opacity-50 font-bold uppercase tracking-wider leading-none mb-1">
           {label}
         </p>
-        <p className="font-bold text-lg">{value?.toLocaleString() ?? "???"}</p>
+        <p className="font-bold text-base leading-none">
+          {loading ? (
+            <Skeleton className="h-4 w-16" />
+          ) : (
+            (value?.toLocaleString() ?? "???")
+          )}
+        </p>
       </div>
     </div>
   );
+
+  const CombatStat = ({
+    label,
+    value,
+  }: {
+    label: string;
+    value: number | undefined;
+  }) => (
+    <div className="flex justify-between items-center p-2 rounded-lg border border-(--color-border) text-sm">
+      <span className="opacity-60">{label}</span>
+      <span className="font-mono font-bold">
+        {loading ? (
+          <Skeleton className="h-4 w-12" />
+        ) : (
+          (value?.toLocaleString() ?? "???")
+        )}
+      </span>
+    </div>
+  );
+
+  const SpecialBadge = ({
+    label,
+    active,
+    icon: Icon,
+  }: {
+    label: string;
+    active?: boolean;
+    icon: LucideIcon;
+  }) => {
+    if (!active && !loading) return null;
+    return (
+      <div
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+          loading
+            ? "opacity-50 grayscale"
+            : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+        }`}
+      >
+        <Icon className="w-3.5 h-3.5" />
+        {loading ? <Skeleton className="h-3 w-16" /> : label}
+      </div>
+    );
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Modal Content */}
-      <div className="relative w-full max-w-2xl bg-(--color-bg) border border-(--color-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      {/* Modal Container */}
+      <div
+        className={`relative w-full max-w-2xl bg-(--color-bg) border border-(--color-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-all duration-300 transform ${
+          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        }`}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-(--color-border)">
+        <div className="flex items-center justify-between p-6 border-b border-(--color-border) bg-gradient-to-b from-(--color-accent-bg) to-transparent">
           <div className="flex items-center gap-6">
-            <div className="w-24 h-24 rounded-2xl bg-(--color-accent-bg) flex items-center justify-center text-(--color-accent) shrink-0 shadow-inner">
-              {imageError ? (
-                <ImageOff className="w-12 h-12 opacity-30" />
+            <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl bg-white dark:bg-gray-800 flex items-center justify-center shrink-0 shadow-lg border border-(--color-border) relative group">
+              {loading ? (
+                <Skeleton className="w-full h-full rounded-2xl" />
+              ) : error ? (
+                <ImageOff className="w-10 h-10 opacity-20" />
               ) : (
                 <img
-                  src={iconUrl}
-                  alt={mob.name}
-                  className="max-w-[90%] max-h-[90%] object-contain scale-125"
+                  src={renderUrl}
+                  alt={detail?.name || initialMob?.name}
+                  className="max-w-[90%] max-h-[90%] object-contain scale-110 group-hover:scale-125 transition-transform duration-500"
                   style={{ imageRendering: "pixelated" }}
-                  onError={() => setImageError(true)}
                 />
               )}
             </div>
             <div>
-              <h2 className="text-3xl font-bold flex items-center gap-3">
-                {mob.name}
-                {mob.isBoss && (
-                  <span className="text-[10px] px-2 py-0.5 bg-red-500/10 text-red-500 border border-red-500/20 rounded-full uppercase tracking-tighter">
+              <div className="flex items-center gap-3 mb-1">
+                <h2 className="text-3xl font-black tracking-tight">
+                  {detail?.name || initialMob?.name || (
+                    <Skeleton className="h-8 w-48" />
+                  )}
+                </h2>
+                {Boolean(initialMob?.isBoss) ||
+                (detail?.meta?.level !== undefined &&
+                  detail.meta.level >= 100) ? (
+                  <span className="px-2 py-0.5 bg-red-500 text-white text-[10px] font-black rounded uppercase tracking-tighter shadow-sm">
                     Boss
                   </span>
-                )}
-              </h2>
-              <p className="text-sm opacity-50">Monster ID: {mob.id}</p>
+                ) : null}
+              </div>
+              <div className="flex items-center gap-4 text-sm opacity-50 font-medium">
+                <span className="flex items-center gap-1.5">
+                  <span className="text-(--color-accent)">#</span>
+                  {mobId}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Info className="w-3.5 h-3.5 text-(--color-accent)" />
+                  Level{" "}
+                  {detail?.meta?.level ||
+                    initialMob?.level ||
+                    (loading ? "..." : "???")}
+                </span>
+              </div>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-xl hover:bg-(--color-accent-bg) transition-colors text-(--color-text) opacity-50 hover:opacity-100 hover:text-(--color-accent)"
+            className="p-2 rounded-xl hover:bg-(--color-accent-bg) transition-all text-(--color-text) opacity-50 hover:opacity-100 hover:rotate-90"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -137,133 +237,169 @@ const MobModal = ({ mob, onClose }: MobModalProps) => {
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-8">
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-4">
-              <Loader2 className="w-10 h-10 animate-spin text-(--color-accent)" />
-              <p className="opacity-50 animate-pulse">
-                Fetching monster data...
-              </p>
+        <div className="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
+          {error ? (
+            <div className="flex flex-col items-center justify-center py-20 text-center space-y-4">
+              <div className="w-20 h-20 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
+                <ShieldAlert className="w-10 h-10" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">Something went wrong</h3>
+                <p className="opacity-60 max-w-xs mx-auto">{error}</p>
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-6 py-2 bg-(--color-accent) text-white rounded-full font-bold hover:opacity-90 transition-opacity"
+              >
+                Close Portal
+              </button>
             </div>
           ) : (
             <>
-              {/* Basic Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <StatItem
-                  icon={Info}
-                  label="Level"
-                  value={mob.level}
-                  color="text-blue-500"
-                />
-                <StatItem
-                  icon={Heart}
-                  label="HP"
-                  value={detail?.meta?.maxHP}
-                  color="text-red-500"
-                />
-                <StatItem
-                  icon={Zap}
-                  label="MP"
-                  value={detail?.meta?.maxMP}
-                  color="text-cyan-500"
-                />
-                <StatItem
-                  icon={Flame}
-                  label="EXP"
-                  value={detail?.meta?.exp}
-                  color="text-orange-500"
-                />
-                <StatItem
-                  icon={Shield}
-                  label="Phys Def"
-                  value={detail?.meta?.physicalDefense}
-                  color="text-emerald-500"
-                />
-                <StatItem
-                  icon={Shield}
-                  label="Magic Def"
-                  value={detail?.meta?.magicDefense}
-                  color="text-purple-500"
-                />
-              </div>
-
-              {/* Combat Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-sm opacity-50 flex items-center gap-2">
-                    <Target className="w-4 h-4" /> Combat Attributes
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between p-2 rounded-lg border border-(--color-border) text-sm">
-                      <span className="opacity-60">Accuracy</span>
-                      <span className="font-mono">
-                        {detail?.meta?.accuracy ?? "???"}
-                      </span>
-                    </div>
-                    <div className="flex justify-between p-2 rounded-lg border border-(--color-border) text-sm">
-                      <span className="opacity-60">Evasion</span>
-                      <span className="font-mono">
-                        {detail?.meta?.evasion ?? "???"}
-                      </span>
-                    </div>
-                    <div className="flex justify-between p-2 rounded-lg border border-(--color-border) text-sm">
-                      <span className="opacity-60">Speed</span>
-                      <span className="font-mono">
-                        {detail?.meta?.speed ?? "???"}
-                      </span>
-                    </div>
-                  </div>
+              {/* Core Stats Grid */}
+              <section className="space-y-4">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
+                  <Activity className="w-3.5 h-3.5" /> Core Statistics
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <StatBadge
+                    icon={Heart}
+                    label="Health Points"
+                    value={detail?.meta?.maxHP}
+                    colorClass="text-red-500"
+                  />
+                  <StatBadge
+                    icon={Zap}
+                    label="Mana Points"
+                    value={detail?.meta?.maxMP}
+                    colorClass="text-cyan-500"
+                  />
+                  <StatBadge
+                    icon={Flame}
+                    label="Experience"
+                    value={detail?.meta?.exp}
+                    colorClass="text-orange-500"
+                  />
+                  <StatBadge
+                    icon={Move}
+                    label="Movement Speed"
+                    value={detail?.meta?.speed}
+                    colorClass="text-emerald-500"
+                  />
+                  <StatBadge
+                    icon={Target}
+                    label="Accuracy"
+                    value={detail?.meta?.accuracy}
+                    colorClass="text-blue-500"
+                  />
+                  <StatBadge
+                    icon={Crosshair}
+                    label="Evasion Rate"
+                    value={detail?.meta?.evasion}
+                    colorClass="text-purple-500"
+                  />
                 </div>
+              </section>
 
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-sm opacity-50 flex items-center gap-2">
-                    <Ghost className="w-4 h-4" /> Special Properties
+              {/* Combat & Properties */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Combat Stats */}
+                <section className="space-y-4">
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
+                    <Shield className="w-3.5 h-3.5" /> Combat Power
+                  </h3>
+                  <div className="grid grid-cols-1 gap-2">
+                    <CombatStat
+                      label="Physical Damage"
+                      value={detail?.meta?.physicalDamage}
+                    />
+                    <CombatStat
+                      label="Magic Damage"
+                      value={detail?.meta?.magicDamage}
+                    />
+                    <CombatStat
+                      label="Physical Defense"
+                      value={detail?.meta?.physicalDefense}
+                    />
+                    <CombatStat
+                      label="Magic Defense"
+                      value={detail?.meta?.magicDefense}
+                    />
+                  </div>
+                </section>
+
+                {/* Special Properties */}
+                <section className="space-y-4">
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
+                    <Boxes className="w-3.5 h-3.5" /> Attributes
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {detail?.meta?.isBodyAttack && (
-                      <span className="px-3 py-1 bg-amber-500/10 text-amber-500 text-xs font-bold rounded-lg border border-amber-500/20">
-                        Body Attack
-                      </span>
-                    )}
-                    {detail?.meta?.isUndead && (
-                      <span className="px-3 py-1 bg-purple-500/10 text-purple-500 text-xs font-bold rounded-lg border border-purple-500/20">
-                        Undead
-                      </span>
-                    )}
-                    {mob.isBoss && (
-                      <span className="px-3 py-1 bg-red-500/10 text-red-500 text-xs font-bold rounded-lg border border-red-500/20">
-                        Boss Type
-                      </span>
-                    )}
-                    {!detail?.meta?.isBodyAttack &&
+                    <SpecialBadge
+                      label="Body Attack"
+                      active={detail?.meta?.isBodyAttack}
+                      icon={Activity}
+                    />
+                    <SpecialBadge
+                      label="Undead"
+                      active={detail?.meta?.isUndead}
+                      icon={Skull}
+                    />
+                    <SpecialBadge
+                      label="Boss Monster"
+                      active={
+                        Boolean(initialMob?.isBoss) ||
+                        (detail?.meta?.level !== undefined &&
+                          detail.meta.level >= 100)
+                      }
+                      icon={ShieldAlert}
+                    />
+                    <SpecialBadge
+                      label="Summons Minions"
+                      active={!!detail?.meta?.summonType}
+                      icon={Layers}
+                    />
+                    <SpecialBadge
+                      label="Revivable"
+                      active={!!detail?.meta?.revivesMonsterId?.length}
+                      icon={Ghost}
+                    />
+                    {!loading &&
+                      !detail?.meta?.isBodyAttack &&
                       !detail?.meta?.isUndead &&
-                      !mob.isBoss && (
-                        <span className="opacity-40 italic text-xs">
-                          No special properties found.
-                        </span>
+                      !initialMob?.isBoss &&
+                      !detail?.meta?.summonType &&
+                      !detail?.meta?.revivesMonsterId?.length && (
+                        <p className="text-sm opacity-40 italic py-2">
+                          No special attributes found.
+                        </p>
                       )}
                   </div>
-                </div>
+                </section>
               </div>
 
               {/* Locations */}
-              {detail?.foundAt && detail.foundAt.length > 0 && (
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-sm opacity-50 flex items-center gap-2">
-                    <MapPin className="w-4 h-4" /> Locations
+              {(loading || (detail?.foundAt && detail.foundAt.length > 0)) && (
+                <section className="space-y-4">
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
+                    <MapPin className="w-3.5 h-3.5" /> Habitat Regions
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {detail.foundAt.map((mapId) => (
-                      <span
-                        key={mapId}
-                        className="px-2 py-1 bg-(--color-bg) border border-(--color-border) rounded text-xs opacity-70 hover:opacity-100 hover:border-(--color-accent) transition-colors cursor-help"
-                        title={`Map ID: ${mapId}`}
-                      >
-                        {mapId}
-                      </span>
-                    ))}
+                    {loading
+                      ? [1, 2, 3].map((i) => (
+                          <Skeleton key={i} className="h-8 w-20 rounded-full" />
+                        ))
+                      : detail?.foundAt.map((mapId) => (
+                          <span
+                            key={mapId}
+                            className="px-4 py-1.5 bg-(--color-bg) border border-(--color-border) rounded-full text-xs font-bold opacity-70 hover:opacity-100 hover:border-(--color-accent) hover:text-(--color-accent) transition-all cursor-help shadow-sm"
+                            title={`Map ID: ${mapId}`}
+                          >
+                            {mapId}
+                          </span>
+                        ))}
                   </div>
-                </div>
+                </section>
               )}
             </>
           )}
@@ -271,8 +407,8 @@ const MobModal = ({ mob, onClose }: MobModalProps) => {
 
         {/* Footer */}
         <div className="p-4 bg-(--color-accent-bg) bg-opacity-5 border-t border-(--color-border) text-center">
-          <p className="text-[10px] opacity-30 uppercase tracking-[0.2em]">
-            MapleVault Database System
+          <p className="text-[9px] font-black opacity-30 uppercase tracking-[0.4em]">
+            MapleVault Tactical Intelligence System
           </p>
         </div>
       </div>

@@ -57,9 +57,9 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
       type="button"
       ref={cardRef}
       onClick={onClick}
-      className="w-full p-6 rounded-xl border border-(--color-border) bg-(--color-bg) shadow-(--color-shadow) hover:border-(--color-accent) transition-all duration-200 cursor-pointer group flex flex-col items-center text-center outline-hidden focus:ring-2 focus:ring-(--color-accent) focus:ring-offset-2 dark:focus:ring-offset-(--color-bg)"
+      className="w-full p-6 rounded-xl border border-(--color-border) bg-(--color-bg) shadow-(--color-shadow) hover:shadow-xl hover:-translate-y-1 hover:border-(--color-accent) transition-all duration-300 cursor-pointer group flex flex-col items-center text-center outline-hidden focus:ring-2 focus:ring-(--color-accent) focus:ring-offset-2 dark:focus:ring-offset-(--color-bg)"
     >
-      <span className="w-16 h-16 mb-4 rounded-lg bg-(--color-accent-bg) flex items-center justify-center text-(--color-accent) overflow-hidden">
+      <span className="w-20 h-20 mb-4 rounded-lg bg-(--color-accent-bg) flex items-center justify-center text-(--color-accent) overflow-hidden">
         {isVisible ? (
           imageError ? (
             <ImageOff className="w-8 h-8 opacity-20" />
@@ -67,7 +67,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
             <img
               src={iconUrl}
               alt={mob.name}
-              className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform"
+              className="max-w-[90%] max-h-[90%] object-contain group-hover:scale-110 transition-transform"
               onError={() => setImageError(true)}
             />
           )

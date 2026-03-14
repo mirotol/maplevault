@@ -11,6 +11,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="monsters" element={<MonstersPage />} />
+          <Route path="mob/:id" element={<MonstersPage />} />
           <Route path="items" element={<ItemsPage />} />
         </Route>
       </Routes>
