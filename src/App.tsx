@@ -1,11 +1,19 @@
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import ItemsPage from "./pages/ItemsPage";
+import MonstersPage from "./pages/MonstersPage";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-green-100">MapleVault</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="monsters" element={<MonstersPage />} />
+          <Route path="items" element={<ItemsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

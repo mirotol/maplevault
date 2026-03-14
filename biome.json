@@ -3,5 +3,25 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 80
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noDocumentCookie": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off"
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "files": {
+    "includes": ["**", "!!**/dist", "!!**/node_modules"]
   }
 }
