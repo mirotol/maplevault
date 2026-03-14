@@ -1,6 +1,66 @@
-import { Database, Ghost } from "lucide-react";
+import { Database, Loader2 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { fetchMobs } from "../api/mapleApi";
+import MobCard from "../components/MobCard";
+import MobModal from "../components/MobModal";
+import type { Mob } from "../types/maple";
 
 const MonstersPage = () => {
+  const [mobs, setMobs] = useState<Mob[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [startPosition, setStartPosition] = useState(0);
+  const [selectedMob, setSelectedMob] = useState<Mob | null>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  const lastMobElementRef = useCallback(
+    (node: HTMLDivElement) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setStartPosition((prev) => prev + 100);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore],
+  );
+
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
+    fetchMobs(startPosition)
+      .then((newMobs) => {
+        if (!active) return;
+        setMobs((prev) => {
+          const all = [...prev, ...newMobs];
+          const unique = [];
+          const seen = new Set();
+          for (const m of all) {
+            if (!seen.has(m.id)) {
+              seen.add(m.id);
+              unique.push(m);
+            }
+          }
+          return unique;
+        });
+        setHasMore(newMobs.length > 0);
+      })
+      .catch((err) => {
+        if (!active) return;
+        console.error("Failed to fetch mobs:", err);
+        setHasMore(false);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [startPosition]);
+
   return (
     <>
       <div className="mb-8">
@@ -10,26 +70,42 @@ const MonstersPage = () => {
         </h2>
       </div>
 
-      {/* Responsive Grid Placeholder */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Placeholder Grid Items */}
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-          <div
-            key={item}
-            className="p-6 rounded-xl border border-(--color-border) bg-(--color-bg) shadow-(--color-shadow) hover:border-(--color-accent) transition-all duration-200 cursor-pointer group"
-          >
-            <div className="w-12 h-12 mb-4 rounded-lg bg-(--color-accent-bg) flex items-center justify-center text-(--color-accent)">
-              <Ghost className="w-6 h-6" />
-            </div>
-            <h3 className="text-xl font-medium mb-1 group-hover:text-(--color-accent) transition-colors">
-              Monster #{item}
-            </h3>
-            <p className="text-sm opacity-60">
-              Click to view more details about this monster in the MapleVault.
-            </p>
-          </div>
-        ))}
+        {mobs.map((mob, index) => {
+          if (mobs.length === index + 1) {
+            return (
+              <div ref={lastMobElementRef} key={mob.id}>
+                <MobCard mob={mob} onClick={() => setSelectedMob(mob)} />
+              </div>
+            );
+          }
+          return (
+            <MobCard
+              key={mob.id}
+              mob={mob}
+              onClick={() => setSelectedMob(mob)}
+            />
+          );
+        })}
       </div>
+
+      {selectedMob && (
+        <MobModal mob={selectedMob} onClose={() => setSelectedMob(null)} />
+      )}
+
+      {loading && (
+        <div className="flex justify-center items-center p-8 mt-4">
+          <Loader2 className="w-8 h-8 animate-spin text-(--color-accent)" />
+        </div>
+      )}
+
+      {!hasMore && mobs.length > 0 && (
+        <p className="text-center p-8 opacity-50">No more monsters to load.</p>
+      )}
+
+      {!loading && mobs.length === 0 && (
+        <p className="text-center p-8 opacity-50">No monsters found.</p>
+      )}
     </>
   );
 };
