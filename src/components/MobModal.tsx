@@ -1,13 +1,4 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Activity,
-  Ghost,
-  ImageOff,
-  MapPin,
-  ShieldAlert,
-  Skull,
-  X,
-} from "lucide-react";
+import { ImageOff, MapPin, ShieldAlert, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchMobDetail, fetchMobRenderUrl } from "../api/mapleApi";
 import type { Mob, MobDetail } from "../types/maple";
@@ -73,23 +64,34 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   const StatBadge = ({
     label,
     value,
+    variant = "default",
   }: {
     label: string;
     value: string | number | undefined;
-  }) => (
-    <div className="p-4 rounded-xl border border-(--color-border) bg-(--color-accent-bg) bg-opacity-5">
-      <div className="text-sm opacity-80 font-bold uppercase tracking-widest leading-none mb-1">
-        {label}
+    variant?: "default" | "hp" | "mp" | "exp";
+  }) => {
+    const variantStyles = {
+      default: "bg-(--color-accent-bg) bg-opacity-5 border-(--color-border)",
+      hp: "bg-[image:var(--stat-hp-gradient)] border-(--color-stat-hp-border) text-white shadow-xs",
+      mp: "bg-[image:var(--stat-mp-gradient)] border-(--color-stat-mp-border) text-white shadow-xs",
+      exp: "bg-[image:var(--stat-exp-gradient)] border-(--color-stat-exp-border) text-white shadow-xs",
+    };
+
+    return (
+      <div className={`p-4 rounded-xl border ${variantStyles[variant]}`}>
+        <div className="text-sm opacity-80 font-bold uppercase tracking-widest leading-none mb-1">
+          {label}
+        </div>
+        <div className="font-bold text-2xl leading-none">
+          {loading ? (
+            <Skeleton className="h-4 w-16" />
+          ) : (
+            (value?.toLocaleString() ?? "???")
+          )}
+        </div>
       </div>
-      <div className="font-bold text-2xl leading-none">
-        {loading ? (
-          <Skeleton className="h-4 w-16" />
-        ) : (
-          (value?.toLocaleString() ?? "???")
-        )}
-      </div>
-    </div>
-  );
+    );
+  };
 
   const CombatStat = ({
     label,
@@ -154,7 +156,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                     <Skeleton className="h-10 w-48" />
                   )}
                 </h2>
-                {Boolean(initialMob?.isBoss) ? (
+                {initialMob?.isBoss ? (
                   <span className="px-2 py-0.5 bg-red-500 text-white text-base font-black rounded uppercase tracking-widest shadow-sm shrink-0">
                     Boss
                   </span>
@@ -199,9 +201,21 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
             <>
               <section className="space-y-4">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-(--color-card-text)">
-                  <StatBadge label="HP" value={detail?.meta?.maxHP} />
-                  <StatBadge label="MP" value={detail?.meta?.maxMP} />
-                  <StatBadge label="EXP" value={detail?.meta?.exp} />
+                  <StatBadge
+                    label="HP"
+                    value={detail?.meta?.maxHP}
+                    variant="hp"
+                  />
+                  <StatBadge
+                    label="MP"
+                    value={detail?.meta?.maxMP}
+                    variant="mp"
+                  />
+                  <StatBadge
+                    label="EXP"
+                    value={detail?.meta?.exp}
+                    variant="exp"
+                  />
                 </div>
               </section>
 
