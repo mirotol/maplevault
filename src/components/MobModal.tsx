@@ -1,19 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
-  Crosshair,
-  Flame,
   Ghost,
-  Heart,
   ImageOff,
-  Info,
   MapPin,
-  Move,
   ShieldAlert,
   Skull,
-  Target,
   X,
-  Zap,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchMobDetail, fetchMobRenderUrl } from "../api/mapleApi";
@@ -78,33 +71,22 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   );
 
   const StatBadge = ({
-    icon: Icon,
     label,
     value,
-    colorClass,
   }: {
-    icon: LucideIcon;
     label: string;
     value: string | number | undefined;
-    colorClass: string;
   }) => (
-    <div className="flex items-center gap-3 p-3 rounded-xl border border-(--color-border) bg-(--color-accent-bg) bg-opacity-5">
-      <div
-        className={`p-2 rounded-lg bg-white dark:bg-gray-800 shadow-sm ${colorClass}`}
-      >
-        <Icon className="w-5 h-5" />
+    <div className="p-4 rounded-xl border border-(--color-border) bg-(--color-accent-bg) bg-opacity-5">
+      <div className="text-sm opacity-80 font-bold uppercase tracking-widest leading-none mb-1">
+        {label}
       </div>
-      <div className="flex-1">
-        <div className="text-sm opacity-50 font-bold uppercase tracking-widest leading-none mb-1">
-          {label}
-        </div>
-        <div className="font-bold text-xl leading-none">
-          {loading ? (
-            <Skeleton className="h-4 w-16" />
-          ) : (
-            (value?.toLocaleString() ?? "???")
-          )}
-        </div>
+      <div className="font-bold text-2xl leading-none">
+        {loading ? (
+          <Skeleton className="h-4 w-16" />
+        ) : (
+          (value?.toLocaleString() ?? "???")
+        )}
       </div>
     </div>
   );
@@ -116,8 +98,8 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
     label: string;
     value: number | undefined;
   }) => (
-    <div className="flex justify-between items-center p-2 rounded-lg border border-(--color-border) text-lg">
-      <span className="opacity-60">{label}</span>
+    <div className="flex justify-between items-center p-2 rounded-lg border border-(--color-border) text-lg text-(--color-card-text)">
+      <span>{label}</span>
       <span className="font-bold">
         {loading ? (
           <Skeleton className="h-4 w-12" />
@@ -127,30 +109,6 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
       </span>
     </div>
   );
-
-  const SpecialBadge = ({
-    label,
-    active,
-    icon: Icon,
-  }: {
-    label: string;
-    active?: boolean;
-    icon: LucideIcon;
-  }) => {
-    if (!active && !loading) return null;
-    return (
-      <div
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-base font-bold tracking-wide transition-all ${
-          loading
-            ? "opacity-50 grayscale"
-            : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
-        }`}
-      >
-        <Icon className="w-3.5 h-3.5" />
-        {loading ? <Skeleton className="h-3 w-16" /> : label}
-      </div>
-    );
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -191,14 +149,12 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
             </div>
             <div>
               <div className="flex items-center gap-3 mb-1">
-                <h2 className="text-4xl font-black tracking-tight">
+                <h2 className="text-4xl text-(--color-card-text) tracking-tight">
                   {detail?.name || initialMob?.name || (
                     <Skeleton className="h-10 w-48" />
                   )}
                 </h2>
-                {Boolean(initialMob?.isBoss) ||
-                (detail?.meta?.level !== undefined &&
-                  detail.meta.level >= 100) ? (
+                {Boolean(initialMob?.isBoss) ? (
                   <span className="px-2 py-0.5 bg-red-500 text-white text-base font-black rounded uppercase tracking-widest shadow-sm shrink-0">
                     Boss
                   </span>
@@ -208,13 +164,8 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-4 text-lg opacity-50 font-medium">
-                <span className="flex items-center gap-1.5">
-                  <span className="text-(--color-accent)">#</span>
-                  {mobId}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Info className="w-5 h-5 text-(--color-accent)" />
+              <div className="flex items-center gap-4 text-lg opacity-80 font-medium">
+                <span className="flex items-center gap-1.5 text-(--color-card-text)">
                   Level{" "}
                   {detail?.meta?.level ||
                     initialMob?.level ||
@@ -246,54 +197,15 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
             </div>
           ) : (
             <>
-              {/* Core Stats Grid */}
               <section className="space-y-4">
-                <h3 className="text-base font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
-                  <Activity className="w-5 h-5" /> Core Statistics
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <StatBadge
-                    icon={Heart}
-                    label="HP"
-                    value={detail?.meta?.maxHP}
-                    colorClass="text-red-500"
-                  />
-                  <StatBadge
-                    icon={Zap}
-                    label="MP"
-                    value={detail?.meta?.maxMP}
-                    colorClass="text-cyan-500"
-                  />
-                  <StatBadge
-                    icon={Flame}
-                    label="EXP"
-                    value={detail?.meta?.exp}
-                    colorClass="text-orange-500"
-                  />
-                  <StatBadge
-                    icon={Move}
-                    label="Movement Speed"
-                    value={detail?.meta?.speed}
-                    colorClass="text-emerald-500"
-                  />
-                  <StatBadge
-                    icon={Target}
-                    label="Accuracy"
-                    value={detail?.meta?.accuracy}
-                    colorClass="text-blue-500"
-                  />
-                  <StatBadge
-                    icon={Crosshair}
-                    label="Evasion Rate"
-                    value={detail?.meta?.evasion}
-                    colorClass="text-purple-500"
-                  />
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-(--color-card-text)">
+                  <StatBadge label="HP" value={detail?.meta?.maxHP} />
+                  <StatBadge label="MP" value={detail?.meta?.maxMP} />
+                  <StatBadge label="EXP" value={detail?.meta?.exp} />
                 </div>
               </section>
 
-              {/* Combat & Properties */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Combat Stats */}
                 <section className="space-y-4">
                   <div className="grid grid-cols-1 gap-2">
                     <CombatStat
@@ -301,48 +213,26 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                       value={detail?.meta?.physicalDamage}
                     />
                     <CombatStat
-                      label="Magic Attack"
-                      value={detail?.meta?.magicDamage}
-                    />
-                    <CombatStat
                       label="Weapon Defense"
                       value={detail?.meta?.physicalDefense}
+                    />
+                    <CombatStat
+                      label="Magic Attack"
+                      value={detail?.meta?.magicDamage}
                     />
                     <CombatStat
                       label="Magic Defense"
                       value={detail?.meta?.magicDefense}
                     />
-                  </div>
-                </section>
-
-                {/* Special Properties */}
-                <section className="space-y-4">
-                  <div className="flex flex-wrap gap-2">
-                    <SpecialBadge
-                      label="Body Attack"
-                      active={detail?.meta?.isBodyAttack}
-                      icon={Activity}
+                    <CombatStat
+                      label="Accuracy"
+                      value={detail?.meta?.accuracy}
                     />
-                    <SpecialBadge
-                      label="Undead"
-                      active={detail?.meta?.isUndead}
-                      icon={Skull}
+                    <CombatStat
+                      label="Avoidability"
+                      value={detail?.meta?.evasion}
                     />
-                    <SpecialBadge
-                      label="Revivable"
-                      active={!!detail?.meta?.revivesMonsterId?.length}
-                      icon={Ghost}
-                    />
-                    {!loading &&
-                      !detail?.meta?.isBodyAttack &&
-                      !detail?.meta?.isUndead &&
-                      !initialMob?.isBoss &&
-                      !detail?.meta?.summonType &&
-                      !detail?.meta?.revivesMonsterId?.length && (
-                        <p className="text-base opacity-40 italic py-2">
-                          No special attributes found.
-                        </p>
-                      )}
+                    <CombatStat label="Speed" value={detail?.meta?.speed} />
                   </div>
                 </section>
               </div>
@@ -350,8 +240,8 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
               {/* Locations */}
               {(loading || (detail?.foundAt && detail.foundAt.length > 0)) && (
                 <section className="space-y-4">
-                  <h3 className="text-base font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
-                    <MapPin className="w-5 h-5" /> Habitat Regions
+                  <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2">
+                    <MapPin className="w-5 h-5" /> Locations
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {loading
