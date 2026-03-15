@@ -72,17 +72,19 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   }) => {
     const variantStyles = {
       default: "bg-(--color-accent-bg) bg-opacity-5 border-(--color-border)",
-      hp: "bg-[image:var(--stat-hp-gradient)] border-(--color-stat-hp-border) text-white shadow-xs",
-      mp: "bg-[image:var(--stat-mp-gradient)] border-(--color-stat-mp-border) text-white shadow-xs",
-      exp: "bg-[image:var(--stat-exp-gradient)] border-(--color-stat-exp-border) text-white shadow-xs",
+      hp: "bg-[image:var(--stat-hp-gradient)] border-white text-white text-shadow-lg shadow-md",
+      mp: "bg-[image:var(--stat-mp-gradient)] border-white text-white text-shadow-lg shadow-md",
+      exp: "bg-[image:var(--stat-exp-gradient)] border-white text-white text-shadow-lg shadow-md",
     };
 
     return (
-      <div className={`p-4 rounded-xl border ${variantStyles[variant]}`}>
-        <div className="text-sm opacity-80 font-bold uppercase tracking-widest leading-none mb-1">
+      <div
+        className={`py-2.5 px-4 rounded-lg border ${variantStyles[variant]}`}
+      >
+        <div className="text-sm font-bold uppercase tracking-widest leading-none mb-1">
           {label}
         </div>
-        <div className="font-bold text-2xl leading-none">
+        <div className="font-bold text-xl leading-none">
           {loading ? (
             <Skeleton className="h-4 w-16" />
           ) : (

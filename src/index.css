@@ -23,7 +23,7 @@
   --color-stat-hp-border: #fecaca;
   --color-stat-mp-bg: #006fee;
   --color-stat-mp-border: #bfdbfe;
-  --color-stat-exp-bg: #afee00;
+  --color-stat-exp-bg: #93c800;
   --color-stat-exp-border: #bbf7d0;
 
   /* Stat Gradients */
@@ -31,19 +31,19 @@
     to bottom,
     color-mix(in srgb, var(--color-stat-hp-bg), white 30%),
     var(--color-stat-hp-bg),
-    color-mix(in srgb, var(--color-stat-hp-bg), black 20%)
+    color-mix(in srgb, var(--color-stat-hp-bg), black 30%)
   );
   --stat-mp-gradient: linear-gradient(
     to bottom,
     color-mix(in srgb, var(--color-stat-mp-bg), white 30%),
     var(--color-stat-mp-bg),
-    color-mix(in srgb, var(--color-stat-mp-bg), black 20%)
+    color-mix(in srgb, var(--color-stat-mp-bg), black 30%)
   );
   --stat-exp-gradient: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--color-stat-exp-bg), white 30%),
+    color-mix(in srgb, var(--color-stat-exp-bg), white 10%),
     var(--color-stat-exp-bg),
-    color-mix(in srgb, var(--color-stat-exp-bg), black 20%)
+    color-mix(in srgb, var(--color-stat-exp-bg), black 30%)
   );
   --font-sans: "Inter", system-ui, sans-serif;
 }
@@ -67,7 +67,7 @@
   --color-stat-hp-border: #fecaca;
   --color-stat-mp-bg: #006fee;
   --color-stat-mp-border: #bfdbfe;
-  --color-stat-exp-bg: #afee00;
+  --color-stat-exp-bg: #93c800;
   --color-stat-exp-border: #bbf7d0;
 
   /* Stat Gradients */
@@ -75,19 +75,19 @@
     to bottom,
     color-mix(in srgb, var(--color-stat-hp-bg), white 30%),
     var(--color-stat-hp-bg),
-    color-mix(in srgb, var(--color-stat-hp-bg), black 20%)
+    color-mix(in srgb, var(--color-stat-hp-bg), black 30%)
   );
   --stat-mp-gradient: linear-gradient(
     to bottom,
     color-mix(in srgb, var(--color-stat-mp-bg), white 30%),
     var(--color-stat-mp-bg),
-    color-mix(in srgb, var(--color-stat-mp-bg), black 20%)
+    color-mix(in srgb, var(--color-stat-mp-bg), black 30%)
   );
   --stat-exp-gradient: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--color-stat-exp-bg), white 30%),
+    color-mix(in srgb, var(--color-stat-exp-bg), white 10%),
     var(--color-stat-exp-bg),
-    color-mix(in srgb, var(--color-stat-exp-bg), black 20%)
+    color-mix(in srgb, var(--color-stat-exp-bg), black 30%)
   );
 }
 
