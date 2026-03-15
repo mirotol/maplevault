@@ -21,6 +21,7 @@ export interface MobMeta {
   exp?: number;
   isUndead?: boolean;
   minimumPushDamage?: number;
+  elementalAttributes?: string;
   summonType?: number;
   revivesMonsterId?: number[];
 }

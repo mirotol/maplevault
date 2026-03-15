@@ -1,7 +1,16 @@
-import { ImageOff, MapPin, ShieldAlert, X } from "lucide-react";
+import {
+  ImageOff,
+  MapPin,
+  ShieldAlert,
+  Sparkles,
+  Swords,
+  X,
+  Zap,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchMobDetail, fetchMobRenderUrl } from "../api/mapleApi";
 import type { Mob, MobDetail } from "../types/maple";
+import { getElementalInfo } from "../utils/elemental";
 
 interface MobModalProps {
   mobId: number;
@@ -54,6 +63,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   }, [onClose]);
 
   const renderUrl = fetchMobRenderUrl(mobId);
+  const elementalInfo = getElementalInfo(detail?.meta?.elementalAttributes);
 
   const Skeleton = ({ className }: { className: string }) => (
     <span
@@ -71,7 +81,8 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
     variant?: "default" | "hp" | "mp" | "exp";
   }) => {
     const variantStyles = {
-      default: "bg-(--color-accent-bg) bg-opacity-5 border-(--color-border)",
+      default:
+        "bg-(--color-accent-bg) bg-opacity-5 border-(--color-card-border)/50",
       hp: "bg-[image:var(--stat-hp-gradient)] border-white text-white text-shadow-lg shadow-md",
       mp: "bg-[image:var(--stat-mp-gradient)] border-white text-white text-shadow-lg shadow-md",
       exp: "bg-[image:var(--stat-exp-gradient)] border-white text-white text-shadow-lg shadow-md",
@@ -102,7 +113,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
     label: string;
     value: number | undefined;
   }) => (
-    <div className="flex justify-between items-center p-2 rounded-lg border border-(--color-border) text-lg text-(--color-card-text)">
+    <div className="flex justify-between items-center py-2 px-1 text-lg text-(--color-card-text) border-b border-(--color-card-border)/60 last:border-0">
       <span>{label}</span>
       <span className="font-bold">
         {loading ? (
@@ -113,6 +124,68 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
       </span>
     </div>
   );
+
+  const ElementalRow = ({
+    label,
+    elements,
+  }: {
+    label: string;
+    elements: string[];
+  }) => (
+    <div className="space-y-3 p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/30">
+      <span className="text-xs font-bold uppercase tracking-widest text-(--color-card-text) opacity-60 block">
+        {label}
+      </span>
+      <div className="flex flex-wrap gap-2">
+        {loading ? (
+          <Skeleton className="h-7 w-20 rounded-lg" />
+        ) : elements.length > 0 ? (
+          elements.map((el) => <Badge key={el} label={el} variant={el} />)
+        ) : (
+          <span className="text-sm font-medium text-(--color-card-text) opacity-30 italic">
+            None
+          </span>
+        )}
+      </div>
+    </div>
+  );
+
+  const Badge = ({
+    label,
+    variant,
+    sublabel,
+  }: {
+    label: string;
+    variant: string;
+    sublabel?: string;
+  }) => {
+    const variantStyles: Record<string, string> = {
+      Fire: "bg-(--color-element-fire)",
+      Poison: "bg-(--color-element-poison)",
+      Ice: "bg-(--color-element-ice)",
+      Lightning: "bg-(--color-element-lightning) text-black!",
+      Holy: "bg-(--color-element-holy)",
+      Dark: "bg-(--color-element-dark)",
+      Undead: "bg-(--color-trait-undead)",
+    };
+
+    return (
+      <div className="flex flex-col items-center gap-1">
+        <span
+          className={`px-3 py-1 rounded-md text-xs font-black uppercase tracking-widest text-white shadow-sm transition-transform hover:scale-105 select-none ${
+            variantStyles[variant] || "bg-slate-500"
+          }`}
+        >
+          {label}
+        </span>
+        {sublabel && (
+          <span className="text-[10px] font-bold uppercase tracking-tighter opacity-50 whitespace-nowrap">
+            {sublabel}
+          </span>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -135,7 +208,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
         </button>
 
         {/* Header */}
-        <div className="flex items-center p-6 border-b border-(--color-border)">
+        <div className="flex items-center p-6 border-b border-(--color-card-border)/50">
           <div className="flex items-center gap-6">
             <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl flex items-center justify-center shrink-0 relative group">
               {loading ? (
@@ -223,7 +296,10 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <section className="space-y-4">
-                  <div className="grid grid-cols-1 gap-2">
+                  <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
+                    <Swords className="w-5 h-5" /> Combat Stats
+                  </h3>
+                  <div className="grid grid-cols-1 p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/30">
                     <CombatStat
                       label="Weapon Attack"
                       value={detail?.meta?.physicalDamage}
@@ -251,6 +327,52 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                     <CombatStat label="Speed" value={detail?.meta?.speed} />
                   </div>
                 </section>
+
+                <div className="space-y-8">
+                  <section className="space-y-4">
+                    <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
+                      <Zap className="w-5 h-5" /> Elemental Info
+                    </h3>
+                    <div className="grid grid-cols-1 gap-2">
+                      <ElementalRow
+                        label="Weak against"
+                        elements={elementalInfo.weak}
+                      />
+                      <ElementalRow
+                        label="Normal against"
+                        elements={elementalInfo.normal}
+                      />
+                      <ElementalRow
+                        label="Strong against"
+                        elements={elementalInfo.strong}
+                      />
+                      <ElementalRow
+                        label="Immune to"
+                        elements={elementalInfo.immune}
+                      />
+                    </div>
+                  </section>
+
+                  {/* Special Traits */}
+                  {(loading || detail?.meta?.isUndead) && (
+                    <section className="space-y-4">
+                      <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
+                        <Sparkles className="w-5 h-5" /> Special Traits
+                      </h3>
+                      <div className="p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/30">
+                        <div className="flex flex-wrap gap-4">
+                          {loading ? (
+                            <Skeleton className="h-10 w-24 rounded-lg" />
+                          ) : (
+                            detail?.meta?.isUndead && (
+                              <Badge label="Undead" variant="Undead" />
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </section>
+                  )}
+                </div>
               </div>
 
               {/* Locations */}
