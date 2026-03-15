@@ -1,6 +1,11 @@
 import { Database, Shield } from "lucide-react";
+import { useEffect } from "react";
 
 const ItemsPage = () => {
+  useEffect(() => {
+    document.title = "Items | MapleVault";
+  }, []);
+
   return (
     <>
       <div className="mb-8">

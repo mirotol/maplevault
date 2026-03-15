@@ -1,7 +1,12 @@
 import { Database } from "lucide-react";
+import { useEffect } from "react";
 import FallingEffect from "../components/FallingEffect";
 
 const HomePage = () => {
+  useEffect(() => {
+    document.title = "Home | MapleVault";
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
       <FallingEffect image="/effects/maple_leaf.png" count={7} />

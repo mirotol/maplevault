@@ -40,6 +40,10 @@ const MobsPage = () => {
 
   const selectedMob = id ? mobs.find((m) => m.id === Number(id)) : null;
 
+  useEffect(() => {
+    document.title = id ? "Mob | MapleVault" : "Mobs | MapleVault";
+  }, [id]);
+
   const handleCloseModal = () => {
     navigate("/mobs");
   };
