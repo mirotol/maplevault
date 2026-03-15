@@ -1,11 +1,13 @@
 import {
   ArrowUpDown,
+  ChevronDown,
   Database,
   Filter,
   Loader2,
   Search,
   SortAsc,
   SortDesc,
+  X,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -136,77 +138,95 @@ const MobsPage = () => {
           Mob List
         </h2>
 
-        {/* Search and Filters */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-8">
-          {/* Search */}
-          <div className="lg:col-span-2 relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-40" />
+        {/* Search and Filters Toolbar */}
+        <div className="flex flex-col lg:flex-row items-stretch gap-4 mb-10">
+          {/* Search Bar - Dominant */}
+          <div className="flex-1 relative group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors" />
             <input
               type="text"
               placeholder="Search mobs by name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-(--color-bg) border border-(--color-border) rounded-xl focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) transition-all text-lg"
+              className="w-full h-11 pl-12 pr-11 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-all shadow-sm text-base placeholder:opacity-50 text-(--color-card-text)"
             />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-md text-(--color-text-secondary) hover:text-(--color-accent) hover:bg-(--color-accent-bg) transition-all"
+                title="Clear search"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
 
-          {/* Filter Mode */}
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <Filter className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40" />
+          {/* Filters and Sorting Group */}
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Filter Mode */}
+            <div className="relative group min-w-[140px] flex-1 lg:flex-none">
+              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors pointer-events-none" />
               <select
                 value={filterMode}
                 onChange={(e) =>
                   setFilterMode(e.target.value as "all" | "boss" | "level")
                 }
-                className="w-full pl-10 pr-4 py-3 bg-(--color-bg) border border-(--color-border) rounded-xl focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) text-lg"
+                className="w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
               >
                 <option value="all">All Mobs</option>
-                <option value="boss">Bosses Only</option>
+                <option value="boss">Bosses</option>
                 <option value="level">Level Range</option>
               </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text) opacity-40 pointer-events-none" />
             </div>
-            {filterMode === "level" && (
-              <select
-                value={levelRange}
-                onChange={(e) => setLevelRange(e.target.value)}
-                className="flex-1 px-4 py-3 bg-(--color-bg) border border-(--color-border) rounded-xl focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) text-lg"
-              >
-                <option value="all">Any Level</option>
-                {LEVEL_RANGES.map((r) => (
-                  <option key={r.label} value={r.label}>
-                    {r.label}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
 
-          {/* Sorting */}
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <ArrowUpDown className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40" />
+            {/* Level Range - Conditional */}
+            {filterMode === "level" && (
+              <div className="relative group min-w-30 flex-1 lg:flex-none">
+                <select
+                  value={levelRange}
+                  onChange={(e) => setLevelRange(e.target.value)}
+                  className="w-full h-11 px-4 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
+                >
+                  <option value="all">Any Level</option>
+                  {LEVEL_RANGES.map((r) => (
+                    <option key={r.label} value={r.label}>
+                      {r.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text) opacity-40 pointer-events-none" />
+              </div>
+            )}
+
+            {/* Sorting */}
+            <div className="relative group min-w-35 flex-1 lg:flex-none">
+              <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors pointer-events-none" />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as "name" | "level")}
-                className="w-full pl-10 pr-4 py-3 bg-(--color-bg) border border-(--color-border) rounded-xl focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) text-lg"
+                className="w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
               >
                 <option value="level">Sort by Level</option>
                 <option value="name">Sort by Name</option>
               </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text) opacity-40 pointer-events-none" />
             </div>
+
+            {/* Sort Order Toggle */}
             <button
               type="button"
               onClick={() =>
                 setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
               }
-              className="p-3 bg-(--color-bg) border border-(--color-border) rounded-xl hover:bg-(--color-accent-bg) hover:text-(--color-accent) transition-all"
+              className="h-11 w-11 flex items-center justify-center bg-(--color-bg) border border-(--color-border) rounded-lg hover:bg-(--color-accent-bg) hover:text-(--color-accent) transition-all shadow-sm group shrink-0"
               title={sortOrder === "asc" ? "Sort Ascending" : "Sort Descending"}
             >
               {sortOrder === "asc" ? (
-                <SortAsc className="w-6 h-6" />
+                <SortAsc className="w-5 h-5 text-(--color-text-secondary) group-hover:text-(--color-accent)" />
               ) : (
-                <SortDesc className="w-6 h-6" />
+                <SortDesc className="w-5 h-5 text-(--color-text-secondary) group-hover:text-(--color-accent)" />
               )}
             </button>
           </div>
@@ -254,12 +274,6 @@ const MobsPage = () => {
             <div className="flex justify-center items-center p-8 mt-4">
               <Loader2 className="w-8 h-8 animate-spin text-(--color-accent)" />
             </div>
-          )}
-
-          {!hasMore && filteredAndSortedMobs.length > 0 && (
-            <p className="text-center p-8 opacity-30 text-lg">
-              Showing all {filteredAndSortedMobs.length} mobs.
-            </p>
           )}
         </>
       )}

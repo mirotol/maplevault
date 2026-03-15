@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
-  Boxes,
   Crosshair,
   Flame,
   Ghost,
@@ -10,7 +9,6 @@ import {
   Info,
   MapPin,
   Move,
-  Shield,
   ShieldAlert,
   Skull,
   Target,
@@ -74,8 +72,8 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   const renderUrl = fetchMobRenderUrl(mobId);
 
   const Skeleton = ({ className }: { className: string }) => (
-    <div
-      className={`animate-pulse bg-gray-200 dark:bg-gray-700/50 rounded ${className}`}
+    <span
+      className={`animate-pulse bg-gray-200 dark:bg-gray-700/50 rounded inline-block ${className}`}
     />
   );
 
@@ -97,16 +95,16 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
         <Icon className="w-5 h-5" />
       </div>
       <div className="flex-1">
-        <p className="text-sm opacity-50 font-bold uppercase tracking-widest leading-none mb-1">
+        <div className="text-sm opacity-50 font-bold uppercase tracking-widest leading-none mb-1">
           {label}
-        </p>
-        <p className="font-bold text-xl leading-none">
+        </div>
+        <div className="font-bold text-xl leading-none">
           {loading ? (
             <Skeleton className="h-4 w-16" />
           ) : (
             (value?.toLocaleString() ?? "???")
           )}
-        </p>
+        </div>
       </div>
     </div>
   );
@@ -164,7 +162,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
       />
 
       {/* Modal Container */}
-      <div className="card-paper relative w-full max-w-2xl border border-(--color-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="card-paper relative w-full max-w-2xl border-2 border-(--color-card-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         <button
           type="button"
           onClick={onClose}
@@ -256,19 +254,19 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   <StatBadge
                     icon={Heart}
-                    label="Health Points"
+                    label="HP"
                     value={detail?.meta?.maxHP}
                     colorClass="text-red-500"
                   />
                   <StatBadge
                     icon={Zap}
-                    label="Mana Points"
+                    label="MP"
                     value={detail?.meta?.maxMP}
                     colorClass="text-cyan-500"
                   />
                   <StatBadge
                     icon={Flame}
-                    label="Experience"
+                    label="EXP"
                     value={detail?.meta?.exp}
                     colorClass="text-orange-500"
                   />
@@ -297,20 +295,17 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Combat Stats */}
                 <section className="space-y-4">
-                  <h3 className="text-base font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
-                    <Shield className="w-5 h-5" /> Combat Power
-                  </h3>
                   <div className="grid grid-cols-1 gap-2">
                     <CombatStat
-                      label="Physical Damage"
+                      label="Weapon Attack"
                       value={detail?.meta?.physicalDamage}
                     />
                     <CombatStat
-                      label="Magic Damage"
+                      label="Magic Attack"
                       value={detail?.meta?.magicDamage}
                     />
                     <CombatStat
-                      label="Physical Defense"
+                      label="Weapon Defense"
                       value={detail?.meta?.physicalDefense}
                     />
                     <CombatStat
@@ -322,9 +317,6 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
 
                 {/* Special Properties */}
                 <section className="space-y-4">
-                  <h3 className="text-base font-black uppercase tracking-[0.2em] opacity-30 flex items-center gap-2">
-                    <Boxes className="w-5 h-5" /> Attributes
-                  </h3>
                   <div className="flex flex-wrap gap-2">
                     <SpecialBadge
                       label="Body Attack"

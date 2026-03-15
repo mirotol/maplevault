@@ -14,8 +14,9 @@
   --color-text-secondary: #6b6375;
   --color-border: #e5e7eb;
   --color-card-border: #d4c3a0;
+  --color-card-text: #3c2f2f;
   --color-accent: #c43825;
-  --color-accent-bg: rgba(170, 59, 255, 0.1);
+  --color-accent-bg: #efe4c9;
   --color-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   --color-header-bg: #ffffff;
   --font-sans: "Inter", system-ui, sans-serif;
@@ -28,6 +29,10 @@
   --color-text: #f1f5f9;
   --color-text-secondary: #9ca3af;
   --color-border: #2e303a;
+  --color-card-bg: #f3ede0;
+  --color-card-bg2: #efe4c9;
+  --color-card-border: #d4c3a0;
+  --color-card-text: #3c2f2f;
   --color-accent: #c084fc;
   --color-accent-bg: rgba(192, 132, 252, 0.15);
   --color-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
