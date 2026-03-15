@@ -226,7 +226,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
             </div>
             <div>
               <div className="flex items-center gap-3 mb-1">
-                <h2 className="text-4xl text-(--color-card-text) tracking-tight">
+                <h2 className="font-heading text-4xl text-(--color-card-text) tracking-tight">
                   {detail?.name || initialMob?.name || (
                     <Skeleton className="h-10 w-48" />
                   )}

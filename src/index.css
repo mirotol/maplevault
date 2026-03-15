@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Fredoka", sans-serif;
+}
+
 /* ----------------------------- */
 /* Theme tokens */
 /* ----------------------------- */
@@ -52,7 +57,6 @@
     var(--color-stat-exp-bg),
     color-mix(in srgb, var(--color-stat-exp-bg), black 30%)
   );
-  --font-sans: "Inter", system-ui, sans-serif;
 }
 
 /* Dark theme */
@@ -110,8 +114,7 @@
 /* ----------------------------- */
 
 body {
-  font-family: var(--font-sans);
-  @apply bg-(--color-image-bg) text-(--color-text) font-sans text-lg transition-colors duration-300;
+  @apply font-sans bg-(--color-image-bg) text-(--color-text) text-lg transition-colors duration-300;
   background-image: url("/backgrounds/henesys.png");
   background-attachment: fixed;
   background-position: bottom;

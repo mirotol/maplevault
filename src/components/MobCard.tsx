@@ -76,7 +76,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
         )}
       </span>
       <div className="flex flex-col items-center gap-2 mb-2">
-        <span className="text-2xl font-medium group-hover:text-(--color-accent) transition-colors block">
+        <span className="font-heading text-2xl font-medium group-hover:text-(--color-accent) transition-colors block">
           {mob.name}
         </span>
         {mob.isBoss ? (

@@ -165,7 +165,7 @@ const MobsPage = () => {
           {/* Filters and Sorting Group */}
           <div className="flex flex-wrap items-center gap-3">
             {/* Filter Mode */}
-            <div className="relative group min-w-[140px] flex-1 lg:flex-none">
+            <div className="relative group min-w-35 flex-1 lg:flex-none">
               <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors pointer-events-none" />
               <select
                 value={filterMode}
