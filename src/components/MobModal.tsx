@@ -8,7 +8,6 @@ import {
   Heart,
   ImageOff,
   Info,
-  Layers,
   MapPin,
   Move,
   Shield,
@@ -44,12 +43,12 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
         if (data) {
           setDetail(data);
         } else {
-          setError("No detailed information available for this monster");
+          setError("No detailed information available for this mob");
         }
       })
       .catch((err) => {
         console.error("Failed to fetch mob details in modal:", err);
-        if (currentActive) setError("Failed to load monster details");
+        if (currentActive) setError("Failed to load mob details");
       })
       .finally(() => {
         if (currentActive) setLoading(false);
@@ -165,7 +164,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-(--color-bg) border border-(--color-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="card-paper relative w-full max-w-2xl border border-(--color-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         <button
           type="button"
           onClick={onClose}
@@ -176,9 +175,9 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
         </button>
 
         {/* Header */}
-        <div className="flex items-center p-6 border-b border-(--color-border) bg-gradient-to-b from-(--color-accent-bg) to-transparent">
+        <div className="flex items-center p-6 border-b border-(--color-border)">
           <div className="flex items-center gap-6">
-            <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl bg-white dark:bg-gray-800 flex items-center justify-center shrink-0 shadow-lg border border-(--color-border) relative group">
+            <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl flex items-center justify-center shrink-0 relative group">
               {loading ? (
                 <Skeleton className="w-full h-full rounded-2xl" />
               ) : error ? (
@@ -187,7 +186,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                 <img
                   src={renderUrl}
                   alt={detail?.name || initialMob?.name}
-                  className="max-w-[90%] max-h-[90%] object-contain scale-110 group-hover:scale-125 transition-transform duration-500"
+                  className="max-w-[90%] max-h-[90%] object-contain scale-110 group-hover:scale-140 transition-transform duration-500"
                   style={{ imageRendering: "pixelated" }}
                 />
               )}

@@ -23,7 +23,7 @@ const LEVEL_RANGES = [
   { min: 181, max: 200, label: "181-200" },
 ];
 
-const MonstersPage = () => {
+const MobsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [mobs, setMobs] = useState<Mob[]>([]);
@@ -39,7 +39,7 @@ const MonstersPage = () => {
   const selectedMob = id ? mobs.find((m) => m.id === Number(id)) : null;
 
   const handleCloseModal = () => {
-    navigate("/monsters");
+    navigate("/mobs");
   };
 
   const handleSelectMob = (mob: Mob) => {
@@ -133,7 +133,7 @@ const MonstersPage = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-semibold mb-6 flex items-center gap-2">
           <Database className="w-8 h-8 text-(--color-accent)" />
-          Monster List
+          Mob List
         </h2>
 
         {/* Search and Filters */}
@@ -143,7 +143,7 @@ const MonstersPage = () => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-40" />
             <input
               type="text"
-              placeholder="Search monsters by name..."
+              placeholder="Search mobs by name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3 bg-(--color-bg) border border-(--color-border) rounded-xl focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) transition-all text-lg"
@@ -161,7 +161,7 @@ const MonstersPage = () => {
                 }
                 className="w-full pl-10 pr-4 py-3 bg-(--color-bg) border border-(--color-border) rounded-xl focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) text-lg"
               >
-                <option value="all">All Monsters</option>
+                <option value="all">All Mobs</option>
                 <option value="boss">Bosses Only</option>
                 <option value="level">Level Range</option>
               </select>
@@ -216,9 +216,7 @@ const MonstersPage = () => {
       {loading ? (
         <div className="flex flex-col justify-center items-center p-20 space-y-4">
           <Loader2 className="w-12 h-12 animate-spin text-(--color-accent)" />
-          <p className="text-xl font-medium opacity-50">
-            Fetching monster data...
-          </p>
+          <p className="text-xl font-medium opacity-50">Fetching mob data...</p>
         </div>
       ) : (
         <>
@@ -244,7 +242,7 @@ const MonstersPage = () => {
           {filteredAndSortedMobs.length === 0 && (
             <div className="text-center py-20 bg-(--color-bg) border border-dashed border-(--color-border) rounded-3xl">
               <p className="text-2xl font-medium opacity-50 mb-2">
-                No monsters match your search
+                No mobs match your search
               </p>
               <p className="opacity-30">
                 Try adjusting your filters or search query.
@@ -260,7 +258,7 @@ const MonstersPage = () => {
 
           {!hasMore && filteredAndSortedMobs.length > 0 && (
             <p className="text-center p-8 opacity-30 text-lg">
-              Showing all {filteredAndSortedMobs.length} monsters.
+              Showing all {filteredAndSortedMobs.length} mobs.
             </p>
           )}
         </>
@@ -277,4 +275,4 @@ const MonstersPage = () => {
   );
 };
 
-export default MonstersPage;
+export default MobsPage;

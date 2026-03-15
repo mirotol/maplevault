@@ -1,6 +1,6 @@
-import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
 
 /**
  * Helper to get a cookie value by name.
@@ -54,31 +54,8 @@ const Layout = () => {
 
   return (
     <div className="min-h-screen text-(--color-text) transition-colors duration-300">
-      {/* Header Section */}
-      <header className="max-w-7xl mx-auto px-4 py-8 flex justify-between items-center border-b border-(--color-border)">
-        <Link to="/" className="group">
-          <h1 className="text-5xl font-bold tracking-tight mb-2 group-hover:text-(--color-accent) transition-colors">
-            MapleVault
-          </h1>
-          <p className="text-xl opacity-80">
-            MapleStory database for mobs and items. Based on GMS v.83
-          </p>
-        </Link>
-
-        {/* Theme Toggle Button */}
-        <button
-          onClick={toggleTheme}
-          type="button"
-          aria-label="Toggle theme"
-          className="p-3 rounded-full hover:bg-(--color-accent-bg) transition-all duration-200 border border-(--color-border) group"
-        >
-          {theme === "light" ? (
-            <Moon className="w-6 h-6 text-(--color-accent) group-hover:scale-110 transition-transform" />
-          ) : (
-            <Sun className="w-6 h-6 text-(--color-accent) group-hover:scale-110 transition-transform" />
-          )}
-        </button>
-      </header>
+      {/* Navigation Bar */}
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       {/* Main content where pages will render */}
       <main className="max-w-7xl mx-auto px-4 py-12">
