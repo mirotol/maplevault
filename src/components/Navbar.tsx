@@ -12,7 +12,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center gap-4">
         <div className="flex items-baseline gap-6 md:gap-12">
           <NavLink to="/" className="group shrink-0">
-            <h1 className="font-heading text-2xl md:text-3xl tracking-tight text-(--color-accent) hover:opacity-70 transition">
+            <h1 className="font-heading text-3xl md:text-3xl font-semibold tracking-tight text-(--color-accent) hover:opacity-70 transition">
               MapleVault
             </h1>
           </NavLink>

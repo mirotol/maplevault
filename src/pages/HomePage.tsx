@@ -1,8 +1,10 @@
 import { Database } from "lucide-react";
+import FallingEffect from "../components/FallingEffect";
 
 const HomePage = () => {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
+      <FallingEffect image="/effects/maple_leaf.png" count={7} />
       <div className="w-24 h-24 mb-8 rounded-3xl bg-(--color-accent-bg) flex items-center justify-center text-(--color-accent)">
         <Database className="w-12 h-12" />
       </div>
