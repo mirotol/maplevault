@@ -6,7 +6,7 @@
 
 /* Light theme */
 :root {
-  --color-bg: #eaf4ff;
+  --color-bg: #82d2f4;
   --color-text: #0f172a;
   --color-text-secondary: #6b6375;
   --color-border: #e5e7eb;
@@ -33,7 +33,12 @@
 
 body {
   font-family: var(--font-sans);
-  @apply bg-(--color-bg) text-(--color-text) font-sans text-lg;
+  @apply bg-(--color-bg) text-(--color-text) font-sans text-lg transition-colors duration-300;
+  background-image: url("/henesys.png");
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }
 
 #root {

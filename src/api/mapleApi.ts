@@ -23,7 +23,8 @@ export async function fetchMobs(
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch mobs: ${res.status}`);
-  return res.json();
+  const data: Mob[] = await res.json();
+  return data.filter((mob) => mob.level >= 1);
 }
 
 export async function fetchMobDetail(

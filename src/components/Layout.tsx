@@ -53,7 +53,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-(--color-bg) text-(--color-text) transition-colors duration-300">
+    <div className="min-h-screen text-(--color-text) transition-colors duration-300">
       {/* Header Section */}
       <header className="max-w-7xl mx-auto px-4 py-8 flex justify-between items-center border-b border-(--color-border)">
         <Link to="/" className="group">
@@ -61,7 +61,7 @@ const Layout = () => {
             MapleVault
           </h1>
           <p className="text-xl opacity-80">
-            MapleStory database for mobs and items
+            MapleStory database for mobs and items. Based on GMS v.83
           </p>
         </Link>
 

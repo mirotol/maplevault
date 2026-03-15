@@ -121,7 +121,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   }) => (
     <div className="flex justify-between items-center p-2 rounded-lg border border-(--color-border) text-lg">
       <span className="opacity-60">{label}</span>
-      <span className="font-mono font-bold">
+      <span className="font-bold">
         {loading ? (
           <Skeleton className="h-4 w-12" />
         ) : (
@@ -336,32 +336,6 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                       label="Undead"
                       active={detail?.meta?.isUndead}
                       icon={Skull}
-                    />
-                    <SpecialBadge
-                      label="Boss Monster"
-                      active={
-                        Boolean(initialMob?.isBoss) ||
-                        (detail?.meta?.level !== undefined &&
-                          detail.meta.level >= 100)
-                      }
-                      icon={ShieldAlert}
-                    />
-                    <SpecialBadge
-                      label="Regular Monster"
-                      active={
-                        !loading &&
-                        !initialMob?.isBoss &&
-                        !(
-                          detail?.meta?.level !== undefined &&
-                          detail.meta.level >= 100
-                        )
-                      }
-                      icon={Info}
-                    />
-                    <SpecialBadge
-                      label="Summons Minions"
-                      active={!!detail?.meta?.summonType}
-                      icon={Layers}
                     />
                     <SpecialBadge
                       label="Revivable"
