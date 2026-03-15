@@ -59,7 +59,7 @@ const MobsPage = () => {
 
     // Filter by mode
     if (filterMode === "boss") {
-      result = result.filter((m) => m.isBoss || m.level >= 100);
+      result = result.filter((m) => m.isBoss);
     } else if (filterMode === "level" && levelRange !== "all") {
       const range = LEVEL_RANGES.find((r) => r.label === levelRange);
       if (range) {
