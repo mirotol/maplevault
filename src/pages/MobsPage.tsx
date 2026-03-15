@@ -176,7 +176,7 @@ const MobsPage = () => {
                 onChange={(e) =>
                   setFilterMode(e.target.value as "all" | "boss" | "level")
                 }
-                className="w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
+                className="cursor-hover w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
               >
                 <option value="all">All Mobs</option>
                 <option value="boss">Bosses</option>
@@ -191,7 +191,7 @@ const MobsPage = () => {
                 <select
                   value={levelRange}
                   onChange={(e) => setLevelRange(e.target.value)}
-                  className="w-full h-11 px-4 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
+                  className="cursor-hover w-full h-11 px-4 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
                 >
                   <option value="all">Any Level</option>
                   {LEVEL_RANGES.map((r) => (
@@ -210,7 +210,7 @@ const MobsPage = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as "name" | "level")}
-                className="w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
+                className="cursor-hover w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
               >
                 <option value="level">Sort by Level</option>
                 <option value="name">Sort by Name</option>

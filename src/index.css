@@ -121,6 +121,25 @@ body {
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: 100% auto;
+  cursor:
+    url("/cursors/cursor.png") 4 4,
+    auto;
+}
+
+a,
+button,
+[role="button"],
+.cursor-hover {
+  cursor:
+    url("/cursors/cursor_hover.png") 4 4,
+    pointer;
+}
+
+body.cursor-click,
+body.cursor-click * {
+  cursor:
+    url("/cursors/cursor_click.png") 6 2,
+    auto !important;
 }
 
 .card-paper {
