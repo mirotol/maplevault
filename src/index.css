@@ -11,6 +11,7 @@
 
 /* Light theme */
 :root {
+  scrollbar-gutter: stable;
   --color-bg: #e6f6fd;
   --color-image-bg: #82d2f4;
   --color-card-bg: #f3ede0;

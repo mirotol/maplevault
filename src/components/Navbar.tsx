@@ -21,10 +21,10 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
             <NavLink
               to="/mobs"
               className={({ isActive }) =>
-                `text-sm md:text-lg font-medium transition-all pb-1 ${
+                `text-sm md:text-lg font-medium transition-all pb-1 border-b-2 ${
                   isActive
-                    ? "text-(--color-accent) border-b-2 border-(--color-accent)"
-                    : "opacity-60 hover:opacity-100 hover:text-(--color-accent)"
+                    ? "text-(--color-accent) border-(--color-accent)"
+                    : "border-transparent opacity-60 hover:opacity-100 hover:text-(--color-accent)"
                 }`
               }
             >
@@ -33,10 +33,10 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
             <NavLink
               to="/items"
               className={({ isActive }) =>
-                `text-sm md:text-lg font-medium transition-all pb-1 ${
+                `text-sm md:text-lg font-medium transition-all pb-1 border-b-2 ${
                   isActive
-                    ? "text-(--color-accent) border-b-2 border-(--color-accent)"
-                    : "opacity-60 hover:opacity-100 hover:text-(--color-accent)"
+                    ? "text-(--color-accent) border-(--color-accent)"
+                    : "border-transparent opacity-60 hover:opacity-100 hover:text-(--color-accent)"
                 }`
               }
             >
