@@ -1,3 +1,10 @@
+export interface MapInfo {
+  name: string;
+  streetName: string;
+}
+
+export type MapLookup = Record<string, MapInfo>;
+
 export interface Mob {
   id: number;
   name: string;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { fetchMaps } from "../api/mapleApi";
 import Navbar from "./Navbar";
 
 /**
@@ -27,6 +28,8 @@ const Layout = () => {
 
   // Initial theme setup: read from cookie or system preference
   useEffect(() => {
+    fetchMaps().catch((err) => console.error("Failed to pre-fetch maps:", err));
+
     const savedTheme = getCookie("theme") as "light" | "dark" | undefined;
     if (savedTheme) {
       setTheme(savedTheme);

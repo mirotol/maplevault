@@ -1,4 +1,6 @@
 import {
+  ChevronDown,
+  ChevronUp,
   ImageOff,
   MapPin,
   ShieldAlert,
@@ -8,7 +10,13 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { fetchMobDetail, fetchMobRenderUrl } from "../api/mapleApi";
+import {
+  fetchMobDetail,
+  fetchMobRenderUrl,
+  fetchMaps,
+  getMapDisplay,
+  getMapInfo,
+} from "../api/mapleApi";
 import type { Mob, MobDetail } from "../types/maple";
 import { getElementalInfo } from "../utils/elemental";
 
@@ -22,14 +30,15 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   const [detail, setDetail] = useState<MobDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [expandedLocations, setExpandedLocations] = useState(false);
 
   useEffect(() => {
     let currentActive = true;
     setLoading(true);
     setError(null);
 
-    fetchMobDetail(mobId)
-      .then((data) => {
+    Promise.all([fetchMobDetail(mobId), fetchMaps()])
+      .then(([data, _maps]) => {
         if (!currentActive) return;
         if (data) {
           setDetail(data);
@@ -381,21 +390,64 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                   <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2">
                     <MapPin className="w-5 h-5" /> Locations
                   </h3>
-                  <div className="flex flex-wrap gap-2">
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {loading
-                      ? [1, 2, 3].map((i) => (
-                          <Skeleton key={i} className="h-8 w-20 rounded-full" />
+                      ? [1, 2, 3, 4].map((i) => (
+                          <div
+                            key={i}
+                            className="h-[58px] bg-gray-200 dark:bg-gray-700/50 animate-pulse rounded-xl"
+                          />
                         ))
-                      : detail?.foundAt.map((mapId) => (
-                          <span
-                            key={mapId}
-                            className="px-4 py-1.5 bg-(--color-bg) border border-(--color-border) rounded-full text-base font-bold tracking-wide opacity-70 hover:opacity-100 hover:border-(--color-accent) hover:text-(--color-accent) transition-all cursor-help shadow-sm"
-                            title={`Map ID: ${mapId}`}
-                          >
-                            {mapId}
-                          </span>
-                        ))}
+                      : detail?.foundAt
+                          .slice(0, expandedLocations ? undefined : 4)
+                          .map((mapId) => {
+                            const info = getMapInfo(mapId);
+                            return (
+                              <div
+                                key={mapId}
+                                className="flex items-center gap-3 px-3 py-2 bg-[#f3f0ea] dark:bg-[#2d2a24] border border-[#ddd6c8] dark:border-[#4a453a] rounded-[14px] transition-all group hover:border-[#c5bcad] dark:hover:border-[#5d574a]"
+                                title={`Map ID: ${mapId}`}
+                              >
+                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/50 dark:bg-black/20 flex items-center justify-center border border-[#ddd6c8]/50 dark:border-[#4a453a]/50">
+                                  <MapPin className="w-4 h-4 text-[#8b8273] dark:text-[#a39a8c]" />
+                                </div>
+                                <div className="min-w-0">
+                                  <div className="text-[13px] font-bold text-[#4a453a] dark:text-[#e2e2e2] truncate leading-tight">
+                                    {info ? info.name : mapId}
+                                  </div>
+                                  {info && (
+                                    <div className="text-[11px] text-[#8b8273] dark:text-[#a39a8c] truncate leading-tight mt-0.5">
+                                      {info.streetName}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
                   </div>
+
+                  {!loading &&
+                    detail?.foundAt &&
+                    detail.foundAt.length > 4 && (
+                      <button
+                        type="button"
+                        onClick={() => setExpandedLocations(!expandedLocations)}
+                        className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#8b8273] hover:text-[#4a453a] dark:text-[#a39a8c] dark:hover:text-[#e2e2e2] transition-colors ml-1"
+                      >
+                        {expandedLocations ? (
+                          <>
+                            <ChevronUp className="w-4 h-4" />
+                            Show less
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown className="w-4 h-4" />+{" "}
+                            {detail.foundAt.length - 4} more locations
+                          </>
+                        )}
+                      </button>
+                    )}
                 </section>
               )}
             </>
