@@ -14,7 +14,6 @@ import {
   fetchMobDetail,
   fetchMobRenderUrl,
   fetchMaps,
-  getMapDisplay,
   getMapInfo,
 } from "../api/mapleApi";
 import type { Mob, MobDetail } from "../types/maple";
@@ -396,7 +395,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                       ? [1, 2, 3, 4].map((i) => (
                           <div
                             key={i}
-                            className="h-[58px] bg-gray-200 dark:bg-gray-700/50 animate-pulse rounded-xl"
+                            className="h-[54px] bg-gray-200 dark:bg-gray-700/50 animate-pulse rounded-[10px]"
                           />
                         ))
                       : detail?.foundAt
@@ -406,18 +405,15 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                             return (
                               <div
                                 key={mapId}
-                                className="flex items-center gap-3 px-3 py-2 bg-[#f3f0ea] dark:bg-[#2d2a24] border border-[#ddd6c8] dark:border-[#4a453a] rounded-[14px] transition-all group hover:border-[#c5bcad] dark:hover:border-[#5d574a]"
+                                className="flex items-center gap-3 px-3.5 py-2 bg-[#f3ede2] border border-[#d8cbb4] rounded-[10px] transition-all group hover:bg-[#efe6d6] shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1px_2px_rgba(0,0,0,0.08)]"
                                 title={`Map ID: ${mapId}`}
                               >
-                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/50 dark:bg-black/20 flex items-center justify-center border border-[#ddd6c8]/50 dark:border-[#4a453a]/50">
-                                  <MapPin className="w-4 h-4 text-[#8b8273] dark:text-[#a39a8c]" />
-                                </div>
                                 <div className="min-w-0">
-                                  <div className="text-[13px] font-bold text-[#4a453a] dark:text-[#e2e2e2] truncate leading-tight">
+                                  <div className="text-base font-semibold text-[#5f4c3a] truncate leading-tight">
                                     {info ? info.name : mapId}
                                   </div>
                                   {info && (
-                                    <div className="text-[11px] text-[#8b8273] dark:text-[#a39a8c] truncate leading-tight mt-0.5">
+                                    <div className="text-base text-[#9a8a72] truncate leading-tight mt-0.5">
                                       {info.streetName}
                                     </div>
                                   )}
@@ -427,27 +423,25 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                           })}
                   </div>
 
-                  {!loading &&
-                    detail?.foundAt &&
-                    detail.foundAt.length > 4 && (
-                      <button
-                        type="button"
-                        onClick={() => setExpandedLocations(!expandedLocations)}
-                        className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#8b8273] hover:text-[#4a453a] dark:text-[#a39a8c] dark:hover:text-[#e2e2e2] transition-colors ml-1"
-                      >
-                        {expandedLocations ? (
-                          <>
-                            <ChevronUp className="w-4 h-4" />
-                            Show less
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown className="w-4 h-4" />+{" "}
-                            {detail.foundAt.length - 4} more locations
-                          </>
-                        )}
-                      </button>
-                    )}
+                  {!loading && detail?.foundAt && detail.foundAt.length > 4 && (
+                    <button
+                      type="button"
+                      onClick={() => setExpandedLocations(!expandedLocations)}
+                      className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#8b7558] hover:text-[#5f4c3a] transition-colors ml-1"
+                    >
+                      {expandedLocations ? (
+                        <>
+                          <ChevronUp className="w-4 h-4" />
+                          Show less
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="w-4 h-4" />+{" "}
+                          {detail.foundAt.length - 4} more locations
+                        </>
+                      )}
+                    </button>
+                  )}
                 </section>
               )}
             </>

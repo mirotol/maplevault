@@ -1,7 +1,6 @@
 import {
   ArrowUpDown,
   ChevronDown,
-  Database,
   Filter,
   Loader2,
   Search,
