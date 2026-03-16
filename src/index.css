@@ -38,6 +38,12 @@
   --color-element-holy: #eab308;
   --color-element-dark: #6b21a8;
   --color-trait-undead: #9333ea;
+  --color-location-bg: #f3ede2;
+  --color-location-border: #d8cbb4;
+  --color-location-hover-bg: #efe6d6;
+  --color-location-text: #5f4c3a;
+  --color-location-text-secondary: #9a8a72;
+  --color-location-icon: #8b7558;
 
   /* Stat Gradients */
   --stat-hp-gradient: linear-gradient(
@@ -88,6 +94,12 @@
   --color-element-holy: #eab308;
   --color-element-dark: #6b21a8;
   --color-trait-undead: #9333ea;
+  --color-location-bg: #f3ede2;
+  --color-location-border: #d8cbb4;
+  --color-location-hover-bg: #efe6d6;
+  --color-location-text: #5f4c3a;
+  --color-location-text-secondary: #9a8a72;
+  --color-location-icon: #8b7558;
 
   /* Stat Gradients */
   --stat-hp-gradient: linear-gradient(

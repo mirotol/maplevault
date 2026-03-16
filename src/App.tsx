@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CursorHandler from "./components/CursorHandler";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import ItemsPage from "./pages/ItemsPage";
 import MobsPage from "./pages/MobsPage";
-import CursorHandler from "./components/CursorHandler";
 
 export default function App() {
   return (

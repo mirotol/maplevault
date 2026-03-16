@@ -10,14 +10,14 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import {
-  fetchMobDetail,
-  fetchMobRenderUrl,
-  fetchMaps,
-  getMapInfo,
-} from "../api/mapleApi";
+import { fetchMaps, fetchMobDetail, fetchMobRenderUrl } from "../api/mapleApi";
 import type { Mob, MobDetail } from "../types/maple";
 import { getElementalInfo } from "../utils/elemental";
+import { Badge } from "./Badge";
+import { ElementalBadge } from "./ElementalBadge";
+import { LocationBadge } from "./LocationBadge";
+import { Skeleton } from "./Skeleton";
+import { StatBadge } from "./StatBadge";
 
 interface MobModalProps {
   mobId: number;
@@ -73,47 +73,6 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   const renderUrl = fetchMobRenderUrl(mobId);
   const elementalInfo = getElementalInfo(detail?.meta?.elementalAttributes);
 
-  const Skeleton = ({ className }: { className: string }) => (
-    <span
-      className={`animate-pulse bg-gray-200 dark:bg-gray-700/50 rounded inline-block ${className}`}
-    />
-  );
-
-  const StatBadge = ({
-    label,
-    value,
-    variant = "default",
-  }: {
-    label: string;
-    value: string | number | undefined;
-    variant?: "default" | "hp" | "mp" | "exp";
-  }) => {
-    const variantStyles = {
-      default:
-        "bg-(--color-accent-bg) bg-opacity-5 border-(--color-card-border)/50",
-      hp: "bg-[image:var(--stat-hp-gradient)] border-white text-white text-shadow-lg shadow-md",
-      mp: "bg-[image:var(--stat-mp-gradient)] border-white text-white text-shadow-lg shadow-md",
-      exp: "bg-[image:var(--stat-exp-gradient)] border-white text-white text-shadow-lg shadow-md",
-    };
-
-    return (
-      <div
-        className={`py-2.5 px-4 rounded-lg border ${variantStyles[variant]}`}
-      >
-        <div className="text-sm font-bold uppercase tracking-widest leading-none mb-1">
-          {label}
-        </div>
-        <div className="font-bold text-xl leading-none">
-          {loading ? (
-            <Skeleton className="h-4 w-16" />
-          ) : (
-            (value?.toLocaleString() ?? "???")
-          )}
-        </div>
-      </div>
-    );
-  };
-
   const CombatStat = ({
     label,
     value,
@@ -132,68 +91,6 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
       </span>
     </div>
   );
-
-  const ElementalRow = ({
-    label,
-    elements,
-  }: {
-    label: string;
-    elements: string[];
-  }) => (
-    <div className="space-y-3 p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/30">
-      <span className="text-xs font-bold uppercase tracking-widest text-(--color-card-text) opacity-60 block">
-        {label}
-      </span>
-      <div className="flex flex-wrap gap-2">
-        {loading ? (
-          <Skeleton className="h-7 w-20 rounded-lg" />
-        ) : elements.length > 0 ? (
-          elements.map((el) => <Badge key={el} label={el} variant={el} />)
-        ) : (
-          <span className="text-sm font-medium text-(--color-card-text) opacity-30 italic">
-            None
-          </span>
-        )}
-      </div>
-    </div>
-  );
-
-  const Badge = ({
-    label,
-    variant,
-    sublabel,
-  }: {
-    label: string;
-    variant: string;
-    sublabel?: string;
-  }) => {
-    const variantStyles: Record<string, string> = {
-      Fire: "bg-(--color-element-fire)",
-      Poison: "bg-(--color-element-poison)",
-      Ice: "bg-(--color-element-ice)",
-      Lightning: "bg-(--color-element-lightning) text-black!",
-      Holy: "bg-(--color-element-holy)",
-      Dark: "bg-(--color-element-dark)",
-      Undead: "bg-(--color-trait-undead)",
-    };
-
-    return (
-      <div className="flex flex-col items-center gap-1">
-        <span
-          className={`px-3 py-1 rounded-md text-xs font-black uppercase tracking-widest text-white shadow-sm transition-transform hover:scale-105 select-none ${
-            variantStyles[variant] || "bg-slate-500"
-          }`}
-        >
-          {label}
-        </span>
-        {sublabel && (
-          <span className="text-[10px] font-bold uppercase tracking-tighter opacity-50 whitespace-nowrap">
-            {sublabel}
-          </span>
-        )}
-      </div>
-    );
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -249,7 +146,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-4 text-lg opacity-80 font-medium">
+              <div className="flex items-center gap-4 text-xl opacity-80 font-medium">
                 <span className="flex items-center gap-1.5 text-(--color-card-text)">
                   Level{" "}
                   {detail?.meta?.level ||
@@ -288,16 +185,19 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                     label="HP"
                     value={detail?.meta?.maxHP}
                     variant="hp"
+                    loading={loading}
                   />
                   <StatBadge
                     label="MP"
                     value={detail?.meta?.maxMP}
                     variant="mp"
+                    loading={loading}
                   />
                   <StatBadge
                     label="EXP"
                     value={detail?.meta?.exp}
                     variant="exp"
+                    loading={loading}
                   />
                 </div>
               </section>
@@ -307,7 +207,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                   <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
                     <Swords className="w-5 h-5" /> Combat Stats
                   </h3>
-                  <div className="grid grid-cols-1 p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/30">
+                  <div className="grid grid-cols-1 p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/60">
                     <CombatStat
                       label="Weapon Attack"
                       value={detail?.meta?.physicalDamage}
@@ -342,21 +242,25 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                       <Zap className="w-5 h-5" /> Elemental Info
                     </h3>
                     <div className="grid grid-cols-1 gap-2">
-                      <ElementalRow
+                      <ElementalBadge
                         label="Weak against"
                         elements={elementalInfo.weak}
+                        loading={loading}
                       />
-                      <ElementalRow
+                      <ElementalBadge
                         label="Normal against"
                         elements={elementalInfo.normal}
+                        loading={loading}
                       />
-                      <ElementalRow
+                      <ElementalBadge
                         label="Strong against"
                         elements={elementalInfo.strong}
+                        loading={loading}
                       />
-                      <ElementalRow
+                      <ElementalBadge
                         label="Immune to"
                         elements={elementalInfo.immune}
+                        loading={loading}
                       />
                     </div>
                   </section>
@@ -367,7 +271,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                       <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
                         <Sparkles className="w-5 h-5" /> Special Traits
                       </h3>
-                      <div className="p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/30">
+                      <div className="p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/60">
                         <div className="flex flex-wrap gap-4">
                           {loading ? (
                             <Skeleton className="h-10 w-24 rounded-lg" />
@@ -393,41 +297,20 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {loading
                       ? [1, 2, 3, 4].map((i) => (
-                          <div
-                            key={i}
-                            className="h-[54px] bg-gray-200 dark:bg-gray-700/50 animate-pulse rounded-[10px]"
-                          />
+                          <LocationBadge key={i} loading={true} />
                         ))
                       : detail?.foundAt
                           .slice(0, expandedLocations ? undefined : 4)
-                          .map((mapId) => {
-                            const info = getMapInfo(mapId);
-                            return (
-                              <div
-                                key={mapId}
-                                className="flex items-center gap-3 px-3.5 py-2 bg-[#f3ede2] border border-[#d8cbb4] rounded-[10px] transition-all group hover:bg-[#efe6d6] shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1px_2px_rgba(0,0,0,0.08)]"
-                                title={`Map ID: ${mapId}`}
-                              >
-                                <div className="min-w-0">
-                                  <div className="text-base font-semibold text-[#5f4c3a] truncate leading-tight">
-                                    {info ? info.name : mapId}
-                                  </div>
-                                  {info && (
-                                    <div className="text-base text-[#9a8a72] truncate leading-tight mt-0.5">
-                                      {info.streetName}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            );
-                          })}
+                          .map((mapId) => (
+                            <LocationBadge key={mapId} mapId={mapId} />
+                          ))}
                   </div>
 
                   {!loading && detail?.foundAt && detail.foundAt.length > 4 && (
                     <button
                       type="button"
                       onClick={() => setExpandedLocations(!expandedLocations)}
-                      className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#8b7558] hover:text-[#5f4c3a] transition-colors ml-1"
+                      className="flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-(--color-location-icon) hover:text-(--color-location-text) transition-colors ml-1"
                     >
                       {expandedLocations ? (
                         <>
