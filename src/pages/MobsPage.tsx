@@ -137,8 +137,12 @@ const MobsPage = () => {
   return (
     <>
       <div className="mb-8">
-        <h2 className="text-3xl font-semibold mb-6 flex items-center gap-2">
-          <Database className="w-8 h-8 text-(--color-accent)" />
+        <h2 className="font-heading text-3xl font-semibold mb-6 flex items-center gap-2">
+          <img
+            src="/icons/orange_mushroom.png"
+            alt="Orange Mushroom"
+            className="w-8 h-8 pointer-events-none select-none"
+          />
           Mob List
         </h2>
 
