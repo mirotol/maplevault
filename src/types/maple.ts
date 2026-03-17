@@ -59,6 +59,31 @@ export interface Item {
   requiredLevel: number;
   requiredGender: number;
   typeInfo: ItemTypeInfo;
+  meta?: ItemMeta;
+}
+
+export interface ItemMeta {
+  incPAD?: number;
+  incMAD?: number;
+  incSTR?: number;
+  incDEX?: number;
+  incINT?: number;
+  incLUK?: number;
+  incMHP?: number;
+  incMMP?: number;
+  incPDD?: number;
+  incMDD?: number;
+  incACC?: number;
+  incEVA?: number;
+  incSpeed?: number;
+  incJump?: number;
+  reqLevel?: number;
+  reqSTR?: number;
+  reqDEX?: number;
+  reqINT?: number;
+  reqLUK?: number;
+  reqJob?: number;
+  tuc?: number;
 }
 
 export interface ItemTypeInfo {

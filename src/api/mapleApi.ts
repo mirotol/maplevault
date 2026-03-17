@@ -120,3 +120,23 @@ export async function fetchItems(
   if (!res.ok) throw new Error(`Failed to fetch items: ${res.status}`);
   return res.json();
 }
+
+export async function fetchItem(
+  itemId: number,
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
+): Promise<Item | null> {
+  const url = `${BASE_URL}/${region.toLowerCase()}/${version}/item/${itemId}`;
+  const res = await fetch(url);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`Failed to fetch item ${itemId}: ${res.status}`);
+  return res.json();
+}
+
+export function fetchItemIcon(
+  itemId: number,
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
+): string {
+  return `${BASE_URL}/${region.toLowerCase()}/${version}/item/${itemId}/icon`;
+}

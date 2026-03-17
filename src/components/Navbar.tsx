@@ -31,7 +31,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
               Mob List
             </NavLink>
             <NavLink
-              to="/items"
+              to="/equipment"
               className={({ isActive }) =>
                 `text-sm md:text-lg font-medium transition-all pb-1 border-b-2 ${
                   isActive
@@ -40,7 +40,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                 }`
               }
             >
-              Item List
+              Equipment List
             </NavLink>
           </nav>
         </div>
