@@ -1,4 +1,4 @@
-import { Database, Loader2, Search, SortAsc, SortDesc, X } from "lucide-react";
+import { Loader2, Search, SortAsc, SortDesc, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchItems } from "../api/mapleApi";
 import { CustomDropdown } from "../components/CustomDropdown";
@@ -207,9 +207,15 @@ const EquipmentsPage = () => {
 
   return (
     <>
-      <h2 className="font-heading text-4xl font-bold mb-8 flex items-center gap-3 text-white drop-shadow-md">
-        <Database className="w-10 h-10 text-orange-500" />
-        Equipment List
+      <h2 className="font-heading text-4xl font-semibold mb-8 flex items-center gap-3 text-white">
+        <img
+          src="/icons/zakum_helmet.png"
+          alt="Zakum Helmet"
+          className="w-12 h-12 pointer-events-none select-none"
+        />
+        <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">
+          Equipment List
+        </span>
       </h2>
 
       {/* Unified Equipment Panel */}
@@ -219,7 +225,7 @@ const EquipmentsPage = () => {
 
         <div className="relative z-10">
           {/* Primary Category Tabs */}
-          <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start card-equipment-bg p-3 rounded-2xl w-fit">
+          <div className="flex flex-wrap gap-3 mb-4 justify-center md:justify-start card-equipment-bg p-3 rounded-2xl w-fit">
             {PRIMARY_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
@@ -227,7 +233,7 @@ const EquipmentsPage = () => {
                 onClick={() => setPrimaryCategory(cat.id)}
                 className={`px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                   primaryCategory === cat.id
-                    ? "bg-linear-to-r from-red-700 to-orange-500/80 text-white shadow-lg shadow-red-900/40"
+                    ? "bg-linear-to-r from-red-700 to-orange-500/80 text-white shadow-[0_0_20px_0px_rgba(251,146,60,0.4)]"
                     : "text-white/70 bg-white/10 hover:text-white hover:bg-orange-600/70"
                 }`}
               >
@@ -243,7 +249,7 @@ const EquipmentsPage = () => {
               card-equipment-bg
               border border-blue-500/30
               rounded-2xl
-              p-3 mb-10
+              p-3 mb-8
               flex flex-wrap md:flex-nowrap items-center gap-3
               shadow-inner backdrop-blur-sm
             "
@@ -263,7 +269,7 @@ const EquipmentsPage = () => {
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-white/20 hover:text-white transition-all"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-white/90 hover:text-white transition-all"
                   title="Clear search"
                 >
                   <X className="w-4 h-4" />

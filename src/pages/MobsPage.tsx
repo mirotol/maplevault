@@ -147,13 +147,15 @@ const MobsPage = () => {
   return (
     <>
       <div className="mb-8">
-        <h2 className="font-heading text-3xl font-semibold mb-6 flex items-center gap-2">
+        <h2 className="font-heading text-4xl font-semibold mb-8 flex items-center gap-3 text-white">
           <img
             src="/icons/orange_mushroom.png"
             alt="Orange Mushroom"
-            className="w-8 h-8 pointer-events-none select-none"
+            className="w-12 h-12 pointer-events-none select-none"
           />
-          Mob List
+          <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">
+            Mob List
+          </span>
         </h2>
 
         {/* Search and Filters Toolbar */}
