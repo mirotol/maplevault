@@ -59,7 +59,7 @@ export interface Item {
   requiredLevel: number;
   requiredGender: number;
   typeInfo: ItemTypeInfo;
-  meta?: ItemMeta;
+  metaInfo?: ItemMeta;
 }
 
 export interface ItemMeta {
@@ -84,6 +84,7 @@ export interface ItemMeta {
   reqLUK?: number;
   reqJob?: number;
   tuc?: number;
+  attackSpeed?: number;
 }
 
 export interface ItemTypeInfo {

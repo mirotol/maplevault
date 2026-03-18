@@ -1,3 +1,4 @@
+import { withMinimumDelay } from "../utils/promise";
 import type { Item, MapLookup, Mob, MobDetail } from "../types/maple";
 
 export type Region = "GMS" | "EMS" | "KMS";
@@ -75,7 +76,7 @@ export async function fetchMobs(
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch mobs: ${res.status}`);
-  const data: Mob[] = await res.json();
+  const data: Mob[] = await withMinimumDelay(res.json());
   return data.filter((mob) => mob.level >= 1);
 }
 
@@ -88,7 +89,7 @@ export async function fetchMobDetail(
   const res = await fetch(url);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Failed to fetch mob ${mobId}: ${res.status}`);
-  return res.json();
+  return withMinimumDelay(res.json());
 }
 
 export function fetchMobIcon(
@@ -118,7 +119,7 @@ export async function fetchItems(
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch items: ${res.status}`);
-  return res.json();
+  return withMinimumDelay(res.json());
 }
 
 export async function fetchItem(
@@ -130,7 +131,7 @@ export async function fetchItem(
   const res = await fetch(url);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Failed to fetch item ${itemId}: ${res.status}`);
-  return res.json();
+  return withMinimumDelay(res.json());
 }
 
 export function fetchItemIcon(
