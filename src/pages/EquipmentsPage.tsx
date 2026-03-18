@@ -1,16 +1,17 @@
-import { ChevronDown, Database, Loader2, Search, SortAsc, SortDesc, X } from "lucide-react";
+import { Database, Loader2, Search, SortAsc, SortDesc, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchItems } from "../api/mapleApi";
+import { CustomDropdown } from "../components/CustomDropdown";
 import EquipmentCard from "../components/EquipmentCard";
 import type { Item } from "../types/maple";
 
-type PrimaryCategory = "Weapon" | "Armor" | "Accessory" | "Other";
+type PrimaryCategory = "Weapon" | "Armor" | "Accessory" | "Mount";
 
 const PRIMARY_CATEGORIES: { id: PrimaryCategory; label: string }[] = [
   { id: "Weapon", label: "Weapons" },
   { id: "Armor", label: "Armor" },
   { id: "Accessory", label: "Accessories" },
-  { id: "Other", label: "Etc" },
+  { id: "Mount", label: "Mob Taming" },
 ];
 
 const SUB_CATEGORIES: Record<PrimaryCategory, string[]> = {
@@ -31,7 +32,6 @@ const SUB_CATEGORIES: Record<PrimaryCategory, string[]> = {
     "Claw",
     "Knuckle",
     "Gun",
-    "Cash",
   ],
   Armor: [
     "Hat",
@@ -52,8 +52,23 @@ const SUB_CATEGORIES: Record<PrimaryCategory, string[]> = {
     "Medal",
     "Ring",
   ],
-  Other: ["Emblem", "Power Source", "Secondary Weapon"],
+  Mount: ["Mount"],
 };
+
+const CLASS_OPTIONS = [
+  { label: "All Classes", value: "all" },
+  { label: "Beginner", value: "Beginner" },
+  { label: "Warrior", value: "Warrior" },
+  { label: "Magician", value: "Magician" },
+  { label: "Archer", value: "Archer" },
+  { label: "Thief", value: "Thief" },
+  { label: "Pirate", value: "Pirate" },
+];
+
+const SORT_OPTIONS = [
+  { label: "Sort by Level", value: "level" },
+  { label: "Sort by Name", value: "name" },
+];
 
 const EquipmentsPage = () => {
   const [items, setItems] = useState<Item[]>([]);
@@ -62,6 +77,7 @@ const EquipmentsPage = () => {
   const [primaryCategory, setPrimaryCategory] =
     useState<PrimaryCategory>("Weapon");
   const [subCategory, setSubCategory] = useState<string>("all");
+  const [itemClass, setItemClass] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"name" | "level">("level");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [displayCount, setDisplayCount] = useState(24);
@@ -73,7 +89,7 @@ const EquipmentsPage = () => {
 
   const filteredAndSortedItems = useMemo(() => {
     let result = items.filter(
-      (item) => item.typeInfo.overallCategory === "Equip",
+      (item) => item.typeInfo.overallCategory === "Equip" && !item.isCash,
     );
 
     // Filter by search
@@ -98,19 +114,20 @@ const EquipmentsPage = () => {
       if (primaryCategory === "Accessory") {
         return cat === "Accessory";
       }
-      // Other
-      return (
-        cat !== "One-Handed Weapon" &&
-        cat !== "Two-Handed Weapon" &&
-        cat !== "Weapon" &&
-        cat !== "Armor" &&
-        cat !== "Accessory"
-      );
+      if (primaryCategory === "Mount") {
+        return cat === "Mount";
+      }
+      return false;
     });
 
     // Filter by sub category
     if (subCategory !== "all") {
       result = result.filter((m) => m.typeInfo.subCategory === subCategory);
+    }
+
+    // Filter by class
+    if (itemClass !== "all") {
+      result = result.filter((m) => m.requiredJobs?.includes(itemClass));
     }
 
     // Sort
@@ -125,7 +142,15 @@ const EquipmentsPage = () => {
     });
 
     return result;
-  }, [items, searchQuery, primaryCategory, subCategory, sortBy, sortOrder]);
+  }, [
+    items,
+    searchQuery,
+    primaryCategory,
+    subCategory,
+    sortBy,
+    sortOrder,
+    itemClass,
+  ]);
 
   const displayedItems = useMemo(() => {
     return filteredAndSortedItems.slice(0, displayCount);
@@ -172,9 +197,10 @@ const EquipmentsPage = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: Reset displayCount when filters/sort change
   useEffect(() => {
     setDisplayCount(24);
-  }, [searchQuery, primaryCategory, subCategory, sortBy, sortOrder]);
+  }, [searchQuery, primaryCategory, subCategory, itemClass, sortBy, sortOrder]);
 
   // Reset subCategory when primaryCategory changes
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Reset subCategory when primaryCategory changes
   useEffect(() => {
     setSubCategory("all");
   }, [primaryCategory]);
@@ -211,10 +237,10 @@ const EquipmentsPage = () => {
           </div>
 
           {/* Filter Bar */}
-          <div className="bg-linear-to-b from-slate-800/95 via-slate-900/98 to-slate-950/98 border border-blue-500/30 rounded-2xl p-3 mb-10 flex flex-wrap md:flex-nowrap items-center gap-3 shadow-inner backdrop-blur-sm">
+          <div className="relative z-20 bg-linear-to-b from-slate-800/95 via-slate-900/98 to-slate-950/98 border border-blue-500/30 rounded-2xl p-3 mb-10 flex flex-wrap md:flex-nowrap items-center gap-3 shadow-inner backdrop-blur-sm">
             {/* Search Bar */}
             <div className="relative group w-full md:w-64">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-orange-400 transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/90 group-focus-within:text-orange-400 transition-colors" />
               <input
                 type="text"
                 placeholder="Search equipment..."
@@ -234,41 +260,43 @@ const EquipmentsPage = () => {
               )}
             </div>
 
+            {/* Class Filter */}
+            <CustomDropdown
+              className="h-10 min-w-[140px] flex-1 md:flex-none"
+              options={CLASS_OPTIONS}
+              value={itemClass}
+              onChange={setItemClass}
+            />
+
             {/* Sub Category Filter */}
-            <div className="relative group min-w-[180px] flex-1 md:flex-none">
-              <select
+            {primaryCategory !== "Mount" && (
+              <CustomDropdown
+                className="h-10 min-w-[180px] flex-1 md:flex-none"
+                options={[
+                  { label: "All Categories", value: "all" },
+                  ...SUB_CATEGORIES[primaryCategory].map((sub) => ({
+                    label: sub,
+                    value: sub,
+                  })),
+                ]}
                 value={subCategory}
-                onChange={(e) => setSubCategory(e.target.value)}
-                className="w-full h-10 pl-4 pr-10 bg-black/40 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 text-white text-sm cursor-pointer appearance-none transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
-              >
-                <option value="all">All Categories</option>
-                {SUB_CATEGORIES[primaryCategory].map((sub) => (
-                  <option key={sub} value={sub}>
-                    {sub}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 pointer-events-none group-focus-within:text-orange-400 transition-colors" />
-            </div>
+                onChange={setSubCategory}
+              />
+            )}
 
             {/* Sorting */}
-            <div className="relative group min-w-[140px] flex-1 md:flex-none">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as "name" | "level")}
-                className="w-full h-10 pl-4 pr-10 bg-black/40 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 text-white text-sm cursor-pointer appearance-none transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
-              >
-                <option value="level">Sort by Level</option>
-                <option value="name">Sort by Name</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 pointer-events-none group-focus-within:text-orange-400 transition-colors" />
-            </div>
+            <CustomDropdown
+              className="h-10 min-w-[140px] flex-1 md:flex-none"
+              options={SORT_OPTIONS}
+              value={sortBy}
+              onChange={(val) => setSortBy(val as "name" | "level")}
+            />
 
             {/* Sort Order Toggle */}
             <button
               type="button"
               onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-              className="h-10 w-10 flex items-center justify-center bg-black/40 border border-white/10 rounded-xl text-white/20 hover:text-white hover:bg-black/20 hover:border-white/20 transition-all cursor-pointer group shadow-inner shrink-0"
+              className="h-10 w-10 flex items-center justify-center bg-black/40 border border-white/10 rounded-xl text-white/90 hover:text-white hover:bg-black/20 hover:border-white/20 transition-all cursor-pointer group shadow-inner shrink-0"
               title={sortOrder === "asc" ? "Sort Ascending" : "Sort Descending"}
             >
               {sortOrder === "asc" ? (

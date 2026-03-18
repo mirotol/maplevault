@@ -151,7 +151,7 @@ body.cursor-click,
 body.cursor-click * {
   cursor:
     url("/cursors/cursor_click.png") 6 2,
-    auto !important;
+    auto;
 }
 
 .card-paper {

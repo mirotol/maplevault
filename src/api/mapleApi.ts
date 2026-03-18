@@ -1,5 +1,5 @@
-import { withMinimumDelay } from "../utils/promise";
 import type { Item, MapLookup, Mob, MobDetail } from "../types/maple";
+import { withMinimumDelay } from "../utils/promise";
 
 export type Region = "GMS" | "EMS" | "KMS";
 export type Version = string; // e.g., "83", "89", etc.
@@ -112,10 +112,15 @@ export function fetchMobRenderUrl(
 export async function fetchItems(
   startPosition = 0,
   config: ApiConfig = {},
+  overallCategory?: string,
 ): Promise<Item[]> {
   const region = (config.region || DEFAULT_REGION).toLowerCase();
   const version = config.version || DEFAULT_VERSION;
-  const url = `${BASE_URL}/${region}/${version}/item?startPosition=${startPosition}`;
+  let url = `${BASE_URL}/${region}/${version}/item?startPosition=${startPosition}`;
+
+  if (overallCategory) {
+    url = `${BASE_URL}/${region}/${version}/item/category/${overallCategory}?startPosition=${startPosition}`;
+  }
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch items: ${res.status}`);

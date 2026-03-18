@@ -1,6 +1,5 @@
 import {
   ArrowUpDown,
-  ChevronDown,
   Filter,
   Loader2,
   Search,
@@ -11,6 +10,7 @@ import {
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchMobs } from "../api/mapleApi";
+import { CustomDropdown } from "../components/CustomDropdown";
 import MobCard from "../components/MobCard";
 import MobModal from "../components/MobModal";
 import type { Mob } from "../types/maple";
@@ -22,6 +22,17 @@ const LEVEL_RANGES = [
     label: `${i * 10 + 1}-${(i + 1) * 10}`,
   })),
   { min: 181, max: 200, label: "181-200" },
+];
+
+const FILTER_MODE_OPTIONS = [
+  { label: "All Mobs", value: "all" },
+  { label: "Bosses", value: "boss" },
+  { label: "Level Range", value: "level" },
+];
+
+const SORT_OPTIONS = [
+  { label: "Sort by Level", value: "level" },
+  { label: "Sort by Name", value: "name" },
 ];
 
 const MobsPage = () => {
@@ -146,7 +157,7 @@ const MobsPage = () => {
         </h2>
 
         {/* Search and Filters Toolbar */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-4 mb-10">
+        <div className="relative z-20 flex flex-col lg:flex-row items-stretch gap-4 mb-10">
           {/* Search Bar - Dominant */}
           <div className="flex-1 relative group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors" />
@@ -172,54 +183,42 @@ const MobsPage = () => {
           {/* Filters and Sorting Group */}
           <div className="flex flex-wrap items-center gap-3">
             {/* Filter Mode */}
-            <div className="relative group min-w-35 flex-1 lg:flex-none">
-              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors pointer-events-none" />
-              <select
-                value={filterMode}
-                onChange={(e) =>
-                  setFilterMode(e.target.value as "all" | "boss" | "level")
-                }
-                className="cursor-hover w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
-              >
-                <option value="all">All Mobs</option>
-                <option value="boss">Bosses</option>
-                <option value="level">Level Range</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text) opacity-40 pointer-events-none" />
-            </div>
+            <CustomDropdown
+              className="h-11 min-w-35 flex-1 lg:flex-none"
+              options={FILTER_MODE_OPTIONS}
+              value={filterMode}
+              onChange={(val) => setFilterMode(val as "all" | "boss" | "level")}
+              leftIcon={
+                <Filter className="w-4 h-4 text-white/20 transition-colors" />
+              }
+            />
 
             {/* Level Range - Conditional */}
             {filterMode === "level" && (
-              <div className="relative group min-w-30 flex-1 lg:flex-none">
-                <select
-                  value={levelRange}
-                  onChange={(e) => setLevelRange(e.target.value)}
-                  className="cursor-hover w-full h-11 px-4 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
-                >
-                  <option value="all">Any Level</option>
-                  {LEVEL_RANGES.map((r) => (
-                    <option key={r.label} value={r.label}>
-                      {r.label}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text) opacity-40 pointer-events-none" />
-              </div>
+              <CustomDropdown
+                className="h-11 min-w-30 flex-1 lg:flex-none"
+                options={[
+                  { label: "Any Level", value: "all" },
+                  ...LEVEL_RANGES.map((r) => ({
+                    label: r.label,
+                    value: r.label,
+                  })),
+                ]}
+                value={levelRange}
+                onChange={setLevelRange}
+              />
             )}
 
             {/* Sorting */}
-            <div className="relative group min-w-35 flex-1 lg:flex-none">
-              <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors pointer-events-none" />
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as "name" | "level")}
-                className="cursor-hover w-full h-11 pl-9 pr-10 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) appearance-none cursor-pointer shadow-sm text-sm font-medium transition-all text-(--color-card-text)"
-              >
-                <option value="level">Sort by Level</option>
-                <option value="name">Sort by Name</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text) opacity-40 pointer-events-none" />
-            </div>
+            <CustomDropdown
+              className="h-11 min-w-35 flex-1 lg:flex-none"
+              options={SORT_OPTIONS}
+              value={sortBy}
+              onChange={(val) => setSortBy(val as "name" | "level")}
+              leftIcon={
+                <ArrowUpDown className="w-4 h-4 text-white/20 transition-colors" />
+              }
+            />
 
             {/* Sort Order Toggle */}
             <button
@@ -227,13 +226,13 @@ const MobsPage = () => {
               onClick={() =>
                 setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
               }
-              className="h-11 w-11 flex items-center justify-center bg-(--color-bg) border border-(--color-border) rounded-lg hover:bg-(--color-accent-bg) hover:text-(--color-accent) transition-all shadow-sm group shrink-0"
+              className="h-11 w-11 flex items-center justify-center bg-black/40 border border-white/10 rounded-xl text-white/20 hover:text-white hover:bg-black/20 hover:border-white/20 transition-all cursor-pointer group shadow-inner shrink-0"
               title={sortOrder === "asc" ? "Sort Ascending" : "Sort Descending"}
             >
               {sortOrder === "asc" ? (
-                <SortAsc className="w-5 h-5 text-(--color-text-secondary) group-hover:text-(--color-accent)" />
+                <SortAsc className="w-5 h-5 transition-transform group-hover:scale-110" />
               ) : (
-                <SortDesc className="w-5 h-5 text-(--color-text-secondary) group-hover:text-(--color-accent)" />
+                <SortDesc className="w-5 h-5 transition-transform group-hover:scale-110" />
               )}
             </button>
           </div>
