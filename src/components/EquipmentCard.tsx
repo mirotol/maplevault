@@ -48,28 +48,37 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
   const subCategory = item.typeInfo.subCategory;
 
   return (
-    <div className="w-full min-h-[200px] card-equipment-bg rounded-lg shadow-xl p-5 text-white transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(251,191,36,0.3)] hover:border-amber-500/40 group flex flex-col relative overflow-hidden">
+    <div className="w-full min-h-50 card-equipment-bg rounded-lg shadow-xl p-5 text-white border border-transparent transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-[5px_15px_30px_-5px_rgba(5,12,41,0.8)] hover:border-orange-600/60 group flex flex-col relative overflow-hidden">
       {/* Subtle inner highlight */}
       <div className="absolute inset-0 border border-white/5 rounded-lg pointer-events-none" />
 
       {/* Header */}
-      <div className="flex items-start gap-4 mb-5 relative z-10">
-        <div className="w-14 h-14 bg-black/40 rounded-lg p-2 flex items-center justify-center border border-white/10 shrink-0 group-hover:border-white/20 transition-all shadow-inner">
-          <img
-            src={icon}
-            alt={item.name}
-            className="max-w-full max-h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:scale-110 transition-transform duration-500"
-          />
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-lg leading-tight text-yellow-400 group-hover:text-amber-300 transition-colors line-clamp-2">
-            {item.name}
-          </h3>
-          <span className="text-[10px] text-gray-400/60 uppercase tracking-widest block mt-1 font-semibold">
-            {subCategory}
-          </span>
+      <div className="mb-5 relative z-10">
+        <div className="flex items-start gap-4">
+          {/* Icon */}
+          <div className="w-14 h-14 bg-white/50 rounded-lg p-2 flex items-center justify-center border border-white/10 shrink-0 group-hover:border-white/20 transition-all shadow-inner">
+            <img
+              src={icon}
+              alt={item.name}
+              className="max-w-full max-h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:scale-110 transition-transform duration-500"
+            />
+          </div>
+
+          {/* Name + Subcategory grouped */}
+          <div>
+            <h3 className="font-bold text-lg leading-tight text-white/80 line-clamp-2">
+              {item.name}
+            </h3>
+
+            <span className="text-xs text-gray-400/80 uppercase tracking-widest block mt-2 font-semibold">
+              {subCategory}
+            </span>
+          </div>
         </div>
       </div>
+
+      {/* Divider between header and stats */}
+      <div className="border-t border-white/10 relative z-10 mb-4" />
 
       <div className="flex-1 space-y-4 relative z-10">
         {/* Requirement */}

@@ -219,7 +219,7 @@ const EquipmentsPage = () => {
 
         <div className="relative z-10">
           {/* Primary Category Tabs */}
-          <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
+          <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start card-equipment-bg p-3 rounded-2xl w-fit">
             {PRIMARY_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
@@ -227,8 +227,8 @@ const EquipmentsPage = () => {
                 onClick={() => setPrimaryCategory(cat.id)}
                 className={`px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                   primaryCategory === cat.id
-                    ? "bg-linear-to-r from-red-600 to-orange-600 text-white shadow-lg shadow-red-900/40"
-                    : "text-white/40 hover:text-white/90 hover:bg-white/5"
+                    ? "bg-linear-to-r from-red-700 to-orange-500/80 text-white shadow-lg shadow-red-900/40"
+                    : "text-white/70 bg-white/10 hover:text-white hover:bg-orange-600/70"
                 }`}
               >
                 {cat.label}
@@ -272,7 +272,7 @@ const EquipmentsPage = () => {
             </div>
             {/* Class Filter */}
             <CustomDropdown
-              className="h-10 min-w-[140px] flex-1 md:flex-none"
+              className="h-10 min-w-35 flex-1 md:flex-none"
               options={CLASS_OPTIONS}
               value={itemClass}
               onChange={setItemClass}
@@ -280,7 +280,7 @@ const EquipmentsPage = () => {
             {/* Sub Category Filter */}
             {primaryCategory !== "Mount" && (
               <CustomDropdown
-                className="h-10 min-w-[180px] flex-1 md:flex-none"
+                className="h-10 min-w-45 flex-1 md:flex-none"
                 options={[
                   { label: "All Categories", value: "all" },
                   ...SUB_CATEGORIES[primaryCategory].map((sub) => ({
@@ -294,7 +294,7 @@ const EquipmentsPage = () => {
             )}
             {/* Sorting */}
             <CustomDropdown
-              className="h-10 min-w-[140px] flex-1 md:flex-none"
+              className="h-10 min-w-35 flex-1 md:flex-none"
               options={SORT_OPTIONS}
               value={sortBy}
               onChange={(val) => setSortBy(val as "name" | "level")}
