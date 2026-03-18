@@ -237,7 +237,18 @@ const EquipmentsPage = () => {
           </div>
 
           {/* Filter Bar */}
-          <div className="relative z-20 bg-linear-to-b from-slate-800/95 via-slate-900/98 to-slate-950/98 border border-blue-500/30 rounded-2xl p-3 mb-10 flex flex-wrap md:flex-nowrap items-center gap-3 shadow-inner backdrop-blur-sm">
+          <div
+            className="
+              relative z-20
+              card-equipment-bg
+              border border-blue-500/30
+              rounded-2xl
+              p-3 mb-10
+              flex flex-wrap md:flex-nowrap items-center gap-3
+              shadow-inner backdrop-blur-sm
+            "
+          >
+            {" "}
             {/* Search Bar */}
             <div className="relative group w-full md:w-64">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/90 group-focus-within:text-orange-400 transition-colors" />
@@ -259,7 +270,6 @@ const EquipmentsPage = () => {
                 </button>
               )}
             </div>
-
             {/* Class Filter */}
             <CustomDropdown
               className="h-10 min-w-[140px] flex-1 md:flex-none"
@@ -267,7 +277,6 @@ const EquipmentsPage = () => {
               value={itemClass}
               onChange={setItemClass}
             />
-
             {/* Sub Category Filter */}
             {primaryCategory !== "Mount" && (
               <CustomDropdown
@@ -283,7 +292,6 @@ const EquipmentsPage = () => {
                 onChange={setSubCategory}
               />
             )}
-
             {/* Sorting */}
             <CustomDropdown
               className="h-10 min-w-[140px] flex-1 md:flex-none"
@@ -291,7 +299,6 @@ const EquipmentsPage = () => {
               value={sortBy}
               onChange={(val) => setSortBy(val as "name" | "level")}
             />
-
             {/* Sort Order Toggle */}
             <button
               type="button"

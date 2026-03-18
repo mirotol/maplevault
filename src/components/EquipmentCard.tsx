@@ -48,7 +48,7 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
   const subCategory = item.typeInfo.subCategory;
 
   return (
-    <div className="w-full min-h-[200px] bg-linear-to-b from-slate-800/95 via-slate-900/98 to-slate-950/98 border border-blue-500/30 rounded-lg shadow-xl p-5 text-white transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(251,191,36,0.3)] hover:border-amber-500/40 group flex flex-col relative overflow-hidden">
+    <div className="w-full min-h-[200px] card-equipment-bg rounded-lg shadow-xl p-5 text-white transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(251,191,36,0.3)] hover:border-amber-500/40 group flex flex-col relative overflow-hidden">
       {/* Subtle inner highlight */}
       <div className="absolute inset-0 border border-white/5 rounded-lg pointer-events-none" />
 
