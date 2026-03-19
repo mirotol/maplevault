@@ -347,14 +347,15 @@ const EquipmentsPage = () => {
                 {displayedItems.map((item, index) => {
                   const isLast = displayedItems.length === index + 1;
                   return (
-                    <div
+                    <button
+                      type="button"
                       key={item.id}
                       ref={isLast ? lastItemElementRef : undefined}
                       onClick={() => navigate(`/equipment/${item.id}`)}
-                      className="cursor-pointer flex h-full"
+                      className="cursor-pointer flex h-full focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg w-full text-left"
                     >
                       <EquipmentCard item={item} />
-                    </div>
+                    </button>
                   );
                 })}
               </div>

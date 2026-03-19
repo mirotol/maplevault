@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
-import { Skeleton } from "./Skeleton";
 import { formatAttackSpeed } from "../utils/item";
+import { Skeleton } from "./Skeleton";
 
 interface EquipmentCardProps {
   item: Item;

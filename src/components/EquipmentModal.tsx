@@ -1,9 +1,9 @@
-import { X, ShieldAlert, ImageOff } from "lucide-react";
+import { ImageOff, ShieldAlert, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
-import { Skeleton } from "./Skeleton";
 import { formatAttackSpeed } from "../utils/item";
+import { Skeleton } from "./Skeleton";
 
 interface EquipmentModalProps {
   itemId: number;
