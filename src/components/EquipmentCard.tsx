@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
 import { Skeleton } from "./Skeleton";
+import { formatAttackSpeed } from "../utils/item";
 
 interface EquipmentCardProps {
   item: Item;
@@ -52,7 +53,7 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
   const subCategory = item.typeInfo.subCategory;
 
   return (
-    <div className="w-full min-h-50 card-equipment-bg rounded-lg shadow-xl p-5 text-white border border-transparent transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-[5px_15px_30px_-5px_rgba(5,12,41,0.8)] hover:border-orange-600/60 group flex flex-col relative overflow-hidden">
+    <div className="w-full h-full card-equipment-bg rounded-lg shadow-xl p-5 text-white border border-transparent transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-[5px_15px_30px_-5px_rgba(5,12,41,0.8)] hover:border-orange-600/60 group flex flex-col relative overflow-hidden">
       {/* Subtle inner highlight */}
       <div className="absolute inset-0 border border-white/5 rounded-lg pointer-events-none" />
 
@@ -129,7 +130,7 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
                     Attack Speed
                   </span>
                   <span className="font-bold text-gray-200">
-                    {stats.attackSpeed}
+                    {formatAttackSpeed(stats.attackSpeed)}
                   </span>
                 </div>
               )}
@@ -139,12 +140,12 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
       </div>
 
       {/* Footer */}
-      {!loading && stats?.tuc && stats.tuc > 0 ? (
+      {!loading && stats ? (
         <div className="mt-4 pt-3 border-t border-white/10 relative z-10">
           <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
             <span className="text-gray-500/80">Upgrades</span>
             <span className="text-amber-400/90 group-hover:text-amber-400 transition-colors">
-              {stats.tuc}
+              {stats.tuc ?? 0}
             </span>
           </div>
         </div>

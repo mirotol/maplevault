@@ -351,7 +351,7 @@ const EquipmentsPage = () => {
                       key={item.id}
                       ref={isLast ? lastItemElementRef : undefined}
                       onClick={() => navigate(`/equipment/${item.id}`)}
-                      className="cursor-pointer"
+                      className="cursor-pointer flex h-full"
                     >
                       <EquipmentCard item={item} />
                     </div>

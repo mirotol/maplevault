@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
 import { Skeleton } from "./Skeleton";
+import { formatAttackSpeed } from "../utils/item";
 
 interface EquipmentModalProps {
   itemId: number;
@@ -214,7 +215,7 @@ const EquipmentModal = ({ itemId, initialItem, onClose }: EquipmentModalProps) =
                       {(!loading && stats?.attackSpeed) && (
                         <div className="flex justify-between items-center text-sm py-0.5">
                           <span className="text-gray-400 font-medium uppercase tracking-tight text-[11px]">Attack Speed</span>
-                          <span className="font-bold text-gray-200">{stats.attackSpeed}</span>
+                          <span className="font-bold text-gray-200">{formatAttackSpeed(stats.attackSpeed)}</span>
                         </div>
                       )}
                       <StatRow label="STR" value={stats?.incSTR} />
@@ -240,7 +241,7 @@ const EquipmentModal = ({ itemId, initialItem, onClose }: EquipmentModalProps) =
                 </div>
               </section>
 
-              {(!loading && stats?.tuc && stats.tuc > 0) && (
+              {(!loading && stats) && (
                 <>
                   <Divider />
                   <section className="flex items-center justify-between px-1 py-2">
@@ -251,7 +252,7 @@ const EquipmentModal = ({ itemId, initialItem, onClose }: EquipmentModalProps) =
                       </span>
                     </div>
                     <span className="text-lg font-black text-amber-400">
-                      {stats.tuc}
+                      {stats.tuc ?? 0}
                     </span>
                   </section>
                 </>
