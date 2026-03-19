@@ -1,13 +1,4 @@
-import {
-  X,
-  ShieldAlert,
-  Swords,
-  Zap,
-  Star,
-  Trophy,
-  History,
-  ImageOff,
-} from "lucide-react";
+import { X, ShieldAlert, ImageOff } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
@@ -20,7 +11,11 @@ interface EquipmentModalProps {
   onClose: () => void;
 }
 
-const EquipmentModal = ({ itemId, initialItem, onClose }: EquipmentModalProps) => {
+const EquipmentModal = ({
+  itemId,
+  initialItem,
+  onClose,
+}: EquipmentModalProps) => {
   const [detail, setDetail] = useState<Item | null>(
     initialItem?.metaInfo ? initialItem : null,
   );
@@ -39,6 +34,7 @@ const EquipmentModal = ({ itemId, initialItem, onClose }: EquipmentModalProps) =
         if (!currentActive) return;
         if (data) {
           setDetail(data);
+          console.log("Fetched item details for modal:", data);
         } else {
           setError("No detailed information available for this item");
         }
@@ -86,25 +82,40 @@ const EquipmentModal = ({ itemId, initialItem, onClose }: EquipmentModalProps) =
         luk: 0,
       };
 
-  const Divider = () => (
-    <div className="border-t border-white/10 my-4" />
-  );
+  const Divider = () => <div className="border-t border-white/10 my-4" />;
 
-  const StatRow = ({ label, value, colorClass = "text-white" }: { label: string; value: number | undefined; colorClass?: string }) => {
-    if (value === undefined || value === 0) return null;
+  const StatRow = ({
+    label,
+    value,
+  }: {
+    label: string;
+    value: number | string | undefined;
+    colorClass?: string;
+  }) => {
+    if (value === undefined || (value === 0 && label !== "Available Upgrades"))
+      return null;
     return (
-      <div className="flex justify-between items-center text-sm py-0.5">
-        <span className="text-gray-400 font-medium uppercase tracking-tight text-[11px]">{label}</span>
-        <span className={`font-bold ${colorClass}`}>+{value}</span>
+      <div className="text-[#f0daba] font-medium flex items-center text-md py-0.5 px-1 leading-none">
+        <span className="flex items-center gap-0.5">
+          <span>{label}</span>
+          <span className="opacity-90">:</span>
+        </span>
+
+        <span className="text-white/80 mx-1">
+          {label === "Available Upgrades"
+            ? value
+            : label === "Attack Speed"
+              ? formatAttackSpeed(value as number)
+              : `+${value}`}{" "}
+        </span>
       </div>
     );
   };
 
   const ReqStat = ({ label, value }: { label: string; value: number }) => (
-    <div className="flex flex-col items-center p-2 bg-black/30 rounded-lg border border-white/5 min-w-[60px]">
-      <span className="text-[9px] text-gray-500 font-bold uppercase">{label}</span>
-      <span className={`text-sm font-black ${value > 0 ? "text-yellow-500" : "text-gray-600"}`}>
-        {value}
+    <div className="flex justify-between items-center text-base py-0 px-1 leading-tight">
+      <span className="text-white/80 font-medium uppercase">
+        {label}: {value}
       </span>
     </div>
   );
@@ -119,150 +130,134 @@ const EquipmentModal = ({ itemId, initialItem, onClose }: EquipmentModalProps) =
       />
 
       {/* Modal Container */}
-      <div className="card-equipment-bg relative w-full max-w-md border border-white/10 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[90vh] text-white animate-in zoom-in-95 duration-300">
-        {/* Subtle inner highlight */}
-        <div className="absolute inset-0 border border-white/5 rounded-3xl pointer-events-none" />
-
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-xl hover:bg-white/10 transition-all text-white/50 hover:text-white"
-          aria-label="Close modal"
-        >
-          <X className="w-5 h-5" />
-        </button>
+      <div className="card-equipment-bg relative w-full max-w-xs border border-white/20 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col max-h-[95vh] text-white animate-in zoom-in-95 duration-300">
+        {/* Top bar (Close button row) */}
+        <div className="flex justify-end p-2">
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1.5 rounded-lg hover:bg-white/10 transition-all text-white/90 hover:text-white"
+            aria-label="Close modal"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
 
         {/* Header Section */}
-        <div className="p-6 pb-4 relative z-10">
-          <div className="flex items-center gap-6">
-            <div className="w-24 h-24 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 shadow-inner group">
+        <div className="p-4 pb-0 pt-0 relative z-10">
+          {" "}
+          <div className="text-center mb-2">
+            <h2 className="font-bold text-2xl leading-tight wrap-break-word text-center">
+              {" "}
+              {detail?.name || initialItem?.name || (
+                <Skeleton className="h-6 w-32 mx-auto opacity-20" />
+              )}
+            </h2>
+            <div className="text-sm font-bold text-gray-400 uppercase tracking-wider mt-1">
+              {detail?.typeInfo.subCategory ||
+                initialItem?.typeInfo.subCategory || (
+                  <Skeleton className="h-3 w-16 mx-auto opacity-20" />
+                )}
+            </div>
+          </div>
+          <Divider />
+          <div className="flex items-center gap-4 mt-2">
+            <div className="w-24 h-24 bg-white/20 rounded-lg flex items-center justify-center shrink-0 border border-white/10 shadow-inner group overflow-hidden">
               {loading ? (
-                <Skeleton className="w-16 h-16 rounded-lg opacity-20" />
+                <Skeleton className="w-12 h-12 rounded-lg opacity-20" />
               ) : error ? (
-                <ImageOff className="w-8 h-8 opacity-20" />
+                <ImageOff className="w-6 h-6 opacity-20" />
               ) : (
                 <img
                   src={icon}
                   alt={detail?.name || initialItem?.name}
-                  className="max-w-[70%] max-h-[70%] object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform duration-500 group-hover:scale-110"
+                  className="max-w-[80%] max-h-[80%] object-contain scale-200 group-hover:scale-225 transition-transform duration-500"
                   style={{ imageRendering: "pixelated" }}
                 />
               )}
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="font-bold text-2xl leading-tight text-white mb-2 drop-shadow-sm">
-                {detail?.name || initialItem?.name || <Skeleton className="h-8 w-40 opacity-20" />}
-              </h2>
-              <span className="inline-block px-3 py-1 bg-orange-600/20 border border-orange-500/30 rounded-full text-[10px] font-black uppercase tracking-widest text-orange-400">
-                {detail?.typeInfo.subCategory || initialItem?.typeInfo.subCategory || <Skeleton className="h-3 w-20 opacity-20" />}
-              </span>
+              <div className="space-y-0.5">
+                <ReqStat label="REQ LEVEL" value={requirements.level} />
+                <ReqStat label="REQ STR" value={requirements.str} />
+                <ReqStat label="REQ DEX" value={requirements.dex} />
+                <ReqStat label="REQ INT" value={requirements.int} />
+                <ReqStat label="REQ LUK" value={requirements.luk} />
+              </div>
             </div>
           </div>
+          <Divider />
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 pt-0 space-y-1 custom-scrollbar relative z-10">
+        <div className="flex-1 overflow-y-auto p-4 pt-0 space-y-0.5 custom-scrollbar relative z-10">
           {error ? (
-            <div className="flex flex-col items-center justify-center py-10 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
-                <ShieldAlert className="w-8 h-8" />
+            <div className="flex flex-col items-center justify-center py-6 text-center space-y-2">
+              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
+                <ShieldAlert className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-lg font-bold">Failed to load</h3>
-                <p className="text-sm opacity-60 max-w-[200px] mx-auto">{error}</p>
+                <h3 className="text-sm font-bold">Failed to load</h3>
+                <p className="text-[11px] opacity-60 max-w-[160px] mx-auto">
+                  {error}
+                </p>
               </div>
             </div>
           ) : (
             <>
-              <Divider />
-
-              {/* Requirements Section */}
-              <section className="space-y-3">
-                <div className="flex items-center justify-between px-1">
-                  <span className="text-[11px] text-gray-500 uppercase font-black tracking-tighter flex items-center gap-1.5">
-                    <Trophy className="w-3.5 h-3.5" /> REQ LEVEL
-                  </span>
-                  <span className="text-xl font-black text-yellow-500 drop-shadow-[0_0_10px_rgba(234,179,8,0.3)]">
-                    {requirements.level}
-                  </span>
-                </div>
-                
-                <div className="grid grid-cols-4 gap-2">
-                  <ReqStat label="STR" value={requirements.str} />
-                  <ReqStat label="DEX" value={requirements.dex} />
-                  <ReqStat label="INT" value={requirements.int} />
-                  <ReqStat label="LUK" value={requirements.luk} />
-                </div>
-              </section>
-
-              <Divider />
-
               {/* Stats Section */}
-              <section className="space-y-3">
-                <h3 className="text-[11px] text-gray-500 uppercase font-black tracking-widest flex items-center gap-1.5 px-1">
-                  <Swords className="w-3.5 h-3.5" /> Combat Attributes
-                </h3>
-                
-                <div className="bg-black/20 rounded-2xl p-4 border border-white/5 space-y-1">
-                  {loading ? (
-                    <div className="space-y-2">
-                      <Skeleton className="h-4 w-full opacity-10" />
-                      <Skeleton className="h-4 w-3/4 opacity-10" />
-                    </div>
-                  ) : (
-                    <>
-                      <StatRow label="Weapon Attack" value={stats?.incPAD} colorClass="text-orange-400" />
-                      <StatRow label="Magic Attack" value={stats?.incMAD} colorClass="text-blue-400" />
-                      {(!loading && stats?.attackSpeed) && (
-                        <div className="flex justify-between items-center text-sm py-0.5">
-                          <span className="text-gray-400 font-medium uppercase tracking-tight text-[11px]">Attack Speed</span>
-                          <span className="font-bold text-gray-200">{formatAttackSpeed(stats.attackSpeed)}</span>
-                        </div>
-                      )}
-                      <StatRow label="STR" value={stats?.incSTR} />
-                      <StatRow label="DEX" value={stats?.incDEX} />
-                      <StatRow label="INT" value={stats?.incINT} />
-                      <StatRow label="LUK" value={stats?.incLUK} />
-                      <StatRow label="Max HP" value={stats?.incMHP} colorClass="text-red-400" />
-                      <StatRow label="Max MP" value={stats?.incMMP} colorClass="text-blue-300" />
-                      <StatRow label="Weapon Defense" value={stats?.incPDD} />
-                      <StatRow label="Magic Defense" value={stats?.incMDD} />
-                      <StatRow label="Accuracy" value={stats?.incACC} colorClass="text-yellow-200" />
-                      <StatRow label="Avoidability" value={stats?.incEVA} colorClass="text-green-300" />
-                      <StatRow label="Speed" value={stats?.incSpeed} colorClass="text-sky-300" />
-                      <StatRow label="Jump" value={stats?.incJump} colorClass="text-purple-300" />
-                      
-                      {!loading && !stats && (
-                        <div className="text-center py-2 opacity-30 text-xs italic">
-                          No additional stats
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              </section>
+              <div className="space-y-0">
+                {loading ? (
+                  <div className="space-y-1.5 px-1 py-2">
+                    <Skeleton className="h-3.5 w-full opacity-10" />
+                    <Skeleton className="h-3.5 w-3/4 opacity-10" />
+                    <Skeleton className="h-3.5 w-1/2 opacity-10" />
+                  </div>
+                ) : (
+                  <>
+                    <StatRow label="STR" value={stats?.incSTR} />
+                    <StatRow label="DEX" value={stats?.incDEX} />
+                    <StatRow label="INT" value={stats?.incINT} />
+                    <StatRow label="LUK" value={stats?.incLUK} />
+                    <StatRow label="HP" value={stats?.incMHP} />
+                    <StatRow label="MP" value={stats?.incMMP} />
+                    <StatRow label="Weapon Attack" value={stats?.incPAD} />
+                    <StatRow label="Weapon Defense" value={stats?.incPDD} />
+                    <StatRow label="Magic Attack" value={stats?.incMAD} />
+                    <StatRow label="Accuracy" value={stats?.incACC} />
+                    <StatRow label="Attack Speed" value={stats?.attackSpeed} />
+                    <StatRow label="Magic Defense" value={stats?.incMDD} />
+                    <StatRow label="Avoidability" value={stats?.incEVA} />
+                    <StatRow label="Speed" value={stats?.incSpeed} />
+                    <StatRow label="Jump" value={stats?.incJump} />
 
-              {(!loading && stats) && (
-                <>
-                  <Divider />
-                  <section className="flex items-center justify-between px-1 py-2">
-                    <div className="flex items-center gap-2">
-                      <Star className="w-4 h-4 text-amber-400" />
-                      <span className="text-[11px] text-gray-400 uppercase font-black tracking-widest">
-                        Available Upgrades
-                      </span>
-                    </div>
-                    <span className="text-lg font-black text-amber-400">
-                      {stats.tuc ?? 0}
-                    </span>
-                  </section>
-                </>
-              )}
+                    <StatRow
+                      label="Available Upgrades"
+                      value={stats?.tuc ?? 0}
+                    />
+
+                    {initialItem?.desc && (
+                      <>
+                        <Divider />
+                        <p className="px-1 text-base text-gray-500 italic leading-relaxed">
+                          {initialItem.desc}
+                        </p>
+                      </>
+                    )}
+
+                    {!loading && !stats && (
+                      <div className="text-center py-2 opacity-30 text-xs italic">
+                        No additional stats
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </>
           )}
         </div>
-        
+
         {/* Footer padding */}
-        <div className="h-6 shrink-0" />
+        <div className="h-4 shrink-0" />
       </div>
     </div>
   );

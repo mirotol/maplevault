@@ -11,7 +11,7 @@
  * 8: Fastest
  * 9: Fastest
  * 10: Fastest
- * 
+ *
  * Result format: "Name (Value)"
  */
 export const formatAttackSpeed = (speed: number | undefined): string => {
