@@ -197,7 +197,7 @@ const EquipmentsPage = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: Reset displayCount when filters/sort change
   useEffect(() => {
     setDisplayCount(24);
-  }, [searchQuery, primaryCategory, subCategory, itemClass, sortBy, sortOrder]);
+  }, [filteredAndSortedItems]);
 
   // Reset subCategory when primaryCategory changes
   // biome-ignore lint/correctness/useExhaustiveDependencies: Reset subCategory when primaryCategory changes

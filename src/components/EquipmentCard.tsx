@@ -12,9 +12,10 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
     item.metaInfo ? item : null,
   );
   const [loading, setLoading] = useState(false);
+  const [fetchAttempted, setFetchAttempted] = useState(false);
 
   useEffect(() => {
-    if (!detail && !loading) {
+    if (!detail && !loading && !fetchAttempted) {
       setLoading(true);
       fetchItem(item.id)
         .then((data) => {
@@ -23,9 +24,12 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
         .catch(() => {
           // Silent catch
         })
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+          setFetchAttempted(true);
+        });
     }
-  }, [item.id, detail, loading]);
+  }, [item.id, detail, loading, fetchAttempted]);
 
   const stats = detail?.metaInfo;
   const requirements = stats
