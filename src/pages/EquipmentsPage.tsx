@@ -62,7 +62,7 @@ const CLASS_OPTIONS = [
   { label: "Beginner", value: "Beginner" },
   { label: "Warrior", value: "Warrior" },
   { label: "Magician", value: "Magician" },
-  { label: "Archer", value: "Archer" },
+  { label: "Bowman", value: "Bowman" },
   { label: "Thief", value: "Thief" },
   { label: "Pirate", value: "Pirate" },
 ];
@@ -137,7 +137,9 @@ const EquipmentsPage = () => {
 
     // Filter by class
     if (itemClass !== "all") {
-      result = result.filter((m) => m.requiredJobs?.includes(itemClass));
+      result = result.filter((m) =>
+        m.requiredJobs?.includes("Beginner") || m.requiredJobs?.includes(itemClass)
+      );
     }
 
     // Sort
@@ -347,15 +349,22 @@ const EquipmentsPage = () => {
                 {displayedItems.map((item, index) => {
                   const isLast = displayedItems.length === index + 1;
                   return (
-                    <button
-                      type="button"
+                    <div
                       key={item.id}
                       ref={isLast ? lastItemElementRef : undefined}
                       onClick={() => navigate(`/equipment/${item.id}`)}
-                      className="cursor-pointer flex h-full focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg w-full text-left"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          navigate(`/equipment/${item.id}`);
+                        }
+                      }}
+                      className="cursor-pointer flex h-full focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg"
+                      role="button"
+                      tabIndex={0}
                     >
                       <EquipmentCard item={item} />
-                    </button>
+                    </div>
                   );
                 })}
               </div>

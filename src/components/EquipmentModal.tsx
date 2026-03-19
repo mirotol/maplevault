@@ -73,6 +73,7 @@ const EquipmentModal = ({
         dex: stats.reqDEX ?? 0,
         int: stats.reqINT ?? 0,
         luk: stats.reqLUK ?? 0,
+        jobs: detail.requiredJobs || initialItem?.requiredJobs || [],
       }
     : {
         level: initialItem?.requiredLevel ?? 0,
@@ -80,7 +81,17 @@ const EquipmentModal = ({
         dex: 0,
         int: 0,
         luk: 0,
+        jobs: initialItem?.requiredJobs || [],
       };
+
+  const JOBS = [
+    { name: "Beginner" },
+    { name: "Warrior" },
+    { name: "Magician" },
+    { name: "Bowman" },
+    { name: "Thief" },
+    { name: "Pirate" },
+  ];
 
   const Divider = () => <div className="border-t border-white/10 my-4" />;
 
@@ -130,7 +141,7 @@ const EquipmentModal = ({
       />
 
       {/* Modal Container */}
-      <div className="card-equipment-bg relative w-full max-w-xs border border-white/20 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col max-h-[95vh] text-white animate-in zoom-in-95 duration-300">
+      <div className="card-equipment-bg relative w-full max-w-md border border-white/20 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col max-h-[95vh] text-white animate-in zoom-in-95 duration-300">
         {/* Top bar (Close button row) */}
         <div className="flex justify-end p-2">
           <button
@@ -143,12 +154,9 @@ const EquipmentModal = ({
           </button>
         </div>
 
-        {/* Header Section */}
         <div className="p-4 pb-0 pt-0 relative z-10">
-          {" "}
           <div className="text-center mb-2">
             <h2 className="font-bold text-2xl leading-tight wrap-break-word text-center">
-              {" "}
               {detail?.name || initialItem?.name || (
                 <Skeleton className="h-6 w-32 mx-auto opacity-20" />
               )}
@@ -185,6 +193,23 @@ const EquipmentModal = ({
                 <ReqStat label="REQ LUK" value={requirements.luk} />
               </div>
             </div>
+          </div>
+          <div className="flex flex-nowrap gap-x-1.5 mt-4 justify-between">
+            {JOBS.map((job) => {
+              const isAllowed =
+                requirements.jobs.includes("Beginner") ||
+                requirements.jobs.includes(job.name);
+              return (
+                <span
+                  key={job.name}
+                  className={`text-sm uppercase font-bold tracking-tight transition-colors whitespace-nowrap ${
+                    isAllowed ? "text-orange-500" : "text-white/20"
+                  }`}
+                >
+                  {job.name}
+                </span>
+              );
+            })}
           </div>
           <Divider />
         </div>

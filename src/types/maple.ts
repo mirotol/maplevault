@@ -82,7 +82,6 @@ export interface ItemMeta {
   reqDEX?: number;
   reqINT?: number;
   reqLUK?: number;
-  reqJob?: number;
   tuc?: number;
   attackSpeed?: number;
 }
