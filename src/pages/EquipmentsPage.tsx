@@ -1,8 +1,10 @@
 import { Loader2, Search, SortAsc, SortDesc, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchItems } from "../api/mapleApi";
 import { CustomDropdown } from "../components/CustomDropdown";
 import EquipmentCard from "../components/EquipmentCard";
+import EquipmentModal from "../components/EquipmentModal";
 import type { Item } from "../types/maple";
 
 type PrimaryCategory = "Weapon" | "Armor" | "Accessory" | "Mount";
@@ -71,6 +73,8 @@ const SORT_OPTIONS = [
 ];
 
 const EquipmentsPage = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -84,8 +88,14 @@ const EquipmentsPage = () => {
   const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    document.title = "Equipment | MapleVault";
-  }, []);
+    document.title = id ? "Item | MapleVault" : "Equipment | MapleVault";
+  }, [id]);
+
+  const handleCloseModal = () => {
+    navigate("/equipment");
+  };
+
+  const selectedItem = id ? items.find((m) => m.id === Number(id)) : null;
 
   const filteredAndSortedItems = useMemo(() => {
     let result = items.filter(
@@ -335,14 +345,17 @@ const EquipmentsPage = () => {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {displayedItems.map((item, index) => {
-                  if (displayedItems.length === index + 1) {
-                    return (
-                      <div ref={lastItemElementRef} key={item.id}>
-                        <EquipmentCard item={item} />
-                      </div>
-                    );
-                  }
-                  return <EquipmentCard key={item.id} item={item} />;
+                  const isLast = displayedItems.length === index + 1;
+                  return (
+                    <div
+                      key={item.id}
+                      ref={isLast ? lastItemElementRef : undefined}
+                      onClick={() => navigate(`/equipment/${item.id}`)}
+                      className="cursor-pointer"
+                    >
+                      <EquipmentCard item={item} />
+                    </div>
+                  );
                 })}
               </div>
 
@@ -366,6 +379,14 @@ const EquipmentsPage = () => {
           )}
         </div>
       </div>
+
+      {id && (
+        <EquipmentModal
+          itemId={Number(id)}
+          initialItem={selectedItem || undefined}
+          onClose={handleCloseModal}
+        />
+      )}
     </>
   );
 };

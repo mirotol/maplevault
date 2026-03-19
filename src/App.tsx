@@ -15,6 +15,7 @@ export default function App() {
           <Route path="mobs" element={<MobsPage />} />
           <Route path="mob/:id" element={<MobsPage />} />
           <Route path="equipment" element={<EquipmentsPage />} />
+          <Route path="equipment/:id" element={<EquipmentsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

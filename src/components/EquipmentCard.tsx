@@ -123,6 +123,16 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
                   </span>
                 </div>
               )}
+              {stats?.attackSpeed && (
+                <div className="flex justify-between text-sm items-center">
+                  <span className="text-gray-400 font-medium">
+                    Attack Speed
+                  </span>
+                  <span className="font-bold text-gray-200">
+                    {stats.attackSpeed}
+                  </span>
+                </div>
+              )}
             </>
           )}
         </div>
