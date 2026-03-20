@@ -155,6 +155,7 @@ const EquipmentModal = ({
         </div>
 
         <div className="p-4 pb-0 pt-0 relative z-10">
+          {/* Name and category */}
           <div className="text-center mb-2">
             <h2 className="font-bold text-2xl leading-tight wrap-break-word text-center">
               {detail?.name || initialItem?.name || (
@@ -168,7 +169,10 @@ const EquipmentModal = ({
                 )}
             </div>
           </div>
+
           <Divider />
+
+          {/* Icon and Requirements */}
           <div className="flex items-center gap-4 mt-2">
             <div className="w-24 h-24 bg-white/20 rounded-lg flex items-center justify-center shrink-0 border border-white/10 shadow-inner group overflow-hidden">
               {loading ? (
@@ -194,6 +198,8 @@ const EquipmentModal = ({
               </div>
             </div>
           </div>
+
+          {/* Job requirements */}
           <div className="flex flex-nowrap gap-x-1.5 mt-4 justify-between">
             {JOBS.map((job) => {
               const isAllowed =
@@ -254,12 +260,12 @@ const EquipmentModal = ({
                     <StatRow label="Avoidability" value={stats?.incEVA} />
                     <StatRow label="Speed" value={stats?.incSpeed} />
                     <StatRow label="Jump" value={stats?.incJump} />
-
                     <StatRow
                       label="Available Upgrades"
                       value={stats?.tuc ?? 0}
                     />
 
+                    {/* Description */}
                     {initialItem?.desc && (
                       <>
                         <Divider />

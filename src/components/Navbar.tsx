@@ -28,7 +28,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                 }`
               }
             >
-              Mob List
+              Mobs
             </NavLink>
             <NavLink
               to="/equipment"
@@ -40,7 +40,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                 }`
               }
             >
-              Equipment List
+              Equipment
             </NavLink>
           </nav>
         </div>

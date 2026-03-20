@@ -153,9 +153,7 @@ const MobsPage = () => {
             alt="Orange Mushroom"
             className="w-12 h-12 pointer-events-none select-none"
           />
-          <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">
-            Mob List
-          </span>
+          <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Mobs</span>
         </h2>
 
         {/* Search and Filters Toolbar */}

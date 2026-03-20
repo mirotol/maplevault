@@ -137,8 +137,10 @@ const EquipmentsPage = () => {
 
     // Filter by class
     if (itemClass !== "all") {
-      result = result.filter((m) =>
-        m.requiredJobs?.includes("Beginner") || m.requiredJobs?.includes(itemClass)
+      result = result.filter(
+        (m) =>
+          m.requiredJobs?.includes("Beginner") ||
+          m.requiredJobs?.includes(itemClass),
       );
     }
 
@@ -225,9 +227,7 @@ const EquipmentsPage = () => {
           alt="Zakum Helmet"
           className="w-12 h-12 pointer-events-none select-none"
         />
-        <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">
-          Equipment List
-        </span>
+        <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Equipment</span>
       </h2>
 
       {/* Unified Equipment Panel */}
