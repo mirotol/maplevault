@@ -173,7 +173,7 @@ const EquipmentsPage = () => {
   const hasMore = displayCount < filteredAndSortedItems.length;
 
   const lastItemElementRef = useCallback(
-    (node: HTMLDivElement) => {
+    (node: HTMLButtonElement) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
@@ -349,7 +349,8 @@ const EquipmentsPage = () => {
                 {displayedItems.map((item, index) => {
                   const isLast = displayedItems.length === index + 1;
                   return (
-                    <div
+                    <button
+                      type="button"
                       key={item.id}
                       ref={isLast ? lastItemElementRef : undefined}
                       onClick={() => navigate(`/equipment/${item.id}`)}
@@ -359,12 +360,10 @@ const EquipmentsPage = () => {
                           navigate(`/equipment/${item.id}`);
                         }
                       }}
-                      className="cursor-pointer flex h-full focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg"
-                      role="button"
-                      tabIndex={0}
+                      className="cursor-pointer flex h-full focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg w-full text-left"
                     >
                       <EquipmentCard item={item} />
-                    </div>
+                    </button>
                   );
                 })}
               </div>
