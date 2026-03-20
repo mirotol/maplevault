@@ -63,6 +63,7 @@ export interface Item {
 }
 
 export interface ItemMeta {
+  only?: boolean;
   incPAD?: number;
   incMAD?: number;
   incSTR?: number;
@@ -84,6 +85,7 @@ export interface ItemMeta {
   reqLUK?: number;
   tuc?: number;
   attackSpeed?: number;
+  tradeBlock?: boolean;
 }
 
 export interface ItemTypeInfo {

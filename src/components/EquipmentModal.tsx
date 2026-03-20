@@ -1,4 +1,4 @@
-import { ImageOff, ShieldAlert, X } from "lucide-react";
+import { ImageOff, ShieldAlert, Sparkle, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
@@ -107,7 +107,11 @@ const EquipmentModal = ({
       return null;
     return (
       <div className="text-[#f0daba] font-medium flex items-center text-md py-0.5 px-1 leading-none">
-        <span className="flex items-center gap-0.5">
+        <span className="flex items-center gap-1">
+          <Sparkle
+            className="w-2 h-2 text-orange-400 shrink-0"
+            fill="currentColor"
+          />
           <span>{label}</span>
           <span className="opacity-90">:</span>
         </span>
@@ -117,7 +121,7 @@ const EquipmentModal = ({
             ? value
             : label === "Attack Speed"
               ? formatAttackSpeed(value as number)
-              : `+${value}`}{" "}
+              : `+${value}`}
         </span>
       </div>
     );
@@ -167,6 +171,14 @@ const EquipmentModal = ({
                 initialItem?.typeInfo.subCategory || (
                   <Skeleton className="h-3 w-16 mx-auto opacity-20" />
                 )}
+            </div>
+            <div className="text-sm font-bold text-gray-400 tracking-wider mt-1">
+              {stats?.only ? (
+                <span className="text-orange-500">One-of-a-kind Item</span>
+              ) : null}
+              {stats?.tradeBlock ? (
+                <span className="text-orange-500">Untradeable</span>
+              ) : null}
             </div>
           </div>
 

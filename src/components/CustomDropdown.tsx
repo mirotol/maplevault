@@ -88,7 +88,7 @@ export const CustomDropdown = ({
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 w-full mt-2 py-2 bg-black/100 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="absolute top-full left-0 w-full mt-2 py-2 card-equipment-bg backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           <div
             role="listbox"
             className="max-h-60 overflow-y-auto custom-scrollbar"
