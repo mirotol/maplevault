@@ -106,7 +106,7 @@ const EquipmentModal = ({
     if (value === undefined || (value === 0 && label !== "Available Upgrades"))
       return null;
     return (
-      <div className="text-[#f0daba] font-medium flex items-center text-md py-0.5 px-1 leading-none">
+      <div className="text-[#f0daba] uppercase flex items-center text-base py-0.5 px-1 leading-none">
         <span className="flex items-center gap-1">
           <Sparkle
             className="w-2 h-2 text-orange-400 shrink-0"
@@ -128,9 +128,11 @@ const EquipmentModal = ({
   };
 
   const ReqStat = ({ label, value }: { label: string; value: number }) => (
-    <div className="flex justify-between items-center text-base py-0 px-1 leading-tight">
-      <span className="text-white/80 font-medium uppercase">
-        {label}: {value}
+    <div className="text-white/80 uppercase flex items-center text-base py-0.5 px-1 leading-none">
+      <span className="flex items-center gap-1">
+        <span>{label}</span>
+        <span className="opacity-90">:</span>
+        <span>{value}</span>
       </span>
     </div>
   );
@@ -172,21 +174,18 @@ const EquipmentModal = ({
                   <Skeleton className="h-3 w-16 mx-auto opacity-20" />
                 )}
             </div>
-            <div className="text-sm font-bold text-gray-400 tracking-wider mt-1">
-              {stats?.only ? (
-                <span className="text-orange-500">One-of-a-kind Item</span>
-              ) : null}
-              {stats?.tradeBlock ? (
-                <span className="text-orange-500">Untradeable</span>
-              ) : null}
+            <div className="text-base text-orange-400/80 tracking-wider mt-1">
+              {stats?.only && <span className="">One-of-a-kind Item</span>}
+              {stats?.only && stats?.tradeBlock && <span>, </span>}
+              {stats?.tradeBlock && <span>Untradeable</span>}
             </div>
           </div>
 
           <Divider />
 
           {/* Icon and Stat requirements */}
-          <div className="flex items-center gap-4 mt-2">
-            <div className="w-24 h-24 bg-white/20 rounded-lg flex items-center justify-center shrink-0 border border-white/10 shadow-inner group overflow-hidden">
+          <div className="flex items-center gap-6 mt-2">
+            <div className="w-28 h-28 bg-white/20 rounded-lg flex items-center justify-center shrink-0 border border-white/10 shadow-inner group overflow-hidden">
               {loading ? (
                 <Skeleton className="w-12 h-12 rounded-lg opacity-20" />
               ) : error ? (
@@ -195,7 +194,7 @@ const EquipmentModal = ({
                 <img
                   src={icon}
                   alt={detail?.name || initialItem?.name}
-                  className="max-w-[80%] max-h-[80%] object-contain scale-200 group-hover:scale-225 transition-transform duration-500"
+                  className="max-w-[90%] max-h-[90%] object-contain scale-240 group-hover:scale-300 transition-transform duration-300"
                   style={{ imageRendering: "pixelated" }}
                 />
               )}
@@ -222,7 +221,7 @@ const EquipmentModal = ({
                   key={job.name}
                   className={`text-sm px-0.5 uppercase font-bold rounded-sm tracking-tight transition-colors whitespace-nowrap shadow-[0_0_6px_rgba(0,0,0,0.9)] ${
                     isAllowed
-                      ? "text-orange-500 bg-black/50"
+                      ? "text-orange-500/90 bg-black/50"
                       : "text-white/30 bg-black/50"
                   }`}
                 >
@@ -265,12 +264,12 @@ const EquipmentModal = ({
                     <StatRow label="LUK" value={stats?.incLUK} />
                     <StatRow label="HP" value={stats?.incMHP} />
                     <StatRow label="MP" value={stats?.incMMP} />
-                    <StatRow label="Weapon Attack" value={stats?.incPAD} />
-                    <StatRow label="Weapon Defense" value={stats?.incPDD} />
-                    <StatRow label="Magic Attack" value={stats?.incMAD} />
-                    <StatRow label="Accuracy" value={stats?.incACC} />
                     <StatRow label="Attack Speed" value={stats?.attackSpeed} />
-                    <StatRow label="Magic Defense" value={stats?.incMDD} />
+                    <StatRow label="Weapon Att." value={stats?.incPAD} />
+                    <StatRow label="Weapon Def." value={stats?.incPDD} />
+                    <StatRow label="Magic Att." value={stats?.incMAD} />
+                    <StatRow label="Magic Def." value={stats?.incMDD} />
+                    <StatRow label="Accuracy" value={stats?.incACC} />
                     <StatRow label="Avoidability" value={stats?.incEVA} />
                     <StatRow label="Speed" value={stats?.incSpeed} />
                     <StatRow label="Jump" value={stats?.incJump} />
@@ -279,14 +278,22 @@ const EquipmentModal = ({
                       value={stats?.tuc ?? 0}
                     />
 
-                    {/* Description */}
+                    {/* Selling price and Description */}
+                    <Divider />
+                    <div className="flex items-center gap-2 px-1">
+                      <span className="text-white/80">
+                        Selling price: {stats?.price?.toLocaleString() ?? "-"}
+                      </span>
+                      <img
+                        src="/icons/meso.png"
+                        alt="Meso"
+                        className="w-5 h-5 pointer-events-none select-none"
+                      />
+                    </div>
                     {initialItem?.desc && (
-                      <>
-                        <Divider />
-                        <p className="px-1 text-base text-gray-500 italic leading-relaxed">
-                          {initialItem.desc}
-                        </p>
-                      </>
+                      <p className="px-1 my-2 text-base text-gray-500 italic leading-relaxed">
+                        {initialItem.desc}
+                      </p>
                     )}
 
                     {!loading && !stats && (
