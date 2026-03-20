@@ -67,7 +67,7 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
       {/* Content wrapper */}
       <div className="flex flex-col flex-1 w-full items-center">
         {/* Header (name) */}
-        <h3 className="text-2xl font-medium group-hover:text-orange-400 transition-colors block mb-4 line-clamp-2">
+        <h3 className="text-2xl font-medium group-hover:text-orange-400 transition-colors block mb-8 line-clamp-2">
           {item.name}
         </h3>
 
@@ -78,7 +78,7 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
             {subCategory}
           </span>
           {/* Info */}
-          <div className="my-4 text-[#f0daba]/90 flex flex-col gap-1 text-lg">
+          <div className="my-2 text-[#f0daba]/90 flex flex-col gap-1 text-lg">
             <span>Required Level: {requirements.level}</span>
           </div>
         </div>
