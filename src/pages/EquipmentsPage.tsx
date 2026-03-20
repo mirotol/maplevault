@@ -98,8 +98,12 @@ const EquipmentsPage = () => {
   const selectedItem = id ? items.find((m) => m.id === Number(id)) : null;
 
   const filteredAndSortedItems = useMemo(() => {
+    console.log(items);
     let result = items.filter(
-      (item) => item.typeInfo.overallCategory === "Equip" && !item.isCash,
+      (item) =>
+        item.typeInfo.overallCategory === "Equip" &&
+        !item.isCash &&
+        !item.typeInfo.subCategory?.includes("Cash"),
     );
 
     // Filter by search

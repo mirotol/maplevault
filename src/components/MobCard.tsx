@@ -67,7 +67,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
             <img
               src={iconUrl}
               alt={mob.name}
-              className="max-w-[90%] max-h-[90%] object-contain group-hover:scale-110 transition-transform"
+              className="max-w-[90%] max-h-[90%] object-contain"
               onError={() => setImageError(true)}
             />
           )
