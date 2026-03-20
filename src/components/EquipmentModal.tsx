@@ -172,7 +172,7 @@ const EquipmentModal = ({
 
           <Divider />
 
-          {/* Icon and Requirements */}
+          {/* Icon and Stat requirements */}
           <div className="flex items-center gap-4 mt-2">
             <div className="w-24 h-24 bg-white/20 rounded-lg flex items-center justify-center shrink-0 border border-white/10 shadow-inner group overflow-hidden">
               {loading ? (
@@ -200,7 +200,7 @@ const EquipmentModal = ({
           </div>
 
           {/* Job requirements */}
-          <div className="flex flex-nowrap gap-x-1.5 mt-4 justify-between">
+          <div className="flex flex-nowrap mt-4 justify-between">
             {JOBS.map((job) => {
               const isAllowed =
                 requirements.jobs.includes("Beginner") ||
@@ -208,8 +208,10 @@ const EquipmentModal = ({
               return (
                 <span
                   key={job.name}
-                  className={`text-sm uppercase font-bold tracking-tight transition-colors whitespace-nowrap ${
-                    isAllowed ? "text-orange-500" : "text-white/20"
+                  className={`text-sm px-0.5 uppercase font-bold rounded-sm tracking-tight transition-colors whitespace-nowrap shadow-[0_0_6px_rgba(0,0,0,0.9)] ${
+                    isAllowed
+                      ? "text-orange-500 bg-black/50"
+                      : "text-white/30 bg-black/50"
                   }`}
                 >
                   {job.name}
