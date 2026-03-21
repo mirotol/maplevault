@@ -57,7 +57,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
       type="button"
       ref={cardRef}
       onClick={onClick}
-      className="card-paper w-full h-full p-6 rounded-xl border-2 border-(--color-card-border) shadow-(--color-shadow) text-(--color-card-text) hover:shadow-xl hover:-translate-y-1 hover:border-orange-500 transition-all duration-300 cursor-pointer group flex flex-col items-center text-center outline-hidden focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-(--color-bg)"
+      className="card-paper w-full h-full p-6 rounded-xl border-2 border-(--color-card-border) shadow-(--color-shadow) text-(--color-card-text) hover:shadow-[5px_15px_30px_-5px_rgba(53,49,43,0.7)] hover:-translate-y-1 hover:border-orange-500 transition-all duration-300 cursor-pointer group flex flex-col items-center text-center outline-hidden focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-(--color-bg)"
     >
       <span className="w-24 h-24 mb-4 rounded-lg flex items-center justify-center text-orange-500 overflow-hidden">
         {isVisible ? (
@@ -77,7 +77,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
       </span>
       <div className="flex flex-col flex-1 items-center">
         <div className="flex flex-col items-center gap-2 mb-2">
-          <span className="font-heading text-2xl font-medium group-hover:text-orange-500 transition-colors block">
+          <span className="font-heading text-2xl font-medium block">
             {mob.name}
           </span>
           {mob.isBoss ? (

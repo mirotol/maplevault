@@ -1,12 +1,4 @@
-import {
-  ArrowUpDown,
-  Filter,
-  Loader2,
-  Search,
-  SortAsc,
-  SortDesc,
-  X,
-} from "lucide-react";
+import { Filter, Loader2, Search, SortAsc, SortDesc, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchMobs } from "../api/mapleApi";
@@ -22,6 +14,7 @@ const LEVEL_RANGES = [
     label: `${i * 10 + 1}-${(i + 1) * 10}`,
   })),
   { min: 181, max: 200, label: "181-200" },
+  { min: 201, max: Number.MAX_SAFE_INTEGER, label: "200+" },
 ];
 
 const FILTER_MODE_OPTIONS = [
@@ -175,19 +168,19 @@ const MobsPage = () => {
           >
             {/* Search Bar */}
             <div className="relative group w-full md:w-64">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/90 group-focus-within:text-orange-400 transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text)/60 group-focus-within:text-(--color-card-text) transition-colors" />
               <input
                 type="text"
                 placeholder="Search mobs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 pl-11 pr-10 bg-black/20 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 text-white placeholder:text-white/20 text-sm transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
+                className="w-full h-10 pl-11 pr-10 bg-black/10 border border-black/5 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-amber-900/40 text-(--color-card-text) placeholder:text-(--color-card-text)/40 text-sm transition-all shadow-inner hover:bg-black/15 hover:border-black/10"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-white/90 hover:text-white transition-all"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-(--color-card-text)/60 hover:text-(--color-card-text) transition-all"
                   title="Clear search"
                 >
                   <X className="w-4 h-4" />
@@ -203,7 +196,7 @@ const MobsPage = () => {
               value={filterMode}
               onChange={(val) => setFilterMode(val as "all" | "boss" | "level")}
               leftIcon={
-                <Filter className="w-4 h-4 text-white/20 transition-colors" />
+                <Filter className="w-4 h-4 text-(--color-card-text)/60 transition-colors" />
               }
             />
 
@@ -237,7 +230,7 @@ const MobsPage = () => {
                 onClick={() =>
                   setSortOrder(sortOrder === "asc" ? "desc" : "asc")
                 }
-                className="w-10 h-10 flex items-center justify-center bg-black/20 border border-white/10 rounded-xl text-white hover:bg-black/30 hover:border-white/20 transition-all cursor-pointer"
+                className="w-10 h-10 flex items-center justify-center bg-black/10 border border-black/5 rounded-xl text-(--color-card-text)/60 hover:text-(--color-card-text) hover:bg-black/20 hover:border-black/10 transition-all cursor-pointer"
                 title={
                   sortOrder === "asc" ? "Sort Descending" : "Sort Ascending"
                 }

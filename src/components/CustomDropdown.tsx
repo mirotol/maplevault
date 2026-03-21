@@ -36,13 +36,21 @@ export const CustomDropdown = ({
       dropdownBg: "card-equipment-bg",
       selected: "bg-orange-500/20 text-orange-300",
       hover: "hover:bg-orange-500/10 hover:text-orange-300",
+      text: "text-white",
+      border: "border-white/10",
+      chevron: "text-white/90",
+      optionText: "text-white/70",
     },
     mob: {
-      focus: "focus:ring-orange-500/50",
-      rotate: "text-orange-400",
+      focus: "focus:ring-amber-900/40",
+      rotate: "text-(--color-card-text)",
       dropdownBg: "card-mob-bg",
-      selected: "bg-orange-500/20 text-orange-300",
-      hover: "hover:bg-orange-500/10 hover:text-orange-300",
+      selected: "bg-amber-950/15 text-(--color-card-text)",
+      hover: "hover:bg-amber-950/10 hover:text-(--color-card-text)",
+      text: "text-(--color-card-text)",
+      border: "border-black/5",
+      chevron: "text-(--color-card-text)/60",
+      optionText: "text-(--color-card-text)",
     },
   }[variant];
 
@@ -83,7 +91,11 @@ export const CustomDropdown = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full h-full pr-4 bg-black/10 border border-white/10 rounded-xl flex items-center justify-between text-white text-sm cursor-pointer transition-all shadow-inner hover:bg-black/20 hover:border-white/20 focus:outline-hidden focus:ring-1 ${
+        className={`w-full h-full pr-4 bg-black/10 border ${
+          themeClasses.border
+        } rounded-xl flex items-center justify-between ${
+          themeClasses.text
+        } text-sm cursor-pointer transition-all shadow-inner hover:bg-black/20 hover:border-white/20 focus:outline-hidden focus:ring-1 ${
           themeClasses.focus
         } ${leftIcon ? "pl-9" : "px-4"}`}
         aria-haspopup="listbox"
@@ -100,14 +112,18 @@ export const CustomDropdown = ({
           </span>
         </div>
         <ChevronDown
-          className={`w-4 h-4 text-white/90 transition-all duration-300 ${
-            isOpen ? `rotate-180 ${themeClasses.rotate}` : "group-hover:text-white/90"
+          className={`w-4 h-4 ${themeClasses.chevron} transition-all duration-300 ${
+            isOpen
+              ? `rotate-180 ${themeClasses.rotate}`
+              : "group-hover:text-white/90"
           }`}
         />
       </button>
 
       {isOpen && (
-        <div className={`absolute top-full left-0 w-full mt-2 py-2 ${themeClasses.dropdownBg} backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200`}>
+        <div
+          className={`absolute top-full left-0 w-full mt-2 py-2 ${themeClasses.dropdownBg} backdrop-blur-md border ${themeClasses.border} rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200`}
+        >
           <div
             role="listbox"
             className="max-h-60 overflow-y-auto custom-scrollbar"
@@ -128,7 +144,7 @@ export const CustomDropdown = ({
                 className={`px-4 py-2 cursor-pointer text-sm transition-all ${
                   value === option.value
                     ? `${themeClasses.selected} font-medium`
-                    : `text-white/70 ${themeClasses.hover}`
+                    : `${themeClasses.optionText} ${themeClasses.hover}`
                 }`}
               >
                 {option.label}
