@@ -64,7 +64,7 @@ export const CustomDropdown = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full h-full pr-4 bg-black/40 border border-white/10 rounded-xl flex items-center justify-between text-white text-sm cursor-pointer transition-all shadow-inner hover:bg-black/20 hover:border-white/20 focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 ${
+        className={`w-full h-full pr-4 bg-black/10 border border-white/10 rounded-xl flex items-center justify-between text-white text-sm cursor-pointer transition-all shadow-inner hover:bg-black/20 hover:border-white/20 focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 ${
           leftIcon ? "pl-9" : "px-4"
         }`}
         aria-haspopup="listbox"

@@ -279,7 +279,7 @@ const EquipmentsPage = () => {
                 placeholder="Search equipment..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 pl-11 pr-10 bg-black/40 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 text-white placeholder:text-white/20 text-sm transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
+                className="w-full h-10 pl-11 pr-10 bg-black/20 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 text-white placeholder:text-white/20 text-sm transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
               />
               {searchQuery && (
                 <button
@@ -325,7 +325,7 @@ const EquipmentsPage = () => {
             <button
               type="button"
               onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-              className="h-10 w-10 flex items-center justify-center bg-black/40 border border-white/10 rounded-xl text-white/90 hover:text-white hover:bg-black/20 hover:border-white/20 transition-all cursor-pointer group shadow-inner shrink-0"
+              className="h-10 w-10 flex items-center justify-center bg-black/10 border border-white/10 rounded-xl text-white/90 hover:text-white hover:bg-black/20 hover:border-white/20 transition-all cursor-pointer group shadow-inner shrink-0"
               title={sortOrder === "asc" ? "Sort Ascending" : "Sort Descending"}
             >
               {sortOrder === "asc" ? (
