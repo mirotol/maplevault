@@ -156,7 +156,7 @@ const MobsPage = () => {
       </h2>
 
       {/* Unified Mobs Panel */}
-      <div className="bg-stone-800/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative mb-12 overflow-hidden">
+      <div className="bg-amber-950/40 backdrop-blur-xl border border-(--color-card-border)/10 rounded-2xl p-6 md:p-8 shadow-2xl relative mb-12 overflow-hidden">
         {/* Inner Highlight */}
         <div className="absolute inset-0 border border-white/5 rounded-2xl pointer-events-none" />
 
@@ -175,13 +175,13 @@ const MobsPage = () => {
           >
             {/* Search Bar */}
             <div className="relative group w-full md:w-64">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/90 group-focus-within:text-green-400 transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/90 group-focus-within:text-orange-400 transition-colors" />
               <input
                 type="text"
                 placeholder="Search mobs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 pl-11 pr-10 bg-black/20 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-green-500/50 text-white placeholder:text-white/20 text-sm transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
+                className="w-full h-10 pl-11 pr-10 bg-black/20 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 text-white placeholder:text-white/20 text-sm transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
               />
               {searchQuery && (
                 <button
@@ -224,9 +224,7 @@ const MobsPage = () => {
               />
             )}
 
-            <div className="hidden md:block w-px h-6 bg-white/10 mx-1" />
-
-            <div className="flex items-center gap-2 ml-auto">
+            <div className="flex flex-wrap items-center gap-3">
               <CustomDropdown
                 variant="mob"
                 className="h-10 min-w-35"
@@ -255,7 +253,7 @@ const MobsPage = () => {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-24 gap-4">
-              <Loader2 className="w-12 h-12 text-green-400 animate-spin" />
+              <Loader2 className="w-12 h-12 text-(--color-accent) animate-spin" />
               <p className="text-white/50 font-medium animate-pulse">
                 Summoning mobs...
               </p>

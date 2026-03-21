@@ -38,11 +38,11 @@ export const CustomDropdown = ({
       hover: "hover:bg-orange-500/10 hover:text-orange-300",
     },
     mob: {
-      focus: "focus:ring-green-500/50",
-      rotate: "text-green-400",
+      focus: "focus:ring-orange-500/50",
+      rotate: "text-orange-400",
       dropdownBg: "card-mob-bg",
-      selected: "bg-green-500/20 text-green-300",
-      hover: "hover:bg-green-500/10 hover:text-green-300",
+      selected: "bg-orange-500/20 text-orange-300",
+      hover: "hover:bg-orange-500/10 hover:text-orange-300",
     },
   }[variant];
 

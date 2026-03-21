@@ -106,7 +106,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-6 right-6 z-10 p-2 rounded-xl hover:bg-(--color-accent-bg) transition-all text-(--color-text) opacity-50 hover:opacity-100"
+          className="absolute top-6 right-6 z-10 p-2 rounded-xl hover:bg-orange-500/10 transition-all text-(--color-text) opacity-50 hover:opacity-100"
           aria-label="Close modal"
         >
           <X className="w-6 h-6" />
@@ -172,7 +172,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2 bg-(--color-accent) text-white rounded-full font-bold hover:opacity-90 transition-opacity"
+                className="px-6 py-2 bg-orange-500 text-white rounded-full font-bold hover:opacity-90 transition-opacity"
               >
                 Close Portal
               </button>
