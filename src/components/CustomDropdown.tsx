@@ -13,6 +13,7 @@ interface CustomDropdownProps {
   placeholder?: string;
   className?: string;
   leftIcon?: React.ReactNode;
+  variant?: "equipment" | "mob";
 }
 
 export const CustomDropdown = ({
@@ -22,10 +23,28 @@ export const CustomDropdown = ({
   placeholder,
   className = "",
   leftIcon,
+  variant = "equipment",
 }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const selectedOption = options.find((opt) => opt.value === value);
+
+  const themeClasses = {
+    equipment: {
+      focus: "focus:ring-orange-500/50",
+      rotate: "text-orange-400",
+      dropdownBg: "card-equipment-bg",
+      selected: "bg-orange-500/20 text-orange-300",
+      hover: "hover:bg-orange-500/10 hover:text-orange-300",
+    },
+    mob: {
+      focus: "focus:ring-green-500/50",
+      rotate: "text-green-400",
+      dropdownBg: "card-mob-bg",
+      selected: "bg-green-500/20 text-green-300",
+      hover: "hover:bg-green-500/10 hover:text-green-300",
+    },
+  }[variant];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -64,9 +83,9 @@ export const CustomDropdown = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full h-full pr-4 bg-black/10 border border-white/10 rounded-xl flex items-center justify-between text-white text-sm cursor-pointer transition-all shadow-inner hover:bg-black/20 hover:border-white/20 focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 ${
-          leftIcon ? "pl-9" : "px-4"
-        }`}
+        className={`w-full h-full pr-4 bg-black/10 border border-white/10 rounded-xl flex items-center justify-between text-white text-sm cursor-pointer transition-all shadow-inner hover:bg-black/20 hover:border-white/20 focus:outline-hidden focus:ring-1 ${
+          themeClasses.focus
+        } ${leftIcon ? "pl-9" : "px-4"}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
@@ -82,13 +101,13 @@ export const CustomDropdown = ({
         </div>
         <ChevronDown
           className={`w-4 h-4 text-white/90 transition-all duration-300 ${
-            isOpen ? "rotate-180 text-orange-400" : "group-hover:text-white/90"
+            isOpen ? `rotate-180 ${themeClasses.rotate}` : "group-hover:text-white/90"
           }`}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 w-full mt-2 py-2 card-equipment-bg backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className={`absolute top-full left-0 w-full mt-2 py-2 ${themeClasses.dropdownBg} backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200`}>
           <div
             role="listbox"
             className="max-h-60 overflow-y-auto custom-scrollbar"
@@ -108,8 +127,8 @@ export const CustomDropdown = ({
                 tabIndex={0}
                 className={`px-4 py-2 cursor-pointer text-sm transition-all ${
                   value === option.value
-                    ? "bg-orange-500/20 text-orange-300 font-medium"
-                    : "text-white/70 hover:bg-orange-500/10 hover:text-orange-300"
+                    ? `${themeClasses.selected} font-medium`
+                    : `text-white/70 ${themeClasses.hover}`
                 }`}
               >
                 {option.label}

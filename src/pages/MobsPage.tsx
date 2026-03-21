@@ -146,45 +146,59 @@ const MobsPage = () => {
 
   return (
     <>
-      <div className="mb-8">
-        <h2 className="font-heading text-4xl font-semibold mb-8 flex items-center gap-3 text-white">
-          <img
-            src="/icons/orange_mushroom.png"
-            alt="Orange Mushroom"
-            className="w-12 h-12 pointer-events-none select-none"
-          />
-          <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Mobs</span>
-        </h2>
+      <h2 className="font-heading text-4xl font-semibold mb-8 flex items-center gap-3 text-white">
+        <img
+          src="/icons/orange_mushroom.png"
+          alt="Orange Mushroom"
+          className="w-12 h-12 pointer-events-none select-none"
+        />
+        <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Mobs</span>
+      </h2>
 
-        {/* Search and Filters Toolbar */}
-        <div className="relative z-20 flex flex-col lg:flex-row items-stretch gap-4 mb-10">
-          {/* Search Bar - Dominant */}
-          <div className="flex-1 relative group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-(--color-text-secondary) group-focus-within:text-(--color-accent) transition-colors" />
-            <input
-              type="text"
-              placeholder="Search mobs by name..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-11 pl-12 pr-11 bg-(--color-bg) border border-(--color-border) rounded-lg focus:outline-hidden focus:ring-2 focus:ring-(--color-accent) focus:border-transparent transition-all shadow-sm text-base placeholder:opacity-50 text-(--color-card-text)"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-md text-(--color-text-secondary) hover:text-(--color-accent) hover:bg-(--color-accent-bg) transition-all"
-                title="Clear search"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
+      {/* Unified Mobs Panel */}
+      <div className="bg-stone-800/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative mb-12 overflow-hidden">
+        {/* Inner Highlight */}
+        <div className="absolute inset-0 border border-white/5 rounded-2xl pointer-events-none" />
 
-          {/* Filters and Sorting Group */}
-          <div className="flex flex-wrap items-center gap-3">
+        <div className="relative z-10">
+          {/* Filter Bar */}
+          <div
+            className="
+              relative z-20
+              card-mob-bg
+              border border-(--color-card-border)
+              rounded-2xl
+              p-3 mb-8
+              flex flex-wrap md:flex-nowrap items-center gap-3
+              shadow-inner backdrop-blur-sm
+            "
+          >
+            {/* Search Bar */}
+            <div className="relative group w-full md:w-64">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/90 group-focus-within:text-green-400 transition-colors" />
+              <input
+                type="text"
+                placeholder="Search mobs..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full h-10 pl-11 pr-10 bg-black/20 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-green-500/50 text-white placeholder:text-white/20 text-sm transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-white/90 hover:text-white transition-all"
+                  title="Clear search"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
             {/* Filter Mode */}
             <CustomDropdown
-              className="h-11 min-w-35 flex-1 lg:flex-none"
+              variant="mob"
+              className="h-10 min-w-35 flex-1 md:flex-none"
               options={FILTER_MODE_OPTIONS}
               value={filterMode}
               onChange={(val) => setFilterMode(val as "all" | "boss" | "level")}
@@ -196,7 +210,8 @@ const MobsPage = () => {
             {/* Level Range - Conditional */}
             {filterMode === "level" && (
               <CustomDropdown
-                className="h-11 min-w-30 flex-1 lg:flex-none"
+                variant="mob"
+                className="h-10 min-w-30 flex-1 md:flex-none"
                 options={[
                   { label: "Any Level", value: "all" },
                   ...LEVEL_RANGES.map((r) => ({
@@ -209,80 +224,73 @@ const MobsPage = () => {
               />
             )}
 
-            {/* Sorting */}
-            <CustomDropdown
-              className="h-11 min-w-35 flex-1 lg:flex-none"
-              options={SORT_OPTIONS}
-              value={sortBy}
-              onChange={(val) => setSortBy(val as "name" | "level")}
-              leftIcon={
-                <ArrowUpDown className="w-4 h-4 text-white/20 transition-colors" />
-              }
-            />
+            <div className="hidden md:block w-px h-6 bg-white/10 mx-1" />
 
-            {/* Sort Order Toggle */}
-            <button
-              type="button"
-              onClick={() =>
-                setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
-              }
-              className="h-11 w-11 flex items-center justify-center bg-black/40 border border-white/10 rounded-xl text-white/20 hover:text-white hover:bg-black/20 hover:border-white/20 transition-all cursor-pointer group shadow-inner shrink-0"
-              title={sortOrder === "asc" ? "Sort Ascending" : "Sort Descending"}
-            >
-              {sortOrder === "asc" ? (
-                <SortAsc className="w-5 h-5 transition-transform group-hover:scale-110" />
-              ) : (
-                <SortDesc className="w-5 h-5 transition-transform group-hover:scale-110" />
-              )}
-            </button>
+            <div className="flex items-center gap-2 ml-auto">
+              <CustomDropdown
+                variant="mob"
+                className="h-10 min-w-35"
+                options={SORT_OPTIONS}
+                value={sortBy}
+                onChange={(val) => setSortBy(val as "name" | "level")}
+              />
+              <button
+                type="button"
+                onClick={() =>
+                  setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                }
+                className="w-10 h-10 flex items-center justify-center bg-black/20 border border-white/10 rounded-xl text-white hover:bg-black/30 hover:border-white/20 transition-all cursor-pointer"
+                title={
+                  sortOrder === "asc" ? "Sort Descending" : "Sort Ascending"
+                }
+              >
+                {sortOrder === "asc" ? (
+                  <SortAsc className="w-5 h-5" />
+                ) : (
+                  <SortDesc className="w-5 h-5" />
+                )}
+              </button>
+            </div>
           </div>
+
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-24 gap-4">
+              <Loader2 className="w-12 h-12 text-green-400 animate-spin" />
+              <p className="text-white/50 font-medium animate-pulse">
+                Summoning mobs...
+              </p>
+            </div>
+          ) : displayedMobs.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {displayedMobs.map((mob, index) => (
+                <div
+                  key={mob.id}
+                  className="flex h-full"
+                  ref={
+                    index === displayedMobs.length - 1
+                      ? lastMobElementRef
+                      : null
+                  }
+                >
+                  <MobCard mob={mob} onClick={() => handleSelectMob(mob)} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="py-24 text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 border border-white/10 mb-4">
+                <Search className="w-8 h-8 text-white/20" />
+              </div>
+              <h3 className="text-xl font-heading text-white font-medium mb-2">
+                No mobs found
+              </h3>
+              <p className="text-white/40">
+                Try adjusting your search or filters
+              </p>
+            </div>
+          )}
         </div>
       </div>
-
-      {loading ? (
-        <div className="flex flex-col justify-center items-center p-20 space-y-4">
-          <Loader2 className="w-12 h-12 animate-spin text-(--color-accent)" />
-          <p className="text-xl font-medium opacity-50">Fetching mob data...</p>
-        </div>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {displayedMobs.map((mob, index) => {
-              if (displayedMobs.length === index + 1) {
-                return (
-                  <div ref={lastMobElementRef} key={mob.id}>
-                    <MobCard mob={mob} onClick={() => handleSelectMob(mob)} />
-                  </div>
-                );
-              }
-              return (
-                <MobCard
-                  key={mob.id}
-                  mob={mob}
-                  onClick={() => handleSelectMob(mob)}
-                />
-              );
-            })}
-          </div>
-
-          {filteredAndSortedMobs.length === 0 && (
-            <div className="text-center py-20 bg-(--color-bg) border border-dashed border-(--color-border) rounded-3xl">
-              <p className="text-2xl font-medium opacity-50 mb-2">
-                No mobs match your search
-              </p>
-              <p className="opacity-30">
-                Try adjusting your filters or search query.
-              </p>
-            </div>
-          )}
-
-          {hasMore && (
-            <div className="flex justify-center items-center p-8 mt-4">
-              <Loader2 className="w-8 h-8 animate-spin text-(--color-accent)" />
-            </div>
-          )}
-        </>
-      )}
 
       {id && (
         <MobModal
