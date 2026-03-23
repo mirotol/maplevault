@@ -96,3 +96,42 @@ export interface ItemTypeInfo {
   lowItemId: number;
   highItemId: number;
 }
+
+export interface NpcPlacement {
+  mapId: number;
+  mapName: string;
+  streetName: string;
+  x: number;
+  y: number;
+  flip: boolean;
+  footholdId: number | null;
+}
+
+export interface MapNpcRelation {
+  mapId: number;
+  mapName: string;
+  streetName: string;
+  npcs: {
+    id: number;
+    x: number;
+    y: number;
+    flip: boolean;
+    footholdId: number | null;
+  }[];
+}
+
+export interface NpcLookupJson {
+  generatedAt: string;
+  version: string;
+  totalNpcs: number;
+  totalPlacements: number;
+  npcs: Record<string, NpcPlacement[]>;
+}
+
+export interface MapRelationsJson {
+  generatedAt: string;
+  version: string;
+  totalMaps: number;
+  mapsWithNpcs: number;
+  relations: MapNpcRelation[];
+}
