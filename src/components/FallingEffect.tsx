@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 interface FallingEffectProps {
   image: string;
@@ -8,6 +8,52 @@ interface FallingEffectProps {
   minDuration?: number;
   maxDuration?: number;
 }
+
+const FallingLeaf = ({ leaf, image }: { leaf: any; image: string }) => {
+  const [offset, setOffset] = useState(0);
+
+  const handleJump = (e: React.MouseEvent | React.TouchEvent) => {
+    // Stop propagation to avoid any parent click events
+    e.stopPropagation();
+    
+    // Every jump adds to the current offset, keeping the new position
+    setOffset((prev) => prev - 60);
+  };
+
+  return (
+    <div
+      className="falling-image-wrapper"
+      onClick={handleJump}
+      onTouchStart={handleJump}
+      style={
+        {
+          left: leaf.left,
+          animationDuration: `${leaf.duration}s`,
+          animationDelay: `${leaf.delay}s`,
+          transform: `translateY(${offset}px)`,
+          // Fast jump up, no return transition needed anymore
+          transition: "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
+        } as React.CSSProperties
+      }
+    >
+      <img
+        src={image}
+        alt=""
+        className="falling-image"
+        style={
+          {
+            width: `${leaf.size}px`,
+            height: "auto",
+            animationDuration: `${leaf.swayDuration}s`,
+            "--sway-amount": `${leaf.swayAmount}px`,
+            transform: `rotate(${leaf.rotation}deg)`,
+            imageRendering: "pixelated",
+          } as React.CSSProperties
+        }
+      />
+    </div>
+  );
+};
 
 const FallingEffect = ({
   image,
@@ -33,33 +79,7 @@ const FallingEffect = ({
   return (
     <div className="falling-container">
       {leaves.map((leaf) => (
-        <div
-          key={leaf.id}
-          className="falling-image-wrapper"
-          style={
-            {
-              left: leaf.left,
-              animationDuration: `${leaf.duration}s`,
-              animationDelay: `${leaf.delay}s`,
-            } as React.CSSProperties
-          }
-        >
-          <img
-            src={image}
-            alt=""
-            className="falling-image"
-            style={
-              {
-                width: `${leaf.size}px`,
-                height: "auto",
-                animationDuration: `${leaf.swayDuration}s`,
-                "--sway-amount": `${leaf.swayAmount}px`,
-                transform: `rotate(${leaf.rotation}deg)`,
-                imageRendering: "pixelated",
-              } as React.CSSProperties
-            }
-          />
-        </div>
+        <FallingLeaf key={leaf.id} leaf={leaf} image={image} />
       ))}
     </div>
   );

@@ -224,7 +224,7 @@ body.cursor-click * {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -1;
+  z-index: 20;
   overflow: hidden;
 }
 
@@ -234,6 +234,8 @@ body.cursor-click * {
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .falling-image {
