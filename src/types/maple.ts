@@ -1,3 +1,37 @@
+export interface WorldMapPath {
+  Image?: string;
+  OriginX: number;
+  OriginY: number;
+  Z: number;
+}
+
+export interface WorldMapNode {
+  MapId: number;
+  Type: number;
+  X: number;
+  Y: number;
+  StreetName?: string | null;
+  MapName?: string | null;
+  Description?: string | null;
+  Paths?: WorldMapPath[];
+}
+
+export interface WorldMapLink {
+  Image?: string;
+  Target?: string;
+  Tooltip?: string | null;
+  OriginX: number;
+  OriginY: number;
+  Z: number;
+}
+
+export interface WorldMapData {
+  Name: string;
+  BaseImage?: string;
+  Maps: WorldMapNode[];
+  Links: WorldMapLink[];
+}
+
 export interface MapInfo {
   name: string;
   streetName: string;

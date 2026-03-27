@@ -42,6 +42,18 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
             >
               Equipment
             </NavLink>
+            <NavLink
+              to="/worldmap"
+              className={({ isActive }) =>
+                `text-sm md:text-lg font-medium transition-all pb-1 border-b-2 ${
+                  isActive
+                    ? "text-(--color-accent) border-(--color-accent)"
+                    : "border-transparent opacity-60 hover:opacity-100 hover:text-(--color-accent)"
+                }`
+              }
+            >
+              World Map
+            </NavLink>
           </nav>
         </div>
 
