@@ -172,7 +172,6 @@ export default function WorldMapViewer() {
             border: "1px solid #555",
             padding: "6px 10px",
             borderRadius: 4,
-            cursor: "pointer",
           }}
         >
           ← Back
@@ -205,7 +204,6 @@ export default function WorldMapViewer() {
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            pointerEvents: "none",
           }}
         />
       )}
@@ -223,7 +221,6 @@ export default function WorldMapViewer() {
               position: "absolute",
               left: `calc(50% + ${-path.OriginX}px)`,
               top: `calc(50% + ${-path.OriginY}px)`,
-              pointerEvents: "none",
               zIndex: 6 + path.Z,
               opacity: 1,
             }}
@@ -248,7 +245,6 @@ export default function WorldMapViewer() {
               left: `calc(50% + ${-link.OriginX}px)`,
               top: `calc(50% + ${-link.OriginY}px)`,
               opacity: hoveredLink === i ? (hoveredNode ? 0.8 : 1) : 0,
-              pointerEvents: "none",
               zIndex: 5 + link.Z,
               transition: "opacity 0.15s ease",
             }}
@@ -263,7 +259,7 @@ export default function WorldMapViewer() {
             position: "absolute",
             left: mouse.x + 14,
             top: mouse.y + 14,
-            background: "rgba(20, 20, 30, 0.95)",
+            background: "rgba(28, 45, 101, 0.85)",
             color: "white",
             padding: "8px 12px",
             borderRadius: 6,
@@ -271,7 +267,6 @@ export default function WorldMapViewer() {
             maxWidth: 220,
             lineHeight: 1.4,
             boxShadow: "0 2px 8px rgba(0,0,0,0.5)",
-            pointerEvents: "none",
             zIndex: 999,
           }}
         >
@@ -312,7 +307,6 @@ export default function WorldMapViewer() {
               width: 16,
               height: 16,
               zIndex: 20,
-              cursor: "pointer",
             }}
           />
         );
