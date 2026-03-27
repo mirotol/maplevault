@@ -59,7 +59,7 @@ const Layout = () => {
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       {/* Main content where pages will render */}
-      <main className="max-w-7xl mx-auto px-4 py-12">
+      <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
         <Outlet />
       </main>
     </div>
