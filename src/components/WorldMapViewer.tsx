@@ -224,7 +224,7 @@ export default function WorldMapViewer() {
               left: `calc(50% + ${-path.OriginX}px)`,
               top: `calc(50% + ${-path.OriginY}px)`,
               pointerEvents: "none",
-              zIndex: 3 + path.Z,
+              zIndex: 6 + path.Z,
               opacity: 1,
             }}
           />
