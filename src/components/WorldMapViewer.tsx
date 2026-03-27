@@ -169,7 +169,7 @@ export default function WorldMapViewer() {
           />
         ))}
 
-        {/* HIGHLIGHTS (PIXEL-PERFECT CLICK FIXED) */}
+        {/* HIGHLIGHTS */}
         {currentMap.Links.map((link, i) => (
           <button
             key={`${link.Image}_${link.Target}_${link.OriginX}_${link.OriginY}`}
@@ -298,18 +298,10 @@ export default function WorldMapViewer() {
             top: mouse.y + 14,
           }}
         >
-          {hoveredNode.StreetName && (
-            <div className="text-[12px] opacity-70">
-              {hoveredNode.StreetName}
-            </div>
-          )}
-
-          <div className="font-bold">
-            {hoveredNode.MapName ?? `Map ${hoveredNode.MapId}`}
-          </div>
+          <div className="font-medium">{`${hoveredNode.StreetName} : ${hoveredNode.MapName}`}</div>
 
           {hoveredNode.Description && (
-            <div className="mt-1 opacity-85">{hoveredNode.Description}</div>
+            <div className="mt-2 opacity-85">{hoveredNode.Description}</div>
           )}
         </div>
       )}
