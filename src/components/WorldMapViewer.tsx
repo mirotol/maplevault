@@ -98,12 +98,11 @@ export default function WorldMapViewer() {
         localX >= 0 &&
         localY >= 0 &&
         localX < img.width &&
-        localY < img.height
+        localY < img.height &&
+        checkPixelHit(img, localX, localY)
       ) {
-        if (checkPixelHit(img, localX, localY)) {
-          foundLink = i;
-          break;
-        }
+        foundLink = i;
+        break;
       }
     }
 
@@ -179,11 +178,12 @@ export default function WorldMapViewer() {
             left: `calc(50% + ${-path.OriginX}px)`,
             top: `calc(50% + ${-path.OriginY}px)`,
             zIndex: 10,
+            pointerEvents: "none",
           }}
         />
       ))}
 
-      {/* HIGHLIGHTS */}
+      {/* HIGHLIGHTS (PIXEL-PERFECT CLICK FIXED) */}
       {currentMap.Links.map((link, i) => (
         <button
           key={`${link.Image}_${link.Target}_${link.OriginX}_${link.OriginY}`}
@@ -191,7 +191,30 @@ export default function WorldMapViewer() {
           ref={(el) => {
             linkRefs.current[i] = el;
           }}
-          onClick={() => {
+          onClick={(e) => {
+            const btn = linkRefs.current[i];
+            const img = btn?.querySelector("img");
+
+            if (!img || !link.Image) return;
+
+            const rect = e.currentTarget.parentElement!.getBoundingClientRect();
+
+            const mouseX = e.clientX - rect.left - rect.width / 2;
+            const mouseY = e.clientY - rect.top - rect.height / 2;
+
+            const localX = mouseX + link.OriginX;
+            const localY = mouseY + link.OriginY;
+
+            if (
+              localX < 0 ||
+              localY < 0 ||
+              localX >= img.width ||
+              localY >= img.height ||
+              !checkPixelHit(img, localX, localY)
+            ) {
+              return; // ignore transparent clicks (region not highlighted)
+            }
+
             if (!link.Target) return;
 
             const next = maps.find((m) => m.Name === link.Target);
@@ -233,19 +256,16 @@ export default function WorldMapViewer() {
             pointerEvents: "none",
           }}
         >
-          {/* Street */}
           {hoveredNode.StreetName && (
             <div style={{ fontSize: 12, opacity: 0.7 }}>
               {hoveredNode.StreetName}
             </div>
           )}
 
-          {/* Map name */}
           <div style={{ fontWeight: "bold" }}>
             {hoveredNode.MapName ?? `Map ${hoveredNode.MapId}`}
           </div>
 
-          {/* Description */}
           {hoveredNode.Description && (
             <div style={{ marginTop: 4, opacity: 0.85 }}>
               {hoveredNode.Description}
@@ -264,18 +284,6 @@ export default function WorldMapViewer() {
             type="button"
             onMouseEnter={() => setHoveredNode(node)}
             onMouseLeave={() => setHoveredNode(null)}
-            onClick={() => {
-              if (hoveredLink === null || !currentMap) return;
-
-              const link = currentMap.Links[hoveredLink];
-              if (!link.Target) return;
-
-              const next = maps.find((m) => m.Name === link.Target);
-              if (!next) return;
-
-              setHistory((prev) => [...prev, currentMap]);
-              setCurrentMap(next);
-            }}
             style={{
               position: "absolute",
               left: `calc(50% + ${node.X}px)`,
