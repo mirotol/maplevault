@@ -103,7 +103,7 @@ const MobsPage = () => {
       if (observer.current) observer.current.disconnect();
 
       const isMobile = window.innerWidth < 768;
-      const rootMargin = isMobile ? "400px" : "0px";
+      const rootMargin = isMobile ? "400px" : "800px";
 
       observer.current = new IntersectionObserver(
         (entries) => {

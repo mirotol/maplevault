@@ -18,7 +18,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
 
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
-    const rootMargin = isMobile ? "200px" : "0px";
+    const rootMargin = isMobile ? "200px" : "400px";
 
     const observer = new IntersectionObserver(
       ([entry]) => {
