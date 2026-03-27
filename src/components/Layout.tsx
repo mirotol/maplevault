@@ -26,15 +26,13 @@ const setCookie = (name: string, value: string, days = 365) => {
 const Layout = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
-  // Initial theme setup: read from cookie or system preference
+  // Initial theme setup: read from cookie or default to light
   useEffect(() => {
     fetchMaps().catch((err) => console.error("Failed to pre-fetch maps:", err));
 
     const savedTheme = getCookie("theme") as "light" | "dark" | undefined;
     if (savedTheme) {
       setTheme(savedTheme);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
     }
   }, []);
 
