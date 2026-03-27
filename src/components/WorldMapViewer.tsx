@@ -8,11 +8,13 @@ const NODE_ICONS: Record<number, string> = {
   3: "/worldmap/nodes/node_3.png",
 };
 
-const MAP_SCALE = 1.5; // Zoom scale factor
+const MAP_SCALE = 1.5;
 
 export default function WorldMapViewer() {
   const [maps, setMaps] = useState<WorldMapData[]>([]);
-  const [currentMap, setCurrentMap] = useState<WorldMapData | null>(null);
+
+  const [displayMap, setDisplayMap] = useState<WorldMapData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [history, setHistory] = useState<WorldMapData[]>([]);
 
@@ -30,9 +32,28 @@ export default function WorldMapViewer() {
         setMaps(data);
 
         const root = data.find((m) => m.Name === "WorldMap");
-        setCurrentMap(root || data[0]);
+        const initial = root || data[0];
+
+        setDisplayMap(initial);
       });
   }, []);
+
+  const navigateToMap = (next: WorldMapData) => {
+    if (!next.BaseImage) {
+      setDisplayMap(next);
+      return;
+    }
+
+    setIsLoading(true);
+
+    const img = new Image();
+    img.src = `/worldmap/images/${next.BaseImage}`;
+
+    img.onload = () => {
+      setDisplayMap(next);
+      setIsLoading(false);
+    };
+  };
 
   // ─────────────────────────────────────────────
   // Pixel-perfect hit detection
@@ -55,11 +76,10 @@ export default function WorldMapViewer() {
   // Mouse handling
   // ─────────────────────────────────────────────
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!currentMap) return;
+    if (!displayMap) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
 
-    // Map screen coordinates back to unscaled 800x600 coordinates
     const mapMouseX = (e.clientX - rect.left - rect.width / 2) / MAP_SCALE;
     const mapMouseY = (e.clientY - rect.top - rect.height / 2) / MAP_SCALE;
 
@@ -68,11 +88,10 @@ export default function WorldMapViewer() {
       y: e.clientY - rect.top,
     });
 
-    // NODE hover
     const NODE_RADIUS = 12;
     let foundNode: WorldMapNode | null = null;
 
-    for (const node of currentMap.Maps) {
+    for (const node of displayMap.Maps) {
       const dx = mapMouseX - node.X;
       const dy = mapMouseY - node.Y;
 
@@ -84,11 +103,10 @@ export default function WorldMapViewer() {
 
     setHoveredNode(foundNode);
 
-    // LINK hover
     let foundLink: number | null = null;
 
-    for (let i = 0; i < currentMap.Links.length; i++) {
-      const link = currentMap.Links[i];
+    for (let i = 0; i < displayMap.Links.length; i++) {
+      const link = displayMap.Links[i];
       const btn = linkRefs.current[i];
       const img = btn?.querySelector("img");
 
@@ -119,13 +137,15 @@ export default function WorldMapViewer() {
       const newHistory = [...prev];
       const last = newHistory.pop();
 
-      if (last) setCurrentMap(last);
+      if (last) {
+        navigateToMap(last);
+      }
 
       return newHistory;
     });
   };
 
-  if (!currentMap) return <div>Loading...</div>;
+  if (!displayMap) return <div>Loading...</div>;
 
   return (
     <div
@@ -147,11 +167,15 @@ export default function WorldMapViewer() {
         }}
       >
         {/* BASE MAP */}
-        {currentMap.BaseImage && (
+        {displayMap.BaseImage && (
           <img
-            src={`/worldmap/images/${currentMap.BaseImage}`}
+            src={`/worldmap/images/${displayMap.BaseImage}`}
             alt="map"
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            style={{
+              opacity: isLoading ? 0.5 : 1,
+              transition: "opacity 0.2s ease",
+            }}
           />
         )}
 
@@ -170,7 +194,7 @@ export default function WorldMapViewer() {
         ))}
 
         {/* HIGHLIGHTS */}
-        {currentMap.Links.map((link, i) => (
+        {displayMap.Links.map((link, i) => (
           <button
             key={`${link.Image}_${link.Target}_${link.OriginX}_${link.OriginY}`}
             type="button"
@@ -186,7 +210,6 @@ export default function WorldMapViewer() {
               const rect =
                 e.currentTarget.parentElement!.getBoundingClientRect();
 
-              // Map screen coordinates back to unscaled 800x600 coordinates
               const mapMouseX =
                 (e.clientX - rect.left - rect.width / 2) / MAP_SCALE;
               const mapMouseY =
@@ -202,7 +225,7 @@ export default function WorldMapViewer() {
                 localY >= img.height ||
                 !checkPixelHit(img, localX, localY)
               ) {
-                return; // ignore transparent clicks (region not highlighted)
+                return;
               }
 
               if (!link.Target) return;
@@ -210,10 +233,12 @@ export default function WorldMapViewer() {
               const next = maps.find((m) => m.Name === link.Target);
               if (!next) return;
 
-              setHistory((prev) => [...prev, currentMap]);
-              setCurrentMap(next);
+              setHistory((prev) => [...prev, displayMap]);
+              navigateToMap(next);
             }}
-            className={`absolute border-none bg-transparent p-0 ${hoveredLink === i ? "opacity-100" : "opacity-0"}`}
+            className={`absolute border-none bg-transparent p-0 ${
+              hoveredLink === i ? "opacity-100" : "opacity-0"
+            }`}
             style={{
               left: `calc(50% + ${-link.OriginX}px)`,
               top: `calc(50% + ${-link.OriginY}px)`,
@@ -224,7 +249,7 @@ export default function WorldMapViewer() {
         ))}
 
         {/* NODES */}
-        {currentMap.Maps.map((node) => {
+        {displayMap.Maps.map((node) => {
           const icon = NODE_ICONS[node.Type] || NODE_ICONS[0];
 
           return (
@@ -234,11 +259,10 @@ export default function WorldMapViewer() {
               onMouseEnter={() => setHoveredNode(node)}
               onMouseLeave={() => setHoveredNode(null)}
               onClick={() => {
-                if (!currentMap) return;
+                if (!displayMap) return;
 
-                // find matching link using SAME pixel logic
-                for (let i = 0; i < currentMap.Links.length; i++) {
-                  const link = currentMap.Links[i];
+                for (let i = 0; i < displayMap.Links.length; i++) {
+                  const link = displayMap.Links[i];
                   const btn = linkRefs.current[i];
                   const img = btn?.querySelector("img");
 
@@ -259,8 +283,8 @@ export default function WorldMapViewer() {
                     const next = maps.find((m) => m.Name === link.Target);
                     if (!next) return;
 
-                    setHistory((prev) => [...prev, currentMap]);
-                    setCurrentMap(next);
+                    setHistory((prev) => [...prev, displayMap]);
+                    navigateToMap(next);
                     return;
                   }
                 }
@@ -277,7 +301,6 @@ export default function WorldMapViewer() {
         })}
       </div>
 
-      {/* UI OVERLAYS (UNSCALED) */}
       {/* BACK BUTTON */}
       {history.length > 0 && (
         <button
@@ -298,7 +321,9 @@ export default function WorldMapViewer() {
             top: mouse.y + 14,
           }}
         >
-          <div className="font-medium">{`${hoveredNode.StreetName} : ${hoveredNode.MapName}`}</div>
+          <div className="font-medium">
+            {`${hoveredNode.StreetName} : ${hoveredNode.MapName}`}
+          </div>
 
           {hoveredNode.Description && (
             <div className="mt-2 opacity-85">{hoveredNode.Description}</div>
