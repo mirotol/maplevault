@@ -127,13 +127,7 @@ export default function WorldMapViewer() {
   return (
     <div
       role="application"
-      style={{
-        position: "relative",
-        width: "800px",
-        height: "600px",
-        border: "1px solid #333",
-        overflow: "hidden",
-      }}
+      className="worldmap-viewer"
       onMouseMove={handleMouseMove}
     >
       {/* BACK BUTTON */}
@@ -141,12 +135,7 @@ export default function WorldMapViewer() {
         <button
           type="button"
           onClick={handleBack}
-          style={{
-            position: "absolute",
-            top: 10,
-            left: 10,
-            zIndex: 1000,
-          }}
+          className="absolute top-2.5 left-2.5 z-1000"
         >
           ← Back
         </button>
@@ -157,13 +146,7 @@ export default function WorldMapViewer() {
         <img
           src={`/worldmap/images/${currentMap.BaseImage}`}
           alt="map"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            pointerEvents: "none",
-          }}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         />
       )}
 
@@ -173,12 +156,10 @@ export default function WorldMapViewer() {
           key={path.Image}
           src={`/worldmap/images/${path.Image}`}
           alt=""
+          className="absolute z-10 pointer-events-none"
           style={{
-            position: "absolute",
             left: `calc(50% + ${-path.OriginX}px)`,
             top: `calc(50% + ${-path.OriginY}px)`,
-            zIndex: 10,
-            pointerEvents: "none",
           }}
         />
       ))}
@@ -223,14 +204,10 @@ export default function WorldMapViewer() {
             setHistory((prev) => [...prev, currentMap]);
             setCurrentMap(next);
           }}
+          className={`absolute border-none bg-transparent p-0 ${hoveredLink === i ? "opacity-100" : "opacity-0"}`}
           style={{
-            position: "absolute",
             left: `calc(50% + ${-link.OriginX}px)`,
             top: `calc(50% + ${-link.OriginY}px)`,
-            opacity: hoveredLink === i ? 1 : 0,
-            border: "none",
-            background: "none",
-            padding: 0,
           }}
         >
           <img src={`/worldmap/images/${link.Image}`} alt="" />
@@ -240,36 +217,24 @@ export default function WorldMapViewer() {
       {/* TOOLTIP */}
       {hoveredNode && (
         <div
+          className="worldmap-tooltip"
           style={{
-            position: "absolute",
             left: mouse.x + 14,
             top: mouse.y + 14,
-            background: "rgba(28, 45, 101, 0.85)",
-            color: "white",
-            padding: "8px 12px",
-            borderRadius: 6,
-            fontSize: 12,
-            maxWidth: 220,
-            lineHeight: 1.4,
-            boxShadow: "0 2px 8px rgba(0,0,0,0.5)",
-            zIndex: 999,
-            pointerEvents: "none",
           }}
         >
           {hoveredNode.StreetName && (
-            <div style={{ fontSize: 12, opacity: 0.7 }}>
+            <div className="text-[12px] opacity-70">
               {hoveredNode.StreetName}
             </div>
           )}
 
-          <div style={{ fontWeight: "bold" }}>
+          <div className="font-bold">
             {hoveredNode.MapName ?? `Map ${hoveredNode.MapId}`}
           </div>
 
           {hoveredNode.Description && (
-            <div style={{ marginTop: 4, opacity: 0.85 }}>
-              {hoveredNode.Description}
-            </div>
+            <div className="mt-1 opacity-85">{hoveredNode.Description}</div>
           )}
         </div>
       )}
@@ -284,15 +249,42 @@ export default function WorldMapViewer() {
             type="button"
             onMouseEnter={() => setHoveredNode(node)}
             onMouseLeave={() => setHoveredNode(null)}
+            onClick={() => {
+              if (!currentMap) return;
+
+              // find matching link using SAME pixel logic
+              for (let i = 0; i < currentMap.Links.length; i++) {
+                const link = currentMap.Links[i];
+                const btn = linkRefs.current[i];
+                const img = btn?.querySelector("img");
+
+                if (!img || !link.Image) continue;
+
+                const localX = hoveredNode!.X + link.OriginX;
+                const localY = hoveredNode!.Y + link.OriginY;
+
+                if (
+                  localX >= 0 &&
+                  localY >= 0 &&
+                  localX < img.width &&
+                  localY < img.height &&
+                  checkPixelHit(img, localX, localY)
+                ) {
+                  if (!link.Target) return;
+
+                  const next = maps.find((m) => m.Name === link.Target);
+                  if (!next) return;
+
+                  setHistory((prev) => [...prev, currentMap]);
+                  setCurrentMap(next);
+                  return;
+                }
+              }
+            }}
+            className="absolute -translate-x-1/2 -translate-y-1/2 border-none bg-transparent p-0 z-20"
             style={{
-              position: "absolute",
               left: `calc(50% + ${node.X}px)`,
               top: `calc(50% + ${node.Y}px)`,
-              transform: "translate(-50%, -50%)",
-              border: "none",
-              background: "none",
-              padding: 0,
-              zIndex: 20,
             }}
           >
             <img src={icon} alt="" width={16} height={16} />
