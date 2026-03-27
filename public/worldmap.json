@@ -10,7 +10,8 @@
         "Y": 85,
         "StreetName": "Time Lane",
         "MapName": "Three Doors",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270000100,
@@ -19,7 +20,8 @@
         "Y": 165,
         "StreetName": "Time Lane",
         "MapName": "Temple of Time",
-        "Description": "It's the Temple where the Goddess of Time resides.  The past, present and future all exist in this place. "
+        "Description": "It's the Temple where the Goddess of Time resides.  The past, present and future all exist in this place. ",
+        "Paths": []
       },
       {
         "MapId": 270010000,
@@ -28,7 +30,8 @@
         "Y": 69,
         "StreetName": "Time Lane",
         "MapName": "Past of the Verdure",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010100,
@@ -37,7 +40,8 @@
         "Y": 39,
         "StreetName": "Time Lane",
         "MapName": "Memory Lane1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010110,
@@ -46,7 +50,8 @@
         "Y": 42,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Memory1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010111,
@@ -55,7 +60,8 @@
         "Y": 90,
         "StreetName": "Time Lane",
         "MapName": "Memory Keeper's Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010200,
@@ -64,7 +70,8 @@
         "Y": 51,
         "StreetName": "Time Lane",
         "MapName": "Memory Lane2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010210,
@@ -73,7 +80,8 @@
         "Y": 45,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Memory2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010300,
@@ -82,7 +90,8 @@
         "Y": 54,
         "StreetName": "Time Lane",
         "MapName": "Memory Lane3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010310,
@@ -91,7 +100,8 @@
         "Y": 74,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Memory3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010400,
@@ -100,7 +110,8 @@
         "Y": 82,
         "StreetName": "Time Lane",
         "MapName": "Memory Lane4",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010410,
@@ -109,7 +120,8 @@
         "Y": 77,
         "StreetName": "Memory Keeper",
         "MapName": "Resting Spot of Memory4",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270010500,
@@ -118,7 +130,8 @@
         "Y": 40,
         "StreetName": "Time Lane",
         "MapName": "Memory Lane5",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020000,
@@ -127,7 +140,8 @@
         "Y": 29,
         "StreetName": "Time Lane",
         "MapName": "Frozen Past",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020100,
@@ -136,7 +150,8 @@
         "Y": 20,
         "StreetName": "Time Lane",
         "MapName": "Road of Regrets1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020110,
@@ -145,7 +160,8 @@
         "Y": 11,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Regret1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020200,
@@ -154,7 +170,8 @@
         "Y": 3,
         "StreetName": "Time Lane",
         "MapName": "Road of Regrets2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020210,
@@ -163,7 +180,8 @@
         "Y": -8,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Regret2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020211,
@@ -172,7 +190,8 @@
         "Y": -46,
         "StreetName": "Time Lane",
         "MapName": "Sorcerer's Room ",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020300,
@@ -181,7 +200,8 @@
         "Y": -42,
         "StreetName": "Time Lane",
         "MapName": "Road of Regrets3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020310,
@@ -190,7 +210,8 @@
         "Y": -51,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Regret3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020400,
@@ -199,7 +220,8 @@
         "Y": -48,
         "StreetName": "Time Lane",
         "MapName": "Road of Regrets4",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020410,
@@ -208,7 +230,8 @@
         "Y": -67,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Regret4",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270020500,
@@ -217,7 +240,8 @@
         "Y": -92,
         "StreetName": "Time Lane",
         "MapName": "Road of Regrets5",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030000,
@@ -226,7 +250,8 @@
         "Y": -115,
         "StreetName": "Time Lane",
         "MapName": "Burning Past",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030100,
@@ -235,7 +260,8 @@
         "Y": -122,
         "StreetName": "Time Lane",
         "MapName": "Road to Oblivion1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030110,
@@ -244,7 +270,8 @@
         "Y": -111,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Oblivion1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030200,
@@ -253,7 +280,8 @@
         "Y": -101,
         "StreetName": "Time Lane",
         "MapName": "Road to Oblivion2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030210,
@@ -262,7 +290,8 @@
         "Y": -102,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Oblivion2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030300,
@@ -271,7 +300,8 @@
         "Y": -94,
         "StreetName": "Time Lane",
         "MapName": "Road to Oblivion3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030310,
@@ -280,7 +310,8 @@
         "Y": -78,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Oblivion3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030400,
@@ -289,7 +320,8 @@
         "Y": -68,
         "StreetName": "Time Lane",
         "MapName": "Road to Oblivion4",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030410,
@@ -298,7 +330,8 @@
         "Y": -71,
         "StreetName": "Time Lane",
         "MapName": "Resting Spot of Oblivion4",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030411,
@@ -307,7 +340,8 @@
         "Y": -59,
         "StreetName": "Time Lane",
         "MapName": "Record Keeper's Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270030500,
@@ -316,7 +350,8 @@
         "Y": -86,
         "StreetName": "Time Lane",
         "MapName": "Road to Oblivion5",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270040000,
@@ -325,7 +360,8 @@
         "Y": -100,
         "StreetName": "Deep Place of Temple",
         "MapName": "Broken Corridor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 270050000,
@@ -334,11 +370,11 @@
         "Y": -134,
         "StreetName": "Deep Place of Temple",
         "MapName": "Forgotten Twilight",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap010",
@@ -351,7 +387,8 @@
         "Y": 142,
         "StreetName": "Victoria Road",
         "MapName": "Henesys",
-        "Description": "It's a bowman town on a wide prairie, and you can choose to become a bowman here."
+        "Description": "It's a bowman town on a wide prairie, and you can choose to become a bowman here.",
+        "Paths": []
       },
       {
         "MapId": 101000000,
@@ -360,7 +397,8 @@
         "Y": 20,
         "StreetName": "Victoria Road",
         "MapName": "Ellinia",
-        "Description": "It's a magician town surrounded by the forest, and you can choose to become a magician here."
+        "Description": "It's a magician town surrounded by the forest, and you can choose to become a magician here.",
+        "Paths": []
       },
       {
         "MapId": 102000000,
@@ -369,7 +407,8 @@
         "Y": -149,
         "StreetName": "Victoria Road",
         "MapName": "Perion",
-        "Description": "It's a warrior town located at the high mountainous area, and you can choose to become a warrior here."
+        "Description": "It's a warrior town located at the high mountainous area, and you can choose to become a warrior here.",
+        "Paths": []
       },
       {
         "MapId": 103000000,
@@ -378,7 +417,8 @@
         "Y": -51,
         "StreetName": "Victoria Road",
         "MapName": "Kerning City",
-        "Description": "It's a thief town in the middle of the city where the sun sets. You can choose to become a thief here."
+        "Description": "It's a thief town in the middle of the city where the sun sets. You can choose to become a thief here.",
+        "Paths": []
       },
       {
         "MapId": 104000000,
@@ -387,7 +427,8 @@
         "Y": 140,
         "StreetName": "Victoria Road",
         "MapName": "Lith Harbor",
-        "Description": "The port city in Victoria Island. Enables one to travel to different cities."
+        "Description": "The port city in Victoria Island. Enables one to travel to different cities.",
+        "Paths": []
       },
       {
         "MapId": 105030000,
@@ -396,7 +437,8 @@
         "Y": 26,
         "StreetName": "Dungeon",
         "MapName": "Deep Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 100010000,
@@ -405,7 +447,8 @@
         "Y": 141,
         "StreetName": "Victoria Road",
         "MapName": "The Hill East of Henesys",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 100020000,
@@ -414,7 +457,15 @@
         "Y": 119,
         "StreetName": "Victoria Road",
         "MapName": "The Rain-Forest East of Henesys",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap010_path_7.png",
+            "OriginX": -37,
+            "OriginY": -79,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 100030000,
@@ -423,7 +474,8 @@
         "Y": 95,
         "StreetName": "Victoria Road",
         "MapName": "The Forest East of Henesys",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 100040000,
@@ -432,7 +484,8 @@
         "Y": 76,
         "StreetName": "Victoria Road",
         "MapName": "The Forest South of Ellinia",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 100040100,
@@ -441,7 +494,8 @@
         "Y": 66,
         "StreetName": "Victoria Road",
         "MapName": "The Forest of Wisdom",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 100050000,
@@ -450,7 +504,8 @@
         "Y": 54,
         "StreetName": "Victoria Road",
         "MapName": "The Field South of Ellinia",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101010000,
@@ -459,7 +514,8 @@
         "Y": 26,
         "StreetName": "Victoria Road",
         "MapName": "The Field Up North of Ellinia",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101010100,
@@ -468,7 +524,8 @@
         "Y": 18,
         "StreetName": "Victoria Road",
         "MapName": "The Tree That Grew I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101020000,
@@ -477,7 +534,8 @@
         "Y": -6,
         "StreetName": "Victoria Road",
         "MapName": "The Forest North of Ellinia",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030000,
@@ -486,7 +544,8 @@
         "Y": -35,
         "StreetName": "Victoria Road",
         "MapName": "East Domain of Perion",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030100,
@@ -495,7 +554,8 @@
         "Y": -62,
         "StreetName": "Victoria Road",
         "MapName": "Rocky Road III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030200,
@@ -504,7 +564,8 @@
         "Y": -80,
         "StreetName": "Victoria Road",
         "MapName": "Rocky Road II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030300,
@@ -513,7 +574,8 @@
         "Y": -104,
         "StreetName": "Victoria Road",
         "MapName": "Rocky Road I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030400,
@@ -522,7 +584,8 @@
         "Y": -113,
         "StreetName": "Victoria Road",
         "MapName": "East Rocky Mountain I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101040000,
@@ -531,7 +594,8 @@
         "Y": -123,
         "StreetName": "Victoria Road",
         "MapName": "Perion Street Corner",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102010000,
@@ -540,7 +604,8 @@
         "Y": -119,
         "StreetName": "Victoria Road",
         "MapName": "West Street Corner of Perion",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102020000,
@@ -549,7 +614,8 @@
         "Y": -96,
         "StreetName": "Victoria Road",
         "MapName": "West Rocky Mountain I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102030000,
@@ -558,7 +624,8 @@
         "Y": -80,
         "StreetName": "Victoria Road",
         "MapName": "West Domain of Perion",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102040000,
@@ -567,7 +634,8 @@
         "Y": -80,
         "StreetName": "Victoria Road",
         "MapName": "Construction Site North of Kerning City",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102050000,
@@ -576,7 +644,8 @@
         "Y": -80,
         "StreetName": "Victoria Road",
         "MapName": "Sunset Sky",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103010000,
@@ -585,7 +654,8 @@
         "Y": -14,
         "StreetName": "Victoria Road",
         "MapName": "Kerning City Construction Site",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103020000,
@@ -594,7 +664,8 @@
         "Y": 11,
         "StreetName": "Victoria Road",
         "MapName": "L Forest I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103020100,
@@ -603,7 +674,8 @@
         "Y": 33,
         "StreetName": "Victoria Road",
         "MapName": "L Forest II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103020200,
@@ -612,7 +684,8 @@
         "Y": 52,
         "StreetName": "Victoria Road",
         "MapName": "L Forest III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103030000,
@@ -621,7 +694,8 @@
         "Y": 47,
         "StreetName": "Victoria Road",
         "MapName": "Kerning City Middle Forest I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104010000,
@@ -630,7 +704,8 @@
         "Y": 59,
         "StreetName": "Victoria Road",
         "MapName": "3-Way Road-Split",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104020000,
@@ -639,7 +714,8 @@
         "Y": 85,
         "StreetName": "Victoria Road",
         "MapName": "Forest West of Henesys",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104030000,
@@ -648,7 +724,8 @@
         "Y": 115,
         "StreetName": "Victoria Road",
         "MapName": "A Hill West of Henesys ",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104040000,
@@ -657,7 +734,8 @@
         "Y": 139,
         "StreetName": "Victoria Road",
         "MapName": "Henesys Hunting Ground I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104000100,
@@ -666,7 +744,8 @@
         "Y": 101,
         "StreetName": "Victoria Road",
         "MapName": "Right Around Lith Harbor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104000200,
@@ -675,7 +754,8 @@
         "Y": 86,
         "StreetName": "Victoria Road",
         "MapName": "Thicket Around the Beach I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104000300,
@@ -684,7 +764,8 @@
         "Y": 87,
         "StreetName": "Victoria Road",
         "MapName": "Thicket Around the Beach II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104000400,
@@ -693,7 +774,8 @@
         "Y": 77,
         "StreetName": "Victoria Road",
         "MapName": "Thicket Around the Beach III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000000,
@@ -702,7 +784,8 @@
         "Y": -99,
         "StreetName": "Warning Street",
         "MapName": "Deep Valley I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000100,
@@ -711,7 +794,8 @@
         "Y": -76,
         "StreetName": "Warning Street",
         "MapName": "Deep Valley II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000200,
@@ -720,7 +804,8 @@
         "Y": -49,
         "StreetName": "Warning Street",
         "MapName": "Deep Valley III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000300,
@@ -729,7 +814,8 @@
         "Y": -27,
         "StreetName": "Warning Street",
         "MapName": "Perion Dungeon Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106010000,
@@ -738,7 +824,8 @@
         "Y": 107,
         "StreetName": "Warning Street",
         "MapName": "The Road to the Dungeon",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106010100,
@@ -747,7 +834,8 @@
         "Y": 85,
         "StreetName": "Warning Street",
         "MapName": "Henesys Dungeon Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 107000000,
@@ -756,7 +844,8 @@
         "Y": -48,
         "StreetName": "Warning Street",
         "MapName": "The Swamp of Despair I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 107000100,
@@ -765,7 +854,8 @@
         "Y": -43,
         "StreetName": "Warning Street",
         "MapName": "The Swamp of Despair II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 107000200,
@@ -774,7 +864,8 @@
         "Y": -16,
         "StreetName": "Warning Street",
         "MapName": "The Swamp of Despair III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 107000300,
@@ -783,7 +874,8 @@
         "Y": 9,
         "StreetName": "Warning Street",
         "MapName": "Dangerous Croko I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 107000400,
@@ -792,7 +884,8 @@
         "Y": 24,
         "StreetName": "Warning Street",
         "MapName": "Dangerous Croko II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 110000000,
@@ -801,7 +894,8 @@
         "Y": 96,
         "StreetName": "Florina Road",
         "MapName": "Florina Beach",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 110010000,
@@ -810,7 +904,8 @@
         "Y": 86,
         "StreetName": "Florina Road",
         "MapName": "A Look-Out Shed Around the Beach",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 110020000,
@@ -819,7 +914,8 @@
         "Y": 70,
         "StreetName": "Florina Road",
         "MapName": "Lorang Lorang",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 110030000,
@@ -828,7 +924,8 @@
         "Y": 46,
         "StreetName": "Florina Road",
         "MapName": "Lorang and Clang",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 110040000,
@@ -837,7 +934,8 @@
         "Y": 42,
         "StreetName": "Florina Road",
         "MapName": "Hot Sand",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030101,
@@ -846,7 +944,8 @@
         "Y": -72,
         "StreetName": "Victoria Road",
         "MapName": "Excavation Site I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030102,
@@ -855,7 +954,8 @@
         "Y": -83,
         "StreetName": "Victoria Road",
         "MapName": "Excavation Site II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030103,
@@ -864,7 +964,8 @@
         "Y": -60,
         "StreetName": "Victoria Road",
         "MapName": "Excavation Site III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030104,
@@ -873,7 +974,8 @@
         "Y": -36,
         "StreetName": "Victoria Road",
         "MapName": "Excavation Site <Camp>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030105,
@@ -882,7 +984,8 @@
         "Y": -18,
         "StreetName": "Victoria Road",
         "MapName": "Remains <Tomb> I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030106,
@@ -891,7 +994,8 @@
         "Y": -29,
         "StreetName": "Victoria Road",
         "MapName": "Remains <Tomb> II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030107,
@@ -900,7 +1004,8 @@
         "Y": -48,
         "StreetName": "Victoria Road",
         "MapName": "Remains <Tomb> III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030108,
@@ -909,7 +1014,8 @@
         "Y": -72,
         "StreetName": "Victoria Road",
         "MapName": "Remains <Tomb> IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030109,
@@ -918,7 +1024,8 @@
         "Y": -99,
         "StreetName": "Victoria Road",
         "MapName": "Remains <Cliff>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101010101,
@@ -927,7 +1034,8 @@
         "Y": 32,
         "StreetName": "Victoria Road",
         "MapName": "The Tree That Grew II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101010102,
@@ -936,7 +1044,8 @@
         "Y": 39,
         "StreetName": "Victoria Road",
         "MapName": "The Tree That Grew III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101010103,
@@ -945,7 +1054,8 @@
         "Y": 31,
         "StreetName": "Victoria Road",
         "MapName": "Top of the Tree That Grew",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102020100,
@@ -954,7 +1064,8 @@
         "Y": -111,
         "StreetName": "Victoria Road",
         "MapName": "West Rocky Mountain II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102020200,
@@ -963,7 +1074,8 @@
         "Y": -117,
         "StreetName": "Victoria Road",
         "MapName": "West Rocky Mountain III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 102020300,
@@ -972,7 +1084,8 @@
         "Y": -128,
         "StreetName": "Victoria Road",
         "MapName": "West Rocky Mountain IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103030100,
@@ -981,7 +1094,8 @@
         "Y": 26,
         "StreetName": "Victoria Road",
         "MapName": "Kerning City Middle Forest II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103030200,
@@ -990,7 +1104,8 @@
         "Y": 6,
         "StreetName": "Victoria Road",
         "MapName": "Kerning City Middle Forest III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104040001,
@@ -999,7 +1114,8 @@
         "Y": 115,
         "StreetName": "Victoria Road",
         "MapName": "Henesys Hunting Ground II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 104040002,
@@ -1008,7 +1124,8 @@
         "Y": 91,
         "StreetName": "Victoria Road",
         "MapName": "Henesys Hunting Ground III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000101,
@@ -1017,7 +1134,8 @@
         "Y": -69,
         "StreetName": "Warning Street",
         "MapName": "The Burnt Land I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000110,
@@ -1026,7 +1144,8 @@
         "Y": -71,
         "StreetName": "Warning Street",
         "MapName": "The Burnt Land II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000120,
@@ -1035,7 +1154,8 @@
         "Y": -68,
         "StreetName": "Warning Street",
         "MapName": "The Burnt Land III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000130,
@@ -1044,7 +1164,8 @@
         "Y": -55,
         "StreetName": "Warning Street",
         "MapName": "The Burnt Land IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106000140,
@@ -1053,7 +1174,8 @@
         "Y": -32,
         "StreetName": "Warning Street",
         "MapName": "The Burnt Land V",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030401,
@@ -1062,7 +1184,8 @@
         "Y": -133,
         "StreetName": "Victoria Road",
         "MapName": "East Rocky Mountain II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030402,
@@ -1071,7 +1194,8 @@
         "Y": -137,
         "StreetName": "Victoria Road",
         "MapName": "East Rocky Mountain III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030403,
@@ -1080,7 +1204,8 @@
         "Y": -134,
         "StreetName": "Victoria Road",
         "MapName": "East Rocky Mountain IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030404,
@@ -1089,7 +1214,8 @@
         "Y": -131,
         "StreetName": "Victoria Road",
         "MapName": "East Rocky Mountain V",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030405,
@@ -1098,7 +1224,8 @@
         "Y": -137,
         "StreetName": "Victoria Road",
         "MapName": "East Rocky Mountain VI",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101030406,
@@ -1107,7 +1234,8 @@
         "Y": -155,
         "StreetName": "Victoria Road",
         "MapName": "East Rocky Mountain VII",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 101000300,
@@ -1116,7 +1244,8 @@
         "Y": -11,
         "StreetName": "Victoria Road",
         "MapName": "Ellinia Station",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 100000100,
@@ -1125,7 +1254,8 @@
         "Y": 159,
         "StreetName": "Victoria Road",
         "MapName": "Henesys Market",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 100000200,
@@ -1134,7 +1264,8 @@
         "Y": 159,
         "StreetName": "Victoria Road",
         "MapName": "Henesys Park",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120010000,
@@ -1143,7 +1274,8 @@
         "Y": 107,
         "StreetName": "Victoria Road",
         "MapName": "On the Way to the Harbor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000000,
@@ -1152,7 +1284,8 @@
         "Y": 158,
         "StreetName": "Victoria Road",
         "MapName": "Nautilus Harbor",
-        "Description": "The harbor where Nautilus is at anchor. One will be able to become a dauntless pirate here. "
+        "Description": "The harbor where Nautilus is at anchor. One will be able to become a dauntless pirate here. ",
+        "Paths": []
       },
       {
         "MapId": 101000400,
@@ -1161,7 +1294,8 @@
         "Y": 73,
         "StreetName": "Victoria Road",
         "MapName": "Sky Ferry <To Ereve>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 106020000,
@@ -1170,7 +1304,8 @@
         "Y": 167,
         "StreetName": "Mushroom Castle",
         "MapName": "Mushroom Forest Field",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040000,
@@ -1179,7 +1314,8 @@
         "Y": -89,
         "StreetName": "Kerning Square ",
         "MapName": "Kerning Square Lobby",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
     "Links": [
@@ -1207,14 +1343,6 @@
         "OriginY": 160,
         "Z": 1
       }
-    ],
-    "Paths": [
-      {
-        "Image": "WorldMap010_path_7.png",
-        "OriginX": -37,
-        "OriginY": -79,
-        "Z": 2
-      }
     ]
   },
   {
@@ -1228,7 +1356,8 @@
         "Y": -161,
         "StreetName": "Ludibrium",
         "MapName": "Path of Time",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220060000,
@@ -1237,7 +1366,8 @@
         "Y": -160,
         "StreetName": "Ludibrium",
         "MapName": "Warped Path of Time<1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220060100,
@@ -1246,7 +1376,8 @@
         "Y": -52,
         "StreetName": "Ludibrium",
         "MapName": "Warped Path of Time<2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220060200,
@@ -1255,7 +1386,8 @@
         "Y": 56,
         "StreetName": "Ludibrium",
         "MapName": "Warped Path of Time<3>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220060300,
@@ -1264,7 +1396,8 @@
         "Y": 162,
         "StreetName": "Ludibrium",
         "MapName": "Warped Path of Time<4>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220060400,
@@ -1273,7 +1406,8 @@
         "Y": 161,
         "StreetName": "Ludibrium",
         "MapName": "Warped Passage",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220070000,
@@ -1282,7 +1416,8 @@
         "Y": -160,
         "StreetName": "Ludibrium",
         "MapName": "Forgotten Path of Time<1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220070100,
@@ -1291,7 +1426,8 @@
         "Y": -53,
         "StreetName": "Ludibrium",
         "MapName": "Forgotten Path of Time<2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220070200,
@@ -1300,7 +1436,8 @@
         "Y": 55,
         "StreetName": "Ludibrium",
         "MapName": "Forgotten Path of Time<3>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220070300,
@@ -1309,7 +1446,8 @@
         "Y": 161,
         "StreetName": "Ludibrium",
         "MapName": "Forgotten Path of Time<4>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220070400,
@@ -1318,7 +1456,8 @@
         "Y": 161,
         "StreetName": "Ludibrium",
         "MapName": "Forgotten Passage",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220080000,
@@ -1327,7 +1466,8 @@
         "Y": 160,
         "StreetName": "Ludibrium",
         "MapName": "Deep Inside the Clocktower",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220080001,
@@ -1336,11 +1476,11 @@
         "Y": 36,
         "StreetName": "Ludibrium",
         "MapName": "Origin of Clocktower",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap011",
@@ -1353,7 +1493,8 @@
         "Y": -24,
         "StreetName": "The Nautilus",
         "MapName": "Top Floor - Hallway",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000101,
@@ -1362,7 +1503,8 @@
         "Y": -10,
         "StreetName": "The Nautilus",
         "MapName": "Navigation Room",
-        "Description": "A Navigation Room where the captain of The Nautilus, Kyrin, resides."
+        "Description": "A Navigation Room where the captain of The Nautilus, Kyrin, resides.",
+        "Paths": []
       },
       {
         "MapId": 120000102,
@@ -1371,7 +1513,8 @@
         "Y": -35,
         "StreetName": "The Nautilus",
         "MapName": "Lord Jonathan's Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000103,
@@ -1380,7 +1523,8 @@
         "Y": -59,
         "StreetName": "The Nautilus",
         "MapName": "Cafeteria",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000104,
@@ -1389,7 +1533,8 @@
         "Y": -102,
         "StreetName": "The Nautilus",
         "MapName": "Training Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000200,
@@ -1398,7 +1543,8 @@
         "Y": 33,
         "StreetName": "The Nautilus",
         "MapName": "Mid Floor - Hallway",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000201,
@@ -1407,7 +1553,8 @@
         "Y": 67,
         "StreetName": "The Nautilus",
         "MapName": "Conference Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000202,
@@ -1416,7 +1563,8 @@
         "Y": -76,
         "StreetName": "The Nautilus",
         "MapName": "Bedroom",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000300,
@@ -1425,7 +1573,8 @@
         "Y": 83,
         "StreetName": "The Nautilus",
         "MapName": "Bottom Floor - Hallway",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 120000301,
@@ -1434,11 +1583,11 @@
         "Y": 1,
         "StreetName": "The Nautilus",
         "MapName": "Generator Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap142",
@@ -1451,7 +1600,8 @@
         "Y": 32,
         "StreetName": "Haunted House",
         "MapName": "Toy Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000304,
@@ -1460,7 +1610,8 @@
         "Y": 111,
         "StreetName": "Haunted House",
         "MapName": "Piano Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000900,
@@ -1469,7 +1620,8 @@
         "Y": -41,
         "StreetName": "Haunted House",
         "MapName": "Toy Workshop",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000306,
@@ -1478,7 +1630,8 @@
         "Y": 167,
         "StreetName": "Haunted House",
         "MapName": "Barren Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000100,
@@ -1487,7 +1640,8 @@
         "Y": 169,
         "StreetName": "Haunted House",
         "MapName": "Foyer",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000300,
@@ -1496,7 +1650,8 @@
         "Y": 114,
         "StreetName": "Haunted House",
         "MapName": "Hallway",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000800,
@@ -1505,7 +1660,8 @@
         "Y": 45,
         "StreetName": "Haunted House",
         "MapName": "Library",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000200,
@@ -1514,7 +1670,8 @@
         "Y": -27,
         "StreetName": "Haunted House",
         "MapName": "Ghost Chimney",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000301,
@@ -1523,7 +1680,8 @@
         "Y": 28,
         "StreetName": "Haunted House",
         "MapName": "Sophilia's Bedroom",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000303,
@@ -1532,7 +1690,8 @@
         "Y": 115,
         "StreetName": "Haunted House",
         "MapName": "Study",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000302,
@@ -1541,11 +1700,11 @@
         "Y": 171,
         "StreetName": "Haunted House",
         "MapName": "Vanity Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap040",
@@ -1558,7 +1717,8 @@
         "Y": -47,
         "StreetName": "Aquarium",
         "MapName": "Aquarium",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230010000,
@@ -1567,7 +1727,8 @@
         "Y": 99,
         "StreetName": "Aqua Road",
         "MapName": "Ocean I.C",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230010100,
@@ -1576,7 +1737,8 @@
         "Y": 55,
         "StreetName": "Aqua Road",
         "MapName": "Crystal Gorge",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230010200,
@@ -1585,7 +1747,8 @@
         "Y": 11,
         "StreetName": "Aqua Road",
         "MapName": "Red Coral Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230010201,
@@ -1594,7 +1757,8 @@
         "Y": -142,
         "StreetName": "Aqua Road",
         "MapName": "Snowy Whale's Island",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230010300,
@@ -1603,7 +1767,8 @@
         "Y": -20,
         "StreetName": "Aqua Road",
         "MapName": "Turban Shell Hill",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230010400,
@@ -1612,7 +1777,8 @@
         "Y": -31,
         "StreetName": "Aqua Road",
         "MapName": "Forked Road : West Sea",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230020000,
@@ -1621,7 +1787,8 @@
         "Y": -56,
         "StreetName": "Aqua Road",
         "MapName": "Forked Road : East Sea",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230020100,
@@ -1630,7 +1797,8 @@
         "Y": -54,
         "StreetName": "Aqua Road",
         "MapName": "The Seaweed Tower",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230020200,
@@ -1639,7 +1807,8 @@
         "Y": -19,
         "StreetName": "Aqua Road",
         "MapName": "Sand Castle Playground",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230020201,
@@ -1648,7 +1817,8 @@
         "Y": -145,
         "StreetName": "Aqua Road",
         "MapName": "Two Palm Trees",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230020300,
@@ -1657,7 +1827,8 @@
         "Y": 16,
         "StreetName": "Aqua Road",
         "MapName": "Big Fish Valley",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230030000,
@@ -1666,7 +1837,8 @@
         "Y": 39,
         "StreetName": "Aqua Road",
         "MapName": "Blue Seaweed Road",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230030100,
@@ -1675,7 +1847,8 @@
         "Y": 76,
         "StreetName": "Aqua Road",
         "MapName": "Mushroom Coral Hill",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230030101,
@@ -1684,7 +1857,8 @@
         "Y": 154,
         "StreetName": "Aqua Road",
         "MapName": "Tae Gong's Ferry",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230030200,
@@ -1693,7 +1867,8 @@
         "Y": 108,
         "StreetName": "Aqua Road",
         "MapName": "The Sharp Unknown",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230040000,
@@ -1702,7 +1877,8 @@
         "Y": 49,
         "StreetName": "Aqua Road",
         "MapName": "Deep Sea Gorge I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230040100,
@@ -1711,7 +1887,8 @@
         "Y": 101,
         "StreetName": "Aqua Road",
         "MapName": "Deep Sea Gorge II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230040400,
@@ -1720,7 +1897,8 @@
         "Y": 129,
         "StreetName": "Aqua Road",
         "MapName": "The Grave of a Wrecked Ship",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230040410,
@@ -1729,7 +1907,8 @@
         "Y": 178,
         "StreetName": "Aqua Road",
         "MapName": "The Dangerous Cave",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230040420,
@@ -1738,7 +1917,8 @@
         "Y": 178,
         "StreetName": "Aqua Road",
         "MapName": "The Cave of Pianus",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230040200,
@@ -1747,7 +1927,8 @@
         "Y": 14,
         "StreetName": "Aqua Road",
         "MapName": "Dangerous Sea Gorge I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230040300,
@@ -1756,11 +1937,11 @@
         "Y": 84,
         "StreetName": "Aqua Road",
         "MapName": "Dangerous Sea Gorge II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap051",
@@ -1773,7 +1954,8 @@
         "Y": 125,
         "StreetName": "Tera Forest  ",
         "MapName": "Tera Forest Time Gate",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070100,
@@ -1782,7 +1964,8 @@
         "Y": 91,
         "StreetName": "Neo City",
         "MapName": "<Year 2021> Average Town Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070200,
@@ -1791,7 +1974,8 @@
         "Y": 74,
         "StreetName": "Neo City",
         "MapName": "<Year 2099> Midnight Harbor Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070300,
@@ -1800,7 +1984,8 @@
         "Y": -55,
         "StreetName": "Neo City",
         "MapName": "<Year 2215> Bombed City Center Retail District",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070400,
@@ -1809,7 +1994,8 @@
         "Y": -28,
         "StreetName": "Neo City",
         "MapName": "<Year 2216> Ruined City Intersection",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070500,
@@ -1818,7 +2004,8 @@
         "Y": -98,
         "StreetName": "Neo City",
         "MapName": "<Year 2230> Dangerous Tower Lobby",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070600,
@@ -1827,7 +2014,8 @@
         "Y": -140,
         "StreetName": "Neo City",
         "MapName": "<Year 2503> Air Battleship Bow",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070010,
@@ -1836,11 +2024,11 @@
         "Y": 198,
         "StreetName": "Tera Forest  ",
         "MapName": "Old Tree in Tera Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap090",
@@ -1853,7 +2041,8 @@
         "Y": 45,
         "StreetName": "Empress' Road",
         "MapName": "Ereve",
-        "Description": "The Island of Empress Cygnus. It usually floats all over Maple World but it is currently stationary."
+        "Description": "The Island of Empress Cygnus. It usually floats all over Maple World but it is currently stationary.",
+        "Paths": []
       },
       {
         "MapId": 130000100,
@@ -1862,7 +2051,8 @@
         "Y": 13,
         "StreetName": "Empress' Road",
         "MapName": "Knights Chamber",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130000200,
@@ -1871,7 +2061,8 @@
         "Y": -20,
         "StreetName": "Empress' Road",
         "MapName": "Crossroads of Ereve",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130000210,
@@ -1880,7 +2071,8 @@
         "Y": -113,
         "StreetName": "Empress' Road",
         "MapName": "Sky Ferry ",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010000,
@@ -1889,7 +2081,8 @@
         "Y": -30,
         "StreetName": "Empress' Road",
         "MapName": "Training Forest I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010010,
@@ -1898,7 +2091,8 @@
         "Y": -69,
         "StreetName": "Empress' Road",
         "MapName": "Tino's Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010020,
@@ -1907,7 +2101,8 @@
         "Y": -2,
         "StreetName": "Empress' Road",
         "MapName": "Tiv's Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010100,
@@ -1916,7 +2111,8 @@
         "Y": -52,
         "StreetName": "Empress' Road",
         "MapName": "Training Forest II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010110,
@@ -1925,7 +2121,8 @@
         "Y": -75,
         "StreetName": "Empress' Road",
         "MapName": "Timu's Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010120,
@@ -1934,7 +2131,8 @@
         "Y": -26,
         "StreetName": "Empress' Road",
         "MapName": "Tiru's Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010200,
@@ -1943,7 +2141,8 @@
         "Y": -69,
         "StreetName": "Empress' Road",
         "MapName": "Training Forest III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010210,
@@ -1952,7 +2151,8 @@
         "Y": -94,
         "StreetName": "Empress' Road",
         "MapName": "Tiguru's Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130010220,
@@ -1961,7 +2161,8 @@
         "Y": -40,
         "StreetName": "Empress' Road",
         "MapName": "Kiridu's Hatchery ",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130020000,
@@ -1970,7 +2171,8 @@
         "Y": -77,
         "StreetName": "Empress' Road",
         "MapName": "Entrance to the Drill Hall",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130030000,
@@ -1979,7 +2181,8 @@
         "Y": 122,
         "StreetName": "Empress's Road",
         "MapName": "Forest of Beginning 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130030005,
@@ -1988,7 +2191,8 @@
         "Y": 104,
         "StreetName": "Empress's Road",
         "MapName": "A path out of the Forest of Beginning",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 130030006,
@@ -1997,11 +2201,11 @@
         "Y": 78,
         "StreetName": "Empress's Road",
         "MapName": "Small Bridge",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap030",
@@ -2014,7 +2218,8 @@
         "Y": -114,
         "StreetName": "Ludibrium",
         "MapName": "Ludibrium",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010000,
@@ -2023,7 +2228,8 @@
         "Y": -71,
         "StreetName": "Ludibrium",
         "MapName": "Cloud Terrace<5>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010100,
@@ -2032,7 +2238,8 @@
         "Y": -60,
         "StreetName": "Ludibrium",
         "MapName": "Cloud Terrace<4>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010200,
@@ -2041,7 +2248,8 @@
         "Y": -54,
         "StreetName": "Ludibrium",
         "MapName": "Cloud Terrace<3>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010300,
@@ -2050,7 +2258,8 @@
         "Y": -49,
         "StreetName": "Ludibrium",
         "MapName": "Cloud Terrace<2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010400,
@@ -2059,7 +2268,8 @@
         "Y": -47,
         "StreetName": "Ludibrium",
         "MapName": "Cloud Terrace<1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010500,
@@ -2068,7 +2278,8 @@
         "Y": -47,
         "StreetName": "Ludibrium",
         "MapName": "Terrace Hall",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010600,
@@ -2077,7 +2288,8 @@
         "Y": -47,
         "StreetName": "Ludibrium",
         "MapName": "Sky Terrace<1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010700,
@@ -2086,7 +2298,8 @@
         "Y": -50,
         "StreetName": "Ludibrium",
         "MapName": "Sky Terrace<2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010800,
@@ -2095,7 +2308,8 @@
         "Y": -54,
         "StreetName": "Ludibrium",
         "MapName": "Sky Terrace<3>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220010900,
@@ -2104,7 +2318,8 @@
         "Y": -61,
         "StreetName": "Ludibrium",
         "MapName": "Sky Terrace<4>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220011000,
@@ -2113,7 +2328,8 @@
         "Y": -72,
         "StreetName": "Ludibrium",
         "MapName": "Sky Terrace<5>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220020000,
@@ -2122,7 +2338,8 @@
         "Y": -38,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 1> Zone 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220020100,
@@ -2131,7 +2348,8 @@
         "Y": -27,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 1> Zone 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220020200,
@@ -2140,7 +2358,8 @@
         "Y": -22,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 1> Zone 3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220020300,
@@ -2149,7 +2368,8 @@
         "Y": -20,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Main Process 1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220020400,
@@ -2158,7 +2378,8 @@
         "Y": -21,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 1> Zone 5",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220020500,
@@ -2167,7 +2388,8 @@
         "Y": -27,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 1> Zone 6",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220020600,
@@ -2176,7 +2398,8 @@
         "Y": -39,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Aparatus Room>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220030000,
@@ -2185,7 +2408,8 @@
         "Y": -6,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 2> Zone 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220030100,
@@ -2194,7 +2418,8 @@
         "Y": 4,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 2> Zone 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220030200,
@@ -2203,7 +2428,8 @@
         "Y": 7,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Main Process 2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220030300,
@@ -2212,7 +2438,8 @@
         "Y": 4,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 2> Zone 3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220030400,
@@ -2221,7 +2448,8 @@
         "Y": -5,
         "StreetName": "Ludibrium",
         "MapName": "Toy Factory <Process 2> Zone 4",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220040000,
@@ -2230,7 +2458,8 @@
         "Y": 19,
         "StreetName": "Ludibrium",
         "MapName": "The Path of Time <1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220040100,
@@ -2239,7 +2468,8 @@
         "Y": 29,
         "StreetName": "Ludibrium",
         "MapName": "The Path of Time <2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220040200,
@@ -2248,7 +2478,8 @@
         "Y": 32,
         "StreetName": "Ludibrium",
         "MapName": "Crossroad of Time",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220040300,
@@ -2257,7 +2488,8 @@
         "Y": 29,
         "StreetName": "Ludibrium",
         "MapName": "The Path of Time <3>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220040400,
@@ -2266,7 +2498,8 @@
         "Y": 21,
         "StreetName": "Ludibrium",
         "MapName": "The Path of Time <4>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220050000,
@@ -2275,7 +2508,8 @@
         "Y": 53,
         "StreetName": "Ludibrium",
         "MapName": "Lost Time <1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220050100,
@@ -2284,7 +2518,8 @@
         "Y": 56,
         "StreetName": "Ludibrium",
         "MapName": "Whirlpool of Time",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220050200,
@@ -2293,7 +2528,8 @@
         "Y": 52,
         "StreetName": "Ludibrium",
         "MapName": "Lost Time <2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220050300,
@@ -2302,7 +2538,8 @@
         "Y": 84,
         "StreetName": "Ludibrium",
         "MapName": "Path of Time",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221000000,
@@ -2311,7 +2548,8 @@
         "Y": 100,
         "StreetName": "Omega Sector",
         "MapName": "Omega Sector",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221030000,
@@ -2320,7 +2558,8 @@
         "Y": 130,
         "StreetName": "Omega Sector",
         "MapName": "Off-Limits",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221030100,
@@ -2329,7 +2568,8 @@
         "Y": 149,
         "StreetName": "Omega Sector",
         "MapName": "Boswell Field I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221030200,
@@ -2338,7 +2578,8 @@
         "Y": 147,
         "StreetName": "Omega Sector",
         "MapName": "Boswell Field II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221030300,
@@ -2347,7 +2588,8 @@
         "Y": 147,
         "StreetName": "Omega Sector",
         "MapName": "Boswell Field III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221030400,
@@ -2356,7 +2598,8 @@
         "Y": 151,
         "StreetName": "Omega Sector",
         "MapName": "Boswell Field IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221030500,
@@ -2365,7 +2608,8 @@
         "Y": 147,
         "StreetName": "Omega Sector",
         "MapName": "Boswell Field V",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221030600,
@@ -2374,7 +2618,8 @@
         "Y": 127,
         "StreetName": "Omega Sector",
         "MapName": "Boswell Field VI",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221040000,
@@ -2383,7 +2628,8 @@
         "Y": 127,
         "StreetName": "Omega Sector",
         "MapName": "Kulan Field I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221040100,
@@ -2392,7 +2638,8 @@
         "Y": 112,
         "StreetName": "Omega Sector",
         "MapName": "Kulan Field II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221040200,
@@ -2401,7 +2648,8 @@
         "Y": 91,
         "StreetName": "Omega Sector",
         "MapName": "Kulan Field III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221040300,
@@ -2410,7 +2658,8 @@
         "Y": 74,
         "StreetName": "Omega Sector",
         "MapName": "Kulan Field IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221040400,
@@ -2419,7 +2668,8 @@
         "Y": 74,
         "StreetName": "Omega Sector",
         "MapName": "Kulan Field V",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222000000,
@@ -2428,7 +2678,8 @@
         "Y": 96,
         "StreetName": "Korean Folk Town",
         "MapName": "Korean Folk Town",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010000,
@@ -2437,7 +2688,8 @@
         "Y": 100,
         "StreetName": "Korean Folk Town",
         "MapName": "Entrance to Black Mountain",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010001,
@@ -2446,7 +2698,8 @@
         "Y": 128,
         "StreetName": "Korean Folk Town",
         "MapName": "Black Mountain <Corner>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010002,
@@ -2455,7 +2708,8 @@
         "Y": 142,
         "StreetName": "Korean Folk Town",
         "MapName": "A Small Well",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010100,
@@ -2464,7 +2718,8 @@
         "Y": 86,
         "StreetName": "Korean Folk Town",
         "MapName": "Around the Pond",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010101,
@@ -2473,7 +2728,8 @@
         "Y": 116,
         "StreetName": "Korean Folk Town",
         "MapName": "Tiger Forest I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010102,
@@ -2482,7 +2738,8 @@
         "Y": 152,
         "StreetName": "Korean Folk Town",
         "MapName": "Tiger Forest II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010200,
@@ -2491,7 +2748,8 @@
         "Y": 90,
         "StreetName": "Korean Folk Town",
         "MapName": "Tiger Ridge",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010201,
@@ -2500,7 +2758,8 @@
         "Y": 122,
         "StreetName": "Korean Folk Town",
         "MapName": "Black Mountain <Valley>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010300,
@@ -2509,7 +2768,8 @@
         "Y": 101,
         "StreetName": "Korean Folk Town",
         "MapName": "Fox Ridge",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222010400,
@@ -2518,7 +2778,8 @@
         "Y": 127,
         "StreetName": "Korean Folk Town",
         "MapName": "Top of Black Mountain",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222020300,
@@ -2527,7 +2788,8 @@
         "Y": -106,
         "StreetName": "Ludibrium",
         "MapName": "Helios Tower (100th Floor)",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222020200,
@@ -2536,7 +2798,8 @@
         "Y": -63,
         "StreetName": "Ludibrium",
         "MapName": "Helios Tower <99th Floor>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222020100,
@@ -2545,7 +2808,8 @@
         "Y": 14,
         "StreetName": "Ludibrium",
         "MapName": "Helios Tower <2nd Floor>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222020000,
@@ -2554,7 +2818,8 @@
         "Y": 66,
         "StreetName": "Ludibrium",
         "MapName": "Helios Tower <Library>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221024400,
@@ -2563,7 +2828,8 @@
         "Y": -108,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower 100th Floor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221024300,
@@ -2572,7 +2838,8 @@
         "Y": -76,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower 99th Floor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221023400,
@@ -2581,7 +2848,15 @@
         "Y": -51,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower 76th ~ 90th Floor",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap030_path_63.png",
+            "OriginX": 221,
+            "OriginY": 98,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 221022800,
@@ -2590,7 +2865,8 @@
         "Y": -27,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower 61st ~ 70th Floor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221022200,
@@ -2599,7 +2875,8 @@
         "Y": 4,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower 46th ~ 55th Floor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221021600,
@@ -2608,7 +2885,8 @@
         "Y": 29,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower 26th ~ 40th Floor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 221021000,
@@ -2617,7 +2895,8 @@
         "Y": 71,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower 11th ~ 20th Floor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220000300,
@@ -2626,7 +2905,8 @@
         "Y": -115,
         "StreetName": "Ludibrium",
         "MapName": "Ludibrium Village",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220000400,
@@ -2635,7 +2915,8 @@
         "Y": -113,
         "StreetName": "Ludibrium",
         "MapName": "Eos Tower Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220000500,
@@ -2644,7 +2925,8 @@
         "Y": -113,
         "StreetName": "Ludibrium",
         "MapName": "Helios Tower Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220000100,
@@ -2653,7 +2935,8 @@
         "Y": -126,
         "StreetName": "Ludibrium",
         "MapName": "Ludibrium Ticketing Place",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
     "Links": [
@@ -2664,14 +2947,6 @@
         "OriginX": 76,
         "OriginY": -49,
         "Z": 1
-      }
-    ],
-    "Paths": [
-      {
-        "Image": "WorldMap030_path_63.png",
-        "OriginX": 221,
-        "OriginY": 98,
-        "Z": 2
       }
     ]
   },
@@ -2686,7 +2961,8 @@
         "Y": -95,
         "StreetName": "Dungeon",
         "MapName": "Sleepywood",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 107000500,
@@ -2695,7 +2971,8 @@
         "Y": -154,
         "StreetName": "Dungeon",
         "MapName": "Damp Tree-Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105030000,
@@ -2704,7 +2981,8 @@
         "Y": -141,
         "StreetName": "Dungeon",
         "MapName": "Deep Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105040000,
@@ -2713,7 +2991,8 @@
         "Y": -117,
         "StreetName": "Dungeon",
         "MapName": "Swampy Land in a Deep Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105040100,
@@ -2722,7 +3001,8 @@
         "Y": -73,
         "StreetName": "Dungeon",
         "MapName": "Hunting Ground in the Deep Forest I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105040200,
@@ -2731,7 +3011,8 @@
         "Y": -47,
         "StreetName": "Dungeon",
         "MapName": "Hunting Ground in the Deep Forest II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105040301,
@@ -2740,7 +3021,8 @@
         "Y": -51,
         "StreetName": "Dungeon",
         "MapName": "Sleepy Dungeon I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105040302,
@@ -2749,7 +3031,8 @@
         "Y": -33,
         "StreetName": "Dungeon",
         "MapName": "Sleepy Dungeon II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105040303,
@@ -2758,7 +3041,8 @@
         "Y": -11,
         "StreetName": "Dungeon",
         "MapName": "Sleepy Dungeon III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105040304,
@@ -2767,7 +3051,15 @@
         "Y": 68,
         "StreetName": "Dungeon",
         "MapName": "Sleepy Dungeon IV",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap012_path_9.png",
+            "OriginX": 226,
+            "OriginY": -22,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 105040305,
@@ -2776,7 +3068,8 @@
         "Y": 103,
         "StreetName": "Dungeon",
         "MapName": "Sleepy Dungeon V",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105050000,
@@ -2785,7 +3078,8 @@
         "Y": 7,
         "StreetName": "Dungeon",
         "MapName": "Ant Tunnel I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105050100,
@@ -2794,7 +3088,15 @@
         "Y": 19,
         "StreetName": "Dungeon",
         "MapName": "Ant Tunnel II",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap012_path_12.png",
+            "OriginX": 86,
+            "OriginY": 22,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 105050200,
@@ -2803,7 +3105,8 @@
         "Y": 35,
         "StreetName": "Dungeon",
         "MapName": "Ant Tunnel III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105050300,
@@ -2812,7 +3115,8 @@
         "Y": 52,
         "StreetName": "Dungeon",
         "MapName": "Ant Tunnel IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105050400,
@@ -2821,7 +3125,8 @@
         "Y": 70,
         "StreetName": "Dungeon",
         "MapName": "Dark Cave",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105060000,
@@ -2830,7 +3135,8 @@
         "Y": 86,
         "StreetName": "Dungeon",
         "MapName": "Dangerous Steam",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105060100,
@@ -2839,7 +3145,8 @@
         "Y": 103,
         "StreetName": "Dungeon",
         "MapName": "Deep Ant Tunnel I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105070000,
@@ -2848,7 +3155,8 @@
         "Y": 120,
         "StreetName": "Dungeon",
         "MapName": "Deep Ant Tunnel II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105070001,
@@ -2857,7 +3165,8 @@
         "Y": 127,
         "StreetName": "Dungeon",
         "MapName": "Ant Tunnel Park",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105070100,
@@ -2866,7 +3175,8 @@
         "Y": 125,
         "StreetName": "Dungeon",
         "MapName": "The Cave of Evil Eye I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105070200,
@@ -2875,7 +3185,8 @@
         "Y": 132,
         "StreetName": "Dungeon",
         "MapName": "The Cave of Evil Eye II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105070300,
@@ -2884,7 +3195,8 @@
         "Y": 140,
         "StreetName": "Dungeon",
         "MapName": "The Cave of Evil Eye III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105070400,
@@ -2893,7 +3205,8 @@
         "Y": 139,
         "StreetName": "Dungeon",
         "MapName": "The Cave of Evil Eye IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105080000,
@@ -2902,7 +3215,8 @@
         "Y": 120,
         "StreetName": "Dungeon",
         "MapName": "Drake Hunting Ground",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090000,
@@ -2911,7 +3225,8 @@
         "Y": 104,
         "StreetName": "Dungeon",
         "MapName": "The Tunnel That Lost Light I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090100,
@@ -2920,7 +3235,8 @@
         "Y": 87,
         "StreetName": "Dungeon",
         "MapName": "The Tunnel That Lost Light II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090200,
@@ -2929,7 +3245,8 @@
         "Y": 74,
         "StreetName": "Dungeon",
         "MapName": "Another Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090300,
@@ -2938,7 +3255,8 @@
         "Y": 46,
         "StreetName": "Dungeon",
         "MapName": "Drake's Meal Table",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090301,
@@ -2947,7 +3265,8 @@
         "Y": 13,
         "StreetName": "Dungeon",
         "MapName": "Wild Cargo's Area",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090310,
@@ -2956,7 +3275,8 @@
         "Y": 39,
         "StreetName": "Dungeon",
         "MapName": "Drake Area",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090311,
@@ -2965,7 +3285,15 @@
         "Y": 18,
         "StreetName": "Dungeon",
         "MapName": "Cold Cradle",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap012_path_31.png",
+            "OriginX": -169,
+            "OriginY": 17,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 105090312,
@@ -2974,7 +3302,8 @@
         "Y": -7,
         "StreetName": "Dungeon",
         "MapName": "Drake's Nest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090400,
@@ -2983,7 +3312,8 @@
         "Y": 76,
         "StreetName": "Dungeon",
         "MapName": "Another Path",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090500,
@@ -2992,7 +3322,8 @@
         "Y": 62,
         "StreetName": "Dungeon",
         "MapName": "Sanctuary Entrance I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090600,
@@ -3001,7 +3332,8 @@
         "Y": 40,
         "StreetName": "Dungeon",
         "MapName": "Sanctuary Entrance II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090700,
@@ -3010,7 +3342,8 @@
         "Y": 16,
         "StreetName": "Dungeon",
         "MapName": "Sanctuary Entrance III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090800,
@@ -3019,7 +3352,8 @@
         "Y": -5,
         "StreetName": "Dungeon",
         "MapName": "Sanctuary Entrance IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 105090900,
@@ -3028,30 +3362,11 @@
         "Y": -23,
         "StreetName": "Dungeon",
         "MapName": "The Cursed Sanctuary",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": [
-      {
-        "Image": "WorldMap012_path_9.png",
-        "OriginX": 226,
-        "OriginY": -22,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap012_path_12.png",
-        "OriginX": 86,
-        "OriginY": 22,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap012_path_31.png",
-        "OriginX": -169,
-        "OriginY": 17,
-        "Z": 2
-      }
-    ]
+    "Links": []
   },
   {
     "Name": "WorldMap",
@@ -3064,7 +3379,15 @@
         "Y": -169,
         "StreetName": "Maple Road",
         "MapName": "Entrance - Mushroom Town Training Camp",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap_path_0.png",
+            "OriginX": 279,
+            "OriginY": 180,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 100000000,
@@ -3073,7 +3396,8 @@
         "Y": -67,
         "StreetName": "Victoria Road",
         "MapName": "Henesys",
-        "Description": "It's a bowman town on a wide prairie, and you can choose to become a bowman here."
+        "Description": "It's a bowman town on a wide prairie, and you can choose to become a bowman here.",
+        "Paths": []
       },
       {
         "MapId": 101000000,
@@ -3082,7 +3406,15 @@
         "Y": -93,
         "StreetName": "Victoria Road",
         "MapName": "Ellinia",
-        "Description": "It's a magician town surrounded by the forest, and you can choose to become a magician here."
+        "Description": "It's a magician town surrounded by the forest, and you can choose to become a magician here.",
+        "Paths": [
+          {
+            "Image": "WorldMap_path_2.png",
+            "OriginX": 214,
+            "OriginY": 132,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 102000000,
@@ -3091,7 +3423,8 @@
         "Y": -124,
         "StreetName": "Victoria Road",
         "MapName": "Perion",
-        "Description": "It's a warrior town located at the high mountainous area, and you can choose to become a warrior here."
+        "Description": "It's a warrior town located at the high mountainous area, and you can choose to become a warrior here.",
+        "Paths": []
       },
       {
         "MapId": 103000000,
@@ -3100,7 +3433,8 @@
         "Y": -99,
         "StreetName": "Victoria Road",
         "MapName": "Kerning City",
-        "Description": "It's a thief town in the middle of the city where the sun sets. You can choose to become a thief here."
+        "Description": "It's a thief town in the middle of the city where the sun sets. You can choose to become a thief here.",
+        "Paths": []
       },
       {
         "MapId": 104000000,
@@ -3109,7 +3443,15 @@
         "Y": -64,
         "StreetName": "Victoria Road",
         "MapName": "Lith Harbor",
-        "Description": "The port city in Victoria Island. Enables one to travel to different cities."
+        "Description": "The port city in Victoria Island. Enables one to travel to different cities.",
+        "Paths": [
+          {
+            "Image": "WorldMap_path_5.png",
+            "OriginX": 279,
+            "OriginY": 75,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 105040300,
@@ -3118,7 +3460,8 @@
         "Y": -95,
         "StreetName": "Dungeon",
         "MapName": "Sleepywood",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 110000000,
@@ -3127,7 +3470,8 @@
         "Y": -71,
         "StreetName": "Florina Road",
         "MapName": "Florina Beach",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 230000000,
@@ -3136,7 +3480,8 @@
         "Y": -61,
         "StreetName": "Aquarium",
         "MapName": "Aquarium",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200000000,
@@ -3145,7 +3490,15 @@
         "Y": -86,
         "StreetName": "Orbis",
         "MapName": "Orbis",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap_path_9.png",
+            "OriginX": 214,
+            "OriginY": 132,
+            "Z": 3
+          }
+        ]
       },
       {
         "MapId": 211000000,
@@ -3154,7 +3507,8 @@
         "Y": -28,
         "StreetName": "El Nath",
         "MapName": "El Nath",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 220000000,
@@ -3163,7 +3517,15 @@
         "Y": 7,
         "StreetName": "Ludibrium",
         "MapName": "Ludibrium",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap_path_11.png",
+            "OriginX": 61,
+            "OriginY": 103,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 221000000,
@@ -3172,7 +3534,8 @@
         "Y": 41,
         "StreetName": "Omega Sector",
         "MapName": "Omega Sector",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 222000000,
@@ -3181,7 +3544,8 @@
         "Y": 41,
         "StreetName": "Korean Folk Town",
         "MapName": "Korean Folk Town",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240000000,
@@ -3190,7 +3554,15 @@
         "Y": 169,
         "StreetName": "Leafre",
         "MapName": "Leafre",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap_path_14.png",
+            "OriginX": 279,
+            "OriginY": 95,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 250000000,
@@ -3199,7 +3571,15 @@
         "Y": 27,
         "StreetName": "Mu Lung",
         "MapName": "Mu Lung",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap_path_15.png",
+            "OriginX": 25,
+            "OriginY": 126,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 251000000,
@@ -3208,7 +3588,8 @@
         "Y": 125,
         "StreetName": "Herb Town",
         "MapName": "Herb Town",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260000000,
@@ -3217,7 +3598,15 @@
         "Y": 175,
         "StreetName": "The Burning Road",
         "MapName": "Ariant",
-        "Description": "A town centered around a legendary Oasis in the middle of the desert. The King and Queen recently constructed a Coliseum where competitive warriors can show their skills..."
+        "Description": "A town centered around a legendary Oasis in the middle of the desert. The King and Queen recently constructed a Coliseum where competitive warriors can show their skills...",
+        "Paths": [
+          {
+            "Image": "WorldMap_path_17.png",
+            "OriginX": 25,
+            "OriginY": 95,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 261000000,
@@ -3226,7 +3615,8 @@
         "Y": 111,
         "StreetName": "Sunset Road",
         "MapName": "Magatia",
-        "Description": "A desert town whose culture revolves around the study of Alchemy. Two alchemist societies, Zenumist and Alcadno, are in conflict."
+        "Description": "A desert town whose culture revolves around the study of Alchemy. Two alchemist societies, Zenumist and Alcadno, are in conflict.",
+        "Paths": []
       },
       {
         "MapId": 120000000,
@@ -3235,7 +3625,8 @@
         "Y": -52,
         "StreetName": "Victoria Road",
         "MapName": "Nautilus Harbor",
-        "Description": "The harbor where Nautilus is at anchor. One will be able to become a dauntless pirate here. "
+        "Description": "The harbor where Nautilus is at anchor. One will be able to become a dauntless pirate here. ",
+        "Paths": []
       },
       {
         "MapId": 270000100,
@@ -3244,7 +3635,15 @@
         "Y": 121,
         "StreetName": "Time Lane",
         "MapName": "Temple of Time",
-        "Description": "It's the Temple where the Goddess of Time resides.  The past, present and future all exist in this place. "
+        "Description": "It's the Temple where the Goddess of Time resides.  The past, present and future all exist in this place. ",
+        "Paths": [
+          {
+            "Image": "WorldMap_path_20.png",
+            "OriginX": 279,
+            "OriginY": -110,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 130000000,
@@ -3253,7 +3652,15 @@
         "Y": -136,
         "StreetName": "Empress' Road",
         "MapName": "Ereve",
-        "Description": "The Island of Empress Cygnus. It usually floats all over Maple World but it is currently stationary."
+        "Description": "The Island of Empress Cygnus. It usually floats all over Maple World but it is currently stationary.",
+        "Paths": [
+          {
+            "Image": "WorldMap_path_21.png",
+            "OriginX": 214,
+            "OriginY": 146,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 140000000,
@@ -3262,7 +3669,15 @@
         "Y": 10,
         "StreetName": "Snow Island",
         "MapName": "Rien",
-        "Description": "A tiny island that is covered in snow and ice."
+        "Description": "A tiny island that is covered in snow and ice.",
+        "Paths": [
+          {
+            "Image": "WorldMap_path_22.png",
+            "OriginX": 279,
+            "OriginY": 75,
+            "Z": 2
+          }
+        ]
       }
     ],
     "Links": [
@@ -3354,74 +3769,6 @@
         "OriginY": 44,
         "Z": 1
       }
-    ],
-    "Paths": [
-      {
-        "Image": "WorldMap_path_0.png",
-        "OriginX": 279,
-        "OriginY": 180,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_2.png",
-        "OriginX": 214,
-        "OriginY": 132,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_5.png",
-        "OriginX": 279,
-        "OriginY": 75,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_9.png",
-        "OriginX": 214,
-        "OriginY": 132,
-        "Z": 3
-      },
-      {
-        "Image": "WorldMap_path_11.png",
-        "OriginX": 61,
-        "OriginY": 103,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_14.png",
-        "OriginX": 279,
-        "OriginY": 95,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_15.png",
-        "OriginX": 25,
-        "OriginY": 126,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_17.png",
-        "OriginX": 25,
-        "OriginY": 95,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_20.png",
-        "OriginX": 279,
-        "OriginY": -110,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_21.png",
-        "OriginX": 214,
-        "OriginY": 146,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap_path_22.png",
-        "OriginX": 279,
-        "OriginY": 75,
-        "Z": 2
-      }
     ]
   },
   {
@@ -3435,7 +3782,8 @@
         "Y": -160,
         "StreetName": "Leafre",
         "MapName": "Leafre",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010000,
@@ -3444,7 +3792,8 @@
         "Y": -135,
         "StreetName": "Leafre",
         "MapName": "West Leafre Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010100,
@@ -3453,7 +3802,8 @@
         "Y": -62,
         "StreetName": "Leafre",
         "MapName": "Minar Forest : West Border",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010200,
@@ -3462,7 +3812,8 @@
         "Y": 3,
         "StreetName": "Leafre",
         "MapName": "Cranky Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010300,
@@ -3471,7 +3822,8 @@
         "Y": 62,
         "StreetName": "Leafre",
         "MapName": "Steep Hill",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010400,
@@ -3480,7 +3832,8 @@
         "Y": 119,
         "StreetName": "Leafre",
         "MapName": "Forest : Crossroad",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010500,
@@ -3489,7 +3842,8 @@
         "Y": 159,
         "StreetName": "Leafre",
         "MapName": "Valley of the Antelope",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010600,
@@ -3498,7 +3852,8 @@
         "Y": 163,
         "StreetName": "Leafre",
         "MapName": "Sky Nest II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010700,
@@ -3507,7 +3862,8 @@
         "Y": 108,
         "StreetName": "Leafre",
         "MapName": "Sky Nest I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010800,
@@ -3516,7 +3872,8 @@
         "Y": -2,
         "StreetName": "Leafre",
         "MapName": "Entrance to Sky Nest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240010900,
@@ -3525,7 +3882,8 @@
         "Y": -69,
         "StreetName": "Leafre",
         "MapName": "Minar Forest : East Border",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240011000,
@@ -3534,7 +3892,8 @@
         "Y": -127,
         "StreetName": "Leafre",
         "MapName": "Leafre : East Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020000,
@@ -3543,7 +3902,8 @@
         "Y": -25,
         "StreetName": "Leafre",
         "MapName": "The Area of Red Kentaurus",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020100,
@@ -3552,7 +3912,8 @@
         "Y": 76,
         "StreetName": "Leafre",
         "MapName": "Battlefield of Fire and Darkness",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020101,
@@ -3561,7 +3922,8 @@
         "Y": 45,
         "StreetName": "Leafre",
         "MapName": "Griffey Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020200,
@@ -3570,7 +3932,8 @@
         "Y": 103,
         "StreetName": "Leafre",
         "MapName": "The Area of Black Kentaurus",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020300,
@@ -3579,7 +3942,8 @@
         "Y": 28,
         "StreetName": "Leafre",
         "MapName": "Battlefield of Water and Darkness",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020400,
@@ -3588,7 +3952,8 @@
         "Y": -52,
         "StreetName": "Leafre",
         "MapName": "The Area of Blue Kentaurus",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020401,
@@ -3597,7 +3962,8 @@
         "Y": -25,
         "StreetName": "Leafre",
         "MapName": "Manon's Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240020500,
@@ -3606,7 +3972,15 @@
         "Y": -80,
         "StreetName": "Leafre",
         "MapName": "Battlefield of Fire and Water",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap050_path_19.png",
+            "OriginX": -136,
+            "OriginY": 128,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 240030000,
@@ -3615,7 +3989,8 @@
         "Y": 142,
         "StreetName": "Leafre",
         "MapName": "Entrance to Dragon Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240030100,
@@ -3624,7 +3999,8 @@
         "Y": 167,
         "StreetName": "Leafre",
         "MapName": "Dragon Forest I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240030101,
@@ -3633,7 +4009,8 @@
         "Y": 132,
         "StreetName": "Leafre",
         "MapName": "The Burning Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240030102,
@@ -3642,7 +4019,8 @@
         "Y": 182,
         "StreetName": "Leafre",
         "MapName": "The Forest That Disappeared",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240030200,
@@ -3651,7 +4029,8 @@
         "Y": 169,
         "StreetName": "Leafre",
         "MapName": "Dragon Forest II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240030300,
@@ -3660,7 +4039,8 @@
         "Y": 161,
         "StreetName": "Leafre",
         "MapName": "Dragon Forest III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040000,
@@ -3669,7 +4049,8 @@
         "Y": 149,
         "StreetName": "Leafre",
         "MapName": "The Dragon Canyon",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040100,
@@ -3678,7 +4059,8 @@
         "Y": 149,
         "StreetName": "Leafre",
         "MapName": "Canyon : Crossroad",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040200,
@@ -3687,7 +4069,8 @@
         "Y": 92,
         "StreetName": "Leafre",
         "MapName": "Canyon : East Road",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040300,
@@ -3696,7 +4079,8 @@
         "Y": 188,
         "StreetName": "Leafre",
         "MapName": "Canyon : West Road",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040400,
@@ -3705,7 +4089,8 @@
         "Y": 138,
         "StreetName": "Leafre",
         "MapName": "Wyvern Canyon",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040500,
@@ -3714,7 +4099,8 @@
         "Y": 45,
         "StreetName": "Leafre",
         "MapName": "Entrance to Dragon Nest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040510,
@@ -3723,7 +4109,8 @@
         "Y": -41,
         "StreetName": "Leafre",
         "MapName": "Nest of a Dead Dragon",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040511,
@@ -3732,7 +4119,15 @@
         "Y": -68,
         "StreetName": "Leafre",
         "MapName": "The Dragon Nest Left Behind",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap050_path_33.png",
+            "OriginX": 146,
+            "OriginY": 108,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 240040520,
@@ -3741,7 +4136,15 @@
         "Y": 49,
         "StreetName": "Leafre",
         "MapName": "Destroyed Dragon Nest",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap050_path_34.png",
+            "OriginX": 180,
+            "OriginY": -6,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 240040521,
@@ -3750,7 +4153,8 @@
         "Y": 36,
         "StreetName": "Leafre",
         "MapName": "Dangerous Dragon Nest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040600,
@@ -3759,7 +4163,8 @@
         "Y": -18,
         "StreetName": "Leafre",
         "MapName": "Peak of the Big Nest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240040700,
@@ -3768,7 +4173,8 @@
         "Y": -44,
         "StreetName": "Leafre",
         "MapName": "Cave of Life - Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240050000,
@@ -3777,7 +4183,8 @@
         "Y": -69,
         "StreetName": "Cave of Life",
         "MapName": "Cave Entrance",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 240070000,
@@ -3786,7 +4193,8 @@
         "Y": -141,
         "StreetName": "Tera Forest  ",
         "MapName": "Tera Forest Time Gate",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
     "Links": [
@@ -3797,26 +4205,6 @@
         "OriginX": -237,
         "OriginY": 221,
         "Z": 1
-      }
-    ],
-    "Paths": [
-      {
-        "Image": "WorldMap050_path_19.png",
-        "OriginX": -136,
-        "OriginY": 128,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap050_path_33.png",
-        "OriginX": 146,
-        "OriginY": 108,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap050_path_34.png",
-        "OriginX": 180,
-        "OriginY": -6,
-        "Z": 2
       }
     ]
   },
@@ -3831,7 +4219,8 @@
         "Y": -80,
         "StreetName": "Maple Road",
         "MapName": "Mushroom Town",
-        "Description": "The town for beginners. Playing the game through simple quests\\r\\nYou'll learn how to move around here."
+        "Description": "The town for beginners. Playing the game through simple quests\\r\\nYou'll learn how to move around here.",
+        "Paths": []
       },
       {
         "MapId": 20000,
@@ -3840,7 +4229,8 @@
         "Y": -89,
         "StreetName": "Maple Road",
         "MapName": "Snail Garden",
-        "Description": "A town specifically for beginners. Simple quests teach the basic controls of the game."
+        "Description": "A town specifically for beginners. Simple quests teach the basic controls of the game.",
+        "Paths": []
       },
       {
         "MapId": 30000,
@@ -3849,7 +4239,8 @@
         "Y": -52,
         "StreetName": "Maple Road",
         "MapName": "Snail Field of Flowers",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 40000,
@@ -3858,7 +4249,8 @@
         "Y": -16,
         "StreetName": "Maple Road",
         "MapName": "In a Small Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 50000,
@@ -3867,7 +4259,8 @@
         "Y": -5,
         "StreetName": "Maple Road",
         "MapName": "Dangerous Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 1000000,
@@ -3876,7 +4269,8 @@
         "Y": -6,
         "StreetName": "Rainbow Street",
         "MapName": "Amherst",
-        "Description": "A town located on the east side of Maple Island. Contains shops that sell weapons, armors, and general goods."
+        "Description": "A town located on the east side of Maple Island. Contains shops that sell weapons, armors, and general goods.",
+        "Paths": []
       },
       {
         "MapId": 1010000,
@@ -3885,7 +4279,8 @@
         "Y": 15,
         "StreetName": "Maple Road",
         "MapName": "Entrance to Adventurer Training Center",
-        "Description": "It's a town located at the east of Maple Island, and it has various stores like weapon store, armor store, and department stores."
+        "Description": "It's a town located at the east of Maple Island, and it has various stores like weapon store, armor store, and department stores.",
+        "Paths": []
       },
       {
         "MapId": 1020000,
@@ -3894,7 +4289,8 @@
         "Y": 37,
         "StreetName": "Maple Road",
         "MapName": "Split Road of Destiny",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 2000000,
@@ -3903,11 +4299,11 @@
         "Y": 74,
         "StreetName": "Maple Road",
         "MapName": "Southperry",
-        "Description": "A port city on the south side of the island. The place where people head over to experience the world outside Maple Island."
+        "Description": "A port city on the south side of the island. The place where people head over to experience the world outside Maple Island.",
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap060",
@@ -3920,7 +4316,8 @@
         "Y": -101,
         "StreetName": "Mu Lung",
         "MapName": "Mu Lung",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010000,
@@ -3929,7 +4326,8 @@
         "Y": -74,
         "StreetName": "Mu Lung",
         "MapName": "Entrance to Sky Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010100,
@@ -3938,7 +4336,8 @@
         "Y": -53,
         "StreetName": "Mu Lung",
         "MapName": "Sky Forest : The Train",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010200,
@@ -3947,7 +4346,8 @@
         "Y": -54,
         "StreetName": "Mu Lung",
         "MapName": "Deep in the Sky Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010300,
@@ -3956,7 +4356,8 @@
         "Y": -68,
         "StreetName": "Mu Lung",
         "MapName": "Snake Area",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010400,
@@ -3965,7 +4366,8 @@
         "Y": -35,
         "StreetName": "Mu Lung",
         "MapName": "Where the Sky Forest Ends",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010500,
@@ -3974,7 +4376,8 @@
         "Y": -25,
         "StreetName": "Mu Lung",
         "MapName": "Peach Farm1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010600,
@@ -3983,7 +4386,8 @@
         "Y": 9,
         "StreetName": "Mu Lung",
         "MapName": "Peach Farm 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010700,
@@ -3992,7 +4396,8 @@
         "Y": 54,
         "StreetName": "Mu Lung",
         "MapName": "Peach Farm 3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250020000,
@@ -4001,7 +4406,8 @@
         "Y": -87,
         "StreetName": "Mu Lung",
         "MapName": "Practice Field : Beginner",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250020100,
@@ -4010,7 +4416,8 @@
         "Y": -55,
         "StreetName": "Mu Lung",
         "MapName": "Practice Field : Easy Level",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250020200,
@@ -4019,7 +4426,8 @@
         "Y": -21,
         "StreetName": "Mu Lung",
         "MapName": "Practice Field : Normal Level",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250020300,
@@ -4028,7 +4436,8 @@
         "Y": 4,
         "StreetName": "Mu Lung",
         "MapName": "Practice Field : Advanced Level",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251000000,
@@ -4037,7 +4446,8 @@
         "Y": 125,
         "StreetName": "Herb Town",
         "MapName": "Herb Town",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010000,
@@ -4046,7 +4456,8 @@
         "Y": 131,
         "StreetName": "Herb Town",
         "MapName": "10-Year-Old Herb Garden",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010100,
@@ -4055,7 +4466,8 @@
         "Y": 111,
         "StreetName": "Herb Town",
         "MapName": "50-Year-Old Herb Garden",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010200,
@@ -4064,7 +4476,8 @@
         "Y": 136,
         "StreetName": "Herb Town",
         "MapName": "100-Year-Old Herb Garden",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010300,
@@ -4073,7 +4486,8 @@
         "Y": 147,
         "StreetName": "Herb Town",
         "MapName": "Bellflower Valley",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010400,
@@ -4082,7 +4496,8 @@
         "Y": 116,
         "StreetName": "Herb Town",
         "MapName": "Old Swamp",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010500,
@@ -4091,7 +4506,8 @@
         "Y": 108,
         "StreetName": "Herb Town",
         "MapName": "Isolated Swamp",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010401,
@@ -4100,7 +4516,8 @@
         "Y": 179,
         "StreetName": "Herb Town",
         "MapName": "Red-Nose Pirate Den 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251010402,
@@ -4109,7 +4526,15 @@
         "Y": 171,
         "StreetName": "Herb Town",
         "MapName": "Red-Nose Pirate Den 2",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap060_path_21.png",
+            "OriginX": 180,
+            "OriginY": -138,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 251010403,
@@ -4118,7 +4543,8 @@
         "Y": 155,
         "StreetName": "Herb Town",
         "MapName": "Red-Nose Pirate Den 3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010301,
@@ -4127,7 +4553,8 @@
         "Y": -87,
         "StreetName": "Mu Lung",
         "MapName": "Wild Bear Area 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010302,
@@ -4136,7 +4563,8 @@
         "Y": -97,
         "StreetName": "Mu Lung",
         "MapName": "Wild Bear Area 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010303,
@@ -4145,7 +4573,8 @@
         "Y": -104,
         "StreetName": "Mu Lung",
         "MapName": "Wild Bear Area 3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010501,
@@ -4154,7 +4583,8 @@
         "Y": -9,
         "StreetName": "Mu Lung",
         "MapName": "Foggy Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010502,
@@ -4163,7 +4593,8 @@
         "Y": 10,
         "StreetName": "Mu Lung",
         "MapName": "Virtuous Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010503,
@@ -4172,7 +4603,8 @@
         "Y": 40,
         "StreetName": "Mu Lung",
         "MapName": "Goblin Forest 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250000100,
@@ -4181,7 +4613,8 @@
         "Y": -101,
         "StreetName": "Mu Lung",
         "MapName": "Mu Lung Temple",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 251000100,
@@ -4190,7 +4623,8 @@
         "Y": 87,
         "StreetName": "Herb Town",
         "MapName": "Pier on the Beach",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 250010304,
@@ -4199,18 +4633,11 @@
         "Y": -119,
         "StreetName": "Mu Lung",
         "MapName": "Territory of Wandering Bear",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": [
-      {
-        "Image": "WorldMap060_path_21.png",
-        "OriginX": 180,
-        "OriginY": -138,
-        "Z": 2
-      }
-    ]
+    "Links": []
   },
   {
     "Name": "WorldMap013",
@@ -4223,7 +4650,8 @@
         "Y": 183,
         "StreetName": "Kerning Square ",
         "MapName": "Kerning Square Lobby",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040100,
@@ -4232,7 +4660,8 @@
         "Y": 62,
         "StreetName": "Kerning Square ",
         "MapName": "1st Floor 2nd Floor Area A",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040101,
@@ -4241,7 +4670,8 @@
         "Y": 89,
         "StreetName": "Kerning Square ",
         "MapName": "1st Floor 2nd Floor Area B",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040102,
@@ -4250,7 +4680,8 @@
         "Y": 62,
         "StreetName": "Kerning Square ",
         "MapName": "1st Floor 2nd Floor Area C",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040103,
@@ -4259,7 +4690,8 @@
         "Y": 36,
         "StreetName": "Kerning Square ",
         "MapName": "1st Floor 2nd Floor Area D",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040200,
@@ -4268,7 +4700,8 @@
         "Y": -30,
         "StreetName": "Kerning Square ",
         "MapName": "3rd Floor 4th Floor Area A",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040201,
@@ -4277,7 +4710,8 @@
         "Y": -6,
         "StreetName": "Kerning Square ",
         "MapName": "3rd Floor 4th Floor Area B",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040202,
@@ -4286,7 +4720,8 @@
         "Y": -31,
         "StreetName": "Kerning Square ",
         "MapName": "3rd Floor 4th Floor Area C",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040203,
@@ -4295,7 +4730,8 @@
         "Y": -62,
         "StreetName": "Kerning Square ",
         "MapName": "3rd Floor 4th Floor Area D",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040300,
@@ -4304,7 +4740,8 @@
         "Y": -128,
         "StreetName": "Kerning Square ",
         "MapName": "5th Floor 6th Floor Area A",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040301,
@@ -4313,7 +4750,8 @@
         "Y": -103,
         "StreetName": "Kerning Square ",
         "MapName": "5th Floor 6th Floor Area B",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040302,
@@ -4322,7 +4760,8 @@
         "Y": -129,
         "StreetName": "Kerning Square ",
         "MapName": "5th Floor 6th Floor Area C",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040303,
@@ -4331,7 +4770,8 @@
         "Y": -155,
         "StreetName": "Kerning Square ",
         "MapName": "5th Floor 6th Floor Area D",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 103040400,
@@ -4340,11 +4780,11 @@
         "Y": -200,
         "StreetName": "Kerning Square ",
         "MapName": "7th Floor 8th Floor Area A",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap021",
@@ -4357,7 +4797,8 @@
         "Y": -124,
         "StreetName": "El Nath",
         "MapName": "Sharp Cliff I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040400,
@@ -4366,7 +4807,8 @@
         "Y": -103,
         "StreetName": "El Nath",
         "MapName": "Sharp Cliff II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040500,
@@ -4375,7 +4817,8 @@
         "Y": -83,
         "StreetName": "El Nath",
         "MapName": "Wolf Territory I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040600,
@@ -4384,7 +4827,8 @@
         "Y": -61,
         "StreetName": "El Nath",
         "MapName": "Wolf Territory II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040700,
@@ -4393,7 +4837,8 @@
         "Y": -29,
         "StreetName": "El Nath",
         "MapName": "Dangerous Cliff",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040800,
@@ -4402,7 +4847,8 @@
         "Y": 11,
         "StreetName": "El Nath",
         "MapName": "Wolf Territory III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040900,
@@ -4411,7 +4857,8 @@
         "Y": 60,
         "StreetName": "El Nath",
         "MapName": "Wolf Territory IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041000,
@@ -4420,7 +4867,8 @@
         "Y": 95,
         "StreetName": "El Nath",
         "MapName": "Wolf Territory V",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041100,
@@ -4429,7 +4877,8 @@
         "Y": 143,
         "StreetName": "El Nath",
         "MapName": "Forest of Dead Trees I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041200,
@@ -4438,7 +4887,8 @@
         "Y": 165,
         "StreetName": "El Nath",
         "MapName": "Forest of Dead Trees II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041300,
@@ -4447,7 +4897,8 @@
         "Y": 196,
         "StreetName": "El Nath",
         "MapName": "Forest of Dead Trees III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041400,
@@ -4456,7 +4907,8 @@
         "Y": 181,
         "StreetName": "El Nath",
         "MapName": "Forest of Dead Trees IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041500,
@@ -4465,7 +4917,8 @@
         "Y": 128,
         "StreetName": "El Nath",
         "MapName": "Dead Mine I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041600,
@@ -4474,7 +4927,8 @@
         "Y": 127,
         "StreetName": "El Nath",
         "MapName": "Dead Mine II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041700,
@@ -4483,7 +4937,8 @@
         "Y": 102,
         "StreetName": "El Nath",
         "MapName": "Dead Mine III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041800,
@@ -4492,7 +4947,8 @@
         "Y": 84,
         "StreetName": "El Nath",
         "MapName": "Dead Mine IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211041900,
@@ -4501,7 +4957,8 @@
         "Y": 50,
         "StreetName": "El Nath",
         "MapName": "The Passage",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211042000,
@@ -4510,7 +4967,8 @@
         "Y": 30,
         "StreetName": "El Nath",
         "MapName": "The Cave of Trial I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211042100,
@@ -4519,7 +4977,8 @@
         "Y": 3,
         "StreetName": "El Nath",
         "MapName": "The Cave of Trial II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211042200,
@@ -4528,7 +4987,8 @@
         "Y": -19,
         "StreetName": "El Nath",
         "MapName": "The Cave of Trial III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211042300,
@@ -4537,7 +4997,8 @@
         "Y": -34,
         "StreetName": "El Nath",
         "MapName": "The Door to Zakum",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211042400,
@@ -4546,7 +5007,8 @@
         "Y": -66,
         "StreetName": "El Nath",
         "MapName": "Entrance to Zakum Altar",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 280030000,
@@ -4555,11 +5017,11 @@
         "Y": -109,
         "StreetName": "Last Mission",
         "MapName": "Zakum's Altar",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap140",
@@ -4572,7 +5034,8 @@
         "Y": 70,
         "StreetName": "Amoria",
         "MapName": "Amoria",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 680010000,
@@ -4581,7 +5044,8 @@
         "Y": 79,
         "StreetName": "Hidden Street",
         "MapName": "Purple Plains 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 680010100,
@@ -4590,7 +5054,8 @@
         "Y": 34,
         "StreetName": "Hidden Street",
         "MapName": "Purple Plains 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 670000100,
@@ -4599,7 +5064,8 @@
         "Y": -25,
         "StreetName": "Hidden Street",
         "MapName": "Purplewood Forest 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 670000200,
@@ -4608,7 +5074,8 @@
         "Y": -87,
         "StreetName": "Hidden Street",
         "MapName": "Purplewood Forest 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 670010000,
@@ -4617,11 +5084,11 @@
         "Y": -121,
         "StreetName": "Hidden Street",
         "MapName": "Amos' Training Ground",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap100",
@@ -4634,7 +5101,8 @@
         "Y": 87,
         "StreetName": "Snow Island",
         "MapName": "Rien",
-        "Description": "A tiny island that is covered in snow and ice."
+        "Description": "A tiny island that is covered in snow and ice.",
+        "Paths": []
       },
       {
         "MapId": 140010000,
@@ -4643,7 +5111,8 @@
         "Y": -8,
         "StreetName": "Snow Island",
         "MapName": "Dangerous Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140010100,
@@ -4652,7 +5121,8 @@
         "Y": -64,
         "StreetName": "Snow Island",
         "MapName": "Dangerous Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140010200,
@@ -4661,7 +5131,8 @@
         "Y": -89,
         "StreetName": "Snow Island",
         "MapName": "Dangerous Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140030000,
@@ -4670,7 +5141,8 @@
         "Y": -111,
         "StreetName": "Snow Island",
         "MapName": "Mirror Cave",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140020000,
@@ -4679,7 +5151,8 @@
         "Y": 67,
         "StreetName": "Snow Island",
         "MapName": "Snow-covered Field 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140020100,
@@ -4688,7 +5161,8 @@
         "Y": 101,
         "StreetName": "Snow Island",
         "MapName": "Snow-covered Field 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140020200,
@@ -4697,7 +5171,8 @@
         "Y": 116,
         "StreetName": "Snow Island",
         "MapName": "Snow-covered Field 3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140020300,
@@ -4706,7 +5181,8 @@
         "Y": 80,
         "StreetName": "Snow Island",
         "MapName": "Dangerous Forest",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 140090000,
@@ -4715,11 +5191,11 @@
         "Y": -30,
         "StreetName": "Snow Island",
         "MapName": "Ice Cave",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap020",
@@ -4732,7 +5208,8 @@
         "Y": -141,
         "StreetName": "Orbis",
         "MapName": "Orbis",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010000,
@@ -4741,7 +5218,8 @@
         "Y": -138,
         "StreetName": "Orbis",
         "MapName": "Cloud Park I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010100,
@@ -4750,7 +5228,8 @@
         "Y": -126,
         "StreetName": "Orbis",
         "MapName": "The Road to Garden of 3 Colors",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010110,
@@ -4759,7 +5238,8 @@
         "Y": -170,
         "StreetName": "Orbis",
         "MapName": "Garden of Red I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010111,
@@ -4768,7 +5248,8 @@
         "Y": -171,
         "StreetName": "Orbis",
         "MapName": "Garden of Red II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010120,
@@ -4777,7 +5258,8 @@
         "Y": -125,
         "StreetName": "Orbis",
         "MapName": "Garden of Yellow I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010121,
@@ -4786,7 +5268,8 @@
         "Y": -125,
         "StreetName": "Orbis",
         "MapName": "Garden of Yellow II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010130,
@@ -4795,7 +5278,8 @@
         "Y": -84,
         "StreetName": "Orbis",
         "MapName": "Garden of Green I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010131,
@@ -4804,7 +5288,8 @@
         "Y": -84,
         "StreetName": "Orbis",
         "MapName": "Garden of Green II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010200,
@@ -4813,7 +5298,8 @@
         "Y": -128,
         "StreetName": "Orbis",
         "MapName": "Stairway to the Sky I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010300,
@@ -4822,7 +5308,8 @@
         "Y": -128,
         "StreetName": "Orbis",
         "MapName": "Stairway to the Sky II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010301,
@@ -4831,7 +5318,8 @@
         "Y": -171,
         "StreetName": "Orbis",
         "MapName": "Garden of Darkness I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200010302,
@@ -4840,7 +5328,8 @@
         "Y": -80,
         "StreetName": "Orbis",
         "MapName": "Garden of Darkness II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200020000,
@@ -4849,7 +5338,8 @@
         "Y": -84,
         "StreetName": "Orbis",
         "MapName": "Cloud Park II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200030000,
@@ -4858,7 +5348,8 @@
         "Y": -38,
         "StreetName": "Orbis",
         "MapName": "Strolling Path",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200040000,
@@ -4867,7 +5358,8 @@
         "Y": -12,
         "StreetName": "Orbis",
         "MapName": "Cloud Park III",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200050000,
@@ -4876,7 +5368,8 @@
         "Y": -8,
         "StreetName": "Orbis",
         "MapName": "Cloud Park IV",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200060000,
@@ -4885,7 +5378,8 @@
         "Y": -7,
         "StreetName": "Orbis",
         "MapName": "Strolling Path II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200070000,
@@ -4894,7 +5388,8 @@
         "Y": -16,
         "StreetName": "Orbis",
         "MapName": "Cloud Park V",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200080000,
@@ -4903,7 +5398,8 @@
         "Y": -34,
         "StreetName": "Orbis",
         "MapName": "Cloud Park VI",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200080100,
@@ -4912,7 +5408,8 @@
         "Y": -74,
         "StreetName": "Orbis",
         "MapName": "Entrance to Orbis Tower",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200080200,
@@ -4921,7 +5418,8 @@
         "Y": 0,
         "StreetName": "Orbis",
         "MapName": "Orbis Tower <20th Floor>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200082200,
@@ -4930,7 +5428,8 @@
         "Y": 126,
         "StreetName": "Orbis",
         "MapName": "Orbis Tower<B1>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200082300,
@@ -4939,7 +5438,8 @@
         "Y": 159,
         "StreetName": "Orbis",
         "MapName": "Orbis Tower<B2>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211000200,
@@ -4948,7 +5448,8 @@
         "Y": 99,
         "StreetName": "El Nath",
         "MapName": "Snowy Hill",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211000000,
@@ -4957,7 +5458,8 @@
         "Y": 120,
         "StreetName": "El Nath",
         "MapName": "El Nath",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211010000,
@@ -4966,7 +5468,8 @@
         "Y": 151,
         "StreetName": "El Nath",
         "MapName": "Watch Out for Icy Path I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211020000,
@@ -4975,7 +5478,8 @@
         "Y": 180,
         "StreetName": "El Nath",
         "MapName": "Watch Out for Icy Path II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211030000,
@@ -4984,7 +5488,8 @@
         "Y": 173,
         "StreetName": "El Nath",
         "MapName": "Cold Field I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040000,
@@ -4993,7 +5498,8 @@
         "Y": 119,
         "StreetName": "El Nath",
         "MapName": "Cold Field II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211050000,
@@ -5002,7 +5508,8 @@
         "Y": 115,
         "StreetName": "El Nath",
         "MapName": "Icy Cold Field",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040100,
@@ -5011,7 +5518,8 @@
         "Y": 107,
         "StreetName": "El Nath",
         "MapName": "Ice Valley I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040200,
@@ -5020,7 +5528,8 @@
         "Y": 112,
         "StreetName": "El Nath",
         "MapName": "Ice Valley II",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211040300,
@@ -5029,7 +5538,8 @@
         "Y": 95,
         "StreetName": "El Nath",
         "MapName": "Sharp Cliff I",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200081500,
@@ -5038,7 +5548,8 @@
         "Y": 61,
         "StreetName": "Orbis",
         "MapName": "Orbis Tower <7th Floor>",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200000100,
@@ -5047,7 +5558,8 @@
         "Y": -177,
         "StreetName": "Orbis",
         "MapName": "Orbis Station Enterence",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200000200,
@@ -5056,7 +5568,8 @@
         "Y": -134,
         "StreetName": "Orbis",
         "MapName": "Orbis Park",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 200000300,
@@ -5065,7 +5578,8 @@
         "Y": -148,
         "StreetName": "Orbis",
         "MapName": "Top of the Hill",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 211000100,
@@ -5074,7 +5588,8 @@
         "Y": 109,
         "StreetName": "El Nath",
         "MapName": "El Nath Market",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
     "Links": [
@@ -5086,8 +5601,7 @@
         "OriginY": -15,
         "Z": 1
       }
-    ],
-    "Paths": []
+    ]
   },
   {
     "Name": "WorldMap141",
@@ -5100,7 +5614,8 @@
         "Y": -144,
         "StreetName": "Crimsonwood Mountain",
         "MapName": "Crimsonwood Keep",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610020005,
@@ -5109,7 +5624,8 @@
         "Y": -106,
         "StreetName": "Crimsonwood Mountain",
         "MapName": "Upper Ascent ",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610020003,
@@ -5118,7 +5634,8 @@
         "Y": -79,
         "StreetName": "Crimsonwood Mountain",
         "MapName": "The Path of Strength",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610020004,
@@ -5127,7 +5644,8 @@
         "Y": -95,
         "StreetName": "Crimsonwood Mountain",
         "MapName": "The Path of Peril",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610020002,
@@ -5136,7 +5654,8 @@
         "Y": -70,
         "StreetName": "Crimsonwood Mountain",
         "MapName": "Lower Ascent",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610020001,
@@ -5145,7 +5664,8 @@
         "Y": -42,
         "StreetName": "Crimsonwood Mountain",
         "MapName": "Valley of Heroes 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610020000,
@@ -5154,7 +5674,8 @@
         "Y": -18,
         "StreetName": "Crimsonwood Mountain",
         "MapName": "Valley of Heroes 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610010005,
@@ -5163,7 +5684,8 @@
         "Y": -2,
         "StreetName": "Phantom Forest",
         "MapName": "Forgotten Path",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610010004,
@@ -5172,7 +5694,8 @@
         "Y": 39,
         "StreetName": "Phantom Forest",
         "MapName": "Dead Man's Gorge",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610010002,
@@ -5181,7 +5704,8 @@
         "Y": 21,
         "StreetName": "Phantom Forest",
         "MapName": "Swamp Bog",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610010200,
@@ -5190,7 +5714,8 @@
         "Y": -19,
         "StreetName": "Phantom Forest",
         "MapName": "Crossroads",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610010001,
@@ -5199,7 +5724,8 @@
         "Y": -27,
         "StreetName": "Phantom Forest",
         "MapName": "Haunted Hill",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 682000000,
@@ -5208,7 +5734,8 @@
         "Y": 49,
         "StreetName": "Phantom Forest",
         "MapName": "Haunted House",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 610010000,
@@ -5217,7 +5744,8 @@
         "Y": 25,
         "StreetName": "Phantom Forest",
         "MapName": "Bent Tree",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600020000,
@@ -5226,7 +5754,8 @@
         "Y": 105,
         "StreetName": "Bigger Ben",
         "MapName": "Lobby",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600010001,
@@ -5235,7 +5764,8 @@
         "Y": 137,
         "StreetName": "New Leaf City Town Street",
         "MapName": "NLC Subway Station",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600010100,
@@ -5244,7 +5774,8 @@
         "Y": 30,
         "StreetName": "Masteria",
         "MapName": "Jungle Clearing",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600010300,
@@ -5253,7 +5784,8 @@
         "Y": 2,
         "StreetName": "Masteria",
         "MapName": "Jungle Valley ",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600010200,
@@ -5262,7 +5794,8 @@
         "Y": -15,
         "StreetName": "Masteria",
         "MapName": "Krakian Jungle Basin",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600010400,
@@ -5271,7 +5804,8 @@
         "Y": -57,
         "StreetName": "Masteria",
         "MapName": "Mountain Slopes",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600010500,
@@ -5280,7 +5814,8 @@
         "Y": -94,
         "StreetName": "Masteria",
         "MapName": "Mountain Cliffs ",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600010600,
@@ -5289,7 +5824,8 @@
         "Y": -129,
         "StreetName": "Masteria",
         "MapName": "Highlands",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600020100,
@@ -5298,7 +5834,8 @@
         "Y": 116,
         "StreetName": "MesoGears",
         "MapName": "Deity Room",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600020300,
@@ -5307,7 +5844,8 @@
         "Y": 116,
         "StreetName": "MesoGears",
         "MapName": "Wolf Spider Cavern",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600020200,
@@ -5316,7 +5854,8 @@
         "Y": 146,
         "StreetName": "MesoGears",
         "MapName": "Soul Corridor",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600020600,
@@ -5325,7 +5864,8 @@
         "Y": 146,
         "StreetName": "MesoGears",
         "MapName": "Enigma Chamber",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600020400,
@@ -5334,7 +5874,8 @@
         "Y": 177,
         "StreetName": "MesoGears",
         "MapName": "Fire Chamber",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 600020500,
@@ -5343,11 +5884,11 @@
         "Y": 177,
         "StreetName": "MesoGears",
         "MapName": "Ice Chamber",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": []
+    "Links": []
   },
   {
     "Name": "WorldMap070",
@@ -5360,7 +5901,8 @@
         "Y": 40,
         "StreetName": "The Burning Road",
         "MapName": "Ariant",
-        "Description": "A town centered around a legendary Oasis in the middle of the desert. The King and Queen recently constructed a Coliseum where competitive warriors can show their skills..."
+        "Description": "A town centered around a legendary Oasis in the middle of the desert. The King and Queen recently constructed a Coliseum where competitive warriors can show their skills...",
+        "Paths": []
       },
       {
         "MapId": 260000100,
@@ -5369,7 +5911,8 @@
         "Y": 2,
         "StreetName": "Ariant",
         "MapName": "Ariant Station Platform",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260000200,
@@ -5378,7 +5921,8 @@
         "Y": 69,
         "StreetName": "Ariant",
         "MapName": "The Town of Ariant",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260000300,
@@ -5387,7 +5931,8 @@
         "Y": 13,
         "StreetName": "Ariant",
         "MapName": "Ariant Castle",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010000,
@@ -5396,7 +5941,8 @@
         "Y": 38,
         "StreetName": "The Burning Sands",
         "MapName": "Outside the West Entrance of Ariant",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010100,
@@ -5405,7 +5951,8 @@
         "Y": 77,
         "StreetName": "The Burning Sands",
         "MapName": "Cactus Desert 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010200,
@@ -5414,7 +5961,8 @@
         "Y": 129,
         "StreetName": "The Burning Sands",
         "MapName": "Cactus Desert 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010300,
@@ -5423,7 +5971,8 @@
         "Y": 144,
         "StreetName": "The Burning Sands",
         "MapName": "White Rock Desert",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010400,
@@ -5432,7 +5981,8 @@
         "Y": 124,
         "StreetName": "The Burning Sands",
         "MapName": "The Scorching Desert",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010500,
@@ -5441,7 +5991,8 @@
         "Y": 105,
         "StreetName": "The Burning Sands",
         "MapName": "Dry Desert",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010600,
@@ -5450,7 +6001,8 @@
         "Y": 55,
         "StreetName": "The Burning Sands",
         "MapName": "Tent of the Entertainers",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260010700,
@@ -5459,7 +6011,8 @@
         "Y": 33,
         "StreetName": "The Burning Sands",
         "MapName": "Outside East Entrance of Ariant",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020000,
@@ -5468,7 +6021,8 @@
         "Y": -42,
         "StreetName": "The Burning Sands",
         "MapName": "Outside North Entrance of Ariant",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020100,
@@ -5477,7 +6031,8 @@
         "Y": -75,
         "StreetName": "The Burning Sands",
         "MapName": "North Desert Road 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020200,
@@ -5486,7 +6041,8 @@
         "Y": -70,
         "StreetName": "Sunset Road",
         "MapName": "North Desert Road 2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020300,
@@ -5495,7 +6051,8 @@
         "Y": -67,
         "StreetName": "Sunset Road",
         "MapName": "The Desert of Red Sand",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020400,
@@ -5504,7 +6061,8 @@
         "Y": -96,
         "StreetName": "Sunset Road",
         "MapName": "The Ruins of Desert Nomads",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020500,
@@ -5513,7 +6071,8 @@
         "Y": -129,
         "StreetName": "Sunset Road",
         "MapName": "Sahel 3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020600,
@@ -5522,7 +6081,15 @@
         "Y": -138,
         "StreetName": "Sunset Road",
         "MapName": "Sahel 2",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap070_path_18.png",
+            "OriginX": -51,
+            "OriginY": 182,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 260020610,
@@ -5531,7 +6098,8 @@
         "Y": -177,
         "StreetName": "Sunset Road",
         "MapName": "The Desert of Serenity",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020620,
@@ -5540,7 +6108,8 @@
         "Y": -92,
         "StreetName": "Sunset Road",
         "MapName": "The Desert of Dreams",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 260020700,
@@ -5549,7 +6118,8 @@
         "Y": -143,
         "StreetName": "Sunset Road",
         "MapName": "Sahel 1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261000000,
@@ -5558,7 +6128,8 @@
         "Y": -141,
         "StreetName": "Sunset Road",
         "MapName": "Magatia",
-        "Description": "A desert town whose culture revolves around the study of Alchemy. Two alchemist societies, Zenumist and Alcadno, are in conflict."
+        "Description": "A desert town whose culture revolves around the study of Alchemy. Two alchemist societies, Zenumist and Alcadno, are in conflict.",
+        "Paths": []
       },
       {
         "MapId": 261010000,
@@ -5567,7 +6138,8 @@
         "Y": 110,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - 1st Floor Hallway",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261010001,
@@ -5576,7 +6148,8 @@
         "Y": 72,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - Unit 101",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261010002,
@@ -5585,7 +6158,8 @@
         "Y": 110,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - Unit 102",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261010003,
@@ -5594,7 +6168,8 @@
         "Y": 110,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - Unit 103",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261010100,
@@ -5603,7 +6178,8 @@
         "Y": 149,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - 2nd Floor Hallway",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261010101,
@@ -5612,7 +6188,8 @@
         "Y": 149,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - Unit 201",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261010102,
@@ -5621,7 +6198,8 @@
         "Y": 189,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - Unit 202",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261010103,
@@ -5630,7 +6208,8 @@
         "Y": 149,
         "StreetName": "Zenumist Research Institute",
         "MapName": "Lab - Unit 203",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261020000,
@@ -5639,7 +6218,8 @@
         "Y": 7,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Center Gate",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261020100,
@@ -5648,7 +6228,8 @@
         "Y": -32,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Area A-1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261020200,
@@ -5657,7 +6238,8 @@
         "Y": 7,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Area B-1",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261020300,
@@ -5666,7 +6248,15 @@
         "Y": 45,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Area C-1",
-        "Description": null
+        "Description": null,
+        "Paths": [
+          {
+            "Image": "WorldMap070_path_34.png",
+            "OriginX": -163,
+            "OriginY": 3,
+            "Z": 2
+          }
+        ]
       },
       {
         "MapId": 261020400,
@@ -5675,7 +6265,8 @@
         "Y": 45,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Area C-2",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261020500,
@@ -5684,7 +6275,8 @@
         "Y": 45,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Area C-3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261020600,
@@ -5693,7 +6285,8 @@
         "Y": 7,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Area B-3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       },
       {
         "MapId": 261020700,
@@ -5702,23 +6295,10 @@
         "Y": -32,
         "StreetName": "Alcadno Research Institute",
         "MapName": "Lab - Area A-3",
-        "Description": null
+        "Description": null,
+        "Paths": []
       }
     ],
-    "Links": [],
-    "Paths": [
-      {
-        "Image": "WorldMap070_path_18.png",
-        "OriginX": -51,
-        "OriginY": 182,
-        "Z": 2
-      },
-      {
-        "Image": "WorldMap070_path_34.png",
-        "OriginX": -163,
-        "OriginY": 3,
-        "Z": 2
-      }
-    ]
+    "Links": []
   }
 ]

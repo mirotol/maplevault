@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
+type MapPath = {
+  Image?: string;
+  OriginX: number;
+  OriginY: number;
+  Z: number;
+};
+
 type MapNode = {
   MapId: number;
   Type: number;
@@ -9,6 +16,8 @@ type MapNode = {
   StreetName?: string | null;
   MapName?: string | null;
   Description?: string | null;
+
+  Paths?: MapPath[];
 };
 
 type MapLink = {
@@ -38,7 +47,7 @@ export default function WorldMapViewer() {
   const [maps, setMaps] = useState<WorldMapData[]>([]);
   const [currentMap, setCurrentMap] = useState<WorldMapData | null>(null);
 
-  const [history, setHistory] = useState<WorldMapData[]>([]); // ✅ NEW
+  const [history, setHistory] = useState<WorldMapData[]>([]);
 
   const [hoveredLink, setHoveredLink] = useState<number | null>(null);
   const [hoveredNode, setHoveredNode] = useState<MapNode | null>(null);
@@ -70,8 +79,8 @@ export default function WorldMapViewer() {
     if (!ctx) return false;
 
     ctx.drawImage(img, 0, 0);
-
     const pixel = ctx.getImageData(x, y, 1, 1).data;
+
     return pixel[3] > 10;
   };
 
@@ -91,7 +100,7 @@ export default function WorldMapViewer() {
       y: e.clientY - rect.top,
     });
 
-    // NODE hover (math-based)
+    // ── NODE HOVER
     const NODE_RADIUS = 12;
     let foundNode: MapNode | null = null;
 
@@ -107,7 +116,9 @@ export default function WorldMapViewer() {
 
     setHoveredNode(foundNode);
 
-    // LINK hover
+    // ── LINK HOVER (ALWAYS RUN)
+    let foundLink: number | null = null;
+
     for (let i = 0; i < currentMap.Links.length; i++) {
       const link = currentMap.Links[i];
       const img = linkRefs.current[i];
@@ -124,13 +135,13 @@ export default function WorldMapViewer() {
         localY < img.height
       ) {
         if (checkPixelHit(img, localX, localY)) {
-          setHoveredLink(i);
-          return;
+          foundLink = i;
+          break;
         }
       }
     }
 
-    setHoveredLink(null);
+    setHoveredLink(foundLink);
   };
 
   // ─────────────────────────────────────────────
@@ -145,9 +156,7 @@ export default function WorldMapViewer() {
     const next = maps.find((m) => m.Name === link.Target);
     if (!next) return;
 
-    // ✅ push to history
     setHistory((prev) => [...prev, currentMap]);
-
     setCurrentMap(next);
   };
 
@@ -205,7 +214,7 @@ export default function WorldMapViewer() {
         </button>
       )}
 
-      {/* CURRENT MAP NAME */}
+      {/* MAP NAME */}
       <div
         style={{
           position: "absolute",
@@ -236,6 +245,27 @@ export default function WorldMapViewer() {
         />
       )}
 
+      {/* 🔵 FLIGHT PATHS */}
+      {hoveredNode?.Paths?.map((path, i) => {
+        if (!path.Image) return null;
+
+        return (
+          <img
+            key={i}
+            src={`/worldmap/images/${path.Image}`}
+            alt="path"
+            style={{
+              position: "absolute",
+              left: `calc(50% + ${-path.OriginX}px)`,
+              top: `calc(50% + ${-path.OriginY}px)`,
+              pointerEvents: "none",
+              zIndex: 3 + path.Z,
+              opacity: 1,
+            }}
+          />
+        );
+      })}
+
       {/* HIGHLIGHTS */}
       {currentMap.Links.map((link, i) => {
         if (!link.Image) return null;
@@ -252,7 +282,7 @@ export default function WorldMapViewer() {
               position: "absolute",
               left: `calc(50% + ${-link.OriginX}px)`,
               top: `calc(50% + ${-link.OriginY}px)`,
-              opacity: hoveredLink === i && !hoveredNode ? 1 : 0,
+              opacity: hoveredLink === i ? (hoveredNode ? 0.8 : 1) : 0,
               pointerEvents: "none",
               zIndex: 5 + link.Z,
               transition: "opacity 0.15s ease",
