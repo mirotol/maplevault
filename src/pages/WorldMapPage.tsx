@@ -7,7 +7,7 @@ const WorldMapPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center py-12">
+    <div className="bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl flex flex-col items-center justify-center py-2">
       <WorldMapViewer />
     </div>
   );

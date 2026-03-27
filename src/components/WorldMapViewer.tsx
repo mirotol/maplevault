@@ -8,6 +8,8 @@ const NODE_ICONS: Record<number, string> = {
   3: "/worldmap/nodes/node_3.png",
 };
 
+const MAP_SCALE = 1.5; // Zoom scale factor
+
 export default function WorldMapViewer() {
   const [maps, setMaps] = useState<WorldMapData[]>([]);
   const [currentMap, setCurrentMap] = useState<WorldMapData | null>(null);
@@ -57,8 +59,9 @@ export default function WorldMapViewer() {
 
     const rect = e.currentTarget.getBoundingClientRect();
 
-    const mouseX = e.clientX - rect.left - rect.width / 2;
-    const mouseY = e.clientY - rect.top - rect.height / 2;
+    // Map screen coordinates back to unscaled 800x600 coordinates
+    const mapMouseX = (e.clientX - rect.left - rect.width / 2) / MAP_SCALE;
+    const mapMouseY = (e.clientY - rect.top - rect.height / 2) / MAP_SCALE;
 
     setMouse({
       x: e.clientX - rect.left,
@@ -70,8 +73,8 @@ export default function WorldMapViewer() {
     let foundNode: WorldMapNode | null = null;
 
     for (const node of currentMap.Maps) {
-      const dx = mouseX - node.X;
-      const dy = mouseY - node.Y;
+      const dx = mapMouseX - node.X;
+      const dy = mapMouseY - node.Y;
 
       if (dx * dx + dy * dy <= NODE_RADIUS * NODE_RADIUS) {
         foundNode = node;
@@ -91,8 +94,8 @@ export default function WorldMapViewer() {
 
       if (!img || !link.Image) continue;
 
-      const localX = mouseX + link.OriginX;
-      const localY = mouseY + link.OriginY;
+      const localX = mapMouseX + link.OriginX;
+      const localY = mapMouseY + link.OriginY;
 
       if (
         localX >= 0 &&
@@ -128,8 +131,153 @@ export default function WorldMapViewer() {
     <div
       role="application"
       className="worldmap-viewer"
+      style={{
+        width: 800 * MAP_SCALE,
+        height: 600 * MAP_SCALE,
+      }}
       onMouseMove={handleMouseMove}
     >
+      <div
+        style={{
+          transform: `scale(${MAP_SCALE})`,
+          transformOrigin: "top left",
+          width: 800,
+          height: 600,
+          position: "relative",
+        }}
+      >
+        {/* BASE MAP */}
+        {currentMap.BaseImage && (
+          <img
+            src={`/worldmap/images/${currentMap.BaseImage}`}
+            alt="map"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          />
+        )}
+
+        {/* FLIGHT PATHS */}
+        {hoveredNode?.Paths?.map((path) => (
+          <img
+            key={path.Image}
+            src={`/worldmap/images/${path.Image}`}
+            alt=""
+            className="absolute z-10 pointer-events-none"
+            style={{
+              left: `calc(50% + ${-path.OriginX}px)`,
+              top: `calc(50% + ${-path.OriginY}px)`,
+            }}
+          />
+        ))}
+
+        {/* HIGHLIGHTS (PIXEL-PERFECT CLICK FIXED) */}
+        {currentMap.Links.map((link, i) => (
+          <button
+            key={`${link.Image}_${link.Target}_${link.OriginX}_${link.OriginY}`}
+            type="button"
+            ref={(el) => {
+              linkRefs.current[i] = el;
+            }}
+            onClick={(e) => {
+              const btn = linkRefs.current[i];
+              const img = btn?.querySelector("img");
+
+              if (!img || !link.Image) return;
+
+              const rect =
+                e.currentTarget.parentElement!.getBoundingClientRect();
+
+              // Map screen coordinates back to unscaled 800x600 coordinates
+              const mapMouseX =
+                (e.clientX - rect.left - rect.width / 2) / MAP_SCALE;
+              const mapMouseY =
+                (e.clientY - rect.top - rect.height / 2) / MAP_SCALE;
+
+              const localX = mapMouseX + link.OriginX;
+              const localY = mapMouseY + link.OriginY;
+
+              if (
+                localX < 0 ||
+                localY < 0 ||
+                localX >= img.width ||
+                localY >= img.height ||
+                !checkPixelHit(img, localX, localY)
+              ) {
+                return; // ignore transparent clicks (region not highlighted)
+              }
+
+              if (!link.Target) return;
+
+              const next = maps.find((m) => m.Name === link.Target);
+              if (!next) return;
+
+              setHistory((prev) => [...prev, currentMap]);
+              setCurrentMap(next);
+            }}
+            className={`absolute border-none bg-transparent p-0 ${hoveredLink === i ? "opacity-100" : "opacity-0"}`}
+            style={{
+              left: `calc(50% + ${-link.OriginX}px)`,
+              top: `calc(50% + ${-link.OriginY}px)`,
+            }}
+          >
+            <img src={`/worldmap/images/${link.Image}`} alt="" />
+          </button>
+        ))}
+
+        {/* NODES */}
+        {currentMap.Maps.map((node) => {
+          const icon = NODE_ICONS[node.Type] || NODE_ICONS[0];
+
+          return (
+            <button
+              key={node.MapId}
+              type="button"
+              onMouseEnter={() => setHoveredNode(node)}
+              onMouseLeave={() => setHoveredNode(null)}
+              onClick={() => {
+                if (!currentMap) return;
+
+                // find matching link using SAME pixel logic
+                for (let i = 0; i < currentMap.Links.length; i++) {
+                  const link = currentMap.Links[i];
+                  const btn = linkRefs.current[i];
+                  const img = btn?.querySelector("img");
+
+                  if (!img || !link.Image) continue;
+
+                  const localX = node.X + link.OriginX;
+                  const localY = node.Y + link.OriginY;
+
+                  if (
+                    localX >= 0 &&
+                    localY >= 0 &&
+                    localX < img.width &&
+                    localY < img.height &&
+                    checkPixelHit(img, localX, localY)
+                  ) {
+                    if (!link.Target) return;
+
+                    const next = maps.find((m) => m.Name === link.Target);
+                    if (!next) return;
+
+                    setHistory((prev) => [...prev, currentMap]);
+                    setCurrentMap(next);
+                    return;
+                  }
+                }
+              }}
+              className="absolute -translate-x-1/2 -translate-y-1/2 border-none bg-transparent p-0 z-20"
+              style={{
+                left: `calc(50% + ${node.X}px)`,
+                top: `calc(50% + ${node.Y}px)`,
+              }}
+            >
+              <img src={icon} alt="" width={16} height={16} />
+            </button>
+          );
+        })}
+      </div>
+
+      {/* UI OVERLAYS (UNSCALED) */}
       {/* BACK BUTTON */}
       {history.length > 0 && (
         <button
@@ -140,79 +288,6 @@ export default function WorldMapViewer() {
           ← Back
         </button>
       )}
-
-      {/* BASE MAP */}
-      {currentMap.BaseImage && (
-        <img
-          src={`/worldmap/images/${currentMap.BaseImage}`}
-          alt="map"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-        />
-      )}
-
-      {/* FLIGHT PATHS */}
-      {hoveredNode?.Paths?.map((path) => (
-        <img
-          key={path.Image}
-          src={`/worldmap/images/${path.Image}`}
-          alt=""
-          className="absolute z-10 pointer-events-none"
-          style={{
-            left: `calc(50% + ${-path.OriginX}px)`,
-            top: `calc(50% + ${-path.OriginY}px)`,
-          }}
-        />
-      ))}
-
-      {/* HIGHLIGHTS (PIXEL-PERFECT CLICK FIXED) */}
-      {currentMap.Links.map((link, i) => (
-        <button
-          key={`${link.Image}_${link.Target}_${link.OriginX}_${link.OriginY}`}
-          type="button"
-          ref={(el) => {
-            linkRefs.current[i] = el;
-          }}
-          onClick={(e) => {
-            const btn = linkRefs.current[i];
-            const img = btn?.querySelector("img");
-
-            if (!img || !link.Image) return;
-
-            const rect = e.currentTarget.parentElement!.getBoundingClientRect();
-
-            const mouseX = e.clientX - rect.left - rect.width / 2;
-            const mouseY = e.clientY - rect.top - rect.height / 2;
-
-            const localX = mouseX + link.OriginX;
-            const localY = mouseY + link.OriginY;
-
-            if (
-              localX < 0 ||
-              localY < 0 ||
-              localX >= img.width ||
-              localY >= img.height ||
-              !checkPixelHit(img, localX, localY)
-            ) {
-              return; // ignore transparent clicks (region not highlighted)
-            }
-
-            if (!link.Target) return;
-
-            const next = maps.find((m) => m.Name === link.Target);
-            if (!next) return;
-
-            setHistory((prev) => [...prev, currentMap]);
-            setCurrentMap(next);
-          }}
-          className={`absolute border-none bg-transparent p-0 ${hoveredLink === i ? "opacity-100" : "opacity-0"}`}
-          style={{
-            left: `calc(50% + ${-link.OriginX}px)`,
-            top: `calc(50% + ${-link.OriginY}px)`,
-          }}
-        >
-          <img src={`/worldmap/images/${link.Image}`} alt="" />
-        </button>
-      ))}
 
       {/* TOOLTIP */}
       {hoveredNode && (
@@ -238,59 +313,6 @@ export default function WorldMapViewer() {
           )}
         </div>
       )}
-
-      {/* NODES */}
-      {currentMap.Maps.map((node) => {
-        const icon = NODE_ICONS[node.Type] || NODE_ICONS[0];
-
-        return (
-          <button
-            key={node.MapId}
-            type="button"
-            onMouseEnter={() => setHoveredNode(node)}
-            onMouseLeave={() => setHoveredNode(null)}
-            onClick={() => {
-              if (!currentMap) return;
-
-              // find matching link using SAME pixel logic
-              for (let i = 0; i < currentMap.Links.length; i++) {
-                const link = currentMap.Links[i];
-                const btn = linkRefs.current[i];
-                const img = btn?.querySelector("img");
-
-                if (!img || !link.Image) continue;
-
-                const localX = hoveredNode!.X + link.OriginX;
-                const localY = hoveredNode!.Y + link.OriginY;
-
-                if (
-                  localX >= 0 &&
-                  localY >= 0 &&
-                  localX < img.width &&
-                  localY < img.height &&
-                  checkPixelHit(img, localX, localY)
-                ) {
-                  if (!link.Target) return;
-
-                  const next = maps.find((m) => m.Name === link.Target);
-                  if (!next) return;
-
-                  setHistory((prev) => [...prev, currentMap]);
-                  setCurrentMap(next);
-                  return;
-                }
-              }
-            }}
-            className="absolute -translate-x-1/2 -translate-y-1/2 border-none bg-transparent p-0 z-20"
-            style={{
-              left: `calc(50% + ${node.X}px)`,
-              top: `calc(50% + ${node.Y}px)`,
-            }}
-          >
-            <img src={icon} alt="" width={16} height={16} />
-          </button>
-        );
-      })}
     </div>
   );
 }

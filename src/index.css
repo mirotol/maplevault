@@ -246,7 +246,10 @@ body.cursor-click * {
 
 /* World Map Viewer Styles */
 .worldmap-viewer {
-  @apply relative w-200 h-150 border border-[#333] overflow-hidden;
+  @apply relative overflow-hidden;
+  /* Fixed base dimensions but scaled visually via container or child */
+  width: 800px;
+  height: 600px;
 }
 
 .worldmap-tooltip {
