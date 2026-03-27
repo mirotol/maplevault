@@ -19,7 +19,7 @@ export default function WorldMapViewer() {
 
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
-  const linkRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const linkRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
     fetch("/worldmap.json")
@@ -65,7 +65,7 @@ export default function WorldMapViewer() {
       y: e.clientY - rect.top,
     });
 
-    // ── NODE HOVER
+    // NODE hover
     const NODE_RADIUS = 12;
     let foundNode: WorldMapNode | null = null;
 
@@ -81,12 +81,13 @@ export default function WorldMapViewer() {
 
     setHoveredNode(foundNode);
 
-    // ── LINK HOVER (ALWAYS RUN)
+    // LINK hover
     let foundLink: number | null = null;
 
     for (let i = 0; i < currentMap.Links.length; i++) {
       const link = currentMap.Links[i];
-      const img = linkRefs.current[i];
+      const btn = linkRefs.current[i];
+      const img = btn?.querySelector("img");
 
       if (!img || !link.Image) continue;
 
@@ -109,25 +110,6 @@ export default function WorldMapViewer() {
     setHoveredLink(foundLink);
   };
 
-  // ─────────────────────────────────────────────
-  // Navigation (forward)
-  // ─────────────────────────────────────────────
-  const handleClick = () => {
-    if (hoveredLink === null || !currentMap) return;
-
-    const link = currentMap.Links[hoveredLink];
-    if (!link.Target) return;
-
-    const next = maps.find((m) => m.Name === link.Target);
-    if (!next) return;
-
-    setHistory((prev) => [...prev, currentMap]);
-    setCurrentMap(next);
-  };
-
-  // ─────────────────────────────────────────────
-  // Navigation (back)
-  // ─────────────────────────────────────────────
   const handleBack = () => {
     setHistory((prev) => {
       if (prev.length === 0) return prev;
@@ -145,6 +127,7 @@ export default function WorldMapViewer() {
 
   return (
     <div
+      role="application"
       style={{
         position: "relative",
         width: "800px",
@@ -153,46 +136,22 @@ export default function WorldMapViewer() {
         overflow: "hidden",
       }}
       onMouseMove={handleMouseMove}
-      onClick={handleClick}
     >
       {/* BACK BUTTON */}
       {history.length > 0 && (
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleBack();
-          }}
+          type="button"
+          onClick={handleBack}
           style={{
             position: "absolute",
             top: 10,
             left: 10,
             zIndex: 1000,
-            background: "rgba(0,0,0,0.7)",
-            color: "white",
-            border: "1px solid #555",
-            padding: "6px 10px",
-            borderRadius: 4,
           }}
         >
           ← Back
         </button>
       )}
-
-      {/* MAP NAME */}
-      <div
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          color: "white",
-          background: "rgba(0,0,0,0.6)",
-          padding: "4px 8px",
-          borderRadius: 4,
-          zIndex: 1000,
-        }}
-      >
-        {currentMap.Name}
-      </div>
 
       {/* BASE MAP */}
       {currentMap.BaseImage && (
@@ -204,53 +163,56 @@ export default function WorldMapViewer() {
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
+            pointerEvents: "none",
           }}
         />
       )}
 
-      {/* 🔵 FLIGHT PATHS */}
-      {hoveredNode?.Paths?.map((path, i) => {
-        if (!path.Image) return null;
-
-        return (
-          <img
-            key={i}
-            src={`/worldmap/images/${path.Image}`}
-            alt="path"
-            style={{
-              position: "absolute",
-              left: `calc(50% + ${-path.OriginX}px)`,
-              top: `calc(50% + ${-path.OriginY}px)`,
-              zIndex: 6 + path.Z,
-              opacity: 1,
-            }}
-          />
-        );
-      })}
+      {/* FLIGHT PATHS */}
+      {hoveredNode?.Paths?.map((path) => (
+        <img
+          key={path.Image}
+          src={`/worldmap/images/${path.Image}`}
+          alt=""
+          style={{
+            position: "absolute",
+            left: `calc(50% + ${-path.OriginX}px)`,
+            top: `calc(50% + ${-path.OriginY}px)`,
+            zIndex: 10,
+          }}
+        />
+      ))}
 
       {/* HIGHLIGHTS */}
-      {currentMap.Links.map((link, i) => {
-        if (!link.Image) return null;
+      {currentMap.Links.map((link, i) => (
+        <button
+          key={`${link.Image}_${link.Target}_${link.OriginX}_${link.OriginY}`}
+          type="button"
+          ref={(el) => {
+            linkRefs.current[i] = el;
+          }}
+          onClick={() => {
+            if (!link.Target) return;
 
-        return (
-          <img
-            key={i}
-            ref={(el) => {
-              linkRefs.current[i] = el;
-            }}
-            src={`/worldmap/images/${link.Image}`}
-            alt="highlight"
-            style={{
-              position: "absolute",
-              left: `calc(50% + ${-link.OriginX}px)`,
-              top: `calc(50% + ${-link.OriginY}px)`,
-              opacity: hoveredLink === i ? (hoveredNode ? 0.8 : 1) : 0,
-              zIndex: 5 + link.Z,
-              transition: "opacity 0.15s ease",
-            }}
-          />
-        );
-      })}
+            const next = maps.find((m) => m.Name === link.Target);
+            if (!next) return;
+
+            setHistory((prev) => [...prev, currentMap]);
+            setCurrentMap(next);
+          }}
+          style={{
+            position: "absolute",
+            left: `calc(50% + ${-link.OriginX}px)`,
+            top: `calc(50% + ${-link.OriginY}px)`,
+            opacity: hoveredLink === i ? 1 : 0,
+            border: "none",
+            background: "none",
+            padding: 0,
+          }}
+        >
+          <img src={`/worldmap/images/${link.Image}`} alt="" />
+        </button>
+      ))}
 
       {/* TOOLTIP */}
       {hoveredNode && (
@@ -268,18 +230,22 @@ export default function WorldMapViewer() {
             lineHeight: 1.4,
             boxShadow: "0 2px 8px rgba(0,0,0,0.5)",
             zIndex: 999,
+            pointerEvents: "none",
           }}
         >
+          {/* Street */}
           {hoveredNode.StreetName && (
-            <div style={{ fontSize: 10, opacity: 0.7 }}>
+            <div style={{ fontSize: 12, opacity: 0.7 }}>
               {hoveredNode.StreetName}
             </div>
           )}
 
+          {/* Map name */}
           <div style={{ fontWeight: "bold" }}>
             {hoveredNode.MapName ?? `Map ${hoveredNode.MapId}`}
           </div>
 
+          {/* Description */}
           {hoveredNode.Description && (
             <div style={{ marginTop: 4, opacity: 0.85 }}>
               {hoveredNode.Description}
@@ -289,26 +255,40 @@ export default function WorldMapViewer() {
       )}
 
       {/* NODES */}
-      {currentMap.Maps.map((node, i) => {
+      {currentMap.Maps.map((node) => {
         const icon = NODE_ICONS[node.Type] || NODE_ICONS[0];
 
         return (
-          <img
-            key={i}
-            src={icon}
-            alt="node"
+          <button
+            key={node.MapId}
+            type="button"
             onMouseEnter={() => setHoveredNode(node)}
             onMouseLeave={() => setHoveredNode(null)}
+            onClick={() => {
+              if (hoveredLink === null || !currentMap) return;
+
+              const link = currentMap.Links[hoveredLink];
+              if (!link.Target) return;
+
+              const next = maps.find((m) => m.Name === link.Target);
+              if (!next) return;
+
+              setHistory((prev) => [...prev, currentMap]);
+              setCurrentMap(next);
+            }}
             style={{
               position: "absolute",
               left: `calc(50% + ${node.X}px)`,
               top: `calc(50% + ${node.Y}px)`,
               transform: "translate(-50%, -50%)",
-              width: 16,
-              height: 16,
+              border: "none",
+              background: "none",
+              padding: 0,
               zIndex: 20,
             }}
-          />
+          >
+            <img src={icon} alt="" width={16} height={16} />
+          </button>
         );
       })}
     </div>
