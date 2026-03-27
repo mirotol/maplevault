@@ -5,6 +5,7 @@ import { fetchItems } from "../api/mapleApi";
 import { CustomDropdown } from "../components/CustomDropdown";
 import EquipmentCard from "../components/EquipmentCard";
 import EquipmentModal from "../components/EquipmentModal";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 import type { Item } from "../types/maple";
 
 type PrimaryCategory = "Weapon" | "Armor" | "Accessory" | "Mount";
@@ -400,6 +401,8 @@ const EquipmentsPage = () => {
           onClose={handleCloseModal}
         />
       )}
+
+      <ScrollToTopButton />
     </>
   );
 };

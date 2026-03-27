@@ -5,6 +5,7 @@ import { fetchMobs } from "../api/mapleApi";
 import { CustomDropdown } from "../components/CustomDropdown";
 import MobCard from "../components/MobCard";
 import MobModal from "../components/MobModal";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 import type { Mob } from "../types/maple";
 
 const LEVEL_RANGES = [
@@ -290,6 +291,8 @@ const MobsPage = () => {
           onClose={handleCloseModal}
         />
       )}
+
+      <ScrollToTopButton />
     </>
   );
 };
