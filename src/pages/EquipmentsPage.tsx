@@ -181,11 +181,18 @@ const EquipmentsPage = () => {
     (node: HTMLButtonElement) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setDisplayCount((prev) => prev + 24);
-        }
-      });
+
+      const isMobile = window.innerWidth < 768;
+      const rootMargin = isMobile ? "400px" : "0px";
+
+      observer.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasMore) {
+            setDisplayCount((prev) => prev + 24);
+          }
+        },
+        { rootMargin },
+      );
       if (node) observer.current.observe(node);
     },
     [loading, hasMore],

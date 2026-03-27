@@ -17,6 +17,9 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
   const cardRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    const rootMargin = isMobile ? "200px" : "0px";
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -24,7 +27,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1, rootMargin },
     );
 
     if (cardRef.current) {
