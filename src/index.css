@@ -253,5 +253,5 @@ body.cursor-click * {
 }
 
 .worldmap-tooltip {
-  @apply absolute bg-[rgba(15,15,63,0.8)] text-white text-center px-2 py-2 rounded-md text-base max-w-100 leading-[1.4] shadow-[0_2px_8px_rgba(0,0,0,0.5)] z-999 pointer-events-none;
+  @apply absolute bg-[rgba(15,15,63,0.85)] text-white text-center px-2 py-2 rounded-md text-base max-w-100 leading-[1.4] shadow-[0_2px_8px_rgba(0,0,0,0.5)] z-999 pointer-events-none;
 }
