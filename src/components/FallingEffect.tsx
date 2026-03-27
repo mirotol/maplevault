@@ -1,5 +1,16 @@
 import { useMemo, useState } from "react";
 
+type Leaf = {
+  id: number;
+  left: string;
+  size: number;
+  duration: number;
+  delay: number;
+  swayDuration: number;
+  swayAmount: number;
+  rotation: number;
+};
+
 interface FallingEffectProps {
   image: string;
   count?: number;
@@ -9,14 +20,11 @@ interface FallingEffectProps {
   maxDuration?: number;
 }
 
-const FallingLeaf = ({ leaf, image }: { leaf: any; image: string }) => {
+const FallingLeaf = ({ leaf, image }: { leaf: Leaf; image: string }) => {
   const [offset, setOffset] = useState(0);
 
   const handleJump = (e: React.MouseEvent | React.TouchEvent) => {
-    // Stop propagation to avoid any parent click events
     e.stopPropagation();
-    
-    // Every jump adds to the current offset, keeping the new position
     setOffset((prev) => prev - 60);
   };
 
@@ -25,16 +33,15 @@ const FallingLeaf = ({ leaf, image }: { leaf: any; image: string }) => {
       className="falling-image-wrapper"
       onClick={handleJump}
       onTouchStart={handleJump}
-      style={
-        {
-          left: leaf.left,
-          animationDuration: `${leaf.duration}s`,
-          animationDelay: `${leaf.delay}s`,
-          transform: `translateY(${offset}px)`,
-          // Fast jump up, no return transition needed anymore
-          transition: "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
-        } as React.CSSProperties
-      }
+      role="presentation"
+      aria-hidden="true"
+      style={{
+        left: leaf.left,
+        animationDuration: `${leaf.duration}s`,
+        animationDelay: `${leaf.delay}s`,
+        transform: `translateY(${offset}px)`,
+        transition: "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
     >
       <img
         src={image}
@@ -63,21 +70,21 @@ const FallingEffect = ({
   minDuration = 8,
   maxDuration = 20,
 }: FallingEffectProps) => {
-  const leaves = useMemo(() => {
+  const leaves = useMemo((): Leaf[] => {
     return Array.from({ length: count }).map((_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       size: Math.random() * (maxSize - minSize) + minSize,
       duration: Math.random() * (maxDuration - minDuration) + minDuration,
-      delay: Math.random() * -maxDuration, // Negative delay to start mid-animation
-      swayDuration: Math.random() * 4 + 3, // 3s to 7s
-      swayAmount: Math.random() * 100 + 50, // 50px to 150px
-      rotation: Math.random() * 360, // Initial random rotation
+      delay: Math.random() * -maxDuration,
+      swayDuration: Math.random() * 4 + 3,
+      swayAmount: Math.random() * 100 + 50,
+      rotation: Math.random() * 360,
     }));
   }, [count, minSize, maxSize, minDuration, maxDuration]);
 
   return (
-    <div className="falling-container">
+    <div className="falling-container" aria-hidden="true">
       {leaves.map((leaf) => (
         <FallingLeaf key={leaf.id} leaf={leaf} image={image} />
       ))}

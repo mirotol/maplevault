@@ -1,7 +1,7 @@
+import { Home, MonitorOff } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import WorldMapViewer from "../components/WorldMapViewer";
-import { MonitorOff, Home } from "lucide-react";
 
 const WorldMapPage = () => {
   const [isMobile, setIsMobile] = useState(false);

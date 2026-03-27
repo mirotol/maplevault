@@ -235,7 +235,6 @@ body.cursor-click * {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   pointer-events: auto;
-  cursor: pointer;
 }
 
 .falling-image {
