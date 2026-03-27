@@ -147,7 +147,7 @@ const EquipmentModal = ({
       />
 
       {/* Modal Container */}
-      <div className="card-equipment-bg relative w-full max-w-md border border-white/20 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col max-h-[95vh] text-white animate-in zoom-in-95 duration-300">
+      <div className="card-equipment-bg relative w-full max-w-md border border-white/20 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col max-h-[95vh] text-white animate-in zoom-in-95 duration-300 mx-4 sm:mx-0">
         {/* Top bar (Close button row) */}
         <div className="flex justify-end p-2">
           <button
@@ -211,7 +211,7 @@ const EquipmentModal = ({
           </div>
 
           {/* Job requirements */}
-          <div className="flex flex-nowrap mt-4 justify-between">
+          <div className="flex flex-wrap mt-4 justify-center sm:justify-between gap-1 sm:gap-0">
             {JOBS.map((job) => {
               const isAllowed =
                 requirements.jobs.includes("Beginner") ||
@@ -219,7 +219,7 @@ const EquipmentModal = ({
               return (
                 <span
                   key={job.name}
-                  className={`text-sm px-0.5 uppercase font-bold rounded-sm tracking-tight transition-colors whitespace-nowrap shadow-[0_0_6px_rgba(0,0,0,0.9)] ${
+                  className={`text-sm px-1 sm:px-0.5 uppercase font-bold rounded-sm tracking-tight transition-colors whitespace-nowrap shadow-[0_0_6px_rgba(0,0,0,0.9)] ${
                     isAllowed
                       ? "text-orange-500/90 bg-black/50"
                       : "text-white/30 bg-black/50"

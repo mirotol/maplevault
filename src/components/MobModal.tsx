@@ -102,58 +102,56 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
       />
 
       {/* Modal Container */}
-      <div className="card-paper relative w-full max-w-2xl border-2 border-(--color-card-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="card-paper relative w-full max-w-2xl border-2 border-(--color-card-border) rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] mx-4 sm:mx-0">
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-6 right-6 z-10 p-2 rounded-xl hover:bg-orange-500/10 transition-all text-(--color-text) opacity-50 hover:opacity-100"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 p-2 rounded-xl hover:bg-orange-500/10 transition-all text-(--color-text) opacity-50 hover:opacity-100"
           aria-label="Close modal"
         >
           <X className="w-6 h-6" />
         </button>
 
         {/* Header */}
-        <div className="flex items-center p-6 border-b border-(--color-card-border)/50">
-          <div className="flex items-center gap-6">
-            <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl flex items-center justify-center shrink-0 relative group">
-              {loading ? (
-                <Skeleton className="w-full h-full rounded-2xl" />
-              ) : error ? (
-                <ImageOff className="w-10 h-10 opacity-20" />
+        <div className="flex flex-col sm:flex-row items-center sm:items-start p-6 border-b border-(--color-card-border)/50 gap-6">
+          <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl flex items-center justify-center shrink-0 relative group">
+            {loading ? (
+              <Skeleton className="w-full h-full rounded-2xl" />
+            ) : error ? (
+              <ImageOff className="w-10 h-10 opacity-20" />
+            ) : (
+              <img
+                src={renderUrl}
+                alt={detail?.name || initialMob?.name}
+                className="max-w-[90%] max-h-[90%] object-contain scale-110 group-hover:scale-140 transition-transform duration-500"
+                style={{ imageRendering: "pixelated" }}
+              />
+            )}
+          </div>
+          <div className="flex-1 text-center sm:text-left min-w-0 pr-8 sm:pr-0">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mb-1">
+              <h2 className="font-heading text-3xl sm:text-4xl text-(--color-card-text) tracking-tight break-words">
+                {detail?.name || initialMob?.name || (
+                  <Skeleton className="h-10 w-48" />
+                )}
+              </h2>
+              {initialMob?.isBoss ? (
+                <span className="px-2 py-0.5 bg-red-500 text-white text-base font-black rounded uppercase tracking-widest shadow-sm shrink-0">
+                  Boss
+                </span>
               ) : (
-                <img
-                  src={renderUrl}
-                  alt={detail?.name || initialMob?.name}
-                  className="max-w-[90%] max-h-[90%] object-contain scale-110 group-hover:scale-140 transition-transform duration-500"
-                  style={{ imageRendering: "pixelated" }}
-                />
+                <span className="px-2 py-0.5 bg-slate-500 text-white text-base font-black rounded uppercase tracking-widest shadow-sm shrink-0">
+                  Regular
+                </span>
               )}
             </div>
-            <div>
-              <div className="flex items-center gap-3 mb-1">
-                <h2 className="font-heading text-4xl text-(--color-card-text) tracking-tight">
-                  {detail?.name || initialMob?.name || (
-                    <Skeleton className="h-10 w-48" />
-                  )}
-                </h2>
-                {initialMob?.isBoss ? (
-                  <span className="px-2 py-0.5 bg-red-500 text-white text-base font-black rounded uppercase tracking-widest shadow-sm shrink-0">
-                    Boss
-                  </span>
-                ) : (
-                  <span className="px-2 py-0.5 bg-slate-500 text-white text-base font-black rounded uppercase tracking-widest shadow-sm shrink-0">
-                    Regular
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center gap-4 text-xl opacity-80 font-medium">
-                <span className="flex items-center gap-1.5 text-(--color-card-text)">
-                  Level{" "}
-                  {detail?.meta?.level ||
-                    initialMob?.level ||
-                    (loading ? "..." : "???")}
-                </span>
-              </div>
+            <div className="flex items-center justify-center sm:justify-start gap-4 text-xl opacity-80 font-medium">
+              <span className="flex items-center gap-1.5 text-(--color-card-text)">
+                Level{" "}
+                {detail?.meta?.level ||
+                  initialMob?.level ||
+                  (loading ? "..." : "???")}
+              </span>
             </div>
           </div>
         </div>
