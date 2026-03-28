@@ -3,6 +3,7 @@ import CursorHandler from "./components/CursorHandler";
 import Layout from "./components/Layout";
 import EquipmentsPage from "./pages/EquipmentsPage";
 import HomePage from "./pages/HomePage";
+import ItemsPage from "./pages/ItemsPage";
 import MobsPage from "./pages/MobsPage";
 import WorldMapPage from "./pages/WorldMapPage";
 
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="mob/:id" element={<MobsPage />} />
           <Route path="equipment" element={<EquipmentsPage />} />
           <Route path="equipment/:id" element={<EquipmentsPage />} />
+          <Route path="items" element={<ItemsPage />} />
           <Route path="worldmap" element={<WorldMapPage />} />
         </Route>
       </Routes>

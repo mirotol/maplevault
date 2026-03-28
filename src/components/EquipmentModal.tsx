@@ -34,7 +34,6 @@ const EquipmentModal = ({
         if (!currentActive) return;
         if (data) {
           setDetail(data);
-          console.log("Fetched item details for modal:", data);
         } else {
           setError("No detailed information available for this item");
         }

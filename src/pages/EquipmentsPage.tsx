@@ -99,7 +99,6 @@ const EquipmentsPage = () => {
   const selectedItem = id ? items.find((m) => m.id === Number(id)) : null;
 
   const filteredAndSortedItems = useMemo(() => {
-    console.log(items);
     let result = items.filter(
       (item) =>
         item.typeInfo.overallCategory === "Equip" &&
