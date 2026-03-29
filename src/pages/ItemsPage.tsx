@@ -14,7 +14,8 @@ export const ITEM_GROUPS = {
     Special: ["Equipment Box", "Other"],
   },
   Setup: {
-    Main: ["Chair", "Title", "Decoration", "Event Item"],
+    Chair: ["Chair"],
+    Other: ["Title", "Decoration", "Event Item", "Other"],
   },
   Etc: {
     Drops: ["Monster Drop"],
@@ -179,12 +180,12 @@ const ItemsPage = () => {
         <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Items</span>
       </h2>
 
-      <div className="bg-amber-950/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative mb-12 overflow-hidden">
+      <div className="bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative mb-12 overflow-hidden">
         <div className="absolute inset-0 border border-white/5 rounded-2xl pointer-events-none" />
 
         <div className="relative z-10">
           {/* Main Category Tabs */}
-          <div className="flex flex-wrap gap-3 mb-4 justify-center md:justify-start card-mob-bg p-3 rounded-2xl w-fit">
+          <div className="flex flex-wrap gap-3 mb-4 justify-center md:justify-start card-equipment-bg p-3 rounded-2xl w-fit">
             {MAIN_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
@@ -192,7 +193,7 @@ const ItemsPage = () => {
                 onClick={() => setMainCategory(cat.id)}
                 className={`px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                   mainCategory === cat.id
-                    ? "bg-linear-to-r from-orange-800 to-amber-600/80 text-white shadow-[0_0_20px_0px_rgba(245,158,11,0.4)]"
+                    ? "bg-linear-to-r from-red-700 to-orange-500/80 text-white shadow-[0_0_20px_0px_rgba(251,146,60,0.4)]"
                     : "text-white/70 bg-white/10 hover:text-white hover:bg-orange-600/70"
                 }`}
               >
@@ -202,22 +203,22 @@ const ItemsPage = () => {
           </div>
 
           {/* Filter Bar */}
-          <div className="relative z-20 card-mob-bg border border-amber-500/30 rounded-2xl p-3 mb-8 flex flex-wrap md:flex-nowrap items-center gap-3 shadow-inner backdrop-blur-sm">
+          <div className="relative z-20 card-equipment-bg border border-blue-500/30 rounded-2xl p-3 mb-8 flex flex-wrap md:flex-nowrap items-center gap-3 shadow-inner backdrop-blur-sm">
             {/* Search Bar */}
             <div className="relative group w-full md:w-64">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-(--color-card-text)/60 group-focus-within:text-(--color-card-text) transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/90 group-focus-within:text-orange-400 transition-colors" />
               <input
                 type="text"
                 placeholder="Search items..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 pl-11 pr-10 bg-black/10 border border-black/5 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-amber-900/40 text-(--color-card-text) placeholder:text-(--color-card-text)/40 text-sm transition-all shadow-inner hover:bg-black/15 hover:border-black/10"
+                className="w-full h-10 pl-11 pr-10 bg-black/20 border border-white/10 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-orange-500/50 text-white placeholder:text-white/20 text-sm transition-all shadow-inner hover:bg-black/20 hover:border-white/20"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-(--color-card-text)/60 hover:text-(--color-card-text) transition-all"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-white/90 hover:text-white transition-all"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -226,10 +227,9 @@ const ItemsPage = () => {
 
             {/* Group Filter */}
             <CustomDropdown
-              variant="mob"
               className="h-10 min-w-45 flex-1 md:flex-none"
               options={[
-                { label: "All Groups", value: "all" },
+                { label: "All groups", value: "all" },
                 ...currentGroups.map((g) => ({ label: g, value: g })),
               ]}
               value={groupCategory}
@@ -240,7 +240,7 @@ const ItemsPage = () => {
             <button
               type="button"
               onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-              className="h-10 w-10 flex items-center justify-center bg-black/10 border border-black/5 rounded-xl text-(--color-card-text)/60 hover:text-(--color-card-text) hover:bg-black/20 hover:border-black/10 transition-all cursor-pointer group shadow-inner shrink-0 md:ml-auto"
+              className="h-10 w-10 flex items-center justify-center bg-black/10 border border-white/10 rounded-xl text-white/90 hover:text-white hover:bg-black/20 hover:border-white/20 transition-all cursor-pointer group shadow-inner shrink-0"
               title={sortOrder === "asc" ? "Sort Ascending" : "Sort Descending"}
             >
               {sortOrder === "asc" ? (
@@ -250,6 +250,9 @@ const ItemsPage = () => {
               )}
             </button>
           </div>
+
+          {/* Divider */}
+          <div className="border-t border-white/5 mb-8" />
 
           {/* Card Grid */}
           {loading ? (
@@ -261,7 +264,7 @@ const ItemsPage = () => {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {displayedItems.map((item, index) => {
                   const isLast = displayedItems.length === index + 1;
                   return (
