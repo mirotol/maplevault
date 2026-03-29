@@ -88,7 +88,7 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
           </button>
         </div>
 
-        <div className="p-6 pb-8 pt-0 relative z-10 flex flex-col items-center">
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pb-8 pt-0 relative z-10 flex flex-col items-center">
           {/* Name and category */}
           <div className="text-center mb-8">
             <h2 className="font-bold text-3xl leading-tight wrap-break-word text-center drop-shadow-sm">
