@@ -116,7 +116,7 @@ const ItemsPage = () => {
   const hasMore = displayCount < filteredAndSortedItems.length;
 
   const lastItemElementRef = useCallback(
-    (node: HTMLDivElement) => {
+    (node: HTMLButtonElement | null) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
