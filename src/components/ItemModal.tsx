@@ -62,7 +62,7 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
   const icon = fetchItemIcon(itemId);
 
   const Divider = () => (
-    <div className="border-t border-white/10 w-full my-8" />
+    <div className="border-t border-white/10 w-full my-6" />
   );
 
   return (
@@ -77,7 +77,7 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
       {/* Modal Container */}
       <div className="card-equipment-bg relative w-full max-w-md border border-white/20 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col max-h-[95vh] text-white animate-in zoom-in-95 duration-300 mx-4 sm:mx-0">
         {/* Top bar (Close button row) */}
-        <div className="flex justify-end p-2">
+        <div className="flex justify-end p-2 shrink-0">
           <button
             type="button"
             onClick={onClose}
@@ -88,9 +88,10 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pb-8 pt-0 relative z-10 flex flex-col items-center">
+        {/* Header content (Fixed) */}
+        <div className="px-6 pt-0 pb-0 relative z-10 flex flex-col items-center shrink-0">
           {/* Name and category */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <h2 className="font-bold text-3xl leading-tight wrap-break-word text-center drop-shadow-sm">
               {detail?.name || initialItem?.name || (
                 <Skeleton className="h-8 w-48 mx-auto opacity-20" />
@@ -105,10 +106,10 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
           </div>
 
           {/* Icon */}
-          <div className="w-48 h-48 bg-white/10 rounded-3xl flex items-center justify-center border border-white/10 shadow-inner group overflow-hidden relative">
+          <div className="w-40 h-40 bg-white/10 rounded-3xl flex items-center justify-center border border-white/10 shadow-inner group overflow-hidden relative">
             <div className="absolute inset-0 bg-linear-to-b from-white/5 to-transparent pointer-events-none" />
             {loading ? (
-              <Skeleton className="w-20 h-20 rounded-lg opacity-20" />
+              <Skeleton className="w-16 h-16 rounded-lg opacity-20" />
             ) : error ? (
               <ImageOff className="w-10 h-10 opacity-20" />
             ) : (
@@ -122,9 +123,12 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
           </div>
 
           <Divider />
+        </div>
 
+        {/* Scrollable Description Content */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pb-8 pt-0 relative z-10">
           {/* Description */}
-          <div className="w-full text-center px-4 min-h-16 flex items-center justify-center">
+          <div className="w-full text-center px-4 min-h-16 flex items-start justify-center">
             {loading ? (
               <div className="space-y-3 w-full">
                 <Skeleton className="h-4 w-full opacity-10" />
