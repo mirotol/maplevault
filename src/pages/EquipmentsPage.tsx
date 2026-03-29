@@ -237,6 +237,7 @@ const EquipmentsPage = () => {
           src="/icons/zakum_helmet.png"
           alt="Zakum Helmet"
           className="w-12 h-12 pointer-events-none select-none"
+          style={{ imageRendering: "pixelated" }}
         />
         <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Equipment</span>
       </h2>

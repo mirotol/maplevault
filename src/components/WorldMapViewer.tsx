@@ -186,6 +186,7 @@ export default function WorldMapViewer() {
             style={{
               opacity: isLoading ? 0.5 : 1,
               transition: "opacity 0.2s ease",
+              imageRendering: "pixelated",
             }}
           />
         )}
@@ -200,6 +201,7 @@ export default function WorldMapViewer() {
             style={{
               left: `calc(50% + ${-path.OriginX}px)`,
               top: `calc(50% + ${-path.OriginY}px)`,
+              imageRendering: "pixelated",
             }}
           />
         ))}
@@ -255,7 +257,11 @@ export default function WorldMapViewer() {
               top: `calc(50% + ${-link.OriginY}px)`,
             }}
           >
-            <img src={`/worldmap/images/${link.Image}`} alt="" />
+            <img
+              src={`/worldmap/images/${link.Image}`}
+              alt=""
+              style={{ imageRendering: "pixelated" }}
+            />
           </button>
         ))}
 
@@ -306,7 +312,13 @@ export default function WorldMapViewer() {
                 top: `calc(50% + ${node.Y}px)`,
               }}
             >
-              <img src={icon} alt="" width={16} height={16} />
+              <img
+                src={icon}
+                alt=""
+                width={16}
+                height={16}
+                style={{ imageRendering: "pixelated" }}
+              />
             </button>
           );
         })}

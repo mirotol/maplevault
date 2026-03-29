@@ -19,6 +19,7 @@ const HomePage = () => {
         className={`w-86 mb-6 mt-2 md:mb-10 md:mt-4 pointer-events-none select-none drop-shadow-xl ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{ imageRendering: "pixelated" }}
       />
 
       {loaded && (

@@ -279,9 +279,10 @@ const ItemsPage = () => {
     <>
       <h2 className="font-heading text-4xl font-semibold mb-8 flex items-center gap-3 text-white">
         <img
-          src="/icons/orange_mushroom.png"
+          src="/icons/red_potion.png"
           alt="Items"
           className="w-12 h-12 pointer-events-none select-none"
+          style={{ imageRendering: "pixelated" }}
         />
         <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Items</span>
       </h2>

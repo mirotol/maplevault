@@ -67,6 +67,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
           src={icon}
           alt={item.name}
           className="max-w-[90%] max-h-[90%] object-contain scale-160"
+          style={{ imageRendering: "pixelated" }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
           }}

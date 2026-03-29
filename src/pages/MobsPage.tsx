@@ -152,6 +152,7 @@ const MobsPage = () => {
           src="/icons/orange_mushroom.png"
           alt="Orange Mushroom"
           className="w-12 h-12 pointer-events-none select-none"
+          style={{ imageRendering: "pixelated" }}
         />
         <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">Mobs</span>
       </h2>

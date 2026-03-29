@@ -72,6 +72,7 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
               alt={mob.name}
               className="max-w-[90%] max-h-[90%] object-contain"
               onError={() => setImageError(true)}
+              style={{ imageRendering: "pixelated" }}
             />
           )
         ) : (

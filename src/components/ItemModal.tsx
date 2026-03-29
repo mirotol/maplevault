@@ -137,6 +137,7 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
                   src="/icons/meso.png"
                   alt="Meso"
                   className="w-5 h-5 pointer-events-none select-none"
+                  style={{ imageRendering: "pixelated" }}
                 />
               </div>
               <Divider />
