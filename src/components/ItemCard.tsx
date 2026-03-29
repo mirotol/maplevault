@@ -27,12 +27,9 @@ const ItemCard = ({ item }: ItemCardProps) => {
 
       {/* Content */}
       <div className="flex flex-col flex-1 w-full items-center">
-        <h3 className="text-2xl font-medium group-hover:text-orange-400 transition-colors block mb-4 line-clamp-2">
+        <h3 className="text-xl font-medium transition-colors block mb-4 line-clamp-2">
           {item.name}
         </h3>
-        <span className="text-[10px] opacity-30 font-mono mb-3">
-          ID: {item.id}
-        </span>
 
         <div className="mt-auto">
           <span className="px-2 py-0.5 bg-slate-700/90 text-white/90 text-sm font-black rounded uppercase tracking-widest shadow-sm shrink-0">

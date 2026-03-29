@@ -67,7 +67,7 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
       {/* Content wrapper */}
       <div className="flex flex-col flex-1 w-full items-center">
         {/* Header (name) */}
-        <h3 className="text-2xl font-medium group-hover:text-orange-400 transition-colors block mb-8 line-clamp-2">
+        <h3 className="text-xl font-medium transition-colors block mb-8 line-clamp-2">
           {item.name}
         </h3>
 

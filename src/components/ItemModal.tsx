@@ -135,7 +135,7 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
                 <Skeleton className="h-4 w-5/6 mx-auto opacity-10" />
               </div>
             ) : detail?.desc ? (
-              <p className="text-xl text-white/90 leading-relaxed font-medium italic">
+              <p className="text-base text-white/90 leading-relaxed font-medium italic">
                 {formatDescription(detail.desc)}
               </p>
             ) : (
