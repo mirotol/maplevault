@@ -10,28 +10,69 @@ import type { Item } from "../types/maple";
 
 export const ITEM_GROUPS = {
   Use: {
-    Consumables: ["Potion", "Food and Drink", "Consumable", "Status Cure"],
-    Scrolls: ["Weapon Scroll", "Armor Scroll", "Special Scroll"],
+    Consumables: [
+      "Potion",
+      "Food and Drink",
+      "Consumable",
+      "Status Cure",
+      "Other",
+    ],
+    "Armor Scrolls": [
+      "Accessory",
+      "Belt",
+      "Bottomwear",
+      "Cape",
+      "Earrings",
+      "Eye",
+      "Face",
+      "Gloves",
+      "Helmet",
+      "Overall",
+      "Ring",
+      "Topwear",
+      "Shield",
+      "Shoes",
+    ],
+    "Weapon Scrolls": ["Gun"],
+    "Special Scrolls": ["Special Scroll"],
     Utility: ["Teleport Item", "EXP Buff", "Time Saver"],
     Special: ["Equipment Box", "Other"],
   },
   Setup: {
     Chair: ["Chair"],
-    Other: ["Title", "Decoration", "Event Item", "Other"],
+    Decoration: ["Decoration"],
+    Key: ["Key"],
+    Other: ["Event Item", "Other"],
   },
   Etc: {
     Drops: ["Monster Drop"],
-    Crafting: ["Mineral Ore", "Herb", "Crafting Item"],
+    Crafting: [
+      "Maker",
+      "Mineral Ore",
+      "Mineral Processed",
+      "Rare Ore",
+      "Rare Processed  Ore",
+    ],
     Quest: ["Quest Item"],
-    Currency: ["Coin"],
-    Other: ["Other"],
+    Other: [
+      "Book",
+      "Coin",
+      "Effect",
+      "Minigame",
+      "Pet Command",
+      "Wedding",
+      "Other",
+    ],
   },
   Cash: {
+    Appearance: ["Facial Expression", "Other"],
     Cosmetics: ["Hair Coupon", "Face Coupon", "Skin Coupon"],
     Convenience: ["Teleport Rock", "Inventory Slot"],
+    "Free Market": ["Other"],
     Gacha: ["Gachapon", "Surprise Box"],
     Pets: ["Pet Use", "Pet Food"],
     Enhancement: ["Miracle Cube", "Scroll"],
+    Other: ["Other"],
   },
 };
 
@@ -42,15 +83,16 @@ function getItemGroup(item: Item) {
   const sub = item.typeInfo.subCategory || "";
 
   const groups = ITEM_GROUPS[overall];
-  if (!groups) return { main: overall, group: "Other" };
+  if (!groups) return { main: overall, group: "Other", sub: "Other" };
 
   for (const [groupName, values] of Object.entries(groups)) {
-    if (values.some((v) => sub.includes(v))) {
-      return { main: overall, group: groupName };
+    const matched = values.find((v) => sub.includes(v));
+    if (matched) {
+      return { main: overall, group: groupName, sub: matched };
     }
   }
 
-  return { main: overall, group: "Other" };
+  return { main: overall, group: "Other", sub: "Other" };
 }
 
 const MAIN_CATEGORIES: { id: MainCategory; label: string }[] = [
@@ -68,6 +110,7 @@ const ItemsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [mainCategory, setMainCategory] = useState<MainCategory>("Use");
   const [groupCategory, setGroupCategory] = useState<string>("all");
+  const [subGroupCategory, setSubGroupCategory] = useState<string>("all");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [displayCount, setDisplayCount] = useState(24);
   const observer = useRef<IntersectionObserver | null>(null);
@@ -89,8 +132,12 @@ const ItemsPage = () => {
     // Filter by group category
     if (groupCategory !== "all") {
       result = result.filter((item) => {
-        const { group } = getItemGroup(item);
-        return group === groupCategory;
+        const { group, sub } = getItemGroup(item);
+        if (group !== groupCategory) return false;
+        if (subGroupCategory !== "all") {
+          return sub === subGroupCategory;
+        }
+        return true;
       });
     }
 
@@ -107,7 +154,14 @@ const ItemsPage = () => {
     });
 
     return result;
-  }, [items, searchQuery, mainCategory, groupCategory, sortOrder]);
+  }, [
+    items,
+    searchQuery,
+    mainCategory,
+    groupCategory,
+    subGroupCategory,
+    sortOrder,
+  ]);
 
   const displayedItems = useMemo(() => {
     return filteredAndSortedItems.slice(0, displayCount);
@@ -167,11 +221,26 @@ const ItemsPage = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: Reset groupCategory when mainCategory changes
   useEffect(() => {
     setGroupCategory("all");
+    setSubGroupCategory("all");
   }, [mainCategory]);
+
+  // Reset subGroupCategory when groupCategory changes
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Reset subGroupCategory when groupCategory changes
+  useEffect(() => {
+    setSubGroupCategory("all");
+  }, [groupCategory]);
 
   const currentGroups = useMemo(() => {
     return Object.keys(ITEM_GROUPS[mainCategory]);
   }, [mainCategory]);
+
+  const currentSubGroups = useMemo(() => {
+    if (groupCategory === "all") return [];
+    return (
+      (ITEM_GROUPS[mainCategory] as Record<string, string[]>)[groupCategory] ||
+      []
+    );
+  }, [mainCategory, groupCategory]);
 
   const handleCloseModal = () => {
     navigate("/items");
@@ -239,12 +308,25 @@ const ItemsPage = () => {
             <CustomDropdown
               className="h-10 min-w-45 flex-1 md:flex-none"
               options={[
-                { label: "All groups", value: "all" },
+                { label: "All categories", value: "all" },
                 ...currentGroups.map((g) => ({ label: g, value: g })),
               ]}
               value={groupCategory}
               onChange={setGroupCategory}
             />
+
+            {/* Sub-Group Filter (Conditional) */}
+            {currentSubGroups.length > 1 && (
+              <CustomDropdown
+                className="h-10 min-w-45 flex-1 md:flex-none animate-in fade-in slide-in-from-left-2 duration-300"
+                options={[
+                  { label: "All sub-categories", value: "all" },
+                  ...currentSubGroups.map((sg) => ({ label: sg, value: sg })),
+                ]}
+                value={subGroupCategory}
+                onChange={setSubGroupCategory}
+              />
+            )}
 
             {/* Sort Order Toggle */}
             <button

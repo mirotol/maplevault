@@ -12,24 +12,21 @@ interface ItemModalProps {
 }
 
 const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
-  const [detail, setDetail] = useState<Item | null>(
-    initialItem?.desc ? initialItem : null,
-  );
+  const [detail, setDetail] = useState<Item | null>(initialItem || null);
   const [loading, setLoading] = useState(!detail);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (detail) return;
+    if (detail?.metaInfo) return;
 
     let currentActive = true;
-    setLoading(true);
     setError(null);
 
     fetchItem(itemId)
       .then((data) => {
         if (!currentActive) return;
         if (data) {
-          setDetail(data);
+          setDetail((prev) => (prev ? { ...prev, ...data } : data));
         } else {
           setError("No detailed information available for this item");
         }
@@ -45,7 +42,7 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
     return () => {
       currentActive = false;
     };
-  }, [itemId, detail]);
+  }, [itemId, detail?.metaInfo]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -127,6 +124,23 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
 
         {/* Scrollable Description Content */}
         <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pb-8 pt-0 relative z-10">
+          {/* Selling Price */}
+          {!loading && detail?.metaInfo?.price !== undefined && (
+            <div className="flex flex-col items-center text-center">
+              <div className="flex items-center gap-2">
+                <span className="text-white/80 font-medium">
+                  Selling price: {detail.metaInfo.price.toLocaleString()}
+                </span>
+                <img
+                  src="/icons/meso.png"
+                  alt="Meso"
+                  className="w-5 h-5 pointer-events-none select-none"
+                />
+              </div>
+              <Divider />
+            </div>
+          )}
+
           {/* Description */}
           <div className="w-full text-center px-4 min-h-16 flex items-start justify-center">
             {loading ? (
@@ -134,9 +148,9 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
                 <Skeleton className="h-4 w-full opacity-10" />
                 <Skeleton className="h-4 w-5/6 mx-auto opacity-10" />
               </div>
-            ) : detail?.desc ? (
+            ) : detail?.desc || initialItem?.desc ? (
               <p className="text-base text-white/90 leading-relaxed font-medium italic">
-                {formatDescription(detail.desc)}
+                {formatDescription(detail?.desc || initialItem?.desc || "")}
               </p>
             ) : (
               !error && (
