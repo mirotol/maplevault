@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { WorldMapData, WorldMapNode } from "../types/maple";
 
 const NODE_ICONS: Record<number, string> = {
@@ -38,7 +38,7 @@ export default function WorldMapViewer() {
       });
   }, []);
 
-  const navigateToMap = (next: WorldMapData) => {
+  const navigateToMap = useCallback((next: WorldMapData) => {
     if (!next.BaseImage) {
       setDisplayMap(next);
       return;
@@ -53,7 +53,7 @@ export default function WorldMapViewer() {
       setDisplayMap(next);
       setIsLoading(false);
     };
-  };
+  }, []);
 
   // ─────────────────────────────────────────────
   // Pixel-perfect hit detection
@@ -130,7 +130,7 @@ export default function WorldMapViewer() {
     setHoveredLink(foundLink);
   };
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     setHistory((prev) => {
       if (prev.length === 0) return prev;
 
@@ -143,7 +143,7 @@ export default function WorldMapViewer() {
 
       return newHistory;
     });
-  };
+  }, [navigateToMap]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -154,7 +154,7 @@ export default function WorldMapViewer() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [history]);
+  }, [handleBack]);
 
   if (!displayMap) return <div>Loading...</div>;
 
