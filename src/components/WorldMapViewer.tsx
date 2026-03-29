@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowBigLeft } from "lucide-react";
 import type { WorldMapData, WorldMapNode } from "../types/maple";
 
 const NODE_ICONS: Record<number, string> = {
@@ -186,7 +187,6 @@ export default function WorldMapViewer() {
             style={{
               opacity: isLoading ? 0.5 : 1,
               transition: "opacity 0.2s ease",
-              imageRendering: "pixelated",
             }}
           />
         )}
@@ -201,7 +201,6 @@ export default function WorldMapViewer() {
             style={{
               left: `calc(50% + ${-path.OriginX}px)`,
               top: `calc(50% + ${-path.OriginY}px)`,
-              imageRendering: "pixelated",
             }}
           />
         ))}
@@ -257,11 +256,7 @@ export default function WorldMapViewer() {
               top: `calc(50% + ${-link.OriginY}px)`,
             }}
           >
-            <img
-              src={`/worldmap/images/${link.Image}`}
-              alt=""
-              style={{ imageRendering: "pixelated" }}
-            />
+            <img src={`/worldmap/images/${link.Image}`} alt="" />
           </button>
         ))}
 
@@ -312,13 +307,7 @@ export default function WorldMapViewer() {
                 top: `calc(50% + ${node.Y}px)`,
               }}
             >
-              <img
-                src={icon}
-                alt=""
-                width={16}
-                height={16}
-                style={{ imageRendering: "pixelated" }}
-              />
+              <img src={icon} alt="" width={16} height={16} />
             </button>
           );
         })}
@@ -329,9 +318,10 @@ export default function WorldMapViewer() {
         <button
           type="button"
           onClick={handleBack}
-          className="absolute top-2.5 left-2.5 z-1000"
+          className="absolute top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/80 backdrop-blur-md border border-white/10 text-white hover:bg-slate-800 hover:border-white/20 transition-all duration-300 shadow-lg group cursor-pointer"
         >
-          ← Back
+          <ArrowBigLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+          <span className="font-medium">Back</span>
         </button>
       )}
 
