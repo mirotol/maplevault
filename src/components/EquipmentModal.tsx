@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
 import { formatAttackSpeed } from "../utils/item";
+import { formatDescription } from "../utils/mapleDescription";
 import { Skeleton } from "./Skeleton";
 
 interface EquipmentModalProps {
@@ -34,7 +35,6 @@ const EquipmentModal = ({
         if (!currentActive) return;
         if (data) {
           setDetail(data);
-          console.log("Fetched item details for modal:", data);
         } else {
           setError("No detailed information available for this item");
         }
@@ -292,7 +292,7 @@ const EquipmentModal = ({
                     </div>
                     {initialItem?.desc && (
                       <p className="px-1 my-2 text-base text-gray-500 italic leading-relaxed">
-                        {initialItem.desc}
+                        {formatDescription(initialItem.desc)}
                       </p>
                     )}
 
