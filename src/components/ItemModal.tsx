@@ -1,6 +1,6 @@
 import { ImageOff, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { fetchItem, fetchItemIcon } from "../api/mapleApi";
+import { fetchItem, fetchItemIcon, getCachedItem } from "../api/mapleApi";
 import type { Item } from "../types/maple";
 import { formatDescription } from "../utils/mapleDescription";
 import { Skeleton } from "./Skeleton";
@@ -12,8 +12,10 @@ interface ItemModalProps {
 }
 
 const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
-  const [detail, setDetail] = useState<Item | null>(initialItem || null);
-  const [loading, setLoading] = useState(!detail);
+  const [detail, setDetail] = useState<Item | null>(
+    getCachedItem(itemId) || initialItem || null,
+  );
+  const [loading, setLoading] = useState(!detail?.metaInfo);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

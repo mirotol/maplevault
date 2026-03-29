@@ -10,7 +10,12 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { fetchMaps, fetchMobDetail, fetchMobRenderUrl } from "../api/mapleApi";
+import {
+  fetchMaps,
+  fetchMobDetail,
+  fetchMobRenderUrl,
+  getCachedMobDetail,
+} from "../api/mapleApi";
 import type { Mob, MobDetail } from "../types/maple";
 import { getElementalInfo } from "../utils/elemental";
 import { Badge } from "./Badge";
@@ -26,17 +31,25 @@ interface MobModalProps {
 }
 
 const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
-  const [detail, setDetail] = useState<MobDetail | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [detail, setDetail] = useState<MobDetail | null>(
+    getCachedMobDetail(mobId),
+  );
+  const [loading, setLoading] = useState(!detail);
   const [error, setError] = useState<string | null>(null);
   const [expandedLocations, setExpandedLocations] = useState(false);
 
   useEffect(() => {
     let currentActive = true;
-    setLoading(true);
+    if (!detail) setLoading(true);
     setError(null);
 
-    Promise.all([fetchMobDetail(mobId), fetchMaps()])
+    // Always fetch maps for location names, but only fetch mob details if not cached
+    const mapPromise = fetchMaps();
+    const detailPromise = detail
+      ? Promise.resolve(detail)
+      : fetchMobDetail(mobId);
+
+    Promise.all([detailPromise, mapPromise])
       .then(([data, _maps]) => {
         if (!currentActive) return;
         if (data) {
@@ -56,7 +69,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
     return () => {
       currentActive = false;
     };
-  }, [mobId]);
+  }, [mobId, detail]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {

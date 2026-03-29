@@ -1,6 +1,6 @@
 import { ImageOff, ShieldAlert, Sparkle, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { fetchItem, fetchItemIcon } from "../api/mapleApi";
+import { fetchItem, fetchItemIcon, getCachedItem } from "../api/mapleApi";
 import type { Item } from "../types/maple";
 import { formatAttackSpeed } from "../utils/item";
 import { formatDescription } from "../utils/mapleDescription";
@@ -18,9 +18,9 @@ const EquipmentModal = ({
   onClose,
 }: EquipmentModalProps) => {
   const [detail, setDetail] = useState<Item | null>(
-    initialItem?.metaInfo ? initialItem : null,
+    getCachedItem(itemId) || (initialItem?.metaInfo ? initialItem : null),
   );
-  const [loading, setLoading] = useState(!detail);
+  const [loading, setLoading] = useState(!detail?.metaInfo);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

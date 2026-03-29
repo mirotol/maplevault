@@ -10,6 +10,10 @@ const DEFAULT_VERSION: Version = "83";
 const BASE_URL = "https://maplestory.io/api";
 
 let mapLookupCache: MapLookup | null = null;
+const itemDetailCache = new Map<number, Item>();
+const mobDetailCache = new Map<number, MobDetail>();
+const itemRequests = new Map<number, Promise<Item | null>>();
+const mobRequests = new Map<number, Promise<MobDetail | null>>();
 const CACHE_KEY = "map_lookup_v83";
 
 export interface ApiConfig {
@@ -85,11 +89,31 @@ export async function fetchMobDetail(
   region: Region = DEFAULT_REGION,
   version: Version = DEFAULT_VERSION,
 ): Promise<MobDetail | null> {
-  const url = `${BASE_URL}/${region.toLowerCase()}/${version}/mob/${mobId}`;
-  const res = await fetch(url);
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`Failed to fetch mob ${mobId}: ${res.status}`);
-  return withMinimumDelay(res.json());
+  // Use cache if available
+  const cached = mobDetailCache.get(mobId);
+  if (cached) return cached;
+
+  // Deduplicate requests
+  if (mobRequests.has(mobId)) return mobRequests.get(mobId) ?? null;
+
+  const promise = (async () => {
+    try {
+      const url = `${BASE_URL}/${region.toLowerCase()}/${version}/mob/${mobId}`;
+      const res = await fetch(url);
+      if (res.status === 404) return null;
+      if (!res.ok)
+        throw new Error(`Failed to fetch mob ${mobId}: ${res.status}`);
+
+      const data = await withMinimumDelay(res.json());
+      if (data) mobDetailCache.set(mobId, data);
+      return data;
+    } finally {
+      mobRequests.delete(mobId);
+    }
+  })();
+
+  mobRequests.set(mobId, promise);
+  return promise;
 }
 
 export function fetchMobIcon(
@@ -132,11 +156,39 @@ export async function fetchItem(
   region: Region = DEFAULT_REGION,
   version: Version = DEFAULT_VERSION,
 ): Promise<Item | null> {
-  const url = `${BASE_URL}/${region.toLowerCase()}/${version}/item/${itemId}`;
-  const res = await fetch(url);
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`Failed to fetch item ${itemId}: ${res.status}`);
-  return withMinimumDelay(res.json());
+  // Use cache if available
+  const cached = itemDetailCache.get(itemId);
+  if (cached) return cached;
+
+  // Deduplicate requests
+  if (itemRequests.has(itemId)) return itemRequests.get(itemId) ?? null;
+
+  const promise = (async () => {
+    try {
+      const url = `${BASE_URL}/${region.toLowerCase()}/${version}/item/${itemId}`;
+      const res = await fetch(url);
+      if (res.status === 404) return null;
+      if (!res.ok)
+        throw new Error(`Failed to fetch item ${itemId}: ${res.status}`);
+
+      const data = await withMinimumDelay(res.json());
+      if (data) itemDetailCache.set(itemId, data);
+      return data;
+    } finally {
+      itemRequests.delete(itemId);
+    }
+  })();
+
+  itemRequests.set(itemId, promise);
+  return promise;
+}
+
+export function getCachedItem(itemId: number): Item | null {
+  return itemDetailCache.get(itemId) || null;
+}
+
+export function getCachedMobDetail(mobId: number): MobDetail | null {
+  return mobDetailCache.get(mobId) || null;
 }
 
 export function fetchItemIcon(
