@@ -182,7 +182,7 @@ const MobsPage = () => {
                 placeholder="Search mobs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 pl-11 pr-10 bg-black/10 border border-black/5 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-amber-900/40 text-(--color-card-text) placeholder:text-(--color-card-text)/40 text-sm transition-all shadow-inner hover:bg-black/15 hover:border-black/10"
+                className="w-full h-10 pl-11 pr-10 bg-black/10 border border-black/5 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-amber-900/40 text-(--color-card-text) placeholder:text-(--color-card-text)/40 text-base transition-all shadow-inner hover:bg-black/15 hover:border-black/10"
               />
               {searchQuery && (
                 <button
