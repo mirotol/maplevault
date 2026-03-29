@@ -177,7 +177,7 @@ const EquipmentsPage = () => {
   const hasMore = displayCount < filteredAndSortedItems.length;
 
   const lastItemElementRef = useCallback(
-    (node: HTMLButtonElement) => {
+    (node: HTMLButtonElement | null) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
