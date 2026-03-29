@@ -1,8 +1,10 @@
 import { Loader2, Search, SortAsc, SortDesc, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchItems } from "../api/mapleApi";
 import { CustomDropdown } from "../components/CustomDropdown";
 import ItemCard from "../components/ItemCard";
+import ItemModal from "../components/ItemModal";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import type { Item } from "../types/maple";
 
@@ -59,6 +61,8 @@ const MAIN_CATEGORIES: { id: MainCategory; label: string }[] = [
 ];
 
 const ItemsPage = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -69,8 +73,8 @@ const ItemsPage = () => {
   const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    document.title = "Items | MapleVault";
-  }, []);
+    document.title = id ? "Item | MapleVault" : "Items | MapleVault";
+  }, [id]);
 
   const filteredAndSortedItems = useMemo(() => {
     let result = items.filter(
@@ -168,6 +172,12 @@ const ItemsPage = () => {
   const currentGroups = useMemo(() => {
     return Object.keys(ITEM_GROUPS[mainCategory]);
   }, [mainCategory]);
+
+  const handleCloseModal = () => {
+    navigate("/items");
+  };
+
+  const selectedItem = id ? items.find((m) => m.id === Number(id)) : null;
 
   return (
     <>
@@ -268,13 +278,21 @@ const ItemsPage = () => {
                 {displayedItems.map((item, index) => {
                   const isLast = displayedItems.length === index + 1;
                   return (
-                    <div
+                    <button
+                      type="button"
                       key={item.id}
                       ref={isLast ? lastItemElementRef : undefined}
-                      className="flex h-full"
+                      onClick={() => navigate(`/items/${item.id}`)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          navigate(`/items/${item.id}`);
+                        }
+                      }}
+                      className="cursor-pointer flex h-full focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg w-full text-left"
                     >
                       <ItemCard item={item} />
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -299,6 +317,14 @@ const ItemsPage = () => {
           )}
         </div>
       </div>
+
+      {id && (
+        <ItemModal
+          itemId={Number(id)}
+          initialItem={selectedItem || undefined}
+          onClose={handleCloseModal}
+        />
+      )}
 
       <ScrollToTopButton />
     </>

@@ -19,6 +19,7 @@ export default function App() {
           <Route path="equipment" element={<EquipmentsPage />} />
           <Route path="equipment/:id" element={<EquipmentsPage />} />
           <Route path="items" element={<ItemsPage />} />
+          <Route path="items/:id" element={<ItemsPage />} />
           <Route path="worldmap" element={<WorldMapPage />} />
         </Route>
       </Routes>
