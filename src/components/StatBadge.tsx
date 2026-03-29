@@ -21,16 +21,25 @@ export const StatBadge = ({
     exp: "bg-[image:var(--stat-exp-gradient)] border-white text-white text-shadow-lg shadow-md",
   };
 
+  const valueString = value?.toLocaleString() ?? "???";
+  const getFontSize = (str: string) => {
+    if (str.length > 10) return "text-sm sm:text-lg";
+    if (str.length > 7) return "text-base sm:text-xl";
+    return "text-xl";
+  };
+
   return (
-    <div className={`py-2.5 px-4 rounded-lg border ${variantStyles[variant]}`}>
-      <div className="text-sm font-bold uppercase tracking-widest leading-none mb-1">
+    <div
+      className={`py-2.5 px-3 sm:px-4 rounded-lg border transition-all duration-300 ${variantStyles[variant]}`}
+    >
+      <div className="text-xs sm:text-sm font-bold uppercase tracking-widest leading-none mb-1">
         {label}
       </div>
-      <div className="font-bold text-xl leading-none">
+      <div className={`font-bold leading-none ${getFontSize(valueString)}`}>
         {loading ? (
           <Skeleton className="h-4 w-16" />
         ) : (
-          (value?.toLocaleString() ?? "???")
+          valueString
         )}
       </div>
     </div>

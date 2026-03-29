@@ -92,18 +92,19 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   }: {
     label: string;
     value: number | undefined;
-  }) => (
-    <div className="flex justify-between items-center py-2 px-1 text-lg text-(--color-card-text) border-b border-(--color-card-border)/60 last:border-0">
-      <span>{label}</span>
-      <span className="font-bold">
-        {loading ? (
-          <Skeleton className="h-4 w-12" />
-        ) : (
-          (value?.toLocaleString() ?? "???")
-        )}
-      </span>
-    </div>
-  );
+  }) => {
+    const valStr = value?.toLocaleString() ?? "???";
+    return (
+      <div className="flex justify-between items-center py-2 px-1 text-lg text-(--color-card-text) border-b border-(--color-card-border)/60 last:border-0">
+        <span>{label}</span>
+        <span
+          className={`font-bold transition-all ${valStr.length > 8 ? "text-base sm:text-lg" : "text-lg"}`}
+        >
+          {loading ? <Skeleton className="h-4 w-12" /> : valStr}
+        </span>
+      </div>
+    );
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
