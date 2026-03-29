@@ -36,11 +36,7 @@ export const StatBadge = ({
         {label}
       </div>
       <div className={`font-bold leading-none ${getFontSize(valueString)}`}>
-        {loading ? (
-          <Skeleton className="h-4 w-16" />
-        ) : (
-          valueString
-        )}
+        {loading ? <Skeleton className="h-4 w-16" /> : valueString}
       </div>
     </div>
   );

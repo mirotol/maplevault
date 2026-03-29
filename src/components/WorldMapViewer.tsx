@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowBigLeft } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { WorldMapData, WorldMapNode } from "../types/maple";
 
 const NODE_ICONS: Record<number, string> = {

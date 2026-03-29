@@ -216,8 +216,9 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <section className="space-y-4">
-                  <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
-                    <Swords className="w-5 h-5" /> Combat Stats
+                  <h3 className="text-base uppercase text-(--color-card-text) tracking-[0.2em] flex items-center gap-2 px-1">
+                    <Swords className="w-5 h-5" />
+                    Stats
                   </h3>
                   <div className="grid grid-cols-1 p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/60">
                     <CombatStat
@@ -250,7 +251,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
 
                 <div className="space-y-8">
                   <section className="space-y-4">
-                    <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
+                    <h3 className="text-base text-(--color-card-text) uppercase tracking-[0.2em] flex items-center gap-2 px-1">
                       <Zap className="w-5 h-5" /> Elemental Info
                     </h3>
                     <div className="grid grid-cols-1 gap-2">
@@ -280,7 +281,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                   {/* Special Traits */}
                   {(loading || detail?.meta?.isUndead) && (
                     <section className="space-y-4">
-                      <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2 px-1">
+                      <h3 className="text-base text-(--color-card-text) uppercase tracking-[0.2em] flex items-center gap-2 px-1">
                         <Sparkles className="w-5 h-5" /> Special Traits
                       </h3>
                       <div className="p-4 rounded-xl border border-(--color-card-border)/50 bg-(--color-card-bg)/60">
@@ -302,7 +303,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
               {/* Locations */}
               {(loading || (detail?.foundAt && detail.foundAt.length > 0)) && (
                 <section className="space-y-4">
-                  <h3 className="text-base uppercase tracking-[0.2em] flex items-center gap-2">
+                  <h3 className="text-base text-(--color-card-text) uppercase tracking-[0.2em] flex items-center gap-2">
                     <MapPin className="w-5 h-5" /> Locations
                   </h3>
 
