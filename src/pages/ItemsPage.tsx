@@ -34,7 +34,12 @@ export const ITEM_GROUPS = {
       "Shoes",
     ],
     "Weapon Scrolls": ["Gun"],
-    "Special Scrolls": ["Special Scroll"],
+    "Special Scrolls": [
+      "Clean Slate Scroll",
+      "Chaos Scroll",
+      "White Scroll",
+      "Other",
+    ],
     Utility: ["Teleport Item", "EXP Buff", "Time Saver"],
     Special: ["Equipment Box", "Other"],
   },
