@@ -53,7 +53,7 @@ const MobsPage = () => {
   };
 
   const handleSelectMob = (mob: Mob) => {
-    navigate(`/mob/${mob.id}`);
+    navigate(`/mobs/${mob.id}`);
   };
 
   const filteredAndSortedMobs = useMemo(() => {
