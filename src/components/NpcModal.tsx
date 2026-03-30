@@ -1,9 +1,9 @@
-import { ExternalLink, Loader2, MapPin, MessageCircle, X } from "lucide-react";
+import { Loader2, MapPin, MessageCircle, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { fetchNpcDetail, fetchNpcIcon } from "../api/mapleApi";
+import { fetchMaps, fetchNpcDetail, fetchNpcIcon } from "../api/mapleApi";
 import { npcLookupJson } from "../data/staticData";
 import type { NpcDetail } from "../types/maple";
+import { LocationBadge } from "./LocationBadge";
 
 interface NpcModalProps {
   npcId: number;
@@ -18,8 +18,10 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
   useEffect(() => {
     let isMounted = true;
     setLoading(true);
-    fetchNpcDetail(npcId)
-      .then((data) => {
+
+    // Fetch both NPC details and map lookup for names
+    Promise.all([fetchNpcDetail(npcId), fetchMaps()])
+      .then(([data, _maps]) => {
         if (isMounted) {
           if (data) {
             setDetail(data);
@@ -58,6 +60,7 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
   }, [onClose]);
 
   const placements = npcLookupJson.npcs[npcId.toString()] || [];
+  const uniqueMapIds = Array.from(new Set(placements.map((p) => p.mapId)));
   const iconUrl = fetchNpcIcon(npcId);
 
   return (
@@ -71,15 +74,16 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
       />
 
       {/* Modal Container */}
-      <div className="card-mob-bg relative w-full max-w-2xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-(--color-card-text) animate-in zoom-in-95 duration-300">
-        {/* Top bar */}
-        <div className="flex justify-end p-4 absolute right-0 top-0 z-20">
+      <div className="card-mob-bg relative w-full max-w-2xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-(--color-card-text) animate-in zoom-in-95 duration-300 mx-4 sm:mx-0">
+        {/* Top bar (Close button) */}
+        <div className="flex justify-end p-2 sm:p-4 absolute right-0 top-0 z-20">
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-xl bg-black/20 hover:bg-black/40 border border-white/10 transition-all text-white/70 hover:text-white"
+            className="p-1.5 sm:p-2 rounded-xl bg-black/10 hover:bg-black/20 border border-white/10 transition-all text-white/50 hover:text-white"
+            aria-label="Close modal"
           >
-            <X size={24} />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
@@ -97,13 +101,13 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
             </p>
           </div>
         ) : (
-          <div className="flex flex-col overflow-y-auto">
+          <div className="flex-1 flex flex-col overflow-y-auto min-h-0">
             {/* Header Section */}
-            <div className="p-8 pb-6 flex flex-col items-center text-center border-b border-white/10 relative overflow-hidden">
+            <div className="p-6 sm:p-8 pb-4 sm:pb-6 flex flex-col items-center text-center border-b border-white/10 relative overflow-hidden">
               {/* Decorative background glow */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-(--color-accent)/10 blur-[100px] rounded-full -z-10" />
 
-              <div className="w-24 h-24 bg-white/5 rounded-2xl p-4 mb-4 border border-white/10 flex items-center justify-center shadow-inner relative group">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/5 rounded-2xl p-4 mb-4 border border-white/10 flex items-center justify-center shadow-inner relative group shrink-0">
                 <img
                   src={iconUrl}
                   alt={detail.name || `NPC ${npcId}`}
@@ -112,35 +116,35 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
                 />
               </div>
 
-              <h2 className="text-3xl font-bold mb-1">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-1 break-words max-w-[85%] mx-auto">
                 {detail.name || `NPC ${npcId}`}
               </h2>
               {detail.function && (
-                <p className="text-(--color-accent) font-medium uppercase tracking-widest text-sm mb-4">
+                <p className="text-(--color-accent) font-medium uppercase tracking-widest text-xs sm:text-sm mb-4 max-w-[90%] mx-auto">
                   {detail.function}
                 </p>
               )}
             </div>
 
             {/* Content Section */}
-            <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {/* Left Column: Dialogue / Info */}
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold flex items-center gap-2 mb-3 text-(--color-card-text)">
+                  <h3 className="text-base sm:text-lg font-semibold flex items-center gap-2 mb-3 text-(--color-card-text)">
                     <MessageCircle
                       size={20}
                       className="text-(--color-accent)"
                     />
                     Dialogue
                   </h3>
-                  <div className="bg-black/20 rounded-xl p-4 border border-white/5 space-y-3">
+                  <div className="bg-black/10 rounded-xl p-4 border border-white/5 space-y-3">
                     {detail.dialogue &&
                     Object.keys(detail.dialogue).length > 0 ? (
                       Object.entries(detail.dialogue).map(([key, text]) => (
                         <p
                           key={key}
-                          className="text-white/70 italic text-sm leading-relaxed"
+                          className="text-(--color-card-text) italic text-sm leading-relaxed break-words"
                         >
                           "{text}"
                         </p>
@@ -167,35 +171,18 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
 
               {/* Right Column: Locations */}
               <div>
-                <h3 className="text-lg font-semibold flex items-center gap-2 mb-3 text-(--color-card-text)">
+                <h3 className="text-base sm:text-lg font-semibold flex items-center gap-2 mb-3 text-(--color-card-text)">
                   <MapPin size={20} className="text-(--color-accent)" />
-                  Locations ({placements.length})
+                  Locations ({uniqueMapIds.length})
                 </h3>
-                <div className="space-y-2 max-h-75 overflow-y-auto pr-2">
-                  {placements.length > 0 ? (
-                    placements.map((placement) => (
-                      <Link
-                        key={`${placement.mapId}-${placement.x}-${placement.y}`}
-                        to={`/maps/${placement.mapId}`}
-                        className="flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all group"
-                      >
-                        <div className="flex flex-col text-left">
-                          <span className="text-xs text-(--color-card-text) font-bold uppercase tracking-wider">
-                            {placement.streetName}
-                          </span>
-                          <span className="text-sm font-medium group-hover:text-(--color-accent) transition-colors">
-                            {placement.mapName}
-                          </span>
-                        </div>
-                        <ExternalLink
-                          size={14}
-                          className="text-white/20 group-hover:text-(--color-accent)"
-                        />
-                      </Link>
+                <div className="grid grid-cols-1 gap-2 max-h-60 sm:max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+                  {uniqueMapIds.length > 0 ? (
+                    uniqueMapIds.map((mapId) => (
+                      <LocationBadge key={mapId} mapId={mapId} />
                     ))
                   ) : (
-                    <p className="text-white/30 italic text-sm p-4 bg-black/20 rounded-xl border border-white/5">
-                      No location data available in local database.
+                    <p className="text-white/90 italic text-base p-4 bg-black/20 rounded-xl border border-white/5">
+                      No location data available
                     </p>
                   )}
                 </div>

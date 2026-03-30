@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { getMapInfo } from "../api/mapleApi";
 
 interface LocationBadgeProps {
@@ -16,13 +17,13 @@ export const LocationBadge = ({
   }
 
   const info = getMapInfo(mapId);
-  return (
+  const content = (
     <div
-      className="flex items-center gap-3 px-3.5 py-2 bg-(--color-card-bg)/60 border border-(--color-card-border)/50 rounded-[10px] transition-all group hover:bg-(--color-location-hover-bg) shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1px_2px_rgba(0,0,0,0.08)]"
+      className="flex items-center gap-3 px-3.5 py-2 bg-(--color-card-bg)/60 border border-(--color-card-border)/50 rounded-[10px] transition-all group-hover:bg-(--color-location-hover-bg) shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1px_2px_rgba(0,0,0,0.08)]"
       title={`Map ID: ${mapId}`}
     >
       <div className="min-w-0">
-        <div className="text-base font-semibold text-(--color-card-text) leading-tight mb-0.5 truncate">
+        <div className="text-base font-semibold text-(--color-card-text) leading-tight mb-0.5 truncate group-hover:text-(--color-accent) transition-colors">
           {info?.name || "Unknown Map"}
         </div>
         <div className="text-sm text-(--color-card-text) leading-tight truncate">
@@ -30,5 +31,11 @@ export const LocationBadge = ({
         </div>
       </div>
     </div>
+  );
+
+  return (
+    <Link to={`/maps/${mapId}`} className="group block">
+      {content}
+    </Link>
   );
 };
