@@ -177,6 +177,24 @@ export interface MapMob {
   isBoss?: boolean;
 }
 
+export interface Npc {
+  id: number;
+  name?: string;
+}
+
+export interface NpcDetail {
+  id: number;
+  name?: string;
+  isShop: boolean;
+  function?: string;
+  dialogue?: Record<string, string>;
+  foundAt: { id: number }[];
+  relatedQuests?: number[];
+  framebooks?: {
+    stand: number;
+  };
+}
+
 export interface MapNpc {
   id: number;
   x: number;

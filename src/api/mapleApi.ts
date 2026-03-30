@@ -4,6 +4,8 @@ import type {
   MapLookup,
   Mob,
   MobDetail,
+  Npc,
+  NpcDetail,
 } from "../types/maple";
 
 export type Region = "GMS" | "EMS" | "KMS";
@@ -19,11 +21,11 @@ let mobLookupCache: Record<number, string> | null = null;
 const itemDetailCache = new Map<number, Item>();
 const mobDetailCache = new Map<number, MobDetail>();
 const mapDetailCache = new Map<number, MapDetail>();
-const npcDetailCache = new Map<number, { name: string }>();
+const npcDetailCache = new Map<number, NpcDetail>();
 const itemRequests = new Map<number, Promise<Item | null>>();
 const mobRequests = new Map<number, Promise<MobDetail | null>>();
 const mapRequests = new Map<number, Promise<MapDetail | null>>();
-const npcRequests = new Map<number, Promise<{ name: string } | null>>();
+const npcRequests = new Map<number, Promise<NpcDetail | null>>();
 const CACHE_KEY = "map_lookup_v83";
 const MOB_CACHE_KEY = "mob_lookup_v83";
 const NPC_CACHE_KEY = "npc_lookup_v83";
@@ -143,13 +145,56 @@ export async function fetchNpcName(
     return npcLookupCache[npcId];
   }
 
-  const cached = npcDetailCache.get(npcId);
-  if (cached) return cached.name;
+  const detail = await fetchNpcDetail(npcId, region, version);
+  return detail?.name ?? null;
+}
 
-  if (npcRequests.has(npcId)) {
-    const res = await npcRequests.get(npcId);
-    return res?.name ?? null;
+export async function fetchNpcs(
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
+): Promise<Npc[]> {
+  const url = `${BASE_URL}/${region.toLowerCase()}/${version}/npc`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch NPCs: ${res.status}`);
+  const data: Npc[] = await res.json();
+
+  if (!npcLookupCache) {
+    const stored = localStorage.getItem(NPC_CACHE_KEY);
+    if (stored) {
+      try {
+        npcLookupCache = JSON.parse(stored);
+      } catch (_e) {
+        npcLookupCache = {};
+      }
+    } else {
+      npcLookupCache = {};
+    }
   }
+
+  let cacheChanged = false;
+  for (const npc of data) {
+    if (npcLookupCache && npc.name && !npcLookupCache[npc.id]) {
+      npcLookupCache[npc.id] = npc.name;
+      cacheChanged = true;
+    }
+  }
+
+  if (cacheChanged && npcLookupCache) {
+    localStorage.setItem(NPC_CACHE_KEY, JSON.stringify(npcLookupCache));
+  }
+
+  return data;
+}
+
+export async function fetchNpcDetail(
+  npcId: number,
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
+): Promise<NpcDetail | null> {
+  const cached = npcDetailCache.get(npcId);
+  if (cached) return cached;
+
+  if (npcRequests.has(npcId)) return npcRequests.get(npcId) ?? null;
 
   const promise = (async () => {
     try {
@@ -157,26 +202,40 @@ export async function fetchNpcName(
       const res = await fetch(url);
       if (res.status === 404) return null;
       if (!res.ok)
-        throw new Error(`Failed to fetch npc ${npcId}: ${res.status}`);
+        throw new Error(`Failed to fetch NPC ${npcId}: ${res.status}`);
 
-      const data = await res.json();
-      if (data?.name) {
-        npcDetailCache.set(npcId, { name: data.name });
-        if (npcLookupCache) {
-          npcLookupCache[npcId] = data.name;
-          localStorage.setItem(NPC_CACHE_KEY, JSON.stringify(npcLookupCache));
+      const data: NpcDetail = await res.json();
+      if (data) {
+        npcDetailCache.set(npcId, data);
+
+        // Update npcLookupCache if name is present
+        if (data.name) {
+          if (!npcLookupCache) {
+            const stored = localStorage.getItem(NPC_CACHE_KEY);
+            if (stored) {
+              try {
+                npcLookupCache = JSON.parse(stored);
+              } catch (_e) {
+                npcLookupCache = {};
+              }
+            } else {
+              npcLookupCache = {};
+            }
+          }
+          if (npcLookupCache && !npcLookupCache[npcId]) {
+            npcLookupCache[npcId] = data.name;
+            localStorage.setItem(NPC_CACHE_KEY, JSON.stringify(npcLookupCache));
+          }
         }
-        return { name: data.name };
       }
-      return null;
+      return data;
     } finally {
       npcRequests.delete(npcId);
     }
   })();
 
   npcRequests.set(npcId, promise);
-  const result = await promise;
-  return result?.name ?? null;
+  return promise;
 }
 
 export function getNpcName(npcId: number): string | null {
@@ -184,6 +243,14 @@ export function getNpcName(npcId: number): string | null {
     return npcLookupCache[npcId];
   }
   return null;
+}
+
+export function fetchNpcIcon(
+  npcId: number,
+  region: Region = DEFAULT_REGION,
+  version: Version = DEFAULT_VERSION,
+): string {
+  return `${BASE_URL}/${region.toLowerCase()}/${version}/npc/${npcId}/icon`;
 }
 
 export function getMapMinimapUrl(

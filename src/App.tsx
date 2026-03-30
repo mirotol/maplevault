@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import ItemsPage from "./pages/ItemsPage";
 import MapsPage from "./pages/MapsPage";
 import MobsPage from "./pages/MobsPage";
+import NpcsPage from "./pages/NpcsPage";
 import WorldMapPage from "./pages/WorldMapPage";
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="equipment/:id?" element={<EquipmentsPage />} />
           <Route path="items/:id?" element={<ItemsPage />} />
           <Route path="maps/:id?" element={<MapsPage />} />
+          <Route path="npcs/:id?" element={<NpcsPage />} />
           <Route path="worldmap" element={<WorldMapPage />} />
         </Route>
       </Routes>

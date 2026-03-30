@@ -12,6 +12,7 @@ import {
   fetchMapDetail,
   fetchMobIcon,
   fetchMobs,
+  fetchNpcIcon,
   fetchNpcName,
   getMapMinimapUrl,
   getMapRenderUrl,
@@ -380,14 +381,15 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                 {uniqueNpcs.length > 0 ? (
                   <div className="flex flex-col gap-2">
                     {uniqueNpcs.map((id) => (
-                      <div
+                      <Link
                         key={id}
-                        className="group flex items-center gap-3 p-2 bg-(--color-card-bg) border border-(--color-card-border) rounded-lg hover:border-(--color-accent) transition-all shadow-sm"
-                        title={`NPC ID: ${id}`}
+                        to={`/npcs/${id}`}
+                        className="group flex items-center gap-3 p-2 bg-(--color-card-bg) border border-(--color-card-border) rounded-lg hover:border-(--color-accent) hover:bg-(--color-card-bg2) transition-all shadow-sm"
+                        title={`View NPC: ${npcNames[id] || getNpcName(id) || id}`}
                       >
                         <div className="w-12 h-12 flex items-center justify-center shrink-0">
                           <img
-                            src={`https://maplestory.io/api/gms/83/npc/${id}/icon`}
+                            src={fetchNpcIcon(id)}
                             alt="NPC"
                             className="max-w-full max-h-full object-contain"
                             style={{ imageRendering: "pixelated" }}
@@ -398,7 +400,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                             {npcNames[id] || getNpcName(id) || "Loading..."}
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 ) : (
