@@ -92,9 +92,9 @@ const EquipmentsPage = () => {
     document.title = id ? "Item | MapleVault" : "Equipment | MapleVault";
   }, [id]);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     navigate("/equipment");
-  };
+  }, [navigate]);
 
   const selectedItem = id ? items.find((m) => m.id === Number(id)) : null;
 

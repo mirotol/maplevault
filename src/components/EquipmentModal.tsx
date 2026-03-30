@@ -140,10 +140,11 @@ const EquipmentModal = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+      <button
+        type="button"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-default"
         onClick={onClose}
-        aria-hidden="true"
+        aria-label="Close modal"
       />
 
       {/* Modal Container */}

@@ -7,7 +7,7 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   fetchMapDetail,
@@ -108,12 +108,13 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
   };
 
   // Group unique mobs and npcs by ID to show a simple list
-  const uniqueMobs = detail
-    ? Array.from(new Set(detail.mobs.map((m) => m.id)))
-    : [];
-  const uniqueNpcs = detail
-    ? Array.from(new Set(detail.npcs.map((n) => n.id)))
-    : [];
+  const uniqueMobs = useMemo(() => {
+    return detail ? Array.from(new Set(detail.mobs.map((m) => m.id))) : [];
+  }, [detail]);
+
+  const uniqueNpcs = useMemo(() => {
+    return detail ? Array.from(new Set(detail.npcs.map((n) => n.id))) : [];
+  }, [detail]);
 
   const [mobNames, setMobNames] = useState<Record<number, string>>({});
 
@@ -122,10 +123,17 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
       const allResolved = uniqueMobs.every((id) => !!getMobName(id));
       if (allResolved) {
         const names: Record<number, string> = {};
+        let hasChanges = false;
         for (const id of uniqueMobs) {
-          names[id] = getMobName(id)!;
+          const name = getMobName(id)!;
+          if (mobNames[id] !== name) {
+            names[id] = name;
+            hasChanges = true;
+          }
         }
-        setMobNames(names);
+        if (hasChanges) {
+          setMobNames((prev) => ({ ...prev, ...names }));
+        }
       } else {
         fetchMobs()
           .then(() => {
@@ -141,17 +149,21 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
           );
       }
     }
-  }, [uniqueMobs]);
+  }, [uniqueMobs, mobNames]);
 
   const [npcNames, setNpcNames] = useState<Record<number, string>>({});
 
   useEffect(() => {
     if (uniqueNpcs.length > 0) {
+      const newNames: Record<number, string> = {};
+      let hasChanges = false;
+
       for (const id of uniqueNpcs) {
         const cachedName = getNpcName(id);
-        if (cachedName) {
-          setNpcNames((prev) => ({ ...prev, [id]: cachedName }));
-        } else {
+        if (cachedName && npcNames[id] !== cachedName) {
+          newNames[id] = cachedName;
+          hasChanges = true;
+        } else if (!cachedName && !npcNames[id]) {
           fetchNpcName(id)
             .then((name) => {
               if (name) {
@@ -163,8 +175,12 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
             );
         }
       }
+
+      if (hasChanges) {
+        setNpcNames((prev) => ({ ...prev, ...newNames }));
+      }
     }
-  }, [uniqueNpcs]);
+  }, [uniqueNpcs, npcNames]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
@@ -229,7 +245,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseLeave}
-                  className={`absolute inset-0 overflow-auto p-8 scrollbar-hide select-none border-none bg-transparent block w-full h-full text-left font-normal ${
+                  className={`absolute inset-0 overflow-auto p-8 scrollbar-hide select-none border-none bg-transparent block w-full h-full text-left font-normal outline-none ${
                     isDragging ? "cursor-grabbing" : "cursor-grab"
                   }`}
                 >

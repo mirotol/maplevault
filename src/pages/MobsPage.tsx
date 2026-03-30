@@ -48,9 +48,9 @@ const MobsPage = () => {
     document.title = id ? "Mob | MapleVault" : "Mobs | MapleVault";
   }, [id]);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     navigate("/mobs");
-  };
+  }, [navigate]);
 
   const handleSelectMob = (mob: Mob) => {
     navigate(`/mobs/${mob.id}`);

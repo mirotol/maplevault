@@ -109,10 +109,11 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+      <button
+        type="button"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default"
         onClick={onClose}
-        aria-hidden="true"
+        aria-label="Close modal"
       />
 
       {/* Modal Container */}

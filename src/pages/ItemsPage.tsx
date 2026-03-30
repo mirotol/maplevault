@@ -264,9 +264,9 @@ const ItemsPage = () => {
     );
   }, [mainCategory, groupCategory]);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     navigate("/items");
-  };
+  }, [navigate]);
 
   const selectedItem = id ? items.find((m) => m.id === Number(id)) : null;
 

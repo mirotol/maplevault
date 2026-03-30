@@ -15,14 +15,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="mobs" element={<MobsPage />} />
-          <Route path="mobs/:id" element={<MobsPage />} />
-          <Route path="equipment" element={<EquipmentsPage />} />
-          <Route path="equipment/:id" element={<EquipmentsPage />} />
-          <Route path="items" element={<ItemsPage />} />
-          <Route path="items/:id" element={<ItemsPage />} />
-          <Route path="maps" element={<MapsPage />} />
-          <Route path="maps/:id" element={<MapsPage />} />
+          <Route path="mobs/:id?" element={<MobsPage />} />
+          <Route path="equipment/:id?" element={<EquipmentsPage />} />
+          <Route path="items/:id?" element={<ItemsPage />} />
+          <Route path="maps/:id?" element={<MapsPage />} />
           <Route path="worldmap" element={<WorldMapPage />} />
         </Route>
       </Routes>

@@ -75,9 +75,9 @@ const MapsPage = () => {
     [loading, hasMore],
   );
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     navigate("/maps");
-  };
+  }, [navigate]);
 
   // Reset display count when filters change
   useEffect(() => {
@@ -173,7 +173,9 @@ const MapsPage = () => {
       </div>
 
       {/* Map Modal */}
-      {id && <MapModal mapId={parseInt(id, 10)} onClose={handleCloseModal} />}
+      {id && !Number.isNaN(Number(id)) && (
+        <MapModal mapId={Number(id)} onClose={handleCloseModal} />
+      )}
 
       <ScrollToTopButton />
     </>
