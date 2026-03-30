@@ -1,6 +1,7 @@
 import {
   Ghost,
   ImageOff,
+  Map as MapIcon,
   Maximize2,
   Users,
   X,
@@ -14,6 +15,7 @@ import {
   fetchMobIcon,
   fetchMobs,
   fetchNpcName,
+  getMapMinimapUrl,
   getMapRenderUrl,
   getMobName,
   getNpcName,
@@ -74,6 +76,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
   }, [onClose]);
 
   const renderUrl = getMapRenderUrl(mapId);
+  const minimapUrl = getMapMinimapUrl(mapId);
 
   const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.2, 4));
   const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.2, 0.1));
@@ -152,6 +155,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
   }, [uniqueMobs, mobNames]);
 
   const [npcNames, setNpcNames] = useState<Record<number, string>>({});
+  const [showMapOnMobile, setShowMapOnMobile] = useState(true);
 
   useEffect(() => {
     if (uniqueNpcs.length > 0) {
@@ -204,19 +208,33 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
               {detail?.name || "Loading Map..."}
             </h2>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="p-2 hover:bg-black/5 rounded-full transition-colors text-(--color-card-text)"
-          >
-            <X size={28} />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowMapOnMobile(!showMapOnMobile)}
+              className="md:hidden flex items-center gap-2 px-3 py-1.5 bg-black/5 hover:bg-black/10 rounded-lg transition-colors text-(--color-card-text) text-sm font-bold border border-black/5"
+            >
+              <MapIcon size={18} />
+              {showMapOnMobile ? "Hide Map" : "Show Map"}
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-2 hover:bg-black/5 rounded-full transition-colors text-(--color-card-text)"
+            >
+              <X size={28} />
+            </button>
+          </div>
         </div>
 
         {/* Main Content Area */}
         <div className="flex-1 overflow-hidden flex flex-col md:flex-row">
           {/* Map Image Viewer */}
-          <div className="flex-1 bg-black/90 relative overflow-hidden group">
+          <div
+            className={`flex-1 min-h-[300px] md:min-h-0 bg-black/90 relative overflow-hidden group ${
+              !showMapOnMobile ? "hidden md:flex" : ""
+            }`}
+          >
             {loading ? (
               <div className="absolute inset-0 flex items-center justify-center text-white/50">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-(--color-accent)"></div>
@@ -238,6 +256,20 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
               </div>
             ) : (
               <>
+                {/* Mobile Minimap View */}
+                <div className="md:hidden absolute inset-0 flex items-center justify-center p-4">
+                  <img
+                    src={minimapUrl}
+                    alt={`${detail?.name} Minimap`}
+                    className="max-w-full max-h-full object-contain"
+                    style={{ imageRendering: "pixelated" }}
+                    onError={() => {
+                      setImageError(true);
+                    }}
+                  />
+                </div>
+
+                {/* Desktop Rendered Map View */}
                 <button
                   type="button"
                   ref={scrollContainerRef}
@@ -245,7 +277,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseLeave}
-                  className={`absolute inset-0 overflow-auto p-8 scrollbar-hide select-none border-none bg-transparent block w-full h-full text-left font-normal outline-none ${
+                  className={`hidden md:block absolute inset-0 overflow-auto p-8 scrollbar-hide select-none border-none bg-transparent w-full h-full text-left font-normal outline-none ${
                     isDragging ? "cursor-grabbing" : "cursor-grab"
                   }`}
                 >
@@ -263,8 +295,8 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                   />
                 </button>
 
-                {/* Controls */}
-                <div className="absolute bottom-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Controls - Only visible on desktop */}
+                <div className="hidden md:flex absolute bottom-4 right-4 flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button
                     type="button"
                     onClick={handleZoomIn}
@@ -291,7 +323,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                   </button>
                 </div>
 
-                <div className="absolute bottom-4 left-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-white/70 text-sm border border-white/10 pointer-events-none">
+                <div className="hidden md:block absolute bottom-4 left-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-white/70 text-sm border border-white/10 pointer-events-none">
                   {Math.round(zoom * 100)}% Zoom • Scroll to explore
                 </div>
               </>
@@ -299,7 +331,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
           </div>
 
           {/* Sidebar - Mobs & NPCs */}
-          <div className="w-full md:w-80 border-t md:border-t-0 md:border-l border-(--color-card-border) flex flex-col bg-(--color-card-bg2) overflow-hidden">
+          <div className="w-full md:w-80 border-t md:border-t-0 md:border-l border-(--color-card-border) flex flex-col bg-(--color-card-bg2) overflow-hidden flex-1 md:flex-none">
             <div className="flex-1 overflow-y-auto p-6 space-y-8">
               {/* Mobs Section */}
               <section>
