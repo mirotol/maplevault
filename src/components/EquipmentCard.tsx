@@ -40,18 +40,20 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
 
   useEffect(() => {
     if (isVisible && !detail && !loading && !fetchAttempted) {
-      setLoading(true);
-      fetchItem(item.id)
-        .then((data) => {
-          if (data) setDetail(data);
-        })
-        .catch(() => {
-          // Silent catch
-        })
-        .finally(() => {
-          setLoading(false);
-          setFetchAttempted(true);
-        });
+      const timer = setTimeout(() => {
+        setLoading(true);
+        fetchItem(item.id)
+          .then((data) => {
+            if (data) setDetail(data);
+          })
+          .catch(() => {})
+          .finally(() => {
+            setLoading(false);
+            setFetchAttempted(true);
+          });
+      }, 300); // Debounce to avoid fetching for fast scrolls
+
+      return () => clearTimeout(timer);
     }
   }, [isVisible, item.id, detail, loading, fetchAttempted]);
 

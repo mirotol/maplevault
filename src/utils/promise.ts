@@ -7,8 +7,9 @@
  */
 export async function withMinimumDelay<T>(
   promise: Promise<T>,
-  minimumDelay = 400,
+  minimumDelay = 0,
 ): Promise<T> {
+  if (minimumDelay <= 0) return promise;
   const delay = new Promise((resolve) => setTimeout(resolve, minimumDelay));
   const [result] = await Promise.all([promise, delay]);
   return result;

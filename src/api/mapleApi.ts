@@ -5,7 +5,6 @@ import type {
   Mob,
   MobDetail,
 } from "../types/maple";
-import { withMinimumDelay } from "../utils/promise";
 
 export type Region = "GMS" | "EMS" | "KMS";
 export type Version = string; // e.g., "83", "89", etc.
@@ -103,7 +102,7 @@ export async function fetchMapDetail(
       if (!res.ok)
         throw new Error(`Failed to fetch map ${mapId}: ${res.status}`);
 
-      const data: MapDetail = await withMinimumDelay(res.json());
+      const data: MapDetail = await res.json();
       if (data) {
         mapDetailCache.set(mapId, data);
         // Also update NPC name lookup cache from the map detail if possible
@@ -213,7 +212,7 @@ export async function fetchMobs(
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch mobs: ${res.status}`);
-  const data: Mob[] = await withMinimumDelay(res.json());
+  const data: Mob[] = await res.json();
   const filtered = data.filter((mob) => mob.level >= 1);
 
   if (!mobLookupCache) {
@@ -272,7 +271,7 @@ export async function fetchMobDetail(
       if (!res.ok)
         throw new Error(`Failed to fetch mob ${mobId}: ${res.status}`);
 
-      const data = await withMinimumDelay(res.json());
+      const data = await res.json();
       if (data) {
         mobDetailCache.set(mobId, data);
         // Also update mob name lookup cache
@@ -335,7 +334,7 @@ export async function fetchItems(
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch items: ${res.status}`);
-  return withMinimumDelay(res.json());
+  return res.json();
 }
 
 export async function fetchItem(
@@ -358,7 +357,7 @@ export async function fetchItem(
       if (!res.ok)
         throw new Error(`Failed to fetch item ${itemId}: ${res.status}`);
 
-      const data = await withMinimumDelay(res.json());
+      const data = await res.json();
       if (data) itemDetailCache.set(itemId, data);
       return data;
     } finally {

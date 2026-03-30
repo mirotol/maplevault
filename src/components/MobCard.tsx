@@ -39,17 +39,18 @@ const MobCard = ({ mob, onClick }: MobCardProps) => {
 
   useEffect(() => {
     if (isVisible && !detail && !loading && !attempted) {
-      setLoading(true);
-      fetchMobDetail(mob.id)
-        .then(setDetail)
-        .catch(() => {
-          // Silent catch to prevent uncaught promise rejection
-          // attempted will be set to true anyway to prevent retries
-        })
-        .finally(() => {
-          setLoading(false);
-          setAttempted(true);
-        });
+      const timer = setTimeout(() => {
+        setLoading(true);
+        fetchMobDetail(mob.id)
+          .then(setDetail)
+          .catch(() => {})
+          .finally(() => {
+            setLoading(false);
+            setAttempted(true);
+          });
+      }, 300); // 300ms debounce to avoid fetching for fast scrolls
+
+      return () => clearTimeout(timer);
     }
   }, [isVisible, mob.id, detail, loading, attempted]);
 
