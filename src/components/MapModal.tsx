@@ -31,7 +31,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
   const [error, setError] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
   const [zoom, setZoom] = useState(1);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLButtonElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
