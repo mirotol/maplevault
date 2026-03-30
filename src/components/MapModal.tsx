@@ -115,24 +115,52 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
     ? Array.from(new Set(detail.npcs.map((n) => n.id)))
     : [];
 
+  const [mobNames, setMobNames] = useState<Record<number, string>>({});
+
   useEffect(() => {
     if (uniqueMobs.length > 0) {
-      const needsFetch = uniqueMobs.some((id) => !getMobName(id));
-      if (needsFetch) {
-        fetchMobs().catch((err) =>
-          console.error("Failed to fetch mob names for map modal:", err),
-        );
+      const allResolved = uniqueMobs.every((id) => !!getMobName(id));
+      if (allResolved) {
+        const names: Record<number, string> = {};
+        for (const id of uniqueMobs) {
+          names[id] = getMobName(id)!;
+        }
+        setMobNames(names);
+      } else {
+        fetchMobs()
+          .then(() => {
+            const names: Record<number, string> = {};
+            for (const id of uniqueMobs) {
+              const name = getMobName(id);
+              if (name) names[id] = name;
+            }
+            setMobNames(names);
+          })
+          .catch((err) =>
+            console.error("Failed to fetch mob names for map modal:", err),
+          );
       }
     }
   }, [uniqueMobs]);
 
+  const [npcNames, setNpcNames] = useState<Record<number, string>>({});
+
   useEffect(() => {
     if (uniqueNpcs.length > 0) {
       for (const id of uniqueNpcs) {
-        if (!getNpcName(id)) {
-          fetchNpcName(id).catch((err) =>
-            console.error(`Failed to fetch NPC name for ${id}:`, err),
-          );
+        const cachedName = getNpcName(id);
+        if (cachedName) {
+          setNpcNames((prev) => ({ ...prev, [id]: cachedName }));
+        } else {
+          fetchNpcName(id)
+            .then((name) => {
+              if (name) {
+                setNpcNames((prev) => ({ ...prev, [id]: name }));
+              }
+            })
+            .catch((err) =>
+              console.error(`Failed to fetch NPC name for ${id}:`, err),
+            );
         }
       }
     }
@@ -284,7 +312,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="text-sm font-bold text-(--color-card-text) truncate">
-                            {getMobName(id) || "Loading..."}
+                            {mobNames[id] || getMobName(id) || "Loading..."}
                           </div>
                           <div className="text-[10px] text-(--color-card-text)/40 font-mono">
                             ID: {id}
@@ -326,7 +354,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="text-sm font-bold text-(--color-card-text) truncate">
-                            {getNpcName(id) || "Loading..."}
+                            {npcNames[id] || getNpcName(id) || "Loading..."}
                           </div>
                           <div className="text-[10px] text-(--color-card-text)/40 font-mono">
                             ID: {id}
