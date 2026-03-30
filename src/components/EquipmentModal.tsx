@@ -22,6 +22,7 @@ const EquipmentModal = ({
   );
   const [loading, setLoading] = useState(!detail?.metaInfo);
   const [error, setError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     if (detail) return;
@@ -189,14 +190,15 @@ const EquipmentModal = ({
             <div className="w-28 h-28 bg-white/20 rounded-lg flex items-center justify-center shrink-0 border border-white/10 shadow-inner group overflow-hidden">
               {loading ? (
                 <Skeleton className="w-12 h-12 rounded-lg opacity-20" />
-              ) : error ? (
-                <ImageOff className="w-6 h-6 opacity-20" />
+              ) : error || imageError ? (
+                <ImageOff className="w-10 h-10 opacity-20" />
               ) : (
                 <img
                   src={icon}
                   alt={detail?.name || initialItem?.name}
                   className="max-w-[90%] max-h-[90%] object-contain scale-240 group-hover:scale-300 transition-transform duration-300"
                   style={{ imageRendering: "pixelated" }}
+                  onError={() => setImageError(true)}
                 />
               )}
             </div>

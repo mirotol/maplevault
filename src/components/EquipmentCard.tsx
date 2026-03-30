@@ -1,3 +1,4 @@
+import { ImageOff } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { fetchItem, fetchItemIcon } from "../api/mapleApi";
 import type { Item } from "../types/maple";
@@ -13,6 +14,7 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
   const [loading, setLoading] = useState(false);
   const [fetchAttempted, setFetchAttempted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -83,12 +85,17 @@ const EquipmentCard = ({ item }: EquipmentCardProps) => {
 
       {/* Icon */}
       <div className="w-24 h-24 mb-4 bg-white/20 rounded-lg p-2 flex items-center justify-center border border-white/10 shrink-0 group-hover:border-white/20 transition-all shadow-inner relative z-10">
-        <img
-          src={icon}
-          alt={item.name}
-          className="max-w-[90%] max-h-[90%] object-contain scale-160"
-          style={{ imageRendering: "pixelated" }}
-        />
+        {!imageError ? (
+          <img
+            src={icon}
+            alt={item.name}
+            className="max-w-[90%] max-h-[90%] object-contain scale-160"
+            style={{ imageRendering: "pixelated" }}
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <ImageOff className="w-10 h-10 text-white/40" />
+        )}
       </div>
 
       {/* Content wrapper */}
