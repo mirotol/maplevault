@@ -11,7 +11,7 @@ export const LocationBadge = ({
 }: LocationBadgeProps) => {
   if (loading || !mapId) {
     return (
-      <div className="h-[54px] bg-gray-200 dark:bg-gray-700/50 animate-pulse rounded-[10px]" />
+      <div className="h-13.5 bg-gray-200 dark:bg-gray-700/50 animate-pulse rounded-[10px]" />
     );
   }
 

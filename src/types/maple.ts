@@ -169,3 +169,24 @@ export interface MapRelationsJson {
   mapsWithNpcs: number;
   relations: MapNpcRelation[];
 }
+
+export interface MapMob {
+  id: number;
+  x: number;
+  y: number;
+  isBoss?: boolean;
+}
+
+export interface MapNpc {
+  id: number;
+  x: number;
+  y: number;
+}
+
+export interface MapDetail {
+  id: number;
+  name: string;
+  streetName: string;
+  mobs: MapMob[];
+  npcs: MapNpc[];
+}
