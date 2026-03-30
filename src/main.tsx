@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { MapleDataProvider } from "./data/MapleDataContext.tsx";
@@ -11,6 +12,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <MapleDataProvider>
       <App />
+      <Analytics />
     </MapleDataProvider>
   </StrictMode>,
 );

@@ -56,12 +56,7 @@ export const ITEM_GROUPS = {
       "Claw",
       "Knuckle",
     ],
-    "Special Scrolls": [
-      "Clean Slate Scroll",
-      "Chaos Scroll",
-      "White Scroll",
-      "Other",
-    ],
+    "Special Scrolls": ["Clean Slate Scroll", "Chaos Scroll", "White Scroll"],
     Utility: ["Teleport Item", "EXP Buff", "Time Saver"],
     Special: ["Equipment Box", "Other"],
   },
