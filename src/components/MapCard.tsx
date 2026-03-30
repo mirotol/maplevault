@@ -48,9 +48,6 @@ const MapCard = ({ id, name, streetName }: MapCardProps) => {
         <h3 className="text-lg font-bold text-(--color-card-text) leading-tight mb-2 group-hover:text-(--color-accent) transition-colors">
           {name}
         </h3>
-        <div className="mt-auto text-xs text-(--color-text)/60 font-mono">
-          ID: {id}
-        </div>
       </div>
     </Link>
   );
