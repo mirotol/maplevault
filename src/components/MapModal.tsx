@@ -1,9 +1,7 @@
 import {
-  Ghost,
   ImageOff,
   Map as MapIcon,
   Maximize2,
-  Users,
   X,
   ZoomIn,
   ZoomOut,
@@ -79,7 +77,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
   const minimapUrl = getMapMinimapUrl(mapId);
 
   const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.2, 4));
-  const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.2, 0.1));
+  const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.2, 0.6));
   const handleResetZoom = () => setZoom(1);
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -324,7 +322,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                 </div>
 
                 <div className="hidden md:block absolute bottom-4 left-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-white/70 text-sm border border-white/10 pointer-events-none">
-                  {Math.round(zoom * 100)}% Zoom • Scroll to explore
+                  {Math.round(zoom * 100)}% Zoom
                 </div>
               </>
             )}
@@ -336,9 +334,8 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
               {/* Mobs Section */}
               <section>
                 <div className="flex items-center gap-2 mb-4 text-(--color-card-text)">
-                  <Ghost size={20} className="text-(--color-accent)" />
                   <h3 className="font-bold text-lg">
-                    Monsters ({uniqueMobs.length})
+                    Mobs ({uniqueMobs.length})
                   </h3>
                 </div>
                 {uniqueMobs.length > 0 ? (
@@ -362,16 +359,13 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                           <div className="text-sm font-bold text-(--color-card-text) truncate">
                             {mobNames[id] || getMobName(id) || "Loading..."}
                           </div>
-                          <div className="text-[10px] text-(--color-card-text)/40 font-mono">
-                            ID: {id}
-                          </div>
                         </div>
                       </Link>
                     ))}
                   </div>
                 ) : (
                   <div className="text-sm text-(--color-card-text)/50 italic bg-(--color-card-bg) p-4 rounded-lg border border-dashed border-(--color-card-border)">
-                    No monsters inhabit this area.
+                    No mobs inhabit this area.
                   </div>
                 )}
               </section>
@@ -379,7 +373,6 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
               {/* NPCs Section */}
               <section>
                 <div className="flex items-center gap-2 mb-4 text-(--color-card-text)">
-                  <Users size={20} className="text-(--color-accent)" />
                   <h3 className="font-bold text-lg">
                     NPCs ({uniqueNpcs.length})
                   </h3>
@@ -404,9 +397,6 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                           <div className="text-sm font-bold text-(--color-card-text) truncate">
                             {npcNames[id] || getNpcName(id) || "Loading..."}
                           </div>
-                          <div className="text-[10px] text-(--color-card-text)/40 font-mono">
-                            ID: {id}
-                          </div>
                         </div>
                       </div>
                     ))}
@@ -417,10 +407,6 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                   </div>
                 )}
               </section>
-            </div>
-
-            <div className="p-4 bg-black/5 text-[10px] text-(--color-card-text)/40 text-center font-mono">
-              MAP ID: {mapId}
             </div>
           </div>
         </div>
