@@ -108,7 +108,7 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
                 <img
                   src={iconUrl}
                   alt={detail.name || `NPC ${npcId}`}
-                  className="max-w-[95%] max-h-[95%] object-contain scale-110 group-hover:scale-125 transition-transform duration-500"
+                  className="max-w-full max-h-full object-contain scale-160 group-hover:scale-200 transition-transform duration-500"
                   style={{ imageRendering: "pixelated" }}
                 />
               </div>
