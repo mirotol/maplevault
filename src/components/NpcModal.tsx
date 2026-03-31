@@ -1,4 +1,4 @@
-import { Loader2, MapPin, MessageCircle, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Loader2, MapPin, MessageCircle, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchMaps, fetchNpcDetail, fetchNpcIcon } from "../api/mapleApi";
 import { npcLookupJson } from "../data/staticData";
@@ -14,6 +14,7 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
   const [detail, setDetail] = useState<NpcDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [expandedLocations, setExpandedLocations] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -173,17 +174,39 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
                     <MapPin className="w-5 h-5" />
                     Locations ({uniqueMapIds.length})
                   </h3>
-                  <div className="my-4 grid grid-cols-1 gap-2 max-h-60 sm:max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+                  <div className="my-4 grid grid-cols-1 gap-2">
                     {uniqueMapIds.length > 0 ? (
-                      uniqueMapIds.map((mapId) => (
-                        <LocationBadge key={mapId} mapId={mapId} />
-                      ))
+                      uniqueMapIds
+                        .slice(0, expandedLocations ? undefined : 4)
+                        .map((mapId) => (
+                          <LocationBadge key={mapId} mapId={mapId} />
+                        ))
                     ) : (
                       <p className="text-white/90 italic text-base p-4 bg-black/20 rounded-xl border border-white/5">
                         No location data available
                       </p>
                     )}
                   </div>
+
+                  {uniqueMapIds.length > 4 && (
+                    <button
+                      type="button"
+                      onClick={() => setExpandedLocations(!expandedLocations)}
+                      className="flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-(--color-card-text) opacity-60 hover:opacity-100 transition-opacity ml-1"
+                    >
+                      {expandedLocations ? (
+                        <>
+                          <ChevronUp className="w-4 h-4" />
+                          Show less
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="w-4 h-4" />+{" "}
+                          {uniqueMapIds.length - 4} more locations
+                        </>
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
