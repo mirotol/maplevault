@@ -20,14 +20,14 @@ const NpcCard = ({ id, name }: NpcCardProps) => {
   return (
     <Link
       to={`/npcs/${id}`}
-      className="group bg-(--color-card-bg) border border-(--color-card-border) rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
+      className="card-paper group bg-(--color-card-bg) border border-(--color-card-border) rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
     >
       <div className="aspect-square bg-black/5 relative flex items-center justify-center p-4 overflow-hidden">
         {!imageError ? (
           <img
             src={iconUrl}
             alt={name}
-            className="max-w-20 max-h-20 object-contain group-hover:scale-110 transition-transform duration-500"
+            className="max-w-20 max-h-20 object-contain group-hover:scale-120 transition-transform duration-300"
             style={{ imageRendering: "pixelated" }}
             loading="lazy"
             onError={() => setImageError(true)}
@@ -40,10 +40,10 @@ const NpcCard = ({ id, name }: NpcCardProps) => {
             </span>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
 
-      <div className="p-4 flex flex-col flex-grow">
+      <div className="p-4 flex flex-col grow">
         <h3 className="text-lg font-bold text-(--color-card-text) leading-tight mb-2 group-hover:text-(--color-accent) transition-colors">
           {name}
         </h3>
@@ -52,7 +52,7 @@ const NpcCard = ({ id, name }: NpcCardProps) => {
             <p className="text-xs text-(--color-card-text)/60 italic mb-1">
               Found in:
             </p>
-            <p className="text-sm font-medium text-(--color-card-text)/80 line-clamp-1">
+            <p className="text-sm font-medium text-(--color-card-text)/80">
               {firstPlacement.streetName} - {firstPlacement.mapName}
             </p>
             {remainingCount > 0 && (

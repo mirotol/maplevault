@@ -74,16 +74,16 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
       />
 
       {/* Modal Container */}
-      <div className="card-mob-bg relative w-full max-w-2xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-(--color-card-text) animate-in zoom-in-95 duration-300 mx-4 sm:mx-0">
+      <div className="card-paper relative w-full max-w-2xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-(--color-card-text) animate-in zoom-in-95 duration-300 mx-4 sm:mx-0">
         {/* Top bar (Close button) */}
         <div className="flex justify-end p-2 sm:p-4 absolute right-0 top-0 z-20">
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 sm:p-2 rounded-xl bg-black/10 hover:bg-black/20 border border-white/10 transition-all text-white/50 hover:text-white"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 p-2 rounded-xl hover:bg-orange-500/10 transition-all text-(--color-card-text) opacity-70 hover:opacity-100"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5 sm:w-6 sm:h-6" />
+            <X className="w-6 h-6" />
           </button>
         </div>
 
@@ -101,22 +101,19 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
             </p>
           </div>
         ) : (
-          <div className="flex-1 flex flex-col overflow-y-auto min-h-0">
+          <>
             {/* Header Section */}
-            <div className="p-6 sm:p-8 pb-4 sm:pb-6 flex flex-col items-center text-center border-b border-white/10 relative overflow-hidden">
-              {/* Decorative background glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-(--color-accent)/10 blur-[100px] rounded-full -z-10" />
-
-              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/5 rounded-2xl p-4 mb-4 border border-white/10 flex items-center justify-center shadow-inner relative group shrink-0">
+            <div className="p-6 sm:p-8 pb-4 sm:pb-6 flex flex-col items-center text-center border-b border-white/10 relative overflow-hidden shrink-0">
+              <div className="w-32 h-32 sm:w-24 sm:h-24 p-4 mb-4 flex items-center justify-center group">
                 <img
                   src={iconUrl}
                   alt={detail.name || `NPC ${npcId}`}
-                  className="max-w-full max-h-full object-contain"
+                  className="max-w-[90%] max-h-[90%] object-contain group-hover:scale-125 transition-transform duration-500"
                   style={{ imageRendering: "pixelated" }}
                 />
               </div>
 
-              <h2 className="text-2xl sm:text-3xl font-bold mb-1 break-words max-w-[85%] mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-1 wrap-break-word max-w-[85%] mx-auto">
                 {detail.name || `NPC ${npcId}`}
               </h2>
               {detail.function && (
@@ -127,68 +124,70 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
             </div>
 
             {/* Content Section */}
-            <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {/* Left Column: Dialogue / Info */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold flex items-center gap-2 mb-3 text-(--color-card-text)">
-                    <MessageCircle
-                      size={20}
-                      className="text-(--color-accent)"
-                    />
-                    Dialogue
-                  </h3>
-                  <div className="bg-black/10 rounded-xl p-4 border border-white/5 space-y-3">
-                    {detail.dialogue &&
-                    Object.keys(detail.dialogue).length > 0 ? (
-                      Object.entries(detail.dialogue).map(([key, text]) => (
-                        <p
-                          key={key}
-                          className="text-(--color-card-text) italic text-sm leading-relaxed break-words"
-                        >
-                          "{text}"
+            <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar">
+              <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {/* Left Column: Dialogue / Info */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-base text-(--color-card-text) uppercase tracking-[0.2em] flex items-center gap-2">
+                      <MessageCircle
+                        size={20}
+                        className="text-(--color-card-text)"
+                      />
+                      Dialogue
+                    </h3>
+                    <div className="bg-black/10 rounded-xl my-4 p-4 border border-white/5 space-y-3">
+                      {detail.dialogue &&
+                      Object.keys(detail.dialogue).length > 0 ? (
+                        Object.entries(detail.dialogue).map(([key, text]) => (
+                          <p
+                            key={key}
+                            className="text-(--color-card-text) italic text-sm leading-relaxed wrap-break-word"
+                          >
+                            "{text}"
+                          </p>
+                        ))
+                      ) : (
+                        <p className="text-(--color-card-text) italic text-sm">
+                          No recorded dialogue.
                         </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {detail.isShop && (
+                    <div className="bg-(--color-accent)/10 border border-(--color-accent)/20 rounded-xl p-3 flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-(--color-accent) flex items-center justify-center text-black">
+                        <span className="font-bold text-xs">$</span>
+                      </div>
+                      <p className="text-sm font-semibold text-(--color-accent)">
+                        This NPC operates a shop.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Right Column: Locations */}
+                <div>
+                  <h3 className="text-base text-(--color-card-text) uppercase tracking-[0.2em] flex items-center gap-2">
+                    <MapPin className="w-5 h-5" />
+                    Locations ({uniqueMapIds.length})
+                  </h3>
+                  <div className="my-4 grid grid-cols-1 gap-2 max-h-60 sm:max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+                    {uniqueMapIds.length > 0 ? (
+                      uniqueMapIds.map((mapId) => (
+                        <LocationBadge key={mapId} mapId={mapId} />
                       ))
                     ) : (
-                      <p className="text-white/30 italic text-sm">
-                        No recorded dialogue.
+                      <p className="text-white/90 italic text-base p-4 bg-black/20 rounded-xl border border-white/5">
+                        No location data available
                       </p>
                     )}
                   </div>
                 </div>
-
-                {detail.isShop && (
-                  <div className="bg-(--color-accent)/10 border border-(--color-accent)/20 rounded-xl p-3 flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-(--color-accent) flex items-center justify-center text-black">
-                      <span className="font-bold text-xs">$</span>
-                    </div>
-                    <p className="text-sm font-semibold text-(--color-accent)">
-                      This NPC operates a shop.
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Right Column: Locations */}
-              <div>
-                <h3 className="text-base sm:text-lg font-semibold flex items-center gap-2 mb-3 text-(--color-card-text)">
-                  <MapPin size={20} className="text-(--color-accent)" />
-                  Locations ({uniqueMapIds.length})
-                </h3>
-                <div className="grid grid-cols-1 gap-2 max-h-60 sm:max-h-80 overflow-y-auto pr-2 custom-scrollbar">
-                  {uniqueMapIds.length > 0 ? (
-                    uniqueMapIds.map((mapId) => (
-                      <LocationBadge key={mapId} mapId={mapId} />
-                    ))
-                  ) : (
-                    <p className="text-white/90 italic text-base p-4 bg-black/20 rounded-xl border border-white/5">
-                      No location data available
-                    </p>
-                  )}
-                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>

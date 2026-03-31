@@ -196,7 +196,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
       />
 
       {/* Modal Content */}
-      <div className="relative w-full max-w-6xl h-full max-h-[90vh] bg-(--color-card-bg) border border-(--color-card-border) rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+      <div className="card-paper relative w-full max-w-6xl h-full max-h-[90vh] bg-(--color-card-bg) border border-(--color-card-border) rounded-2xl shadow-2xl flex flex-col overflow-hidden">
         {/* Header */}
         <div className="p-4 md:p-6 border-b border-(--color-card-border) flex items-center justify-between bg-(--color-card-bg2)">
           <div>
@@ -219,7 +219,7 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
             <button
               type="button"
               onClick={onClose}
-              className="p-2 hover:bg-black/5 rounded-full transition-colors text-(--color-card-text)"
+              className="p-2 hover:bg-orange-500/10 rounded-xl transition-colors text-(--color-card-text)"
             >
               <X size={28} />
             </button>

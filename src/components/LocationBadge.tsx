@@ -23,10 +23,10 @@ export const LocationBadge = ({
       title={`Map ID: ${mapId}`}
     >
       <div className="min-w-0">
-        <div className="text-base font-semibold text-(--color-card-text) leading-tight mb-0.5 truncate group-hover:text-(--color-accent) transition-colors">
+        <div className="text-base font-semibold text-(--color-card-text) leading-tight mb-0.5 group-hover:text-(--color-accent) transition-colors">
           {info?.name || "Unknown Map"}
         </div>
-        <div className="text-sm text-(--color-card-text) leading-tight truncate">
+        <div className="text-sm text-(--color-card-text) leading-tight">
           {info?.streetName || "Unknown Area"}
         </div>
       </div>
