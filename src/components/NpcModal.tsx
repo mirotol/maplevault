@@ -104,11 +104,11 @@ const NpcModal = ({ npcId, onClose }: NpcModalProps) => {
           <>
             {/* Header Section */}
             <div className="p-6 sm:p-8 pb-4 sm:pb-6 flex flex-col items-center text-center border-b border-white/10 relative overflow-hidden shrink-0">
-              <div className="w-32 h-32 sm:w-24 sm:h-24 p-4 mb-4 flex items-center justify-center group">
+              <div className="w-40 h-40 sm:w-56 sm:h-56 p-4 mb-4 flex items-center justify-center group">
                 <img
                   src={iconUrl}
                   alt={detail.name || `NPC ${npcId}`}
-                  className="max-w-[90%] max-h-[90%] object-contain group-hover:scale-125 transition-transform duration-500"
+                  className="max-w-[95%] max-h-[95%] object-contain scale-110 group-hover:scale-125 transition-transform duration-500"
                   style={{ imageRendering: "pixelated" }}
                 />
               </div>
