@@ -1,6 +1,6 @@
 # MapleVault
 
-MapleStory v83 data browser for equipment, mobs, and maps.
+MapleStory GMS v83 data browser for mobs, equipment, items, NPCs and maps.
 Production website: [MapleVault](https://www.maplevault.net/)
 
 ## Stack
@@ -40,12 +40,7 @@ npm run format
 
 ## Data
 
-Data is sourced from MapleStory v83 .wz files using [HaRepacker](https://github.com/lastbattle/Harepacker-resurrected) then transformed into JSON / PNG files. Some data is also fetched from external API [maplestory.io](https://maplestory.io/)
-
-## Notes
-
-- UI is inspired by the original MapleStory client
-- Not all data relationships are complete
+Data is sourced from MapleStory GMS v83 .wz files using [HaRepacker](https://github.com/lastbattle/Harepacker-resurrected) then transformed into JSON / PNG files. Some data is also fetched from external API [maplestory.io](https://maplestory.io/)
 
 ## Deployment
 
