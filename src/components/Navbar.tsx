@@ -16,8 +16,8 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
     { to: "/mobs", label: "Mobs" },
     { to: "/equipment", label: "Equipment" },
     { to: "/items", label: "Items" },
-    { to: "/maps", label: "Maps" },
     { to: "/npcs", label: "NPCs" },
+    { to: "/maps", label: "Maps" },
     { to: "/worldmap", label: "World Map" },
   ];
 
