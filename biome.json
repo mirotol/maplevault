@@ -1,5 +1,6 @@
 {
   "formatter": {
+    "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 80
@@ -22,6 +23,12 @@
     }
   },
   "files": {
-    "includes": ["**", "!!**/dist", "!!**/node_modules"]
+    "maxSize": 2097152,
+    "includes": [
+      "**",
+      "!!**/dist",
+      "!!**/node_modules",
+      "!!src/data/monsterbook.json"
+    ]
   }
 }

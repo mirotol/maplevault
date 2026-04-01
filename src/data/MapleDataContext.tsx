@@ -1,10 +1,15 @@
 import { createContext, useContext, useMemo } from "react";
-import type { MapNpcRelation, NpcPlacement } from "../types/maple";
-import { mapRelationsJson, npcLookupJson } from "./staticData";
+import type {
+  MapNpcRelation,
+  MonsterReward,
+  NpcPlacement,
+} from "../types/maple";
+import { mapRelationsJson, monsterBookJson, npcLookupJson } from "./staticData";
 
 interface MapleDataContext {
   npcToMaps: Map<number, NpcPlacement[]>;
   mapToNpcs: Map<number, MapNpcRelation>;
+  monsterBook: Map<number, MonsterReward[]>;
 }
 
 const MapleDataContext = createContext<MapleDataContext | null>(null);
@@ -20,7 +25,10 @@ export function MapleDataProvider({ children }: { children: React.ReactNode }) {
     const mapToNpcs = new Map<number, MapNpcRelation>(
       mapRelationsJson.relations.map((r) => [r.mapId, r]),
     );
-    return { npcToMaps, mapToNpcs };
+    const monsterBook = new Map<number, MonsterReward[]>(
+      monsterBookJson.map((entry) => [entry.MobId, entry.Rewards]),
+    );
+    return { npcToMaps, mapToNpcs, monsterBook };
   }, []);
 
   return (

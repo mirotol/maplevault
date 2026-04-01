@@ -1,4 +1,11 @@
-import { ChevronDown, ChevronUp, Loader2, MapPin, MessageCircle, X } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+  MapPin,
+  MessageCircle,
+  X,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchMaps, fetchNpcDetail, fetchNpcIcon } from "../api/mapleApi";
 import { npcLookupJson } from "../data/staticData";

@@ -208,3 +208,17 @@ export interface MapDetail {
   mobs: MapMob[];
   npcs: MapNpc[];
 }
+
+export interface MonsterReward {
+  ItemId: number;
+  Name: string;
+  Type: "Equip" | "Consume" | "Etc";
+}
+
+export interface MonsterBookEntry {
+  MobId: number;
+  Name: string;
+  Rewards: MonsterReward[];
+}
+
+export type MonsterBookJson = MonsterBookEntry[];

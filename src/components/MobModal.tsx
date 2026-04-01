@@ -4,6 +4,7 @@ import {
   ImageOff,
   MapPin,
   ShieldAlert,
+  ShoppingBag,
   Sparkles,
   Swords,
   X,
@@ -16,9 +17,11 @@ import {
   fetchMobRenderUrl,
   getCachedMobDetail,
 } from "../api/mapleApi";
+import { useMapleData } from "../data/MapleDataContext";
 import type { Mob, MobDetail } from "../types/maple";
 import { getElementalInfo } from "../utils/elemental";
 import { Badge } from "./Badge";
+import { DropBadge } from "./DropBadge";
 import { ElementalBadge } from "./ElementalBadge";
 import { LocationBadge } from "./LocationBadge";
 import { Skeleton } from "./Skeleton";
@@ -37,6 +40,8 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   const [loading, setLoading] = useState(!detail);
   const [error, setError] = useState<string | null>(null);
   const [expandedLocations, setExpandedLocations] = useState(false);
+  const [isDropsExpanded, setIsDropsExpanded] = useState(true);
+  const { monsterBook } = useMapleData();
 
   useEffect(() => {
     let currentActive = true;
@@ -85,6 +90,11 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
 
   const renderUrl = fetchMobRenderUrl(mobId);
   const elementalInfo = getElementalInfo(detail?.meta?.elementalAttributes);
+
+  const mobDrops = monsterBook.get(mobId) || [];
+  const equipDrops = mobDrops.filter((d) => d.Type === "Equip");
+  const consumeDrops = mobDrops.filter((d) => d.Type === "Consume");
+  const etcDrops = mobDrops.filter((d) => d.Type === "Etc");
 
   const CombatStat = ({
     label,
@@ -300,6 +310,85 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                   )}
                 </div>
               </div>
+
+              {/* Drops */}
+              {mobDrops.length > 0 && (
+                <section className="space-y-6">
+                  <button
+                    type="button"
+                    onClick={() => setIsDropsExpanded(!isDropsExpanded)}
+                    className="w-full flex items-center justify-between text-base text-(--color-card-text) uppercase tracking-[0.2em] group/header"
+                  >
+                    <div className="flex items-center gap-2 px-1">
+                      <ShoppingBag className="w-5 h-5" />
+                      Drops
+                    </div>
+                    {isDropsExpanded ? (
+                      <ChevronUp className="w-5 h-5 opacity-50 group-hover/header:opacity-100 transition-opacity" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 opacity-50 group-hover/header:opacity-100 transition-opacity" />
+                    )}
+                  </button>
+
+                  {isDropsExpanded && (
+                    <div className="space-y-6">
+                      {equipDrops.length > 0 && (
+                        <div className="space-y-3">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-(--color-card-text)/50 px-1">
+                            Equipment
+                          </h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {equipDrops.map((drop) => (
+                              <DropBadge
+                                key={drop.ItemId}
+                                itemId={drop.ItemId}
+                                itemName={drop.Name}
+                                itemType={drop.Type}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {consumeDrops.length > 0 && (
+                        <div className="space-y-3">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-(--color-card-text)/50 px-1">
+                            Use
+                          </h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {consumeDrops.map((drop) => (
+                              <DropBadge
+                                key={drop.ItemId}
+                                itemId={drop.ItemId}
+                                itemName={drop.Name}
+                                itemType={drop.Type}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {etcDrops.length > 0 && (
+                        <div className="space-y-3">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-(--color-card-text)/50 px-1">
+                            Etc
+                          </h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {etcDrops.map((drop) => (
+                              <DropBadge
+                                key={drop.ItemId}
+                                itemId={drop.ItemId}
+                                itemName={drop.Name}
+                                itemType={drop.Type}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </section>
+              )}
 
               {/* Locations */}
               {(loading || (detail?.foundAt && detail.foundAt.length > 0)) && (
