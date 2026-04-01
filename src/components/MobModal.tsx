@@ -95,6 +95,7 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
   const equipDrops = mobDrops.filter((d) => d.Type === "Equip");
   const consumeDrops = mobDrops.filter((d) => d.Type === "Consume");
   const etcDrops = mobDrops.filter((d) => d.Type === "Etc");
+  const setupDrops = mobDrops.filter((d) => d.Type === "Setup");
 
   const CombatStat = ({
     label,
@@ -375,6 +376,24 @@ const MobModal = ({ mobId, initialMob, onClose }: MobModalProps) => {
                           </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {etcDrops.map((drop) => (
+                              <DropBadge
+                                key={drop.ItemId}
+                                itemId={drop.ItemId}
+                                itemName={drop.Name}
+                                itemType={drop.Type}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {setupDrops.length > 0 && (
+                        <div className="space-y-3">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-(--color-card-text)/50 px-1">
+                            Setup
+                          </h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {setupDrops.map((drop) => (
                               <DropBadge
                                 key={drop.ItemId}
                                 itemId={drop.ItemId}

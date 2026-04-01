@@ -212,7 +212,7 @@ export interface MapDetail {
 export interface MonsterReward {
   ItemId: number;
   Name: string;
-  Type: "Equip" | "Consume" | "Etc";
+  Type: "Equip" | "Consume" | "Etc" | "Setup";
 }
 
 export interface MonsterBookEntry {
