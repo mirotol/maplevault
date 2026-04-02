@@ -1,9 +1,18 @@
-import { ImageOff, ShieldAlert, Sparkle, X } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  ImageOff,
+  ShieldAlert,
+  Sparkle,
+  X,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon, getCachedItem } from "../api/mapleApi";
+import { useMapleData } from "../data/MapleDataContext";
 import type { Item } from "../types/maple";
 import { formatAttackSpeed } from "../utils/item";
 import { formatDescription } from "../utils/mapleDescription";
+import { MobBadge } from "./MobBadge";
 import { Skeleton } from "./Skeleton";
 
 interface EquipmentModalProps {
@@ -23,6 +32,9 @@ const EquipmentModal = ({
   const [loading, setLoading] = useState(!detail?.metaInfo);
   const [error, setError] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
+  const { itemToMobs } = useMapleData();
+  const [isDroppedByExpanded, setIsDroppedByExpanded] = useState(false);
+  const droppedBy = itemToMobs.get(itemId) || [];
 
   useEffect(() => {
     if (detail) return;
@@ -280,6 +292,41 @@ const EquipmentModal = ({
                       label="Available Upgrades"
                       value={stats?.tuc ?? 0}
                     />
+
+                    {/* Dropped By Section */}
+                    {droppedBy.length > 0 && (
+                      <>
+                        <Divider />
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setIsDroppedByExpanded(!isDroppedByExpanded)
+                          }
+                          className="w-full flex items-center justify-between px-1 py-1 hover:bg-white/5 rounded-lg transition-colors group"
+                        >
+                          <span className="text-white/80 font-medium uppercase tracking-wider text-sm flex items-center gap-2">
+                            Dropped By ({droppedBy.length})
+                          </span>
+                          {isDroppedByExpanded ? (
+                            <ChevronUp className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                          )}
+                        </button>
+
+                        {isDroppedByExpanded && (
+                          <div className="grid grid-cols-1 gap-2 mt-2 px-1">
+                            {droppedBy.map((mob) => (
+                              <MobBadge
+                                key={mob.MobId}
+                                id={mob.MobId}
+                                name={mob.Name}
+                              />
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
 
                     {/* Selling price and Description */}
                     <Divider />

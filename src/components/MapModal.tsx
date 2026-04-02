@@ -10,7 +10,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   fetchMapDetail,
-  fetchMobIcon,
   fetchMobs,
   fetchNpcIcon,
   fetchNpcName,
@@ -20,6 +19,7 @@ import {
   getNpcName,
 } from "../api/mapleApi";
 import type { MapDetail } from "../types/maple";
+import { MobBadge } from "./MobBadge";
 
 interface MapModalProps {
   mapId: number;
@@ -342,26 +342,12 @@ const MapModal = ({ mapId, onClose }: MapModalProps) => {
                 {uniqueMobs.length > 0 ? (
                   <div className="flex flex-col gap-2">
                     {uniqueMobs.map((id) => (
-                      <Link
+                      <MobBadge
                         key={id}
-                        to={`/mobs/${id}`}
+                        id={id}
+                        name={mobNames[id] || getMobName(id) || ""}
                         className="group flex items-center gap-3 p-2 bg-(--color-card-bg) border border-(--color-card-border) rounded-lg hover:border-(--color-accent) hover:bg-(--color-card-bg2) transition-all shadow-sm"
-                        title={`View Mob: ${getMobName(id) || id}`}
-                      >
-                        <div className="w-12 h-12 flex items-center justify-center shrink-0">
-                          <img
-                            src={fetchMobIcon(id)}
-                            alt="Mob"
-                            className="max-w-full max-h-full object-contain"
-                            style={{ imageRendering: "pixelated" }}
-                          />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="text-sm font-bold text-(--color-card-text) truncate">
-                            {mobNames[id] || getMobName(id) || "Loading..."}
-                          </div>
-                        </div>
-                      </Link>
+                      />
                     ))}
                   </div>
                 ) : (

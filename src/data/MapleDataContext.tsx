@@ -1,15 +1,22 @@
 import { createContext, useContext, useMemo } from "react";
 import type {
   MapNpcRelation,
+  MobDrop,
   MonsterReward,
   NpcPlacement,
 } from "../types/maple";
-import { mapRelationsJson, monsterBookJson, npcLookupJson } from "./staticData";
+import {
+  itemDropLookupJson,
+  mapRelationsJson,
+  monsterBookJson,
+  npcLookupJson,
+} from "./staticData";
 
 interface MapleDataContext {
   npcToMaps: Map<number, NpcPlacement[]>;
   mapToNpcs: Map<number, MapNpcRelation>;
   monsterBook: Map<number, MonsterReward[]>;
+  itemToMobs: Map<number, MobDrop[]>;
 }
 
 const MapleDataContext = createContext<MapleDataContext | null>(null);
@@ -28,7 +35,10 @@ export function MapleDataProvider({ children }: { children: React.ReactNode }) {
     const monsterBook = new Map<number, MonsterReward[]>(
       monsterBookJson.map((entry) => [entry.MobId, entry.Rewards]),
     );
-    return { npcToMaps, mapToNpcs, monsterBook };
+    const itemToMobs = new Map<number, MobDrop[]>(
+      itemDropLookupJson.map((entry) => [entry.ItemId, entry.DroppedBy]),
+    );
+    return { npcToMaps, mapToNpcs, monsterBook, itemToMobs };
   }, []);
 
   return (

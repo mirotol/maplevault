@@ -29,7 +29,8 @@ const HomePage = () => {
           </h1>
 
           <p className="text-lg md:text-2xl text-white/80 drop-shadow-sm max-w-2xl leading-relaxed px-4">
-            MapleStory database for mobs and items. Based on GMS v.83
+            Browse mobs, equipment, items, NPCs and maps from the classic GMS
+            experience. Based on v83 data.
           </p>
         </>
       )}

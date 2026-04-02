@@ -1,8 +1,10 @@
-import { ImageOff, X } from "lucide-react";
+import { ChevronDown, ChevronUp, ImageOff, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon, getCachedItem } from "../api/mapleApi";
+import { useMapleData } from "../data/MapleDataContext";
 import type { Item } from "../types/maple";
 import { formatDescription } from "../utils/mapleDescription";
+import { MobBadge } from "./MobBadge";
 import { Skeleton } from "./Skeleton";
 
 interface ItemModalProps {
@@ -17,6 +19,9 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
   );
   const [loading, setLoading] = useState(!detail?.metaInfo);
   const [error, setError] = useState<string | null>(null);
+  const { itemToMobs } = useMapleData();
+  const [isDroppedByExpanded, setIsDroppedByExpanded] = useState(false);
+  const droppedBy = itemToMobs.get(itemId) || [];
 
   useEffect(() => {
     if (detail?.metaInfo) return;
@@ -127,10 +132,11 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
 
         {/* Scrollable Description Content */}
         <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pb-8 pt-0 relative z-10">
-          {/* Selling Price */}
-          {!loading && detail?.metaInfo?.price !== undefined && (
-            <div className="flex flex-col items-center text-center">
-              <div className="flex items-center gap-2">
+          {/* Price and Dropped By */}
+          <div className="flex flex-col items-center text-center">
+            {/* Selling Price */}
+            {!loading && detail?.metaInfo?.price !== undefined && (
+              <div className="flex items-center gap-2 mb-2">
                 <span className="text-white/80 font-medium">
                   Selling price: {detail.metaInfo.price.toLocaleString()}
                 </span>
@@ -141,9 +147,43 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
                   style={{ imageRendering: "pixelated" }}
                 />
               </div>
-              <Divider />
-            </div>
-          )}
+            )}
+
+            {/* Dropped By Section */}
+            {droppedBy.length > 0 && (
+              <div className="w-full mt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsDroppedByExpanded(!isDroppedByExpanded)}
+                  className="w-full flex items-center justify-between px-4 py-2 hover:bg-white/5 rounded-xl transition-colors group border border-white/5"
+                >
+                  <span className="text-white/80 font-medium uppercase tracking-wider text-xs flex items-center gap-2">
+                    Dropped By ({droppedBy.length})
+                  </span>
+                  {isDroppedByExpanded ? (
+                    <ChevronUp className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                  )}
+                </button>
+
+                {isDroppedByExpanded && (
+                  <div className="grid grid-cols-1 gap-2 mt-3 px-1">
+                    {droppedBy.map((mob) => (
+                      <MobBadge
+                        key={mob.MobId}
+                        id={mob.MobId}
+                        name={mob.Name}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {(detail?.metaInfo?.price !== undefined ||
+              droppedBy.length > 0) && <Divider />}
+          </div>
 
           {/* Description */}
           <div className="w-full text-center px-4 min-h-16 flex items-start justify-center">

@@ -222,3 +222,17 @@ export interface MonsterBookEntry {
 }
 
 export type MonsterBookJson = MonsterBookEntry[];
+
+export interface MobDrop {
+  MobId: number;
+  Name: string;
+}
+
+export interface ItemDropLookupEntry {
+  ItemId: number;
+  Name: string;
+  Type: string;
+  DroppedBy: MobDrop[];
+}
+
+export type ItemDropLookupJson = ItemDropLookupEntry[];
