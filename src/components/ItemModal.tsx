@@ -168,7 +168,7 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
                 </button>
 
                 {isDroppedByExpanded && (
-                  <div className="grid grid-cols-1 gap-2 mt-3 px-1">
+                  <div className="grid grid-cols-1 gap-2 mt-3 px-1 text-left">
                     {droppedBy.map((mob) => (
                       <MobBadge
                         key={mob.MobId}
