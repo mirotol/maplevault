@@ -1,11 +1,4 @@
-import {
-  ChevronDown,
-  ChevronUp,
-  ImageOff,
-  ShieldAlert,
-  Sparkle,
-  X,
-} from "lucide-react";
+import { ImageOff, ShieldAlert, Sparkle, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon, getCachedItem } from "../api/mapleApi";
 import { useMapleData } from "../data/MapleDataContext";
@@ -33,7 +26,9 @@ const EquipmentModal = ({
   const [error, setError] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
   const { itemToMobs } = useMapleData();
-  const [isDroppedByExpanded, setIsDroppedByExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState<"Info" | "Dropped by" | "Sold by">(
+    "Info",
+  );
   const droppedBy = itemToMobs.get(itemId) || [];
 
   useEffect(() => {
@@ -248,7 +243,28 @@ const EquipmentModal = ({
           <Divider />
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 pt-0 space-y-0.5 custom-scrollbar relative z-10">
+        {/* Tab Navigation */}
+        <div className="flex bg-black/20 p-1 rounded-xl mx-4 mb-4 relative z-10 shrink-0 border border-white/5 shadow-inner">
+          {(["Info", "Dropped by", "Sold by"] as const).map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              onClick={() => setActiveTab(tab)}
+              className={`flex-1 py-2 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 rounded-lg ${
+                activeTab === tab
+                  ? "bg-white/10 text-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.1)] ring-1 ring-white/10"
+                  : "text-white/40 hover:text-white/60"
+              }`}
+            >
+              {tab === "Dropped by" ? `Dropped by (${droppedBy.length})` : tab}
+            </button>
+          ))}
+        </div>
+
+        <div
+          key={activeTab}
+          className="flex-1 overflow-y-auto p-4 pt-0 space-y-0.5 custom-scrollbar relative z-10 animate-in fade-in slide-in-from-bottom-2 duration-200"
+        >
           {error ? (
             <div className="flex flex-col items-center justify-center py-6 text-center space-y-2">
               <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
@@ -273,83 +289,80 @@ const EquipmentModal = ({
                   </div>
                 ) : (
                   <>
-                    <StatRow label="STR" value={stats?.incSTR} />
-                    <StatRow label="DEX" value={stats?.incDEX} />
-                    <StatRow label="INT" value={stats?.incINT} />
-                    <StatRow label="LUK" value={stats?.incLUK} />
-                    <StatRow label="HP" value={stats?.incMHP} />
-                    <StatRow label="MP" value={stats?.incMMP} />
-                    <StatRow label="Attack Speed" value={stats?.attackSpeed} />
-                    <StatRow label="Weapon Att." value={stats?.incPAD} />
-                    <StatRow label="Weapon Def." value={stats?.incPDD} />
-                    <StatRow label="Magic Att." value={stats?.incMAD} />
-                    <StatRow label="Magic Def." value={stats?.incMDD} />
-                    <StatRow label="Accuracy" value={stats?.incACC} />
-                    <StatRow label="Avoidability" value={stats?.incEVA} />
-                    <StatRow label="Speed" value={stats?.incSpeed} />
-                    <StatRow label="Jump" value={stats?.incJump} />
-                    <StatRow
-                      label="Available Upgrades"
-                      value={stats?.tuc ?? 0}
-                    />
-
-                    {/* Dropped By Section */}
-                    {droppedBy.length > 0 && (
+                    {activeTab === "Info" && (
                       <>
-                        <Divider />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setIsDroppedByExpanded(!isDroppedByExpanded)
-                          }
-                          className="w-full flex items-center justify-between px-1 py-1 hover:bg-white/5 rounded-lg transition-colors group"
-                        >
-                          <span className="text-white/80 font-medium uppercase tracking-wider text-sm flex items-center gap-2">
-                            Dropped By ({droppedBy.length})
-                          </span>
-                          {isDroppedByExpanded ? (
-                            <ChevronUp className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-                          )}
-                        </button>
+                        <StatRow label="STR" value={stats?.incSTR} />
+                        <StatRow label="DEX" value={stats?.incDEX} />
+                        <StatRow label="INT" value={stats?.incINT} />
+                        <StatRow label="LUK" value={stats?.incLUK} />
+                        <StatRow label="HP" value={stats?.incMHP} />
+                        <StatRow label="MP" value={stats?.incMMP} />
+                        <StatRow
+                          label="Attack Speed"
+                          value={stats?.attackSpeed}
+                        />
+                        <StatRow label="Weapon Att." value={stats?.incPAD} />
+                        <StatRow label="Weapon Def." value={stats?.incPDD} />
+                        <StatRow label="Magic Att." value={stats?.incMAD} />
+                        <StatRow label="Magic Def." value={stats?.incMDD} />
+                        <StatRow label="Accuracy" value={stats?.incACC} />
+                        <StatRow label="Avoidability" value={stats?.incEVA} />
+                        <StatRow label="Speed" value={stats?.incSpeed} />
+                        <StatRow label="Jump" value={stats?.incJump} />
+                        <StatRow
+                          label="Available Upgrades"
+                          value={stats?.tuc ?? 0}
+                        />
 
-                        {isDroppedByExpanded && (
-                          <div className="grid grid-cols-1 gap-2 mt-2 px-1">
-                            {droppedBy.map((mob) => (
-                              <MobBadge
-                                key={mob.MobId}
-                                id={mob.MobId}
-                                name={mob.Name}
-                              />
-                            ))}
+                        {/* Selling price and Description */}
+                        <Divider />
+                        <div className="flex items-center gap-2 px-1">
+                          <span className="text-white/80">
+                            Selling price:{" "}
+                            {stats?.price?.toLocaleString() ?? "-"}
+                          </span>
+                          <img
+                            src="/icons/meso.png"
+                            alt="Meso"
+                            className="w-5 h-5 pointer-events-none select-none"
+                            style={{ imageRendering: "pixelated" }}
+                          />
+                        </div>
+                        {initialItem?.desc && (
+                          <p className="px-1 my-2 text-base text-gray-500 italic leading-relaxed">
+                            {formatDescription(initialItem.desc)}
+                          </p>
+                        )}
+
+                        {!loading && !stats && (
+                          <div className="text-center py-2 opacity-30 text-xs italic">
+                            No additional stats
                           </div>
                         )}
                       </>
                     )}
 
-                    {/* Selling price and Description */}
-                    <Divider />
-                    <div className="flex items-center gap-2 px-1">
-                      <span className="text-white/80">
-                        Selling price: {stats?.price?.toLocaleString() ?? "-"}
-                      </span>
-                      <img
-                        src="/icons/meso.png"
-                        alt="Meso"
-                        className="w-5 h-5 pointer-events-none select-none"
-                        style={{ imageRendering: "pixelated" }}
-                      />
-                    </div>
-                    {initialItem?.desc && (
-                      <p className="px-1 my-2 text-base text-gray-500 italic leading-relaxed">
-                        {formatDescription(initialItem.desc)}
-                      </p>
+                    {activeTab === "Dropped by" && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 px-1 max-h-[320px] overflow-y-auto custom-scrollbar">
+                        {droppedBy.length > 0 ? (
+                          droppedBy.map((mob) => (
+                            <MobBadge
+                              key={mob.MobId}
+                              id={mob.MobId}
+                              name={mob.Name}
+                            />
+                          ))
+                        ) : (
+                          <div className="text-center py-8 opacity-30 text-sm italic col-span-full">
+                            No data
+                          </div>
+                        )}
+                      </div>
                     )}
 
-                    {!loading && !stats && (
-                      <div className="text-center py-2 opacity-30 text-xs italic">
-                        No additional stats
+                    {activeTab === "Sold by" && (
+                      <div className="text-center py-8 opacity-30 text-sm italic">
+                        No data
                       </div>
                     )}
                   </>
