@@ -1,4 +1,13 @@
-import { ImageOff, ShieldAlert, Sparkle, X } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  ImageOff,
+  ShieldAlert,
+  ShoppingBag,
+  Sparkle,
+  Store,
+  X,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon, getCachedItem } from "../api/mapleApi";
 import { useMapleData } from "../data/MapleDataContext";
@@ -26,9 +35,8 @@ const EquipmentModal = ({
   const [error, setError] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
   const { itemToMobs } = useMapleData();
-  const [activeTab, setActiveTab] = useState<"Dropped by" | "Sold by">(
-    "Dropped by",
-  );
+  const [isDroppedByExpanded, setIsDroppedByExpanded] = useState(true);
+  const [isSoldByExpanded, setIsSoldByExpanded] = useState(false);
   const droppedBy = itemToMobs.get(itemId) || [];
 
   useEffect(() => {
@@ -169,7 +177,7 @@ const EquipmentModal = ({
           </button>
         </div>
 
-        <div className="p-4 pb-0 pt-0 relative z-10">
+        <div className="px-4 pb-0 pt-0 relative z-10">
           {/* Name and category */}
           <div className="text-center mb-2">
             <h2 className="font-bold text-2xl leading-tight wrap-break-word text-center">
@@ -189,7 +197,9 @@ const EquipmentModal = ({
               {stats?.tradeBlock && <span>Untradeable</span>}
             </div>
           </div>
+        </div>
 
+        <div className="flex-1 overflow-y-auto p-4 pt-0 space-y-0.5 custom-scrollbar relative z-10 animate-in fade-in slide-in-from-bottom-2 duration-200">
           <Divider />
 
           {/* Icon and Stat requirements */}
@@ -241,9 +251,6 @@ const EquipmentModal = ({
             })}
           </div>
           <Divider />
-        </div>
-
-        <div className="flex-1 overflow-y-auto p-4 pt-0 space-y-0.5 custom-scrollbar relative z-10 animate-in fade-in slide-in-from-bottom-2 duration-200">
           {error ? (
             <div className="flex flex-col items-center justify-center py-6 text-center space-y-2">
               <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
@@ -316,58 +323,71 @@ const EquipmentModal = ({
                 )}
               </div>
 
-              {/* Tab Navigation (Moved Below Info) */}
-              <div className="flex bg-black/20 p-1 rounded-xl mb-4 relative z-10 shrink-0 border border-white/5 shadow-inner mt-4">
-                {(["Dropped by", "Sold by"] as const).map((tab) => (
+              {/* Collapsible Sections */}
+              <div className="space-y-6 mt-6">
+                {/* Dropped By Section */}
+                <div className="space-y-4">
                   <button
-                    key={tab}
                     type="button"
-                    onClick={() => setActiveTab(tab)}
-                    className={`flex-1 py-2 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 rounded-lg ${
-                      activeTab === tab
-                        ? "bg-white/10 text-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.1)] ring-1 ring-white/10"
-                        : "text-white/40 hover:text-white/60"
-                    }`}
+                    onClick={() => setIsDroppedByExpanded(!isDroppedByExpanded)}
+                    className="w-full flex items-center justify-between text-xs sm:text-sm font-bold uppercase tracking-[0.2em] group/header text-orange-400/80"
                   >
-                    {tab === "Dropped by"
-                      ? `Dropped by (${droppedBy.length})`
-                      : tab}
-                  </button>
-                ))}
-              </div>
-
-              {/* Tab Content (Dropped by / Sold by) */}
-              <div
-                key={activeTab}
-                className="animate-in fade-in slide-in-from-bottom-2 duration-200"
-              >
-                {!loading && (
-                  <>
-                    {activeTab === "Dropped by" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 px-1 max-h-[320px] overflow-y-auto custom-scrollbar">
-                        {droppedBy.length > 0 ? (
-                          droppedBy.map((mob) => (
-                            <MobBadge
-                              key={mob.MobId}
-                              id={mob.MobId}
-                              name={mob.Name}
-                            />
-                          ))
-                        ) : (
-                          <div className="text-center py-8 opacity-30 text-sm italic col-span-full">
-                            No data
-                          </div>
-                        )}
-                      </div>
+                    <div className="flex items-center gap-2 px-1">
+                      <ShoppingBag className="w-4 h-4" />
+                      Dropped by ({droppedBy.length})
+                    </div>
+                    {isDroppedByExpanded ? (
+                      <ChevronUp className="w-4 h-4 opacity-50 group-hover/header:opacity-100 transition-opacity" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 opacity-50 group-hover/header:opacity-100 transition-opacity" />
                     )}
+                  </button>
 
-                    {activeTab === "Sold by" && (
-                      <div className="text-center py-8 opacity-30 text-sm italic">
+                  {isDroppedByExpanded && !loading && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 px-1 animate-in fade-in slide-in-from-top-2 duration-200">
+                      {droppedBy.length > 0 ? (
+                        droppedBy.map((mob) => (
+                          <MobBadge
+                            key={mob.MobId}
+                            id={mob.MobId}
+                            name={mob.Name}
+                          />
+                        ))
+                      ) : (
+                        <div className="text-center py-4 opacity-30 text-sm italic col-span-full">
+                          No data
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Sold By Section */}
+                <div className="space-y-4">
+                  <button
+                    type="button"
+                    onClick={() => setIsSoldByExpanded(!isSoldByExpanded)}
+                    className="w-full flex items-center justify-between text-xs sm:text-sm font-bold uppercase tracking-[0.2em] group/header text-orange-400/80"
+                  >
+                    <div className="flex items-center gap-2 px-1">
+                      <Store className="w-4 h-4" />
+                      Sold by
+                    </div>
+                    {isSoldByExpanded ? (
+                      <ChevronUp className="w-4 h-4 opacity-50 group-hover/header:opacity-100 transition-opacity" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 opacity-50 group-hover/header:opacity-100 transition-opacity" />
+                    )}
+                  </button>
+
+                  {isSoldByExpanded && !loading && (
+                    <div className="animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="text-center py-4 opacity-30 text-sm italic">
                         No data
                       </div>
-                    )}
-                  </>
-                )}
+                    </div>
+                  )}
+                </div>
               </div>
             </>
           )}
