@@ -20,8 +20,8 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
   const [loading, setLoading] = useState(!detail?.metaInfo);
   const [error, setError] = useState<string | null>(null);
   const { itemToMobs } = useMapleData();
-  const [activeTab, setActiveTab] = useState<"Info" | "Dropped by" | "Sold by">(
-    "Info",
+  const [activeTab, setActiveTab] = useState<"Dropped by" | "Sold by">(
+    "Dropped by",
   );
   const droppedBy = itemToMobs.get(itemId) || [];
 
@@ -132,89 +132,93 @@ const ItemModal = ({ itemId, initialItem, onClose }: ItemModalProps) => {
           <Divider />
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex bg-black/20 p-1 rounded-xl mx-6 mb-6 relative z-10 shrink-0 border border-white/5 shadow-inner">
-          {(["Info", "Dropped by", "Sold by"] as const).map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-2 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 rounded-lg ${
-                activeTab === tab
-                  ? "bg-white/10 text-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.1)] ring-1 ring-white/10"
-                  : "text-white/40 hover:text-white/60"
-              }`}
-            >
-              {tab === "Dropped by" ? `Dropped by (${droppedBy.length})` : tab}
-            </button>
-          ))}
-        </div>
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pb-8 pt-0 relative z-10">
+          {/* Info Section (Always Visible) */}
+          <div className="flex flex-col items-center text-center">
+            {/* Selling Price */}
+            {!loading && detail?.metaInfo?.price !== undefined && (
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-white/80 font-medium">
+                  Selling price: {detail.metaInfo.price.toLocaleString()}
+                </span>
+                <img
+                  src="/icons/meso.png"
+                  alt="Meso"
+                  className="w-5 h-5 pointer-events-none select-none"
+                  style={{ imageRendering: "pixelated" }}
+                />
+              </div>
+            )}
 
-        {/* Scrollable Description Content */}
-        <div
-          key={activeTab}
-          className="flex-1 overflow-y-auto custom-scrollbar p-6 pb-8 pt-0 relative z-10 animate-in fade-in slide-in-from-bottom-2 duration-200"
-        >
-          {activeTab === "Info" && (
-            <div className="flex flex-col items-center text-center">
-              {/* Selling Price */}
-              {!loading && detail?.metaInfo?.price !== undefined && (
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-white/80 font-medium">
-                    Selling price: {detail.metaInfo.price.toLocaleString()}
-                  </span>
-                  <img
-                    src="/icons/meso.png"
-                    alt="Meso"
-                    className="w-5 h-5 pointer-events-none select-none"
-                    style={{ imageRendering: "pixelated" }}
-                  />
+            {!loading && detail?.metaInfo?.price !== undefined && <Divider />}
+
+            {/* Description */}
+            <div className="w-full text-center px-4 min-h-16 flex items-start justify-center">
+              {loading ? (
+                <div className="space-y-3 w-full">
+                  <Skeleton className="h-4 w-full opacity-10" />
+                  <Skeleton className="h-4 w-5/6 mx-auto opacity-10" />
                 </div>
-              )}
-
-              {!loading && detail?.metaInfo?.price !== undefined && <Divider />}
-
-              {/* Description */}
-              <div className="w-full text-center px-4 min-h-16 flex items-start justify-center">
-                {loading ? (
-                  <div className="space-y-3 w-full">
-                    <Skeleton className="h-4 w-full opacity-10" />
-                    <Skeleton className="h-4 w-5/6 mx-auto opacity-10" />
-                  </div>
-                ) : detail?.desc || initialItem?.desc ? (
-                  <p className="text-base text-white/90 leading-relaxed font-medium italic">
-                    {formatDescription(detail?.desc || initialItem?.desc || "")}
+              ) : detail?.desc || initialItem?.desc ? (
+                <p className="text-base text-white/90 leading-relaxed font-medium italic">
+                  {formatDescription(detail?.desc || initialItem?.desc || "")}
+                </p>
+              ) : (
+                !error && (
+                  <p className="text-white/30 italic text-lg">
+                    No description provided
                   </p>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Tab Navigation (Moved Below Info) */}
+          <div className="flex bg-black/20 p-1 rounded-xl mb-6 relative z-10 shrink-0 border border-white/5 shadow-inner mt-6">
+            {(["Dropped by", "Sold by"] as const).map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 py-2 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 rounded-lg ${
+                  activeTab === tab
+                    ? "bg-white/10 text-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.1)] ring-1 ring-white/10"
+                    : "text-white/40 hover:text-white/60"
+                }`}
+              >
+                {tab === "Dropped by"
+                  ? `Dropped by (${droppedBy.length})`
+                  : tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content (Dropped by / Sold by) */}
+          <div
+            key={activeTab}
+            className="animate-in fade-in slide-in-from-bottom-2 duration-200"
+          >
+            {activeTab === "Dropped by" && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 px-1 max-h-[320px] overflow-y-auto custom-scrollbar">
+                {droppedBy.length > 0 ? (
+                  droppedBy.map((mob) => (
+                    <MobBadge key={mob.MobId} id={mob.MobId} name={mob.Name} />
+                  ))
                 ) : (
-                  !error && (
-                    <p className="text-white/30 italic text-lg">
-                      No description provided
-                    </p>
-                  )
+                  <div className="text-center py-8 opacity-30 text-sm italic col-span-full">
+                    No data
+                  </div>
                 )}
               </div>
-            </div>
-          )}
+            )}
 
-          {activeTab === "Dropped by" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 px-1 max-h-[320px] overflow-y-auto custom-scrollbar">
-              {droppedBy.length > 0 ? (
-                droppedBy.map((mob) => (
-                  <MobBadge key={mob.MobId} id={mob.MobId} name={mob.Name} />
-                ))
-              ) : (
-                <div className="text-center py-8 opacity-30 text-sm italic col-span-full">
-                  No data
-                </div>
-              )}
-            </div>
-          )}
-
-          {activeTab === "Sold by" && (
-            <div className="text-center py-8 opacity-30 text-sm italic">
-              No data
-            </div>
-          )}
+            {activeTab === "Sold by" && (
+              <div className="text-center py-8 opacity-30 text-sm italic">
+                No data
+              </div>
+            )}
+          </div>
 
           {error && (
             <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mt-4 text-red-400 text-sm flex items-center gap-2">
