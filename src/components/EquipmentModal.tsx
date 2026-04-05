@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchItem, fetchItemIcon, getCachedItem } from "../api/mapleApi";
-import { useMapleData } from "../data/MapleDataContext";
+import { useMapleData } from "../context/MapleDataContext";
 import type { Item } from "../types/maple";
 import { formatAttackSpeed } from "../utils/item";
 import { formatDescription } from "../utils/mapleDescription";

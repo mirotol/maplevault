@@ -2,7 +2,7 @@ import { User } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchNpcIcon } from "../api/mapleApi";
-import { npcLookupJson } from "../data/staticData";
+import { npcLookupJson } from "../context/staticData";
 
 interface NpcCardProps {
   id: number;

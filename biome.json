@@ -28,7 +28,7 @@
       "**",
       "!!**/dist",
       "!!**/node_modules",
-      "!!src/data/monsterbook.json"
+      "!!src/context/monsterbook.json"
     ]
   }
 }

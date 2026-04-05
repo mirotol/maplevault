@@ -1,6 +1,7 @@
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, Volume2, VolumeX, X } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSound } from "../context/SoundContext";
 
 interface NavbarProps {
   theme: "light" | "dark";
@@ -9,6 +10,7 @@ interface NavbarProps {
 
 const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isSoundEnabled, toggleSound } = useSound();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -69,6 +71,20 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Sound Toggle Button */}
+          <button
+            onClick={toggleSound}
+            type="button"
+            aria-label="Toggle sound"
+            className="p-2 md:p-3 rounded-full hover:bg-(--color-accent-bg) transition-all duration-200 border border-(--color-border) group shrink-0"
+          >
+            {isSoundEnabled ? (
+              <Volume2 className="w-5 h-5 md:w-6 md:h-6 text-(--color-accent) group-hover:scale-110 transition-transform" />
+            ) : (
+              <VolumeX className="w-5 h-5 md:w-6 md:h-6 text-(--color-accent) group-hover:scale-110 transition-transform" />
+            )}
+          </button>
+
           {/* Theme Toggle Button */}
           <button
             onClick={onToggleTheme}

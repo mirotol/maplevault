@@ -1,5 +1,6 @@
 import { ArrowBigLeft } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useSound } from "../context/SoundContext";
 import type { WorldMapData, WorldMapNode } from "../types/maple";
 
 const NODE_ICONS: Record<number, string> = {
@@ -25,6 +26,15 @@ export default function WorldMapViewer() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   const linkRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const { playSound, preloadSound } = useSound();
+
+  const playSelectSound = useCallback(() => {
+    playSound("/sounds/select_map.mp3");
+  }, [playSound]);
+
+  useEffect(() => {
+    preloadSound("/sounds/select_map.mp3");
+  }, [preloadSound]);
 
   useEffect(() => {
     fetch("/worldmap.json")
@@ -245,6 +255,7 @@ export default function WorldMapViewer() {
               const next = maps.find((m) => m.Name === link.Target);
               if (!next) return;
 
+              playSelectSound();
               setHistory((prev) => [...prev, displayMap]);
               navigateToMap(next);
             }}
@@ -295,6 +306,7 @@ export default function WorldMapViewer() {
                     const next = maps.find((m) => m.Name === link.Target);
                     if (!next) return;
 
+                    playSelectSound();
                     setHistory((prev) => [...prev, displayMap]);
                     navigateToMap(next);
                     return;

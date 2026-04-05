@@ -17,7 +17,7 @@ import {
   fetchMobRenderUrl,
   getCachedMobDetail,
 } from "../api/mapleApi";
-import { useMapleData } from "../data/MapleDataContext";
+import { useMapleData } from "../context/MapleDataContext";
 import type { Mob, MobDetail } from "../types/maple";
 import { getElementalInfo } from "../utils/elemental";
 import { Badge } from "./Badge";
