@@ -7,6 +7,8 @@ import ItemsPage from "./pages/ItemsPage";
 import MapsPage from "./pages/MapsPage";
 import MobsPage from "./pages/MobsPage";
 import NpcsPage from "./pages/NpcsPage";
+import ScrollingSimulatorPage from "./pages/ScrollingSimulatorPage";
+import ToolsPage from "./pages/ToolsPage";
 import WorldMapPage from "./pages/WorldMapPage";
 
 export default function App() {
@@ -22,6 +24,11 @@ export default function App() {
           <Route path="maps/:id?" element={<MapsPage />} />
           <Route path="npcs/:id?" element={<NpcsPage />} />
           <Route path="worldmap" element={<WorldMapPage />} />
+          <Route path="tools" element={<ToolsPage />} />
+          <Route
+            path="tools/scrolling-simulator"
+            element={<ScrollingSimulatorPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
