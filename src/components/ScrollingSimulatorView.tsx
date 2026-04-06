@@ -28,7 +28,13 @@ const ScrollingSimulatorView = () => {
   const [loading, setLoading] = useState(true);
 
   const effectRef = useRef<ScrollEffectHandle>(null);
-  const { playSound } = useSound();
+  const { playSound, preloadSound } = useSound();
+
+  // Preload sounds on mount
+  useEffect(() => {
+    preloadSound("/sounds/scroll_success.mp3");
+    preloadSound("/sounds/scroll_fail.mp3");
+  }, [preloadSound]);
 
   // Reset/Initial load
   useEffect(() => {

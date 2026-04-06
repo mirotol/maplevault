@@ -9,7 +9,7 @@ const ScrollingSimulatorPage = () => {
   }, []);
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-2 animate-in fade-in duration-500">
       <div className="flex flex-col gap-4">
         <Link
           to="/tools"
@@ -19,12 +19,11 @@ const ScrollingSimulatorPage = () => {
           <span>Back to Tools</span>
         </Link>
         <div className="flex flex-col gap-2">
-          <h1 className="text-4xl font-bold font-heading">
-            Scrolling Simulator
-          </h1>
-          <p className="text-white/60 text-lg">
-            Test your luck with scroll simulations.
-          </p>
+          <h2 className="font-heading text-4xl font-semibold mb-8 flex items-center gap-3 text-white">
+            <span className="drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]">
+              Scrolling Simulator
+            </span>
+          </h2>
         </div>
       </div>
 

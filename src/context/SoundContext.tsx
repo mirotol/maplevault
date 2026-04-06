@@ -43,6 +43,7 @@ export const SoundProvider: React.FC<{ children: React.ReactNode }> = ({
     let audio = soundCache.current.get(soundPath);
     if (!audio) {
       audio = new Audio(soundPath);
+      audio.preload = "auto";
       soundCache.current.set(soundPath, audio);
     }
     return audio;
@@ -61,12 +62,10 @@ export const SoundProvider: React.FC<{ children: React.ReactNode }> = ({
 
       const audio = getAudio(soundPath);
 
-      // If already playing, we restart it or clone it?
-      // For UI sounds, restarting is usually what people expect.
-      // If it's already at the beginning and playing, play() is a no-op usually.
-      // So we reset currentTime to 0.
-      audio.currentTime = 0;
-      audio.play().catch((err) => {
+      // Clone the audio node to allow overlapping sounds and avoid state conflicts
+      // that might cause delays in seeking/playing on the same element.
+      const clone = audio.cloneNode(true) as HTMLAudioElement;
+      clone.play().catch((err) => {
         console.warn("Failed to play sound:", err);
       });
     },
