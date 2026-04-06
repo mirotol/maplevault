@@ -6,36 +6,29 @@ export type ScrollEffectHandle = {
   play: (type: EffectType) => void;
 };
 
-const FRAME_WIDTH = 96;
-const FRAME_HEIGHT = 122;
-
-const EFFECTS = {
+const EFFECTS: Record<
+  EffectType,
+  {
+    sprite: string;
+    frameWidth: number;
+    frameHeight: number;
+    columns: number;
+    frameCount: number;
+  }
+> = {
   fail: {
     sprite: "/effects/scroll_failure.png",
-    frames: [
-      { originX: 16, originY: 130, delay: 50 },
-      { originX: 16, originY: 130, delay: 50 },
-      { originX: 16, originY: 130, delay: 50 },
-      { originX: 20, originY: 141, delay: 50 },
-      { originX: 24, originY: 154, delay: 50 },
-      { originX: 20, originY: 155, delay: 50 },
-      { originX: 24, originY: 154, delay: 50 },
-      { originX: 31, originY: 153, delay: 50 },
-      { originX: 35, originY: 153, delay: 50 },
-      { originX: 42, originY: 151, delay: 50 },
-      { originX: 42, originY: 148, delay: 50 },
-      { originX: 45, originY: 139, delay: 50 },
-      { originX: 44, originY: 132, delay: 50 },
-      { originX: 43, originY: 123, delay: 50 },
-      { originX: 62, originY: 108, delay: 50 },
-      { originX: 62, originY: 108, delay: 50 },
-    ],
+    frameWidth: 200,
+    frameHeight: 200,
+    columns: 8,
+    frameCount: 16,
   },
-
-  // placeholder for later
   success: {
     sprite: "/effects/scroll_success.png",
-    frames: [], // add later
+    frameWidth: 200,
+    frameHeight: 200,
+    columns: 8,
+    frameCount: 21,
   },
 };
 
@@ -43,8 +36,8 @@ const ScrollEffectCanvas = forwardRef<ScrollEffectHandle>((_, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<Record<string, HTMLImageElement>>({});
 
-  const canvasWidth = 300;
-  const canvasHeight = 300;
+  const canvasWidth = 200;
+  const canvasHeight = 200;
 
   // Preload all effect images once
   useEffect(() => {
@@ -61,34 +54,36 @@ const ScrollEffectCanvas = forwardRef<ScrollEffectHandle>((_, ref) => {
 
     if (!effect || !img) return;
 
+    const { frameWidth, frameHeight, columns, frameCount } = effect;
     const ctx = canvasRef.current!.getContext("2d")!;
     let i = 0;
 
+    // Calculate reference origin to center the animation visually on the item
     const targetX = canvasWidth / 2;
     const targetY = canvasHeight / 2;
 
     const playFrame = () => {
-      const frame = effect.frames[i];
-      if (!frame) return;
-
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+      const col = i % columns;
+      const row = Math.floor(i / columns);
 
       ctx.drawImage(
         img,
-        i * FRAME_WIDTH,
-        0,
-        FRAME_WIDTH,
-        FRAME_HEIGHT,
-        targetX - frame.originX,
-        targetY - frame.originY,
-        FRAME_WIDTH,
-        FRAME_HEIGHT,
+        col * frameWidth,
+        row * frameHeight,
+        frameWidth,
+        frameHeight,
+        targetX - frameWidth / 2,
+        targetY - frameHeight / 2,
+        frameWidth,
+        frameHeight,
       );
 
       i++;
 
-      if (i < effect.frames.length) {
-        setTimeout(playFrame, frame.delay);
+      if (i < frameCount) {
+        setTimeout(playFrame, 50); // Delay between frames
       } else {
         setTimeout(() => {
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
