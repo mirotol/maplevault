@@ -46,7 +46,9 @@ const ScrollingItemDisplay = ({
           )}
           {/* Effect Canvas on top */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-            <ScrollEffectCanvas ref={effectRef} />
+            <div style={{ transform: "scale(1.5)" }}>
+              <ScrollEffectCanvas ref={effectRef} />
+            </div>
           </div>
         </div>
       )}
